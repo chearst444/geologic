@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#FAF6EE">
+    <title>GeoLogic: American Edition &mdash; America 250</title>
+    <style>
+        :root {
+            /* Palette from data/palette.html */
+            --cream:      #FAF6EE;
+            --beige:      #F0E9DA;
+            --navy:       #1B2A4A;
+            --federal:    #2E4A7A;
+            --slate:      #5A7FB5;
+            --sky:        #9FBBDE;
+            --brick:      #8C2F39;
+            --rose:       #B5525C;
+            --light-red:  #D98E92;
+            --card:       #FFFFFF;
+            --mountain:   #7A6A55;
+            --river:      #3E7B8C;
+
+            --text-main:  #1B2A4A;
+            --text-muted: #6B7280;
+            --line:       rgba(27, 42, 74, 0.14);
+        }
+
+        * { box-sizing: border-box; }
+
+        /* Mobile locks: no page scroll, no pinch-zoom of the document, no
+           pull-to-refresh, no text selection or long-press callout. Gesture
+           handling belongs to the map (d3-zoom), not the browser. */
+        html, body, svg, canvas {
+            touch-action: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            overscroll-behavior: none;
+        }
+
+        html, body {
+            overflow: hidden;
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--cream);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ---- Header with stars-and-stripes chrome ---------------------- */
+        header {
+            position: relative;
+            background-color: var(--card);
+            padding: 12px 28px;
+            padding-top: max(12px, env(safe-area-inset-top));
+            padding-left: max(28px, env(safe-area-inset-left));
+            padding-right: max(28px, env(safe-area-inset-right));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(27, 42, 74, 0.10);
+            z-index: 10;
+            flex-wrap: wrap;
+            gap: 10px;
+            overflow: hidden;
+        }
+
+        /* Faint stripe wash across the header. */
+        header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                180deg,
+                rgba(140, 47, 57, 0.055) 0 9px,
+                transparent 9px 18px
+            );
+        }
+        /* Woven red/white/blue ribbon along the bottom edge. */
+        header::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 3px;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--brick) 0 18px,
+                var(--card) 18px 27px,
+                var(--navy) 27px 45px,
+                var(--card) 45px 54px
+            );
+        }
+
+        .brand { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; z-index: 1; }
+
+        h1 {
+            margin: 0;
+            font-size: 1.35rem;
+            letter-spacing: 0.01em;
+            color: var(--navy);
+            font-weight: 800;
+        }
+        h1 em {
+            font-style: normal;
+            font-weight: 600;
+            color: var(--brick);
+        }
+        h1 span {
+            display: block;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.72rem;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* "Est. 1776 · 250 Years" anniversary badge, with a star canton. */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 12px 5px 8px;
+            border-radius: 999px;
+            border: 1.5px solid var(--navy);
+            background: linear-gradient(180deg, #fff, var(--beige));
+            color: var(--navy);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            box-shadow: 0 1px 3px rgba(27, 42, 74, 0.12);
+        }
+        .badge .stars {
+            display: inline-block;
+            width: 26px; height: 12px;
+            background: var(--navy);
+            border-radius: 2px;
+            position: relative;
+        }
+        /* Three small white stars sitting in the navy canton. */
+        .badge .stars::after {
+            content: "\2605\2605\2605";
+            position: absolute;
+            inset: 0;
+            color: #fff;
+            font-size: 7px;
+            line-height: 12px;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .stats { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; z-index: 1; }
+
+        .pill {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--brick);
+            background: var(--beige);
+            border: 1px solid var(--line);
+            padding: 6px 14px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+        .pill .lbl {
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            margin-right: 4px;
+        }
+
+        button, select {
+            font: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--navy);
+            background: var(--card);
+            border: 1.5px solid var(--slate);
+            padding: 7px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.18s, border-color 0.18s, color 0.18s;
+            touch-action: manipulation;
+            min-height: 40px;
+        }
+        select {
+            padding-right: 10px;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image:
+                linear-gradient(45deg, transparent 50%, var(--federal) 50%),
+                linear-gradient(135deg, var(--federal) 50%, transparent 50%);
+            background-position: right 14px center, right 9px center;
+            background-size: 5px 5px, 5px 5px;
+            background-repeat: no-repeat;
+            padding-right: 28px;
+        }
+        /* Hover effects only where a real hover pointer exists, so styles
+           don't get stuck after a tap on touch devices. */
+        @media (hover: hover) {
+            button:hover, select:hover { background: var(--beige); border-color: var(--federal); }
+        }
+        button:active { background: var(--sky); }
+        button:disabled { opacity: 0.42; cursor: default; }
+        button.on {
+            background: var(--brick);
+            border-color: var(--brick);
+            color: #fff;
+        }
+        button.primary {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: #fff;
+        }
+        @media (hover: hover) {
+            button.primary:hover { background: var(--federal); border-color: var(--federal); }
+            button.on:hover { background: var(--rose); border-color: var(--rose); }
+        }
+
+        #game-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 14px;
+            gap: 12px;
+            min-height: 0;
+        }
+
+        /* ---- Clue card ------------------------------------------------ */
+        #clue-card {
+            background-color: var(--card);
+            border-radius: 12px;
+            padding: 14px 18px;
+            box-shadow: 0 4px 14px rgba(27, 42, 74, 0.10);
+            border-left: 5px solid var(--brick);
+            z-index: 5;
+        }
+
+        .clue-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .clue-head h2 {
+            margin: 0;
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.11em;
+        }
+        .clue-head .progress {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--federal);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 22px;
+            /* The clue list is the one place vertical scrolling is allowed. */
+            overflow-y: auto;
+            touch-action: pan-y;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+            max-height: 28vh;
+        }
+        li {
+            margin-bottom: 6px;
+            font-size: 1.05rem;
+            line-height: 1.38;
+            animation: clue-in 0.28s ease-out;
+        }
+        li::marker { color: var(--slate); font-weight: 700; }
+        li.bonus::marker { color: var(--brick); }
+        li.bonus {
+            color: var(--brick);
+            font-weight: 600;
+        }
+        @keyframes clue-in {
+            from { opacity: 0; transform: translateY(-4px); }
+            to   { opacity: 1; transform: none; }
+        }
+
+        .clue-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ---- Map ------------------------------------------------------ */
+        #map-viewport {
+            width: 100%;
+            flex: 1;
+            background: var(--beige);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 0 1px var(--line);
+            min-height: 0;
+        }
+
+        svg { width: 100%; height: 100%; display: block; cursor: grab; }
+        svg:active { cursor: grabbing; }
+
+        #zoom-controls {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 50;
+        }
+        #zoom-controls button {
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            font-size: 1.25rem;
+            line-height: 1;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .state {
+            fill: var(--federal);
+            stroke: var(--cream);
+            stroke-width: 0.7;
+            cursor: pointer;
+            transition: fill 0.18s;
+            vector-effect: non-scaling-stroke;
+        }
+        /* Region tints: the four palette blues, deepest in the Northeast. */
+        .state[data-region="Northeast"] { fill: #1B2A4A; }
+        .state[data-region="South"]     { fill: #2E4A7A; }
+        .state[data-region="Midwest"]   { fill: #5A7FB5; }
+        .state[data-region="West"]      { fill: #9FBBDE; }
+
+        /* Hover shifts blue -> red, lighter tints to lighter reds. */
+        @media (hover: hover) {
+            .state:hover                      { fill: var(--brick); }
+            .state[data-region="Northeast"]:hover { fill: #8C2F39; }
+            .state[data-region="South"]:hover     { fill: #8C2F39; }
+            .state[data-region="Midwest"]:hover   { fill: #B5525C; }
+            .state[data-region="West"]:hover      { fill: #D98E92; }
+        }
+
+        /* Not part of the quiz (DC and the territories). */
+        .state.inert {
+            fill: #DCD3C2;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        /* Dimmed when a regional round excludes them. */
+        .state.out-of-round {
+            fill: #E3DACA;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .state.correct { fill: var(--brick) !important; }
+        .state.wrong   { animation: flash-red 0.45s ease-out 2; }
+
+        @keyframes flash-red {
+            0%, 100% { fill: var(--rose); }
+            50%      { fill: var(--brick); }
+        }
+
+        /* ---- Geography overlays --------------------------------------- */
+        .geo-line {
+            fill: none;
+            vector-effect: non-scaling-stroke;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .geo-line.mtn {
+            stroke: var(--mountain);
+            stroke-width: 2.2;
+            stroke-opacity: 0.5;
+            stroke-dasharray: 1 5;
+        }
+        .geo-line.river {
+            stroke: var(--river);
+            stroke-width: 1.4;
+            stroke-opacity: 0.62;
+        }
+        .geo-label {
+            font-size: 8.5px;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            paint-order: stroke;
+            stroke: var(--cream);
+            stroke-width: 2.5px;
+            stroke-linejoin: round;
+        }
+        .geo-label.mtn   { fill: var(--mountain); }
+        .geo-label.river { fill: var(--river); font-style: italic; letter-spacing: 0.03em; }
+
+        .landmark { cursor: pointer; }
+        .landmark circle {
+            fill: var(--cream);
+            stroke: var(--brick);
+            stroke-width: 1.4;
+            vector-effect: non-scaling-stroke;
+        }
+        .landmark text {
+            font-size: 8px;
+            text-anchor: middle;
+            dominant-baseline: central;
+            pointer-events: none;
+        }
+        @media (hover: hover) {
+            .landmark:hover circle { fill: var(--light-red); }
+        }
+
+        /* Landmark fact bubble */
+        #landmark-tip {
+            position: absolute;
+            max-width: 230px;
+            background: var(--card);
+            color: var(--navy);
+            border: 1.5px solid var(--brick);
+            border-radius: 10px;
+            padding: 8px 11px;
+            font-size: 0.82rem;
+            line-height: 1.35;
+            box-shadow: 0 8px 20px rgba(27, 42, 74, 0.22);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 60;
+        }
+        #landmark-tip.show { opacity: 1; }
+        #landmark-tip b { display: block; color: var(--brick); margin-bottom: 2px; }
+
+        /* ---- Reveal card ---------------------------------------------- */
+        #reveal {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            background: rgba(27, 42, 74, 0.30);
+            z-index: 100;
+        }
+        #reveal.show { display: flex; }
+
+        .reveal-card {
+            background: var(--card);
+            border-radius: 14px;
+            width: min(430px, 100%);
+            max-height: 100%;
+            overflow-y: auto;
+            touch-action: pan-y;
+            overscroll-behavior: contain;
+            box-shadow: 0 24px 48px rgba(27, 42, 74, 0.32);
+            border-top: 5px solid var(--brick);
+            padding: 16px 18px 18px;
+            animation: card-in 0.32s ease-out;
+        }
+        @keyframes card-in {
+            from { opacity: 0; transform: translateY(14px) scale(0.97); }
+            to   { opacity: 1; transform: none; }
+        }
+
+        .reveal-card h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--navy);
+            letter-spacing: 0.01em;
+        }
+        .reveal-sub {
+            margin: 2px 0 12px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--brick);
+        }
+
+        .flag-wrap {
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            background: var(--beige);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flag-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .flag-wrap.missing { display: none; }
+
+        /* Capital bonus */
+        #cap-block {
+            background: var(--beige);
+            border-radius: 10px;
+            padding: 11px 13px;
+            margin-bottom: 12px;
+        }
+        #cap-block .q {
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin: 0 0 8px;
+        }
+        .cap-row { display: flex; gap: 7px; }
+        #cap-input {
+            flex: 1;
+            min-width: 0;
+            font: inherit;
+            font-size: 0.95rem;
+            padding: 9px 12px;
+            border-radius: 8px;
+            border: 1.5px solid var(--slate);
+            background: #fff;
+            color: var(--navy);
+            -webkit-user-select: text;
+            user-select: text;
+            touch-action: manipulation;
+        }
+        #cap-input:focus { outline: 2px solid var(--federal); outline-offset: -1px; }
+        #cap-result { margin: 8px 0 0; font-size: 0.9rem; font-weight: 700; }
+        #cap-result.right { color: #1F7A4D; }
+        #cap-result.miss  { color: var(--brick); }
+
+        .chips { display: flex; gap: 8px; margin-bottom: 12px; }
+        .chip {
+            flex: 1;
+            background: var(--beige);
+            border-radius: 10px;
+            padding: 9px 11px;
+            min-width: 0;
+        }
+        .chip .k {
+            display: block;
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+        .chip .v { font-size: 0.92rem; font-weight: 600; color: var(--navy); }
+
+        #dyk {
+            border-left: 4px solid var(--slate);
+            background: #F7FAFF;
+            border-radius: 0 8px 8px 0;
+            padding: 10px 12px;
+            margin-bottom: 14px;
+            font-size: 0.9rem;
+            line-height: 1.42;
+        }
+        #dyk b {
+            display: block;
+            font-size: 0.64rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--brick);
+            margin-bottom: 4px;
+        }
+
+        .reveal-actions { display: flex; gap: 8px; }
+        .reveal-actions button { flex: 1; }
+
+        /* ---- Round summary -------------------------------------------- */
+        #summary {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: rgba(27, 42, 74, 0.36);
+            z-index: 110;
+            text-align: center;
+        }
+        #summary.show { display: flex; }
+        #summary .reveal-card { text-align: center; }
+        #summary .big {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--brick);
+            margin: 6px 0 2px;
+        }
+
+        #loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* ---- Touch HUD ------------------------------------------------
+           Shown only on coarse-pointer devices, or with ?touch=1 in the URL
+           (html.touch-mode is set by script). It moves the round actions
+           down to thumb reach and frees header space on narrow screens. */
+        #touch-hud {
+            display: none;
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+            z-index: 50;
+        }
+        #touch-hud button {
+            min-height: 48px;
+            min-width: 104px;
+            font-size: 0.92rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(2px);
+        }
+
+        html.touch-mode #touch-hud { display: flex; }
+        html.touch-mode header .stats > button.js-skip { display: none; }
+        html.touch-mode #zoom-controls button { width: 48px; height: 48px; font-size: 1.45rem; }
+
+        /* ---- Responsive layout ---------------------------------------- */
+        @media (max-width: 720px) {
+            header {
+                padding: 9px 12px;
+                padding-top: max(9px, env(safe-area-inset-top));
+                padding-left: max(12px, env(safe-area-inset-left));
+                padding-right: max(12px, env(safe-area-inset-right));
+            }
+            h1 { font-size: 1.02rem; }
+            h1 span { display: none; }
+            .brand { gap: 8px; }
+            .badge { font-size: 0.6rem; padding: 4px 9px 4px 6px; }
+            .badge .stars { width: 20px; }
+            .stats { gap: 6px; }
+            .pill { font-size: 0.82rem; padding: 5px 11px; }
+            .pill .lbl { font-size: 0.64rem; }
+            button, select { padding: 6px 11px; font-size: 0.82rem; }
+
+            #game-container {
+                padding: 10px;
+                padding-left: max(10px, env(safe-area-inset-left));
+                padding-right: max(10px, env(safe-area-inset-right));
+                padding-bottom: max(10px, env(safe-area-inset-bottom));
+                gap: 10px;
+            }
+            #clue-card { padding: 11px 13px; border-left-width: 4px; }
+            li { font-size: 0.95rem; margin-bottom: 5px; }
+            ol { max-height: 24vh; padding-left: 19px; }
+            .reveal-card { padding: 14px 15px 16px; }
+            .reveal-card h3 { font-size: 1.25rem; }
+        }
+
+        /* Short/landscape phones: give the map as much height as possible. */
+        @media (max-height: 560px) and (orientation: landscape) {
+            header { padding-top: 5px; padding-bottom: 5px; }
+            h1 { font-size: 0.92rem; }
+            #game-container { padding: 8px; gap: 8px; }
+            #clue-card { padding: 8px 11px; }
+            .clue-head { margin-bottom: 5px; }
+            ol { max-height: 19vh; }
+            li { font-size: 0.88rem; margin-bottom: 3px; }
+            .flag-wrap { aspect-ratio: 5 / 2; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <h1>GeoLogic: American Edition <em>&mdash; America 250</em>
+                <span>Deduce &amp; click the state</span>
+            </h1>
+            <span class="badge"><i class="stars"></i>Est. 1776 &middot; 250 Years</span>
+        </div>
+        <div class="stats">
+            <div class="pill"><span class="lbl">Score</span><span id="score">0</span></div>
+            <div class="pill"><span class="lbl">Streak</span><span id="streak">0</span></div>
+            <select id="region-select" aria-label="Choose a region">
+                <option value="All">All 50 States</option>
+                <option value="Northeast">Northeast</option>
+                <option value="South">South</option>
+                <option value="Midwest">Midwest</option>
+                <option value="West">West</option>
+            </select>
+            <button class="js-expert" aria-pressed="false">Expert: Off</button>
+            <button class="js-overlays" aria-pressed="true">Geography: On</button>
+            <button class="js-skip">Skip &rarr;</button>
+        </div>
+    </header>
+
+    <div id="game-container">
+        <div id="clue-card">
+            <div class="clue-head">
+                <h2 id="clue-title">Deduction clues</h2>
+                <span class="progress" id="round-progress"></span>
+            </div>
+            <ol id="clue-list"><li>Loading state data&hellip;</li></ol>
+            <div class="clue-actions">
+                <button class="js-next-clue" disabled>Next clue &darr;</button>
+            </div>
+        </div>
+
+        <div id="map-viewport">
+            <div id="loading">Loading the United States&hellip;</div>
+
+            <svg id="map-svg" viewBox="0 0 975 610" preserveAspectRatio="xMidYMid meet">
+                <g id="map-container"></g>
+            </svg>
+
+            <div id="landmark-tip"></div>
+
+            <div id="zoom-controls">
+                <button id="zc-in" title="Zoom in" aria-label="Zoom in">+</button>
+                <button id="zc-out" title="Zoom out" aria-label="Zoom out">&minus;</button>
+                <button id="zc-reset" title="Reset view" aria-label="Reset view">&#10530;</button>
+            </div>
+
+            <div id="touch-hud">
+                <button class="js-next-clue" disabled>Next clue &darr;</button>
+                <button class="js-skip">Skip &rarr;</button>
+            </div>
+
+            <!-- Post-guess reveal: flag, capital bonus, bird/flower, fun fact -->
+            <div id="reveal">
+                <div class="reveal-card">
+                    <h3 id="rv-name"></h3>
+                    <p class="reveal-sub" id="rv-sub"></p>
+
+                    <div class="flag-wrap" id="rv-flag-wrap">
+                        <img id="rv-flag" alt="">
+                    </div>
+
+                    <div id="cap-block">
+                        <p class="q" id="cap-q"></p>
+                        <div class="cap-row" id="cap-row">
+                            <input id="cap-input" type="text" autocomplete="off"
+                                   autocorrect="off" autocapitalize="words" spellcheck="false"
+                                   placeholder="Capital city&hellip;">
+                            <button id="cap-submit" class="primary">Answer</button>
+                        </div>
+                        <p id="cap-result"></p>
+                    </div>
+
+                    <div class="chips">
+                        <div class="chip"><span class="k">State bird</span><span class="v" id="rv-bird"></span></div>
+                        <div class="chip"><span class="k">State flower</span><span class="v" id="rv-flower"></span></div>
+                    </div>
+
+                    <div id="dyk"><b>Did you know?</b><span id="rv-dyk"></span></div>
+
+                    <div class="reveal-actions">
+                        <button id="rv-next" class="primary">Next state &rarr;</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regional round complete -->
+            <div id="summary">
+                <div class="reveal-card">
+                    <h3 id="sm-title"></h3>
+                    <p class="reveal-sub">Round complete</p>
+                    <div class="big" id="sm-score"></div>
+                    <p id="sm-detail" style="margin:0 0 14px; color:var(--text-muted); font-size:0.9rem;"></p>
+                    <div class="reveal-actions">
+                        <button id="sm-again" class="primary">Play again</button>
+                        <button id="sm-all">All 50 states</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+    <script>
+    // ---------------------------------------------------------------------
+    // GeoLogic: American Edition. Same deduction loop as the world edition
+    // (score +10, streak, skip resets the streak); the clue text now comes
+    // from a curated file rather than being derived from map geometry.
+    // ---------------------------------------------------------------------
+
+    const SCORE_CORRECT = 10;   // identical to the world edition
+    const SCORE_CAPITAL = 5;    // small bonus for naming the capital
+
+    // Mountain ranges, as lon/lat polylines. Drawn as dashed ridge lines.
+    const RANGES = [
+        { name: "ROCKY MOUNTAINS", label: [-109.4, 43.4], coords: [
+            [-114.6, 48.9], [-113.3, 47.4], [-112.2, 45.8], [-110.6, 44.4],
+            [-109.6, 42.6], [-107.3, 41.0], [-106.3, 39.6], [-105.9, 38.0],
+            [-106.4, 36.4], [-107.0, 34.8] ] },
+        { name: "APPALACHIANS", label: [-80.6, 37.6], coords: [
+            [-69.9, 45.4], [-71.4, 44.2], [-72.9, 43.1], [-74.6, 41.7],
+            [-76.4, 40.6], [-78.6, 39.4], [-80.4, 37.9], [-82.3, 36.3],
+            [-83.9, 35.1], [-84.6, 34.2] ] },
+        { name: "SIERRA NEVADA", label: [-120.6, 38.6], coords: [
+            [-121.0, 40.3], [-120.5, 39.5], [-119.9, 38.6], [-119.1, 37.6],
+            [-118.3, 36.6], [-117.7, 35.8] ] },
+        { name: "CASCADES", label: [-122.8, 46.6], coords: [
+            [-121.1, 48.9], [-121.5, 47.6], [-121.7, 46.3], [-121.9, 45.1],
+            [-122.1, 43.9], [-122.2, 42.6] ] }
+    ];
+
+    // Major rivers, as lon/lat polylines traced through their main stems.
+    const RIVERS = [
+        { name: "Mississippi", label: [-91.9, 33.4], coords: [
+            [-95.2, 47.2], [-94.1, 45.9], [-92.9, 44.9], [-91.3, 43.8],
+            [-90.6, 41.5], [-90.2, 39.7], [-90.2, 38.8], [-89.5, 37.9],
+            [-89.1, 37.0], [-90.1, 35.1], [-91.0, 33.6], [-91.2, 31.5],
+            [-91.2, 30.4], [-90.4, 29.7], [-89.4, 29.2] ] },
+        { name: "Missouri", label: [-100.6, 45.6], coords: [
+            [-111.5, 45.9], [-110.0, 47.0], [-107.9, 47.7], [-104.1, 47.9],
+            [-101.3, 47.9], [-100.8, 46.8], [-98.5, 45.3], [-96.9, 43.5],
+            [-96.4, 42.5], [-95.9, 41.2], [-95.9, 39.9], [-94.6, 39.1],
+            [-92.9, 38.7], [-91.4, 38.7], [-90.2, 38.8] ] },
+        { name: "Ohio", label: [-85.6, 38.3], coords: [
+            [-80.0, 40.4], [-80.9, 40.1], [-81.7, 39.4], [-82.8, 39.0],
+            [-84.5, 39.1], [-85.9, 38.7], [-86.8, 38.0], [-87.6, 37.9],
+            [-88.5, 37.2], [-89.1, 37.0] ] },
+        { name: "Colorado", label: [-113.4, 34.4], coords: [
+            [-106.2, 40.4], [-107.5, 39.5], [-108.6, 39.1], [-110.2, 38.4],
+            [-111.5, 37.9], [-111.6, 36.9], [-112.6, 36.3], [-113.9, 36.0],
+            [-114.6, 35.1], [-114.5, 34.2], [-114.6, 33.2], [-114.7, 32.5] ] }
+    ];
+
+    // Iconic landmarks: [lon, lat], emoji marker, and a one-line fact.
+    const LANDMARKS = [
+        { name: "Statue of Liberty", at: [-74.0445, 40.6892], icon: "\u{1F5FD}",
+          fact: "A gift from France in 1886; its copper skin weathered from bronze to green." },
+        { name: "Mount Rushmore", at: [-103.4591, 43.8791], icon: "⛰️",
+          fact: "Four presidents carved into the Black Hills over 14 years, finished in 1941." },
+        { name: "Grand Canyon", at: [-112.1129, 36.1069], icon: "\u{1F3DC}️",
+          fact: "The Colorado River spent millions of years cutting it a mile deep." },
+        { name: "Gateway Arch", at: [-90.1848, 38.6247], icon: "\u{1F309}",
+          fact: "At 630 feet in St. Louis, it is the tallest arch in the world." }
+    ];
+
+    const els = {
+        map:        document.getElementById('map-container'),
+        clues:      document.getElementById('clue-list'),
+        clueTitle:  document.getElementById('clue-title'),
+        progress:   document.getElementById('round-progress'),
+        score:      document.getElementById('score'),
+        streak:     document.getElementById('streak'),
+        loading:    document.getElementById('loading'),
+        svg:        document.getElementById('map-svg'),
+        viewport:   document.getElementById('map-viewport'),
+        tip:        document.getElementById('landmark-tip'),
+        reveal:     document.getElementById('reveal'),
+        rvName:     document.getElementById('rv-name'),
+        rvSub:      document.getElementById('rv-sub'),
+        rvFlag:     document.getElementById('rv-flag'),
+        rvFlagWrap: document.getElementById('rv-flag-wrap'),
+        rvBird:     document.getElementById('rv-bird'),
+        rvFlower:   document.getElementById('rv-flower'),
+        rvDyk:      document.getElementById('rv-dyk'),
+        capQ:       document.getElementById('cap-q'),
+        capRow:     document.getElementById('cap-row'),
+        capInput:   document.getElementById('cap-input'),
+        capSubmit:  document.getElementById('cap-submit'),
+        capResult:  document.getElementById('cap-result'),
+        summary:    document.getElementById('summary'),
+        smTitle:    document.getElementById('sm-title'),
+        smScore:    document.getElementById('sm-score'),
+        smDetail:   document.getElementById('sm-detail'),
+        regionSel:  document.getElementById('region-select')
+    };
+
+    // Touch mode drives the thumb-reach HUD and larger hit targets. Forced
+    // on with ?touch=1 so the layout can be checked on a desktop browser.
+    const forceTouch = new URLSearchParams(location.search).get('touch') === '1';
+    const isCoarse = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+    if (forceTouch || isCoarse) document.documentElement.classList.add('touch-mode');
+
+    const W = 975, H = 610;
+    let projection, geoPath;
+
+    // Pan / zoom: wheel or buttons to zoom, drag to pan. The same behavior
+    // also drives the automatic zoom-to-state on a correct answer.
+    const svgSel = d3.select('#map-svg');
+    const gSel = d3.select('#map-container');
+    const zoom = d3.zoom()
+        .scaleExtent([1, 12])
+        .translateExtent([[0, 0], [W, H]])
+        .on('zoom', (event) => gSel.attr('transform', event.transform));
+    svgSel.call(zoom).on('dblclick.zoom', null);
+
+    function resetView(ms) {
+        svgSel.transition().duration(ms).call(zoom.transform, d3.zoomIdentity);
+    }
+
+    // ---- Game state -----------------------------------------------------
+    let score = 0, streak = 0;
+    let FACTS = {};          // state name -> fact record
+    let pathByState = {};    // state name -> <path>
+    let region = 'All';
+    let expert = false;
+    let bag = [];            // remaining states this round, shuffled
+    let roundSize = 0;
+    let roundCorrect = 0;
+    let target = null;       // current state name
+    let clueQueue = [];      // clue strings still hidden
+    let shown = 0;
+    let locked = false;      // true once the round is answered
+
+    // ---- Load data ------------------------------------------------------
+    Promise.all([
+        d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json"),
+        d3.json("data/states_facts.json")
+    ]).then(([us, facts]) => {
+        for (const s of facts.states) FACTS[s.state] = s;
+
+        const features = topojson.feature(us, us.objects.states).features;
+        // Albers USA tucks Alaska and Hawaii into insets; fit to the states
+        // the quiz actually uses so the territories don't skew the framing.
+        const quizzable = features.filter(f => FACTS[f.properties.name]);
+        projection = d3.geoAlbersUsa().fitSize([W, H],
+            { type: "FeatureCollection", features: quizzable });
+        geoPath = d3.geoPath(projection);
+
+        renderMap(features);
+        drawGeography();
+        els.loading.remove();
+        startRound('All');
+    }).catch(err => {
+        els.loading.textContent =
+            "Could not load the map or clue data. The map needs an internet connection, " +
+            "and data/states_facts.json must sit next to this page.";
+        console.error(err);
+    });
+
+    function renderMap(features) {
+        for (const f of features) {
+            const d = geoPath(f);
+            // geoAlbersUsa has no projection for the overseas territories,
+            // so their paths come back empty -- skip them entirely.
+            if (!d) continue;
+
+            const name = f.properties.name;
+            const info = FACTS[name];
+            const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            p.setAttribute("d", d);
+            p.setAttribute("class", info ? "state" : "state inert");
+            if (info) {
+                p.setAttribute("data-region", info.region);
+                p.__name = name;
+                pathByState[name] = p;
+            }
+            els.map.appendChild(p);
+        }
+    }
+
+    // ---- Geography overlays --------------------------------------------
+    const NS = "http://www.w3.org/2000/svg";
+
+    function drawGeography() {
+        const layer = document.createElementNS(NS, "g");
+        layer.setAttribute("id", "geo-layer");
+
+        const lineOf = (coords) =>
+            geoPath({ type: "LineString", coordinates: coords });
+
+        for (const r of RANGES) {
+            const p = document.createElementNS(NS, "path");
+            p.setAttribute("d", lineOf(r.coords));
+            p.setAttribute("class", "geo-line mtn");
+            p.setAttribute("pointer-events", "none");
+            layer.appendChild(p);
+            layer.appendChild(labelAt(r.label, r.name, "geo-label mtn"));
+        }
+
+        for (const r of RIVERS) {
+            const p = document.createElementNS(NS, "path");
+            p.setAttribute("d", lineOf(r.coords));
+            p.setAttribute("class", "geo-line river");
+            p.setAttribute("pointer-events", "none");
+            layer.appendChild(p);
+            layer.appendChild(labelAt(r.label, r.name + " R.", "geo-label river"));
+        }
+
+        for (const lm of LANDMARKS) {
+            const xy = projection(lm.at);
+            if (!xy) continue;
+            const g = document.createElementNS(NS, "g");
+            g.setAttribute("class", "landmark");
+            g.setAttribute("transform", `translate(${xy[0]},${xy[1]})`);
+
+            const c = document.createElementNS(NS, "circle");
+            c.setAttribute("r", 7);
+            g.appendChild(c);
+
+            const t = document.createElementNS(NS, "text");
+            t.textContent = lm.icon;
+            g.appendChild(t);
+
+            g.__landmark = lm;
+            layer.appendChild(g);
+        }
+
+        els.map.appendChild(layer);
+    }
+
+    function labelAt(lonlat, text, cls) {
+        const xy = projection(lonlat);
+        const t = document.createElementNS(NS, "text");
+        t.setAttribute("class", cls);
+        t.setAttribute("pointer-events", "none");
+        if (xy) { t.setAttribute("x", xy[0]); t.setAttribute("y", xy[1]); }
+        t.textContent = text;
+        return t;
+    }
+
+    function showLandmarkTip(lm, clientX, clientY) {
+        const box = els.viewport.getBoundingClientRect();
+        els.tip.innerHTML = `<b>${lm.name}</b>${lm.fact}`;
+        els.tip.classList.add('show');
+        // Measure after the content is in, then keep the bubble on-screen.
+        const tw = els.tip.offsetWidth, th = els.tip.offsetHeight;
+        let x = clientX - box.left - tw / 2;
+        let y = clientY - box.top - th - 14;
+        x = Math.max(6, Math.min(x, box.width - tw - 6));
+        if (y < 6) y = clientY - box.top + 16;
+        els.tip.style.left = x + "px";
+        els.tip.style.top = y + "px";
+        clearTimeout(showLandmarkTip.t);
+        showLandmarkTip.t = setTimeout(hideLandmarkTip, 4200);
+    }
+    function hideLandmarkTip() { els.tip.classList.remove('show'); }
+
+    // ---- Selection ------------------------------------------------------
+    // Selection is handled with Pointer Events on the SVG itself rather than
+    // per-path clicks, so mouse, pen and touch all take one code path and a
+    // pan/pinch gesture that ends over a state never counts as an answer.
+    let tap = null;
+    els.svg.addEventListener('pointerdown', (e) => {
+        // A second finger means a pinch, not a tap.
+        if (!e.isPrimary) { tap = null; return; }
+        tap = { id: e.pointerId, x: e.clientX, y: e.clientY, t: performance.now() };
+    });
+    els.svg.addEventListener('pointerup', (e) => {
+        if (!tap || e.pointerId !== tap.id) return;
+        const moved = Math.hypot(e.clientX - tap.x, e.clientY - tap.y);
+        const elapsed = performance.now() - tap.t;
+        const slop = e.pointerType === 'mouse' ? 5 : 14;   // fingers wobble
+        tap = null;
+        if (moved > slop || elapsed > 700) return;
+
+        // Hit-test where the pointer was released; touch pointers keep
+        // implicit capture on the pointerdown target, so e.target alone
+        // would be stale after even a small drift.
+        const hit = document.elementFromPoint(e.clientX, e.clientY);
+        if (!hit || !hit.closest) return;
+
+        const mark = hit.closest('.landmark');
+        if (mark && mark.__landmark) {
+            showLandmarkTip(mark.__landmark, e.clientX, e.clientY);
+            return;
+        }
+        hideLandmarkTip();
+
+        const path = hit.closest('.state');
+        if (path && path.__name) handleGuess(path.__name, path);
+    });
+    els.svg.addEventListener('pointercancel', () => { tap = null; });
+
+    // ---- Round flow -----------------------------------------------------
+    function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    function statesIn(reg) {
+        return Object.keys(FACTS).filter(n => reg === 'All' || FACTS[n].region === reg);
+    }
+
+    function startRound(reg) {
+        region = reg;
+        els.regionSel.value = reg;
+        els.summary.classList.remove('show');
+        roundCorrect = 0;
+        bag = shuffle(statesIn(reg));
+        roundSize = bag.length;
+
+        // Grey out anything outside a regional round so the playable area
+        // reads at a glance.
+        for (const name in pathByState) {
+            const inRound = (reg === 'All' || FACTS[name].region === reg);
+            pathByState[name].classList.toggle('out-of-round', !inRound);
+        }
+        nextState();
+    }
+
+    function nextState() {
+        locked = false;
+        hideLandmarkTip();
+        els.reveal.classList.remove('show');
+        resetView(600);
+        for (const name in pathByState) {
+            pathByState[name].classList.remove('correct', 'wrong');
+        }
+
+        if (bag.length === 0) {
+            if (region === 'All') {
+                bag = shuffle(statesIn('All'));   // endless play, no repeats
+            } else {
+                return endRound();
+            }
+        }
+
+        target = bag.pop();
+        const f = FACTS[target];
+
+        // Expert mode leads with the hardest-tier bonus clue; otherwise it
+        // is held back as the very last resort.
+        clueQueue = expert
+            ? [{ text: f.bonusClue, bonus: true }, ...f.clues.map(c => ({ text: c }))]
+            : [...f.clues.map(c => ({ text: c })), { text: f.bonusClue, bonus: true }];
+
+        shown = 0;
+        els.clues.innerHTML = '';
+        revealClue();
+        updateProgress();
+    }
+
+    function revealClue() {
+        if (shown >= clueQueue.length) return;
+        const c = clueQueue[shown++];
+        const li = document.createElement('li');
+        li.textContent = c.text;
+        if (c.bonus) li.className = 'bonus';
+        els.clues.appendChild(li);
+        els.clues.scrollTop = els.clues.scrollHeight;
+        syncClueUI();
+    }
+
+    function syncClueUI() {
+        const more = shown < clueQueue.length;
+        document.querySelectorAll('.js-next-clue').forEach(b => {
+            b.disabled = !more || locked;
+            b.textContent = more ? 'Next clue ↓' : 'No clues left';
+        });
+        els.clueTitle.textContent = expert
+            ? `Expert clues — ${shown} of ${clueQueue.length}`
+            : `Deduction clues — ${shown} of ${clueQueue.length}`;
+    }
+
+    function updateProgress() {
+        if (region === 'All') {
+            els.progress.textContent = '';
+        } else {
+            const done = roundSize - bag.length;
+            els.progress.textContent = `${region} · ${done} / ${roundSize}`;
+        }
+    }
+
+    // ---- Guessing -------------------------------------------------------
+    function handleGuess(name, pathEl) {
+        if (locked) return;
+
+        if (name === target) {
+            locked = true;
+            score += SCORE_CORRECT;
+            streak += 1;
+            roundCorrect += 1;
+            els.score.textContent = score;
+            els.streak.textContent = streak;
+            pathEl.classList.add('correct');
+            syncClueUI();
+            zoomTo(pathEl);
+            setTimeout(() => openReveal(FACTS[name]), 420);
+        } else {
+            streak = 0;
+            els.streak.textContent = streak;
+            pathEl.classList.add('wrong');
+            setTimeout(() => pathEl.classList.remove('wrong'), 900);
+            revealClue();   // a miss earns the next clue
+        }
+    }
+
+    function zoomTo(pathEl) {
+        const b = pathEl.getBBox();
+        const bw = Math.max(b.width, 1), bh = Math.max(b.height, 1);
+        const cx = b.x + bw / 2, cy = b.y + bh / 2;
+        const scale = Math.max(1, Math.min(8, 0.55 * Math.min(W / bw, H / bh)));
+        const t = d3.zoomIdentity.translate(W / 2, H / 2).scale(scale).translate(-cx, -cy);
+        svgSel.transition().duration(900).call(zoom.transform, t);
+    }
+
+    function skipRound() {
+        if (locked) return;
+        streak = 0;
+        els.streak.textContent = 0;
+        nextState();
+    }
+
+    // ---- Reveal card ----------------------------------------------------
+    const slug = (s) => s.toLowerCase().replace(/\s+/g, '-');
+
+    function openReveal(f) {
+        els.rvName.textContent = f.state;
+        els.rvSub.textContent = f.region;
+
+        els.rvFlagWrap.classList.remove('missing');
+        els.rvFlag.alt = `Flag of ${f.state}`;
+        els.rvFlag.onerror = () => els.rvFlagWrap.classList.add('missing');
+        els.rvFlag.src = `flags/${slug(f.state)}.svg`;
+
+        els.rvBird.textContent = f.bird;
+        els.rvFlower.textContent = f.flower;
+        els.rvDyk.textContent = f.didYouKnow;
+
+        // Capital bonus
+        els.capQ.textContent = `Bonus: name the capital of ${f.state} for +${SCORE_CAPITAL}.`;
+        els.capRow.style.display = '';
+        els.capInput.value = '';
+        els.capInput.disabled = false;
+        els.capSubmit.disabled = false;
+        els.capResult.textContent = '';
+        els.capResult.className = '';
+
+        els.reveal.classList.add('show');
+        // Don't steal focus on touch -- it would throw up the keyboard over
+        // the card the player is still reading.
+        if (!document.documentElement.classList.contains('touch-mode')) {
+            setTimeout(() => els.capInput.focus(), 60);
+        }
+    }
+
+    // Forgiving comparison: case, accents, punctuation and "St./Saint" all
+    // ignored, plus a one-character typo allowance on longer names.
+    function normalize(s) {
+        return s.toLowerCase()
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .replace(/\bst\.?\b/g, 'saint')
+            .replace(/[^a-z0-9]/g, '');
+    }
+
+    function editDistance(a, b) {
+        if (Math.abs(a.length - b.length) > 1) return 2;   // only care about <= 1
+        let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+        for (let i = 1; i <= a.length; i++) {
+            const cur = [i];
+            for (let j = 1; j <= b.length; j++) {
+                cur[j] = Math.min(
+                    prev[j] + 1,
+                    cur[j - 1] + 1,
+                    prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
+                );
+            }
+            prev = cur;
+        }
+        return prev[b.length];
+    }
+
+    function capitalMatches(guess, actual) {
+        const g = normalize(guess), a = normalize(actual);
+        if (!g) return false;
+        if (g === a) return true;
+        return a.length >= 6 && editDistance(g, a) <= 1;
+    }
+
+    function submitCapital() {
+        const f = FACTS[target];
+        if (!f || els.capInput.disabled) return;
+        const ok = capitalMatches(els.capInput.value, f.capital);
+        if (ok) {
+            score += SCORE_CAPITAL;
+            els.score.textContent = score;
+            els.capResult.textContent = `Correct — ${f.capital}. +${SCORE_CAPITAL}`;
+            els.capResult.className = 'right';
+        } else {
+            els.capResult.textContent = `The capital is ${f.capital}.`;
+            els.capResult.className = 'miss';
+        }
+        els.capInput.disabled = true;
+        els.capSubmit.disabled = true;
+        els.capRow.style.display = 'none';
+    }
+
+    function endRound() {
+        els.smTitle.textContent = `${region} Round`;
+        els.smScore.textContent = `${roundCorrect} / ${roundSize}`;
+        els.smDetail.textContent =
+            `States identified on the first pass. Total score: ${score}.`;
+        els.summary.classList.add('show');
+    }
+
+    // ---- Controls -------------------------------------------------------
+    const zoomBy = (k) => svgSel.transition().duration(250).call(zoom.scaleBy, k);
+
+    function toggleExpert() {
+        expert = !expert;
+        const label = 'Expert: ' + (expert ? 'On' : 'Off');
+        document.querySelectorAll('.js-expert').forEach(b => {
+            b.textContent = label;
+            b.classList.toggle('on', expert);
+            b.setAttribute('aria-pressed', String(expert));
+        });
+        // Re-deal the current state so the new clue order takes effect now.
+        if (!locked && target) { bag.push(target); nextState(); }
+    }
+
+    let overlaysOn = true;
+    function toggleOverlays() {
+        overlaysOn = !overlaysOn;
+        const layer = document.getElementById('geo-layer');
+        if (layer) layer.style.display = overlaysOn ? '' : 'none';
+        if (!overlaysOn) hideLandmarkTip();
+        const label = 'Geography: ' + (overlaysOn ? 'On' : 'Off');
+        document.querySelectorAll('.js-overlays').forEach(b => {
+            b.textContent = label;
+            b.setAttribute('aria-pressed', String(overlaysOn));
+        });
+    }
+
+    document.querySelectorAll('.js-skip').forEach(b => b.addEventListener('click', skipRound));
+    document.querySelectorAll('.js-expert').forEach(b => b.addEventListener('click', toggleExpert));
+    document.querySelectorAll('.js-overlays').forEach(b => b.addEventListener('click', toggleOverlays));
+    document.querySelectorAll('.js-next-clue').forEach(b => b.addEventListener('click', () => {
+        if (!locked) revealClue();
+    }));
+
+    els.regionSel.addEventListener('change', () => startRound(els.regionSel.value));
+    document.getElementById('rv-next').addEventListener('click', nextState);
+    document.getElementById('sm-again').addEventListener('click', () => startRound(region));
+    document.getElementById('sm-all').addEventListener('click', () => startRound('All'));
+
+    els.capSubmit.addEventListener('click', submitCapital);
+    els.capInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); submitCapital(); }
+        e.stopPropagation();   // typing must not trigger map shortcuts
+    });
+
+    document.getElementById('zc-in').addEventListener('click', () => zoomBy(1.6));
+    document.getElementById('zc-out').addEventListener('click', () => zoomBy(1 / 1.6));
+    document.getElementById('zc-reset').addEventListener('click', () => resetView(400));
+
+    // Desktop keyboard shortcuts.
+    document.addEventListener('keydown', (e) => {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        if (e.target === els.capInput) return;
+        switch (e.key) {
+            case '+': case '=': zoomBy(1.6); break;
+            case '-': case '_': zoomBy(1 / 1.6); break;
+            case '0': resetView(400); break;
+            case 's': case 'S': skipRound(); break;
+            case 'g': case 'G': toggleOverlays(); break;
+            case 'x': case 'X': toggleExpert(); break;
+            case 'n': case 'N':
+                if (els.reveal.classList.contains('show')) nextState();
+                else if (!locked) revealClue();
+                break;
+            default: return;
+        }
+        e.preventDefault();
+    });
+    </script>
+</body>
+</html>

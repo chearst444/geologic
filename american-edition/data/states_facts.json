@@ -1,0 +1,756 @@
+{
+  "edition": "GeoLogic: American Edition \u2014 America 250",
+  "notes": "Per state: 4 standard clues (clues[], hardest->easiest), 1 bonusClue (hardest tier, for expert mode), plus capital, region (for regional rounds), bird, flower, and a didYouKnow fun fact shown after a correct guess. State flag image files should be sourced separately by filename convention e.g. flags/{state-slug}.svg",
+  "states": [
+    {
+      "state": "Alabama",
+      "clues": [
+        "Rosa Parks refused to give up her bus seat here in 1955, sparking the Montgomery Bus Boycott.",
+        "Home to the U.S. Space & Rocket Center, where Saturn V rockets were tested.",
+        "Nicknamed 'The Yellowhammer State' after its state bird.",
+        "Its capital, Montgomery, was once called the 'Cradle of the Confederacy.'"
+      ],
+      "bonusClue": "Home to the first-ever 911 emergency call, placed in Haleyville in 1968.",
+      "capital": "Montgomery",
+      "region": "South",
+      "bird": "Yellowhammer",
+      "flower": "Camellia",
+      "didYouKnow": "Mardi Gras celebrations actually began in Mobile, Alabama, before New Orleans."
+    },
+    {
+      "state": "Alaska",
+      "clues": [
+        "Purchased from Russia in 1867 for about two cents an acre, mocked at the time as 'Seward's Folly.'",
+        "Home to Denali, the tallest peak in North America.",
+        "The only U.S. state with a coastline on the Arctic Ocean.",
+        "By far the largest U.S. state by land area, despite one of the smallest populations."
+      ],
+      "bonusClue": "Contains more coastline than all other U.S. states combined.",
+      "capital": "Juneau",
+      "region": "West",
+      "bird": "Willow Ptarmigan",
+      "flower": "Forget-me-not",
+      "didYouKnow": "Alaska has far more caribou than people."
+    },
+    {
+      "state": "Arizona",
+      "clues": [
+        "The last of the contiguous 48 states admitted to the Union, in 1912.",
+        "One of the few states that doesn't observe daylight saving time.",
+        "Home to the Grand Canyon.",
+        "Nicknamed the Grand Canyon State."
+      ],
+      "bonusClue": "The original London Bridge was dismantled and rebuilt here, in Lake Havasu City.",
+      "capital": "Phoenix",
+      "region": "West",
+      "bird": "Cactus Wren",
+      "flower": "Saguaro Cactus Blossom",
+      "didYouKnow": "Thanks to a 19th-century Army experiment with camels, it's technically illegal to hunt camels in Arizona."
+    },
+    {
+      "state": "Arkansas",
+      "clues": [
+        "Home to the only spot in the U.S. where the public can dig for diamonds in their original volcanic source.",
+        "Bentonville here is the headquarters of Walmart, the world's largest retailer.",
+        "Former President Bill Clinton served as governor here.",
+        "Nicknamed the Natural State."
+      ],
+      "bonusClue": "The very first Walmart store opened here, in Rogers, in 1962.",
+      "capital": "Little Rock",
+      "region": "South",
+      "bird": "Northern Mockingbird",
+      "flower": "Apple Blossom",
+      "didYouKnow": "Stuttgart, Arkansas hosts the World Championship Duck Calling Contest every year."
+    },
+    {
+      "state": "California",
+      "clues": [
+        "Gold discovered at Sutter's Mill here in 1848 sparked a famous rush of settlers.",
+        "Home to the coast redwoods, the tallest trees on Earth.",
+        "The most populous state in the country.",
+        "Nicknamed the Golden State."
+      ],
+      "bonusClue": "Home to Badwater Basin in Death Valley, the lowest point in North America.",
+      "capital": "Sacramento",
+      "region": "West",
+      "bird": "California Quail",
+      "flower": "California Poppy",
+      "didYouKnow": "California grows the vast majority of the almonds sold in the U.S."
+    },
+    {
+      "state": "Colorado",
+      "clues": [
+        "The only U.S. state entirely above 1,000 meters in elevation.",
+        "Its borders are drawn almost entirely from straight lines of latitude and longitude.",
+        "Pike's Peak here inspired the song 'America the Beautiful.'",
+        "Nicknamed the Centennial State, admitted in 1876."
+      ],
+      "bonusClue": "Mesa Verde here preserves centuries-old Ancestral Puebloan cliff dwellings.",
+      "capital": "Denver",
+      "region": "West",
+      "bird": "Lark Bunting",
+      "flower": "Rocky Mountain Columbine",
+      "didYouKnow": "Colorado has more mountains over 14,000 feet, called 'fourteeners,' than any other state."
+    },
+    {
+      "state": "Connecticut",
+      "clues": [
+        "Home to the Hartford Courant, the oldest continuously published newspaper in the U.S.",
+        "Sometimes called the 'Insurance Capital of the World' for its concentration of insurers.",
+        "One of the original 13 colonies.",
+        "Nicknamed the Constitution State."
+      ],
+      "bonusClue": "New Haven is home to Louis' Lunch, which claims to have served the first hamburger in America.",
+      "capital": "Hartford",
+      "region": "Northeast",
+      "bird": "American Robin",
+      "flower": "Mountain Laurel",
+      "didYouKnow": "The first American telephone directory was published in New Haven in 1878."
+    },
+    {
+      "state": "Delaware",
+      "clues": [
+        "The first state to ratify the U.S. Constitution, on December 7, 1787.",
+        "Has no state sales tax, drawing shoppers from neighboring states.",
+        "Home to more incorporated businesses than actual residents.",
+        "Nicknamed the First State."
+      ],
+      "bonusClue": "Named after Thomas West, Baron De La Warr, an early colonial governor of Virginia.",
+      "capital": "Dover",
+      "region": "South",
+      "bird": "Delaware Blue Hen",
+      "flower": "Peach Blossom",
+      "didYouKnow": "Delaware charges no sales tax at the state, county, or city level."
+    },
+    {
+      "state": "Florida",
+      "clues": [
+        "Home to the only living coral barrier reef in the continental U.S.",
+        "Spanish explorer Ponce de Le\u00f3n came here searching for the mythical Fountain of Youth.",
+        "NASA launches its crewed missions from Kennedy Space Center here.",
+        "Nicknamed the Sunshine State."
+      ],
+      "bonusClue": "St. Augustine here is the oldest continuously occupied European-founded city in the U.S., dating to 1565.",
+      "capital": "Tallahassee",
+      "region": "South",
+      "bird": "Northern Mockingbird",
+      "flower": "Orange Blossom",
+      "didYouKnow": "Florida is the only place on Earth where alligators and crocodiles live side by side in the wild."
+    },
+    {
+      "state": "Georgia",
+      "clues": [
+        "The last of the original 13 colonies to be founded, in 1733.",
+        "Atlanta's airport is the busiest in the world by passenger traffic.",
+        "World headquarters of Coca-Cola.",
+        "Nicknamed the Peach State."
+      ],
+      "bonusClue": "The nation's top producer of peanuts.",
+      "capital": "Atlanta",
+      "region": "South",
+      "bird": "Brown Thrasher",
+      "flower": "Cherokee Rose",
+      "didYouKnow": "The Girl Scouts of the USA were founded in Savannah, Georgia, in 1912."
+    },
+    {
+      "state": "Hawaii",
+      "clues": [
+        "The only U.S. state made up entirely of islands, formed by volcanic activity.",
+        "The only state that grows coffee commercially.",
+        "The last state admitted to the Union, in 1959.",
+        "Nicknamed the Aloha State."
+      ],
+      "bonusClue": "Home to Iolani Palace, the only royal palace on U.S. soil.",
+      "capital": "Honolulu",
+      "region": "West",
+      "bird": "Nene (Hawaiian Goose)",
+      "flower": "Yellow Hibiscus",
+      "didYouKnow": "Hawaii is the only U.S. state that grows cacao beans for chocolate."
+    },
+    {
+      "state": "Idaho",
+      "clues": [
+        "Home to Hells Canyon, deeper than the Grand Canyon.",
+        "Produces roughly a third of the nation's potatoes.",
+        "Nicknamed the Gem State.",
+        "Its capital is Boise."
+      ],
+      "bonusClue": "Home to Sun Valley, site of the world's first chairlift ski resort, in 1936.",
+      "capital": "Boise",
+      "region": "West",
+      "bird": "Mountain Bluebird",
+      "flower": "Syringa (Mock Orange)",
+      "didYouKnow": "Idaho has more miles of white-water rivers than any other state."
+    },
+    {
+      "state": "Illinois",
+      "clues": [
+        "Chicago is home to the world's first skyscraper, built in 1885.",
+        "Route 66, the 'Mother Road,' begins in Chicago.",
+        "Nicknamed 'Land of Lincoln' for the president who launched his career here.",
+        "Once home to the Sears (now Willis) Tower, briefly the world's tallest building."
+      ],
+      "bonusClue": "The original 1955 Des Plaines McDonald's still stands here, preserved as a museum.",
+      "capital": "Springfield",
+      "region": "Midwest",
+      "bird": "Northern Cardinal",
+      "flower": "Violet",
+      "didYouKnow": "The first Ferris wheel was built for the 1893 World's Fair in Chicago."
+    },
+    {
+      "state": "Indiana",
+      "clues": [
+        "Its limestone quarries supplied stone for the Empire State Building.",
+        "Nicknamed the Hoosier State, a term whose exact origin is still debated.",
+        "Hosts the Indianapolis 500, the largest single-day sporting event in the world.",
+        "One of several states carved out of the old Northwest Territory."
+      ],
+      "bonusClue": "Indianapolis is home to the world's largest children's museum.",
+      "capital": "Indianapolis",
+      "region": "Midwest",
+      "bird": "Northern Cardinal",
+      "flower": "Peony",
+      "didYouKnow": "The town of Alexandria, Indiana is home to the world's largest ball of paint."
+    },
+    {
+      "state": "Iowa",
+      "clues": [
+        "Nearly all of the state's land is devoted to farming.",
+        "Kicks off every presidential election cycle by holding the nation's first caucuses.",
+        "Produces more corn than any other state.",
+        "Nicknamed the Hawkeye State."
+      ],
+      "bonusClue": "The only state whose eastern and western borders are formed entirely by rivers, the Mississippi and Missouri.",
+      "capital": "Des Moines",
+      "region": "Midwest",
+      "bird": "American Goldfinch",
+      "flower": "Wild Rose",
+      "didYouKnow": "Iowa has produced some of the world's largest popcorn balls at state fairs."
+    },
+    {
+      "state": "Kansas",
+      "clues": [
+        "The geographic center of the contiguous United States lies near here.",
+        "The fictional setting Dorothy leaves behind in 'The Wizard of Oz.'",
+        "One of the country's leading wheat producers.",
+        "Nicknamed the Sunflower State."
+      ],
+      "bonusClue": "Home to the world's largest ball of twine, in Cawker City.",
+      "capital": "Topeka",
+      "region": "Midwest",
+      "bird": "Western Meadowlark",
+      "flower": "Sunflower",
+      "didYouKnow": "Kansas grows enough wheat each year to bake billions of loaves of bread."
+    },
+    {
+      "state": "Kentucky",
+      "clues": [
+        "Home to Mammoth Cave, the longest known cave system on Earth.",
+        "The birthplace of bourbon whiskey.",
+        "Hosts the Kentucky Derby every year.",
+        "Nicknamed the Bluegrass State."
+      ],
+      "bonusClue": "Fort Knox here holds a large share of the United States' gold reserves.",
+      "capital": "Frankfort",
+      "region": "South",
+      "bird": "Northern Cardinal",
+      "flower": "Goldenrod",
+      "didYouKnow": "Some Kentucky counties have more registered horses than people."
+    },
+    {
+      "state": "Louisiana",
+      "clues": [
+        "Uses 'parishes' instead of counties for its local government divisions.",
+        "The 1803 purchase named after this state doubled the size of the young United States.",
+        "New Orleans is famous for its Mardi Gras celebrations.",
+        "Nicknamed the Pelican State."
+      ],
+      "bonusClue": "Much of New Orleans sits below sea level.",
+      "capital": "Baton Rouge",
+      "region": "South",
+      "bird": "Brown Pelican",
+      "flower": "Magnolia",
+      "didYouKnow": "Louisiana is the only state with an official state meal, gumbo."
+    },
+    {
+      "state": "Maine",
+      "clues": [
+        "The easternmost state, first in the continental U.S. to see the sunrise.",
+        "Produces about 90 percent of the nation's lobster.",
+        "The only U.S. state name with just one syllable.",
+        "Nicknamed the Pine Tree State."
+      ],
+      "bonusClue": "Its coastline includes more than 4,600 islands.",
+      "capital": "Augusta",
+      "region": "Northeast",
+      "bird": "Black-capped Chickadee",
+      "flower": "White Pine Cone and Tassel",
+      "didYouKnow": "Maine grows more wild blueberries than any other state."
+    },
+    {
+      "state": "Maryland",
+      "clues": [
+        "Francis Scott Key wrote 'The Star-Spangled Banner' after watching the bombardment of Fort McHenry here.",
+        "Home to the headquarters of both the NSA and NIH.",
+        "Baltimore's harbor is one of the oldest continuously operating in the U.S.",
+        "Nicknamed the Old Line State."
+      ],
+      "bonusClue": "Home to the U.S. Naval Academy, in Annapolis.",
+      "capital": "Annapolis",
+      "region": "South",
+      "bird": "Baltimore Oriole",
+      "flower": "Black-eyed Susan",
+      "didYouKnow": "Maryland's official state sport is jousting."
+    },
+    {
+      "state": "Massachusetts",
+      "clues": [
+        "Site of the first Thanksgiving, near Plymouth.",
+        "Home to Harvard, the oldest institution of higher learning in the U.S.",
+        "The Boston Marathon is the world's oldest annual marathon.",
+        "Nicknamed the Bay State."
+      ],
+      "bonusClue": "Boston Common, founded in 1634, is the oldest public park in America.",
+      "capital": "Boston",
+      "region": "Northeast",
+      "bird": "Black-capped Chickadee",
+      "flower": "Mayflower",
+      "didYouKnow": "Basketball was invented in Springfield, Massachusetts, in 1891."
+    },
+    {
+      "state": "Michigan",
+      "clues": [
+        "The only U.S. state made up of two separate peninsulas.",
+        "Borders four of the five Great Lakes.",
+        "Detroit is considered the birthplace of the American auto industry.",
+        "Nicknamed the Wolverine State."
+      ],
+      "bonusClue": "Mackinac Island here has banned almost all motor vehicles since the 1890s.",
+      "capital": "Lansing",
+      "region": "Midwest",
+      "bird": "American Robin",
+      "flower": "Apple Blossom",
+      "didYouKnow": "Michigan has more shoreline than any state except Alaska."
+    },
+    {
+      "state": "Minnesota",
+      "clues": [
+        "Home to Hormel Foods, which invented Spam here in the 1930s.",
+        "Home to the Mall of America, one of the largest shopping malls in the country.",
+        "Nicknamed the 'Land of 10,000 Lakes,' though it actually has over 11,000.",
+        "The Twin Cities of Minneapolis and St. Paul anchor this state."
+      ],
+      "bonusClue": "Home to Lake Itasca, the official source of the Mississippi River.",
+      "capital": "Saint Paul",
+      "region": "Midwest",
+      "bird": "Common Loon",
+      "flower": "Pink and White Lady's Slipper",
+      "didYouKnow": "America's first fully enclosed shopping mall, Southdale Center, opened in Minnesota in 1956."
+    },
+    {
+      "state": "Mississippi",
+      "clues": [
+        "Widely considered the birthplace of the blues music genre.",
+        "Named for the river running through it, from an Ojibwe phrase meaning 'great river.'",
+        "The last state to formally ratify the 13th Amendment abolishing slavery, doing so symbolically in 1995.",
+        "Nicknamed the Magnolia State."
+      ],
+      "bonusClue": "Coca-Cola was first bottled here, in Vicksburg, in 1894.",
+      "capital": "Jackson",
+      "region": "South",
+      "bird": "Northern Mockingbird",
+      "flower": "Magnolia",
+      "didYouKnow": "The teddy bear is named after an incident involving Theodore Roosevelt on a Mississippi hunting trip."
+    },
+    {
+      "state": "Missouri",
+      "clues": [
+        "The ice cream cone is said to have been invented here at the 1904 World's Fair.",
+        "Birthplace of both Mark Twain and Harry Truman.",
+        "The Gateway Arch in St. Louis marks this state's role in westward expansion.",
+        "Nicknamed the 'Show Me State.'"
+      ],
+      "bonusClue": "Home to more than 6,000 recorded caves, earning it the nickname 'The Cave State.'",
+      "capital": "Jefferson City",
+      "region": "Midwest",
+      "bird": "Eastern Bluebird",
+      "flower": "Hawthorn Blossom",
+      "didYouKnow": "Missouri has more than 6,000 recorded caves, more than almost any other state."
+    },
+    {
+      "state": "Montana",
+      "clues": [
+        "Once a major copper mining hub, especially around the city of Butte.",
+        "The fourth-largest state by area, yet one of the least densely populated.",
+        "Home to Glacier National Park.",
+        "Nicknamed Big Sky Country."
+      ],
+      "bonusClue": "Home to the Berkeley Pit, a former copper mine now filled with striking blue-green toxic water.",
+      "capital": "Helena",
+      "region": "West",
+      "bird": "Western Meadowlark",
+      "flower": "Bitterroot",
+      "didYouKnow": "Montana is home to more species of mammals than almost any other state."
+    },
+    {
+      "state": "Nebraska",
+      "clues": [
+        "Kool-Aid was invented here, in the town of Hastings.",
+        "Home to the only unicameral, or one-house, state legislature in the country.",
+        "Chimney Rock here was a famous landmark along the Oregon Trail.",
+        "Nicknamed the Cornhusker State."
+      ],
+      "bonusClue": "Arbor Day, the tree-planting holiday, was founded here in 1872.",
+      "capital": "Lincoln",
+      "region": "Midwest",
+      "bird": "Western Meadowlark",
+      "flower": "Goldenrod",
+      "didYouKnow": "Omaha is home to the Lied Jungle, one of the largest indoor rainforests in the world."
+    },
+    {
+      "state": "Nevada",
+      "clues": [
+        "The driest state in the country, mostly covered by desert.",
+        "Legalized gambling statewide back in 1931.",
+        "Home to Las Vegas, the entertainment capital of the world.",
+        "Nicknamed the Silver State."
+      ],
+      "bonusClue": "The secretive Area 51 military site sits within its borders.",
+      "capital": "Carson City",
+      "region": "West",
+      "bird": "Mountain Bluebird",
+      "flower": "Sagebrush",
+      "didYouKnow": "Nevada is both the driest and one of the most mountainous states in the country."
+    },
+    {
+      "state": "New Hampshire",
+      "clues": [
+        "Home to Mount Washington, famous for some of the most extreme weather on Earth.",
+        "Traditionally holds the first primary of every presidential election.",
+        "Its state motto is 'Live Free or Die.'",
+        "Nicknamed the Granite State."
+      ],
+      "bonusClue": "Its famous Old Man of the Mountain rock formation collapsed in 2003.",
+      "capital": "Concord",
+      "region": "Northeast",
+      "bird": "Purple Finch",
+      "flower": "Purple Lilac",
+      "didYouKnow": "New Hampshire has no general sales tax and no tax on wage income."
+    },
+    {
+      "state": "New Jersey",
+      "clues": [
+        "Thomas Edison ran his famous research lab in Menlo Park here.",
+        "Credited with the first drive-in movie theater and the modern boardwalk.",
+        "The most densely populated state in the country.",
+        "Nicknamed the Garden State."
+      ],
+      "bonusClue": "Hoboken is considered the birthplace of organized baseball, hosting the first recorded game in 1846.",
+      "capital": "Trenton",
+      "region": "Northeast",
+      "bird": "American Goldfinch",
+      "flower": "Violet",
+      "didYouKnow": "New Jersey has more diners than any other state, earning it the nickname 'Diner Capital of the World.'"
+    },
+    {
+      "state": "New Mexico",
+      "clues": [
+        "Site of the first atomic bomb test, the Trinity test, in 1945.",
+        "Home to Roswell, forever tied to a famous 1947 UFO incident.",
+        "Its flag features the red Zia sun symbol.",
+        "Nicknamed the Land of Enchantment."
+      ],
+      "bonusClue": "Home to Carlsbad Caverns, one of the largest and deepest cave systems in the world.",
+      "capital": "Santa Fe",
+      "region": "West",
+      "bird": "Greater Roadrunner",
+      "flower": "Yucca Flower",
+      "didYouKnow": "New Mexico produces more chile peppers than any other state."
+    },
+    {
+      "state": "New York",
+      "clues": [
+        "The Erie Canal helped turn one of its cities into a major shipping port.",
+        "Niagara Falls straddles this state's border with Canada.",
+        "Home to the Statue of Liberty.",
+        "Nicknamed the Empire State."
+      ],
+      "bonusClue": "Home to Lombardi's, widely credited as the first licensed pizzeria in the U.S., opened in 1905.",
+      "capital": "Albany",
+      "region": "Northeast",
+      "bird": "Eastern Bluebird",
+      "flower": "Rose",
+      "didYouKnow": "The first Macy's Thanksgiving Day Parade marched through New York City in 1924."
+    },
+    {
+      "state": "North Carolina",
+      "clues": [
+        "Home to the Biltmore Estate, the largest privately owned home in America.",
+        "Site of the Wright Brothers' first powered flight at Kitty Hawk.",
+        "A leading U.S. producer of sweet potatoes.",
+        "Nicknamed the Tar Heel State."
+      ],
+      "bonusClue": "Virginia Dare, the first English child born in the Americas, was born on Roanoke Island here.",
+      "capital": "Raleigh",
+      "region": "South",
+      "bird": "Northern Cardinal",
+      "flower": "Flowering Dogwood",
+      "didYouKnow": "Pepsi-Cola was invented in New Bern, North Carolina."
+    },
+    {
+      "state": "North Dakota",
+      "clues": [
+        "One of the least-visited states in the country.",
+        "A leading producer of sunflowers and durum wheat.",
+        "Home to Theodore Roosevelt National Park.",
+        "Nicknamed the Peace Garden State."
+      ],
+      "bonusClue": "Near the town of Rugby lies the geographic center of North America.",
+      "capital": "Bismarck",
+      "region": "Midwest",
+      "bird": "Western Meadowlark",
+      "flower": "Wild Prairie Rose",
+      "didYouKnow": "North Dakota produces more honey than any other state."
+    },
+    {
+      "state": "Ohio",
+      "clues": [
+        "More U.S. astronauts were born here than in any other state, including Neil Armstrong and John Glenn.",
+        "Birthplace of aviation pioneers Orville and Wilbur Wright.",
+        "Home to the Rock & Roll Hall of Fame in Cleveland.",
+        "Nicknamed the Buckeye State."
+      ],
+      "bonusClue": "Cleveland installed the first electric traffic light in the U.S., in 1914.",
+      "capital": "Columbus",
+      "region": "Midwest",
+      "bird": "Northern Cardinal",
+      "flower": "Scarlet Carnation",
+      "didYouKnow": "The first professional baseball team, the Cincinnati Red Stockings, was founded in Ohio."
+    },
+    {
+      "state": "Oklahoma",
+      "clues": [
+        "Site of the largest land run in U.S. history, in 1889.",
+        "Has more man-made lakes than any other state.",
+        "Credited with the invention of the shopping cart.",
+        "Nicknamed the Sooner State."
+      ],
+      "bonusClue": "Oklahoma City installed the world's first parking meter, in 1935.",
+      "capital": "Oklahoma City",
+      "region": "South",
+      "bird": "Scissor-tailed Flycatcher",
+      "flower": "Oklahoma Rose",
+      "didYouKnow": "Oklahoma has more surface water from man-made lakes than any other state at a similar latitude."
+    },
+    {
+      "state": "Oregon",
+      "clues": [
+        "Home to Crater Lake, the deepest lake in the United States.",
+        "One of the few states with no general sales tax.",
+        "Portland here is nicknamed the 'City of Roses.'",
+        "Nicknamed the Beaver State."
+      ],
+      "bonusClue": "Portland is home to Powell's Books, one of the largest independent bookstores on Earth.",
+      "capital": "Salem",
+      "region": "West",
+      "bird": "Western Meadowlark",
+      "flower": "Oregon Grape",
+      "didYouKnow": "The Oregon Dunes are tall enough that visitors sled down them like snow hills."
+    },
+    {
+      "state": "Pennsylvania",
+      "clues": [
+        "Home to the Liberty Bell in Philadelphia.",
+        "Both the Declaration of Independence and the Constitution were signed here.",
+        "Hershey here is nicknamed 'Chocolate Town USA.'",
+        "Nicknamed the Keystone State."
+      ],
+      "bonusClue": "The University of Pennsylvania built ENIAC, one of the first general-purpose electronic computers.",
+      "capital": "Harrisburg",
+      "region": "Northeast",
+      "bird": "Ruffed Grouse",
+      "flower": "Mountain Laurel",
+      "didYouKnow": "The nation's first zoo opened in Philadelphia in 1874."
+    },
+    {
+      "state": "Rhode Island",
+      "clues": [
+        "The first American colony to formally declare independence from Britain, in 1776.",
+        "Its full official name was once the longest of any U.S. state.",
+        "The smallest U.S. state by land area.",
+        "Nicknamed the Ocean State."
+      ],
+      "bonusClue": "Newport is home to the Touro Synagogue, the oldest surviving synagogue building in the U.S.",
+      "capital": "Providence",
+      "region": "Northeast",
+      "bird": "Rhode Island Red (chicken)",
+      "flower": "Violet",
+      "didYouKnow": "Bristol, Rhode Island hosts the oldest continuous Fourth of July parade in the country."
+    },
+    {
+      "state": "South Carolina",
+      "clues": [
+        "The first state to secede from the Union, in 1860.",
+        "The first shots of the Civil War were fired at Fort Sumter here.",
+        "A leading East Coast producer of peaches.",
+        "Nicknamed the Palmetto State."
+      ],
+      "bonusClue": "The Myrtle Beach area has one of the highest concentrations of golf courses in the country.",
+      "capital": "Columbia",
+      "region": "South",
+      "bird": "Carolina Wren",
+      "flower": "Yellow Jessamine",
+      "didYouKnow": "South Carolina is often credited as the birthplace of sweet tea."
+    },
+    {
+      "state": "South Dakota",
+      "clues": [
+        "Site of a 19th-century gold rush in the Black Hills.",
+        "Home to the Corn Palace, a building decorated each year with corn murals.",
+        "Home to Mount Rushmore.",
+        "Nicknamed the Mount Rushmore State."
+      ],
+      "bonusClue": "Home to the Wall Drug Store, a roadside attraction famously advertised on billboards for hundreds of miles.",
+      "capital": "Pierre",
+      "region": "Midwest",
+      "bird": "Ring-necked Pheasant",
+      "flower": "Pasque Flower",
+      "didYouKnow": "South Dakota is home to more Native American reservations than most other states."
+    },
+    {
+      "state": "Tennessee",
+      "clues": [
+        "Home to Graceland, Elvis Presley's famous estate.",
+        "Birthplace of country music and home to the Grand Ole Opry.",
+        "Home to the Great Smoky Mountains, the most visited national park in the U.S.",
+        "Nicknamed the Volunteer State."
+      ],
+      "bonusClue": "Home to one of the largest underground lakes in the world, inside Craighead Caverns.",
+      "capital": "Nashville",
+      "region": "South",
+      "bird": "Northern Mockingbird",
+      "flower": "Iris",
+      "didYouKnow": "Nashville has a full-scale replica of the Parthenon in Athens, Greece, built in 1897."
+    },
+    {
+      "state": "Texas",
+      "clues": [
+        "The only U.S. state that was once its own independent republic before joining the union.",
+        "'Houston' was the first word spoken from the surface of the moon, a nod to Mission Control here.",
+        "The largest state in the contiguous U.S.",
+        "Nicknamed the Lone Star State."
+      ],
+      "bonusClue": "Pecos hosted what many consider the world's first rodeo, in 1883.",
+      "capital": "Austin",
+      "region": "South",
+      "bird": "Northern Mockingbird",
+      "flower": "Bluebonnet",
+      "didYouKnow": "Texas has flown under six different national flags throughout its history."
+    },
+    {
+      "state": "Utah",
+      "clues": [
+        "Home to the Great Salt Lake, saltier than the ocean itself.",
+        "Home to five national parks, more than any other state.",
+        "Hosted the 2002 Winter Olympics.",
+        "Nicknamed the Beehive State."
+      ],
+      "bonusClue": "Home to the Bonneville Salt Flats, a legendary site for land-speed racing records.",
+      "capital": "Salt Lake City",
+      "region": "West",
+      "bird": "California Gull",
+      "flower": "Sego Lily",
+      "didYouKnow": "Utah license plates once famously boasted 'The Greatest Snow on Earth' for its famously dry powder."
+    },
+    {
+      "state": "Vermont",
+      "clues": [
+        "The first American state or territory to abolish slavery in its constitution, in 1777.",
+        "The only New England state with no ocean coastline.",
+        "The nation's largest producer of maple syrup.",
+        "Nicknamed the Green Mountain State."
+      ],
+      "bonusClue": "Home to the original Ben & Jerry's ice cream factory, in Waterbury.",
+      "capital": "Montpelier",
+      "region": "Northeast",
+      "bird": "Hermit Thrush",
+      "flower": "Red Clover",
+      "didYouKnow": "Vermont was its own independent republic for 14 years before joining the Union in 1791."
+    },
+    {
+      "state": "Virginia",
+      "clues": [
+        "Site of Jamestown, the first permanent English settlement in America, founded 1607.",
+        "Home to the Pentagon.",
+        "Birthplace of eight U.S. presidents, more than any other state.",
+        "Nicknamed the Old Dominion."
+      ],
+      "bonusClue": "Home to Arlington National Cemetery.",
+      "capital": "Richmond",
+      "region": "South",
+      "bird": "Northern Cardinal",
+      "flower": "American Dogwood",
+      "didYouKnow": "Virginia is nicknamed the 'Mother of Presidents' for producing more U.S. presidents than any other state."
+    },
+    {
+      "state": "Washington",
+      "clues": [
+        "Birthplace of both Starbucks and Microsoft, in the Seattle area.",
+        "Home to Mount Rainier, one of the most heavily glaciated peaks in the lower 48.",
+        "The country's leading producer of apples.",
+        "Nicknamed the Evergreen State."
+      ],
+      "bonusClue": "Seattle opened the world's first gas station in 1907.",
+      "capital": "Olympia",
+      "region": "West",
+      "bird": "American Goldfinch",
+      "flower": "Coast Rhododendron",
+      "didYouKnow": "Seattle's Space Needle was built for the 1962 World's Fair."
+    },
+    {
+      "state": "West Virginia",
+      "clues": [
+        "The only state formed by seceding from a Confederate state during the Civil War.",
+        "The observance of Mother's Day traces back to the town of Grafton here.",
+        "Home to the New River Gorge, one of the oldest rivers in the world.",
+        "Nicknamed the Mountain State."
+      ],
+      "bonusClue": "The only state that lies entirely within the Appalachian Mountain region.",
+      "capital": "Charleston",
+      "region": "South",
+      "bird": "Northern Cardinal",
+      "flower": "Rhododendron",
+      "didYouKnow": "The New River Gorge Bridge here was once the longest steel arch bridge in the world."
+    },
+    {
+      "state": "Wisconsin",
+      "clues": [
+        "Home to Taliesin, architect Frank Lloyd Wright's estate and studio.",
+        "The ice cream sundae is said to have first been served in Two Rivers here.",
+        "The nation's leading producer of cheese, nicknamed 'America's Dairyland.'",
+        "Nicknamed the Badger State."
+      ],
+      "bonusClue": "Watertown here is home to the first kindergarten established in the U.S.",
+      "capital": "Madison",
+      "region": "Midwest",
+      "bird": "American Robin",
+      "flower": "Wood Violet",
+      "didYouKnow": "Some Wisconsin counties have more dairy cows than people."
+    },
+    {
+      "state": "Wyoming",
+      "clues": [
+        "The first U.S. territory or state to grant women the right to vote, in 1869.",
+        "The least populated state in the country.",
+        "Home to Yellowstone, the world's first national park.",
+        "Nicknamed the Equality State."
+      ],
+      "bonusClue": "Devils Tower here became the first-ever declared U.S. National Monument, in 1906.",
+      "capital": "Cheyenne",
+      "region": "West",
+      "bird": "Western Meadowlark",
+      "flower": "Indian Paintbrush",
+      "didYouKnow": "Wyoming has fewer residents than any other state, and more pronghorn antelope than people."
+    }
+  ]
+}
