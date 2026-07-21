@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0f172a">
     <title>GeoLogic - The Smart World Map Game</title>
     <style>
         :root {
@@ -17,20 +20,41 @@
 
         * { box-sizing: border-box; }
 
+        /* Mobile locks: no page scroll, no pinch-zoom of the document, no
+           pull-to-refresh, no text selection or long-press callout. Gesture
+           handling belongs to the map (d3-zoom), not the browser. */
+        html, body, svg, canvas {
+            touch-action: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            overscroll-behavior: none;
+        }
+
+        html, body {
+            overflow: hidden;
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
         body {
             margin: 0;
             background-color: var(--bg-color);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: var(--text-main);
-            overflow: hidden;
-            height: 100vh;
             display: flex;
             flex-direction: column;
+            -webkit-tap-highlight-color: transparent;
         }
 
         header {
             background-color: var(--card-bg);
             padding: 14px 28px;
+            padding-top: max(14px, env(safe-area-inset-top));
+            padding-left: max(28px, env(safe-area-inset-left));
+            padding-right: max(28px, env(safe-area-inset-right));
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -69,8 +93,15 @@
             border-radius: 20px;
             cursor: pointer;
             transition: background 0.2s;
+            touch-action: manipulation;
+            min-height: 40px;
         }
-        button:hover { background: rgba(56, 189, 248, 0.3); }
+        /* Hover effects only where a real hover pointer exists, so styles
+           don't get stuck after a tap on touch devices. */
+        @media (hover: hover) {
+            button:hover { background: rgba(56, 189, 248, 0.3); }
+        }
+        button:active { background: rgba(56, 189, 248, 0.35); }
 
         #game-container {
             flex: 1;
@@ -99,7 +130,16 @@
             letter-spacing: 0.1em;
         }
 
-        ol { margin: 0; padding-left: 22px; }
+        ol {
+            margin: 0;
+            padding-left: 22px;
+            /* The clue list is the one place vertical scrolling is allowed. */
+            overflow-y: auto;
+            touch-action: pan-y;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+            max-height: 34vh;
+        }
         li { margin-bottom: 6px; font-size: 1.1rem; line-height: 1.35; }
 
         #map-viewport {
@@ -146,7 +186,9 @@
             transition: fill 0.2s;
             vector-effect: non-scaling-stroke;
         }
-        .country:hover { fill: #64748b; }
+        @media (hover: hover) {
+            .country:hover { fill: #64748b; }
+        }
 
         /* Continent tints applied to quiz-eligible countries */
         .country[data-continent="North America"] { fill: #3b6978; }
@@ -155,12 +197,14 @@
         .country[data-continent="Africa"]        { fill: #cb904d; }
         .country[data-continent="Asia"]          { fill: #c05746; }
         .country[data-continent="Oceania"]       { fill: #6247aa; }
-        .country[data-continent="North America"]:hover { fill: #4d8296; }
-        .country[data-continent="South America"]:hover { fill: #36c2b1; }
-        .country[data-continent="Europe"]:hover        { fill: #c9a184; }
-        .country[data-continent="Africa"]:hover        { fill: #e0a75f; }
-        .country[data-continent="Asia"]:hover          { fill: #d66b5a; }
-        .country[data-continent="Oceania"]:hover       { fill: #7a5cc9; }
+        @media (hover: hover) {
+            .country[data-continent="North America"]:hover { fill: #4d8296; }
+            .country[data-continent="South America"]:hover { fill: #36c2b1; }
+            .country[data-continent="Europe"]:hover        { fill: #c9a184; }
+            .country[data-continent="Africa"]:hover        { fill: #e0a75f; }
+            .country[data-continent="Asia"]:hover          { fill: #d66b5a; }
+            .country[data-continent="Oceania"]:hover       { fill: #7a5cc9; }
+        }
 
         /* Climate reference overlay */
         .clim-line {
@@ -219,6 +263,74 @@
             color: var(--text-muted);
             font-size: 1.1rem;
         }
+
+        /* ---- Touch HUD ------------------------------------------------
+           Shown only on coarse-pointer devices, or with ?touch=1 in the URL
+           (html.touch-mode is set by script). It moves the round actions
+           down to thumb reach and frees header space on narrow screens. */
+        #touch-hud {
+            display: none;
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+            z-index: 50;
+        }
+        #touch-hud button {
+            min-height: 48px;
+            min-width: 96px;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(2px);
+        }
+
+        html.touch-mode #touch-hud { display: flex; }
+        html.touch-mode header .stats > button { display: none; }
+        html.touch-mode #zoom-controls button { width: 48px; height: 48px; font-size: 1.5rem; }
+
+        /* ---- Responsive layout ---------------------------------------- */
+        @media (max-width: 720px) {
+            header {
+                padding: 10px 12px;
+                padding-top: max(10px, env(safe-area-inset-top));
+                padding-left: max(12px, env(safe-area-inset-left));
+                padding-right: max(12px, env(safe-area-inset-right));
+            }
+            h1 { font-size: 1.15rem; }
+            h1 span { display: none; }
+            .stats { gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+            .pill { font-size: 0.85rem; padding: 5px 11px; }
+            button { padding: 6px 12px; font-size: 0.9rem; }
+
+            #game-container {
+                padding: 10px;
+                padding-left: max(10px, env(safe-area-inset-left));
+                padding-right: max(10px, env(safe-area-inset-right));
+                padding-bottom: max(10px, env(safe-area-inset-bottom));
+                gap: 10px;
+            }
+            #clue-card { padding: 12px 14px; border-left-width: 4px; }
+            li { font-size: 0.98rem; margin-bottom: 5px; }
+            ol { max-height: 30vh; padding-left: 18px; }
+
+            #feedback-overlay { padding: 12px 20px; max-width: 88%; }
+            #feedback-overlay h3 { font-size: 1.3rem; }
+            #feedback-overlay p { font-size: 0.98rem; }
+        }
+
+        /* Short/landscape phones: give the map as much height as possible. */
+        @media (max-height: 560px) and (orientation: landscape) {
+            header { padding-top: 6px; padding-bottom: 6px; }
+            h1 { font-size: 1rem; }
+            #game-container { padding: 8px; gap: 8px; }
+            #clue-card { padding: 8px 12px; }
+            #clue-card h2 { margin-bottom: 4px; }
+            ol { max-height: 22vh; }
+            li { font-size: 0.9rem; margin-bottom: 3px; }
+        }
     </style>
 </head>
 <body>
@@ -228,8 +340,8 @@
         <div class="stats">
             <div class="pill">Score: <span id="score">0</span></div>
             <div class="pill">Streak: <span id="streak">0</span></div>
-            <button id="climate-btn">Climate: On</button>
-            <button id="skip-btn">Skip &rarr;</button>
+            <button class="js-climate">Climate: On</button>
+            <button class="js-skip">Skip &rarr;</button>
         </div>
     </header>
 
@@ -249,9 +361,13 @@
                 <g id="map-container"></g>
             </svg>
             <div id="zoom-controls">
-                <button id="zc-in" title="Zoom in">+</button>
-                <button id="zc-out" title="Zoom out">&minus;</button>
-                <button id="zc-reset" title="Reset view">&#10530;</button>
+                <button id="zc-in" title="Zoom in" aria-label="Zoom in">+</button>
+                <button id="zc-out" title="Zoom out" aria-label="Zoom out">&minus;</button>
+                <button id="zc-reset" title="Reset view" aria-label="Reset view">&#10530;</button>
+            </div>
+            <div id="touch-hud">
+                <button class="js-climate">Climate: On</button>
+                <button class="js-skip">Skip &rarr;</button>
             </div>
         </div>
     </div>
@@ -432,8 +548,14 @@
         fbName: document.getElementById('fb-name'),
         fbCap: document.getElementById('fb-capital'),
         loading: document.getElementById('loading'),
-        skip: document.getElementById('skip-btn')
+        svg: document.getElementById('map-svg')
     };
+
+    // Touch mode drives the thumb-reach HUD and larger hit targets. Forced
+    // on with ?touch=1 so the layout can be checked on a desktop browser.
+    const forceTouch = new URLSearchParams(location.search).get('touch') === '1';
+    const isCoarse = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+    if (forceTouch || isCoarse) document.documentElement.classList.add('touch-mode');
 
     const W = 960, H = 500;
     const projection = d3.geoNaturalEarth1().fitSize([W, H], { type: "Sphere" });
@@ -484,10 +606,35 @@
             const info = DATA[f.properties.name];
             if (info) p.setAttribute("data-continent", info[1]);
             p.__feature = f;
-            p.addEventListener("click", () => handleClick(f, p));
             els.map.appendChild(p);
         }
     }
+
+    // Selection is handled with Pointer Events on the SVG itself rather than
+    // per-path clicks, so mouse, pen and touch all take one code path and a
+    // pan/pinch gesture that ends over a country never counts as an answer.
+    let tap = null;
+    els.svg.addEventListener('pointerdown', (e) => {
+        // A second finger means a pinch, not a tap.
+        if (!e.isPrimary) { tap = null; return; }
+        tap = { id: e.pointerId, x: e.clientX, y: e.clientY, t: performance.now() };
+    });
+    els.svg.addEventListener('pointerup', (e) => {
+        if (!tap || e.pointerId !== tap.id) return;
+        const moved = Math.hypot(e.clientX - tap.x, e.clientY - tap.y);
+        const elapsed = performance.now() - tap.t;
+        const slop = e.pointerType === 'mouse' ? 5 : 14;   // fingers wobble
+        tap = null;
+        if (moved > slop || elapsed > 700) return;
+
+        // Hit-test where the pointer was released; touch pointers keep
+        // implicit capture on the pointerdown target, so e.target alone
+        // would be stale after even a small drift.
+        const hit = document.elementFromPoint(e.clientX, e.clientY);
+        const path = hit && hit.closest ? hit.closest('.country') : null;
+        if (path && path.__feature) handleClick(path.__feature, path);
+    });
+    els.svg.addEventListener('pointercancel', () => { tap = null; });
 
     // Constant-latitude geometry, sampled across all longitudes so the line
     // curves correctly under the Natural Earth projection.
@@ -650,19 +797,45 @@
         svgSel.transition().duration(900).call(zoom.transform, t);
     }
 
-    els.skip.addEventListener('click', () => { if (!locked) { streak = 0; els.streak.textContent = 0; nextRound(); } });
+    function skipRound() {
+        if (locked) return;
+        streak = 0;
+        els.streak.textContent = 0;
+        nextRound();
+    }
 
+    // The header and the touch HUD each carry a copy of these controls, so
+    // bind by class and keep every copy's label in sync.
     let climateOn = true;
-    document.getElementById('climate-btn').addEventListener('click', (e) => {
+    function toggleClimate() {
         climateOn = !climateOn;
         const layer = document.getElementById('climate-layer');
         if (layer) layer.style.display = climateOn ? '' : 'none';
-        e.currentTarget.textContent = 'Climate: ' + (climateOn ? 'On' : 'Off');
-    });
+        const label = 'Climate: ' + (climateOn ? 'On' : 'Off');
+        document.querySelectorAll('.js-climate').forEach(b => b.textContent = label);
+    }
 
-    d3.select('#zc-in').on('click', () => svgSel.transition().duration(250).call(zoom.scaleBy, 1.6));
-    d3.select('#zc-out').on('click', () => svgSel.transition().duration(250).call(zoom.scaleBy, 1 / 1.6));
-    d3.select('#zc-reset').on('click', () => resetView(400));
+    const zoomBy = (k) => svgSel.transition().duration(250).call(zoom.scaleBy, k);
+
+    document.querySelectorAll('.js-skip').forEach(b => b.addEventListener('click', skipRound));
+    document.querySelectorAll('.js-climate').forEach(b => b.addEventListener('click', toggleClimate));
+    document.getElementById('zc-in').addEventListener('click', () => zoomBy(1.6));
+    document.getElementById('zc-out').addEventListener('click', () => zoomBy(1 / 1.6));
+    document.getElementById('zc-reset').addEventListener('click', () => resetView(400));
+
+    // Desktop keyboard shortcuts.
+    document.addEventListener('keydown', (e) => {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        switch (e.key) {
+            case '+': case '=': zoomBy(1.6); break;
+            case '-': case '_': zoomBy(1 / 1.6); break;
+            case '0': resetView(400); break;
+            case 's': case 'S': skipRound(); break;
+            case 'c': case 'C': toggleClimate(); break;
+            default: return;
+        }
+        e.preventDefault();
+    });
     </script>
 </body>
 </html>
