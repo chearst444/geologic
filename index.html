@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoLogic - The Smart World Map Game</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --success: #22c55e;
+            --wrong: #ef4444;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background-color: var(--bg-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-main);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 14px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+            z-index: 10;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+        }
+        h1 span { color: var(--text-muted); font-weight: 400; font-size: 0.9rem; }
+
+        .stats { display: flex; gap: 10px; align-items: center; }
+
+        .pill {
+            font-size: 1rem;
+            font-weight: bold;
+            background: rgba(255,255,255,0.06);
+            padding: 6px 15px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        button {
+            font: inherit;
+            font-weight: 600;
+            color: var(--text-main);
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid var(--accent);
+            padding: 7px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background: rgba(56, 189, 248, 0.3); }
+
+        #game-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            gap: 14px;
+            min-height: 0;
+        }
+
+        #clue-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+            border-left: 5px solid var(--accent);
+            z-index: 5;
+        }
+
+        #clue-card h2 {
+            margin: 0 0 8px 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        ol { margin: 0; padding-left: 22px; }
+        li { margin-bottom: 6px; font-size: 1.1rem; line-height: 1.35; }
+
+        #map-viewport {
+            width: 100%;
+            flex: 1;
+            background: radial-gradient(circle at 50% 40%, #16233f, #0b1220);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
+            min-height: 0;
+        }
+
+        svg { width: 100%; height: 100%; display: block; cursor: grab; }
+        svg:active { cursor: grabbing; }
+
+        #zoom-controls {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 50;
+        }
+        #zoom-controls button {
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            font-size: 1.3rem;
+            line-height: 1;
+            border-radius: 10px;
+            background: rgba(15, 23, 42, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .country {
+            fill: #334155;
+            stroke: #0f172a;
+            stroke-width: 0.4;
+            cursor: pointer;
+            transition: fill 0.2s;
+            vector-effect: non-scaling-stroke;
+        }
+        .country:hover { fill: #64748b; }
+
+        /* Continent tints applied to quiz-eligible countries */
+        .country[data-continent="North America"] { fill: #3b6978; }
+        .country[data-continent="South America"] { fill: #2a9d8f; }
+        .country[data-continent="Europe"]        { fill: #b08968; }
+        .country[data-continent="Africa"]        { fill: #cb904d; }
+        .country[data-continent="Asia"]          { fill: #c05746; }
+        .country[data-continent="Oceania"]       { fill: #6247aa; }
+        .country[data-continent="North America"]:hover { fill: #4d8296; }
+        .country[data-continent="South America"]:hover { fill: #36c2b1; }
+        .country[data-continent="Europe"]:hover        { fill: #c9a184; }
+        .country[data-continent="Africa"]:hover        { fill: #e0a75f; }
+        .country[data-continent="Asia"]:hover          { fill: #d66b5a; }
+        .country[data-continent="Oceania"]:hover       { fill: #7a5cc9; }
+
+        /* Climate reference overlay */
+        .clim-line {
+            fill: none;
+            stroke: rgba(248, 250, 252, 0.35);
+            stroke-width: 0.7;
+            stroke-dasharray: 3 3;
+            vector-effect: non-scaling-stroke;
+        }
+        .clim-line.equator {
+            stroke: rgba(250, 204, 21, 0.85);
+            stroke-width: 1.1;
+            stroke-dasharray: none;
+        }
+        .clim-label {
+            fill: rgba(248, 250, 252, 0.65);
+            font-size: 7px;
+            font-weight: 600;
+            font-family: system-ui, sans-serif;
+        }
+
+        .country.correct { fill: var(--success) !important; }
+        .country.wrong   { animation: flash-red 0.45s ease-out 2; }
+
+        @keyframes flash-red {
+            0%, 100% { fill: var(--wrong); }
+            50%      { fill: #7f1d1d; }
+        }
+
+        #feedback-overlay {
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: rgba(15, 23, 42, 0.94);
+            padding: 16px 32px;
+            border-radius: 14px;
+            text-align: center;
+            border: 2px solid var(--success);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s, transform 0.4s;
+            z-index: 100;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.6);
+        }
+        #feedback-overlay.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        #feedback-overlay h3 { margin: 0 0 4px 0; font-size: 1.8rem; color: var(--success); }
+        #feedback-overlay p { margin: 0; font-size: 1.1rem; color: var(--text-main); }
+
+        #loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>GeoLogic <span>&mdash; deduce &amp; click the country</span></h1>
+        <div class="stats">
+            <div class="pill">Score: <span id="score">0</span></div>
+            <div class="pill">Streak: <span id="streak">0</span></div>
+            <button id="climate-btn">Climate: On</button>
+            <button id="skip-btn">Skip &rarr;</button>
+        </div>
+    </header>
+
+    <div id="game-container">
+        <div id="clue-card">
+            <h2>Deduction clues</h2>
+            <ol id="clue-list"><li>Loading world data&hellip;</li></ol>
+        </div>
+
+        <div id="map-viewport">
+            <div id="loading">Loading world map&hellip;</div>
+            <div id="feedback-overlay">
+                <h3 id="fb-name"></h3>
+                <p id="fb-capital"></p>
+            </div>
+            <svg id="map-svg" viewBox="0 0 960 500" preserveAspectRatio="xMidYMid meet">
+                <g id="map-container"></g>
+            </svg>
+            <div id="zoom-controls">
+                <button id="zc-in" title="Zoom in">+</button>
+                <button id="zc-out" title="Zoom out">&minus;</button>
+                <button id="zc-reset" title="Reset view">&#10530;</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+    <script>
+    // Capital + continent lookup, keyed by the country name used in the
+    // Natural Earth (world-atlas) data. Aliases cover naming variations so
+    // countries still qualify as quiz targets across dataset versions.
+    const DATA = {
+        // North America
+        "United States of America": ["Washington, D.C.", "North America"],
+        "Canada": ["Ottawa", "North America"],
+        "Mexico": ["Mexico City", "North America"],
+        "Guatemala": ["Guatemala City", "North America"],
+        "Cuba": ["Havana", "North America"],
+        "Honduras": ["Tegucigalpa", "North America"],
+        "Nicaragua": ["Managua", "North America"],
+        "Costa Rica": ["San José", "North America"],
+        "Panama": ["Panama City", "North America"],
+        "Dominican Rep.": ["Santo Domingo", "North America"],
+        "Haiti": ["Port-au-Prince", "North America"],
+        "Belize": ["Belmopan", "North America"],
+        // South America
+        "Brazil": ["Brasília", "South America"],
+        "Argentina": ["Buenos Aires", "South America"],
+        "Chile": ["Santiago", "South America"],
+        "Peru": ["Lima", "South America"],
+        "Colombia": ["Bogotá", "South America"],
+        "Venezuela": ["Caracas", "South America"],
+        "Ecuador": ["Quito", "South America"],
+        "Bolivia": ["Sucre", "South America"],
+        "Paraguay": ["Asunción", "South America"],
+        "Uruguay": ["Montevideo", "South America"],
+        "Guyana": ["Georgetown", "South America"],
+        "Suriname": ["Paramaribo", "South America"],
+        // Europe
+        "United Kingdom": ["London", "Europe"],
+        "France": ["Paris", "Europe"],
+        "Germany": ["Berlin", "Europe"],
+        "Spain": ["Madrid", "Europe"],
+        "Portugal": ["Lisbon", "Europe"],
+        "Italy": ["Rome", "Europe"],
+        "Ireland": ["Dublin", "Europe"],
+        "Netherlands": ["Amsterdam", "Europe"],
+        "Belgium": ["Brussels", "Europe"],
+        "Switzerland": ["Bern", "Europe"],
+        "Austria": ["Vienna", "Europe"],
+        "Poland": ["Warsaw", "Europe"],
+        "Ukraine": ["Kyiv", "Europe"],
+        "Sweden": ["Stockholm", "Europe"],
+        "Norway": ["Oslo", "Europe"],
+        "Finland": ["Helsinki", "Europe"],
+        "Denmark": ["Copenhagen", "Europe"],
+        "Iceland": ["Reykjavík", "Europe"],
+        "Greece": ["Athens", "Europe"],
+        "Czechia": ["Prague", "Europe"],
+        "Czech Rep.": ["Prague", "Europe"],
+        "Hungary": ["Budapest", "Europe"],
+        "Romania": ["Bucharest", "Europe"],
+        "Bulgaria": ["Sofia", "Europe"],
+        "Serbia": ["Belgrade", "Europe"],
+        "Croatia": ["Zagreb", "Europe"],
+        "Bosnia and Herz.": ["Sarajevo", "Europe"],
+        "Slovakia": ["Bratislava", "Europe"],
+        "Slovenia": ["Ljubljana", "Europe"],
+        "Lithuania": ["Vilnius", "Europe"],
+        "Latvia": ["Riga", "Europe"],
+        "Estonia": ["Tallinn", "Europe"],
+        "Belarus": ["Minsk", "Europe"],
+        "Moldova": ["Chișinău", "Europe"],
+        "Albania": ["Tirana", "Europe"],
+        "North Macedonia": ["Skopje", "Europe"],
+        "Macedonia": ["Skopje", "Europe"],
+        "Montenegro": ["Podgorica", "Europe"],
+        "Kosovo": ["Pristina", "Europe"],
+        // Africa
+        "Egypt": ["Cairo", "Africa"],
+        "Algeria": ["Algiers", "Africa"],
+        "Morocco": ["Rabat", "Africa"],
+        "Tunisia": ["Tunis", "Africa"],
+        "Libya": ["Tripoli", "Africa"],
+        "Nigeria": ["Abuja", "Africa"],
+        "Ethiopia": ["Addis Ababa", "Africa"],
+        "Kenya": ["Nairobi", "Africa"],
+        "South Africa": ["Pretoria", "Africa"],
+        "Tanzania": ["Dodoma", "Africa"],
+        "Uganda": ["Kampala", "Africa"],
+        "Ghana": ["Accra", "Africa"],
+        "Angola": ["Luanda", "Africa"],
+        "Mozambique": ["Maputo", "Africa"],
+        "Sudan": ["Khartoum", "Africa"],
+        "S. Sudan": ["Juba", "Africa"],
+        "Somalia": ["Mogadishu", "Africa"],
+        "Dem. Rep. Congo": ["Kinshasa", "Africa"],
+        "Congo": ["Brazzaville", "Africa"],
+        "Cameroon": ["Yaoundé", "Africa"],
+        "Côte d'Ivoire": ["Yamoussoukro", "Africa"],
+        "Ivory Coast": ["Yamoussoukro", "Africa"],
+        "Mali": ["Bamako", "Africa"],
+        "Niger": ["Niamey", "Africa"],
+        "Chad": ["N'Djamena", "Africa"],
+        "Senegal": ["Dakar", "Africa"],
+        "Zimbabwe": ["Harare", "Africa"],
+        "Zambia": ["Lusaka", "Africa"],
+        "Botswana": ["Gaborone", "Africa"],
+        "Namibia": ["Windhoek", "Africa"],
+        "Madagascar": ["Antananarivo", "Africa"],
+        "Mauritania": ["Nouakchott", "Africa"],
+        "Rwanda": ["Kigali", "Africa"],
+        "Burkina Faso": ["Ouagadougou", "Africa"],
+        "Guinea": ["Conakry", "Africa"],
+        "Benin": ["Porto-Novo", "Africa"],
+        "Central African Rep.": ["Bangui", "Africa"],
+        "Malawi": ["Lilongwe", "Africa"],
+        "Gabon": ["Libreville", "Africa"],
+        "Eritrea": ["Asmara", "Africa"],
+        "Togo": ["Lomé", "Africa"],
+        "Sierra Leone": ["Freetown", "Africa"],
+        "Liberia": ["Monrovia", "Africa"],
+        // Asia
+        "China": ["Beijing", "Asia"],
+        "India": ["New Delhi", "Asia"],
+        "Japan": ["Tokyo", "Asia"],
+        "South Korea": ["Seoul", "Asia"],
+        "North Korea": ["Pyongyang", "Asia"],
+        "Mongolia": ["Ulaanbaatar", "Asia"],
+        "Russia": ["Moscow", "Asia"],
+        "Kazakhstan": ["Astana", "Asia"],
+        "Uzbekistan": ["Tashkent", "Asia"],
+        "Turkmenistan": ["Ashgabat", "Asia"],
+        "Kyrgyzstan": ["Bishkek", "Asia"],
+        "Tajikistan": ["Dushanbe", "Asia"],
+        "Afghanistan": ["Kabul", "Asia"],
+        "Pakistan": ["Islamabad", "Asia"],
+        "Bangladesh": ["Dhaka", "Asia"],
+        "Nepal": ["Kathmandu", "Asia"],
+        "Bhutan": ["Thimphu", "Asia"],
+        "Sri Lanka": ["Colombo", "Asia"],
+        "Myanmar": ["Naypyidaw", "Asia"],
+        "Thailand": ["Bangkok", "Asia"],
+        "Vietnam": ["Hanoi", "Asia"],
+        "Laos": ["Vientiane", "Asia"],
+        "Cambodia": ["Phnom Penh", "Asia"],
+        "Malaysia": ["Kuala Lumpur", "Asia"],
+        "Indonesia": ["Jakarta", "Asia"],
+        "Philippines": ["Manila", "Asia"],
+        "Iran": ["Tehran", "Asia"],
+        "Iraq": ["Baghdad", "Asia"],
+        "Saudi Arabia": ["Riyadh", "Asia"],
+        "Yemen": ["Sanaa", "Asia"],
+        "Oman": ["Muscat", "Asia"],
+        "United Arab Emirates": ["Abu Dhabi", "Asia"],
+        "Turkey": ["Ankara", "Asia"],
+        "Türkiye": ["Ankara", "Asia"],
+        "Syria": ["Damascus", "Asia"],
+        "Jordan": ["Amman", "Asia"],
+        "Israel": ["Jerusalem", "Asia"],
+        "Lebanon": ["Beirut", "Asia"],
+        "Georgia": ["Tbilisi", "Asia"],
+        "Armenia": ["Yerevan", "Asia"],
+        "Azerbaijan": ["Baku", "Asia"],
+        // Oceania
+        "Australia": ["Canberra", "Oceania"],
+        "New Zealand": ["Wellington", "Oceania"],
+        "Papua New Guinea": ["Port Moresby", "Oceania"],
+        "Fiji": ["Suva", "Oceania"],
+        "Solomon Is.": ["Honiara", "Oceania"]
+    };
+
+    const els = {
+        map: document.getElementById('map-container'),
+        clues: document.getElementById('clue-list'),
+        score: document.getElementById('score'),
+        streak: document.getElementById('streak'),
+        overlay: document.getElementById('feedback-overlay'),
+        fbName: document.getElementById('fb-name'),
+        fbCap: document.getElementById('fb-capital'),
+        loading: document.getElementById('loading'),
+        skip: document.getElementById('skip-btn')
+    };
+
+    const W = 960, H = 500;
+    const projection = d3.geoNaturalEarth1().fitSize([W, H], { type: "Sphere" });
+    const geoPath = d3.geoPath(projection);
+
+    // Pan / zoom: wheel or buttons to zoom, drag to pan. The same behavior
+    // also drives the automatic zoom-to-country on a correct answer.
+    const svgSel = d3.select('#map-svg');
+    const gSel = d3.select('#map-container');
+    const zoom = d3.zoom()
+        .scaleExtent([1, 12])
+        .translateExtent([[0, 0], [W, H]])
+        .on('zoom', (event) => gSel.attr('transform', event.transform));
+    svgSel.call(zoom).on('dblclick.zoom', null);
+
+    function resetView(ms) {
+        svgSel.transition().duration(ms).call(zoom.transform, d3.zoomIdentity);
+    }
+
+    let score = 0, streak = 0;
+    let targets = [];       // features eligible to be quizzed
+    let target = null;      // current target feature
+    let locked = false;     // true briefly after a correct answer
+
+    d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
+        .then(world => {
+            const geoms = world.objects.countries.geometries;
+            const features = topojson.feature(world, world.objects.countries).features;
+            // Land-border adjacency, aligned by index with the feature list.
+            const nb = topojson.neighbors(geoms);
+            features.forEach((f, i) => { f.__neighbors = nb[i] ? nb[i].length : 0; });
+            renderMap(features);
+            drawClimate();
+            targets = features.filter(f => DATA[f.properties.name]);
+            els.loading.remove();
+            nextRound();
+        })
+        .catch(err => {
+            els.loading.textContent = "Could not load map data (need an internet connection).";
+            console.error(err);
+        });
+
+    function renderMap(features) {
+        for (const f of features) {
+            const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            p.setAttribute("d", geoPath(f));
+            p.setAttribute("class", "country");
+            const info = DATA[f.properties.name];
+            if (info) p.setAttribute("data-continent", info[1]);
+            p.__feature = f;
+            p.addEventListener("click", () => handleClick(f, p));
+            els.map.appendChild(p);
+        }
+    }
+
+    // Constant-latitude geometry, sampled across all longitudes so the line
+    // curves correctly under the Natural Earth projection.
+    function latLine(lat) {
+        const coords = [];
+        for (let lon = -180; lon <= 180; lon += 4) coords.push([lon, lat]);
+        return { type: "LineString", coordinates: coords };
+    }
+    function latBand(latTop, latBottom) {
+        const coords = [];
+        for (let lon = -180; lon <= 180; lon += 4) coords.push([lon, latTop]);
+        for (let lon = 180; lon >= -180; lon -= 4) coords.push([lon, latBottom]);
+        coords.push([-180, latTop]);
+        return { type: "Polygon", coordinates: [coords] };
+    }
+
+    function drawClimate() {
+        const NS = "http://www.w3.org/2000/svg";
+        const layer = document.createElementNS(NS, "g");
+        layer.setAttribute("id", "climate-layer");
+        layer.setAttribute("pointer-events", "none");
+
+        // Shaded bands (thresholds match the climate clue: 23.5° and 66.5°)
+        const bands = [
+            [23.5, -23.5, "rgba(244,162,97,0.15)"],   // tropical
+            [66.5, 23.5,  "rgba(42,157,143,0.12)"],   // northern temperate
+            [-23.5, -66.5,"rgba(42,157,143,0.12)"]    // southern temperate
+        ];
+        for (const [a, b, fill] of bands) {
+            const p = document.createElementNS(NS, "path");
+            p.setAttribute("d", geoPath(latBand(a, b)));
+            p.setAttribute("fill", fill);
+            layer.appendChild(p);
+        }
+
+        // Reference lines with labels
+        const lines = [
+            [0, "Equator", true],
+            [23.5, "Tropic of Cancer", false],
+            [-23.5, "Tropic of Capricorn", false],
+            [66.5, "Arctic Circle", false],
+            [-66.5, "Antarctic Circle", false]
+        ];
+        for (const [lat, label, isEquator] of lines) {
+            const p = document.createElementNS(NS, "path");
+            p.setAttribute("d", geoPath(latLine(lat)));
+            p.setAttribute("class", isEquator ? "clim-line equator" : "clim-line");
+            layer.appendChild(p);
+
+            const [x, y] = projection([-155, lat]);
+            const t = document.createElementNS(NS, "text");
+            t.setAttribute("x", x);
+            t.setAttribute("y", y - 2);
+            t.setAttribute("class", "clim-label");
+            t.textContent = label;
+            layer.appendChild(t);
+        }
+        els.map.appendChild(layer);
+    }
+
+    // Only returns a clue when the shape is genuinely distinctive; otherwise
+    // null, so an uninformative "chunky" line is never shown.
+    function describeShape(feature) {
+        const [[x0, y0], [x1, y1]] = geoPath.bounds(feature);
+        const w = x1 - x0, h = y1 - y0;
+        if (h > w * 1.9) return "On the map it appears long and narrow &mdash; taller than it is wide.";
+        if (w > h * 1.9) return "On the map it stretches wide &mdash; much broader than it is tall.";
+        return null;
+    }
+
+    function neighborClue(feature) {
+        const n = feature.__neighbors;
+        if (n === 0) return "It shares <strong>no land borders</strong> &mdash; an island or otherwise isolated nation.";
+        if (n === 1) return "It borders exactly <strong>one</strong> other country.";
+        if (n <= 3) return `It shares land borders with <strong>${n}</strong> countries.`;
+        if (n <= 6) return `It borders <strong>several</strong> countries (${n} on the map).`;
+        return `It borders <strong>many</strong> countries (${n} on the map).`;
+    }
+
+    function sizeClue(feature) {
+        const a = d3.geoArea(feature); // area on the globe, in steradians
+        if (a > 0.06)  return "By area it is <strong>one of the largest countries</strong> in the world.";
+        if (a < 0.004) return "It is a <strong>geographically small</strong> country.";
+        return "It is a <strong>medium-sized</strong> country by area.";
+    }
+
+    function latClue(lat) {
+        const a = Math.abs(lat);
+        if (a < 23.5) return "It lies largely within the <strong>tropics</strong>.";
+        if (a < 45)   return "It sits in the <strong>temperate mid-latitudes</strong>.";
+        if (a < 66.5) return "It lies in the <strong>higher temperate latitudes</strong>.";
+        return "It reaches into the <strong>polar latitudes</strong>.";
+    }
+
+    function buildClues(feature) {
+        const [name] = [feature.properties.name];
+        const [capital, continent] = DATA[name];
+        const [lon, lat] = d3.geoCentroid(feature);
+
+        const hemi = lat >= 0 ? "Northern" : "Southern";
+        const side = lon >= -25 && lon <= 65
+            ? "and sits over the Europe&ndash;Africa meridian band"
+            : (lon > 65 ? "and lies in the Eastern reaches of the map" : "and lies in the Western hemisphere");
+
+        const clues = [
+            `It is located in <strong>${continent}</strong>.`,
+            `It lies in the <strong>${hemi} Hemisphere</strong>, ${side}.`,
+            latClue(lat),
+            sizeClue(feature),
+            neighborClue(feature)
+        ];
+        const shape = describeShape(feature);
+        if (shape) clues.push(shape);
+        clues.push(`Its capital city begins with the letter <strong>${capital[0]}</strong>.`);
+        return clues;
+    }
+
+    function nextRound() {
+        locked = false;
+        els.overlay.classList.remove('show');
+        resetView(600);
+        for (const p of els.map.children) p.classList.remove('correct', 'wrong');
+
+        target = targets[Math.floor(Math.random() * targets.length)];
+        const clues = buildClues(target);
+        els.clues.innerHTML = clues.map(c => `<li>${c}</li>`).join('');
+    }
+
+    function handleClick(feature, pathEl) {
+        if (locked) return;
+
+        if (feature === target) {
+            locked = true;
+            score += 10;
+            streak += 1;
+            els.score.textContent = score;
+            els.streak.textContent = streak;
+            pathEl.classList.add('correct');
+            zoomTo(feature);
+
+            const [capital] = DATA[feature.properties.name];
+            els.fbName.textContent = feature.properties.name.toUpperCase();
+            els.fbCap.textContent = "Capital: " + capital;
+            setTimeout(() => els.overlay.classList.add('show'), 350);
+            setTimeout(nextRound, 3200);
+        } else {
+            streak = 0;
+            els.streak.textContent = streak;
+            pathEl.classList.add('wrong');
+            setTimeout(() => pathEl.classList.remove('wrong'), 900);
+        }
+    }
+
+    function zoomTo(feature) {
+        const [[x0, y0], [x1, y1]] = geoPath.bounds(feature);
+        const bw = x1 - x0, bh = y1 - y0;
+        const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+        const scale = Math.max(1, Math.min(8, 0.55 * Math.min(W / bw, H / bh)));
+        const t = d3.zoomIdentity.translate(W / 2, H / 2).scale(scale).translate(-cx, -cy);
+        svgSel.transition().duration(900).call(zoom.transform, t);
+    }
+
+    els.skip.addEventListener('click', () => { if (!locked) { streak = 0; els.streak.textContent = 0; nextRound(); } });
+
+    let climateOn = true;
+    document.getElementById('climate-btn').addEventListener('click', (e) => {
+        climateOn = !climateOn;
+        const layer = document.getElementById('climate-layer');
+        if (layer) layer.style.display = climateOn ? '' : 'none';
+        e.currentTarget.textContent = 'Climate: ' + (climateOn ? 'On' : 'Off');
+    });
+
+    d3.select('#zc-in').on('click', () => svgSel.transition().duration(250).call(zoom.scaleBy, 1.6));
+    d3.select('#zc-out').on('click', () => svgSel.transition().duration(250).call(zoom.scaleBy, 1 / 1.6));
+    d3.select('#zc-reset').on('click', () => resetView(400));
+    </script>
+</body>
+</html>
