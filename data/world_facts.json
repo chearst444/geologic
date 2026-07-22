@@ -1,0 +1,1526 @@
+{
+  "edition": "GeoLogic: World Edition",
+  "notes": "Hand-written clues, 4 per country, ordered hardest/most obscure -> most obvious. Country names must match the Natural Earth (world-atlas) names used as keys in the DATA object in index.html; aliases for duplicate-named countries (Czechia/Czech Rep., etc.) get their own entry. To add a continent, append its batch entries to the countries array -- any country without an entry here is drawn on the map but never used as a quiz target.",
+  "countries": [
+    {
+      "country": "United States of America",
+      "capital": "Washington, D.C.",
+      "clues": [
+        "Its capital was carved out of land donated by two states and belongs to no state at all.",
+        "It's home to the world's first national park, established in 1872.",
+        "It's the third-largest country in the world by population.",
+        "Its flag has 50 stars, one for each state."
+      ]
+    },
+    {
+      "country": "Canada",
+      "capital": "Ottawa",
+      "clues": [
+        "It has more lakes than the rest of the world's lakes combined.",
+        "Its capital was chosen partly because it sat safely between two rival cities, Toronto and Quebec City.",
+        "It's the second-largest country in the world by area, despite a relatively small population.",
+        "Its flag features a maple leaf."
+      ]
+    },
+    {
+      "country": "Mexico",
+      "capital": "Mexico City",
+      "clues": [
+        "Its capital was built atop the ruins of the Aztec city of Tenochtitlan.",
+        "It gave the world chocolate, chili peppers, and corn.",
+        "It has more UNESCO World Heritage Sites than any other country in the Americas.",
+        "Its flag features an eagle eating a snake atop a cactus."
+      ]
+    },
+    {
+      "country": "Guatemala",
+      "capital": "Guatemala City",
+      "clues": [
+        "It's home to Tikal, one of the largest ancient Maya cities ever discovered.",
+        "It's one of the world's top exporters of cardamom, a spice more associated with India.",
+        "Its name is thought to come from a Nahuatl word meaning 'place of many trees.'",
+        "It's the most populous country in Central America."
+      ]
+    },
+    {
+      "country": "Cuba",
+      "capital": "Havana",
+      "clues": [
+        "It's the largest island in the Caribbean.",
+        "Classic American cars from the 1950s are still commonly driven here today.",
+        "It's known worldwide for cigars and son-based music styles that shaped salsa.",
+        "It lies just about 90 miles south of Florida."
+      ]
+    },
+    {
+      "country": "Honduras",
+      "capital": "Tegucigalpa",
+      "clues": [
+        "Its name is Spanish for 'depths,' possibly referring to deep coastal waters Columbus encountered.",
+        "It's home to the ancient Maya ruins of Copán.",
+        "It has coastline on the Caribbean Sea but not the Pacific Ocean mainland proper.",
+        "Its capital's name comes from an indigenous word meaning 'silver hill.'"
+      ]
+    },
+    {
+      "country": "Nicaragua",
+      "capital": "Managua",
+      "clues": [
+        "It's home to Lake Nicaragua, one of the only freshwater lakes in the world with sharks.",
+        "It's the largest country in Central America by land area.",
+        "Its capital was chosen as a compromise between two rival cities, León and Granada.",
+        "It's known for volcanoes, including one that people can board down."
+      ]
+    },
+    {
+      "country": "Costa Rica",
+      "capital": "San José",
+      "clues": [
+        "It abolished its military entirely in 1948.",
+        "It contains about 5% of the world's biodiversity despite its small size.",
+        "Its name is Spanish for 'rich coast.'",
+        "It's a top destination for eco-tourism in Central America."
+      ]
+    },
+    {
+      "country": "Panama",
+      "capital": "Panama City",
+      "clues": [
+        "It's the narrowest country in Central America, home to a famous man-made shortcut for ships.",
+        "Its canal took over a decade to complete and reshaped global shipping routes.",
+        "It's the only place in the world where you can see the sun rise on the Pacific and set on the Atlantic from certain points.",
+        "It connects Central America to South America."
+      ]
+    },
+    {
+      "country": "Dominican Rep.",
+      "capital": "Santo Domingo",
+      "clues": [
+        "It shares its island with Haiti, the only island in the world split between two countries.",
+        "Its capital is the oldest continuously inhabited European-founded city in the Americas.",
+        "It's the birthplace of merengue music.",
+        "It occupies the eastern two-thirds of the island of Hispaniola."
+      ]
+    },
+    {
+      "country": "Haiti",
+      "capital": "Port-au-Prince",
+      "clues": [
+        "It was the first country in the Americas to abolish slavery and gain independence from a European colonial power, in 1804.",
+        "It shares its island with the Dominican Republic.",
+        "French and Haitian Creole are its two official languages.",
+        "It occupies the western third of the island of Hispaniola."
+      ]
+    },
+    {
+      "country": "Belize",
+      "capital": "Belmopan",
+      "clues": [
+        "It's the only country in Central America where English is the official language.",
+        "It's home to the Great Blue Hole, a massive underwater sinkhole visible from space.",
+        "Its capital was built inland after a hurricane destroyed the previous capital in 1961.",
+        "It was formerly known as British Honduras."
+      ]
+    },
+    {
+      "country": "Brazil",
+      "capital": "Brasília",
+      "clues": [
+        "Its capital was built from scratch in the 1950s and shaped like an airplane from above.",
+        "It's home to more of the Amazon rainforest than any other country.",
+        "It's the largest country in South America by both size and population.",
+        "It's the only Portuguese-speaking country in the Americas."
+      ]
+    },
+    {
+      "country": "Argentina",
+      "capital": "Buenos Aires",
+      "clues": [
+        "It's home to Ushuaia, often called the southernmost city in the world.",
+        "Its name comes from the Latin word for silver, argentum.",
+        "It's the birthplace of tango.",
+        "It's the second-largest country in South America."
+      ]
+    },
+    {
+      "country": "Chile",
+      "capital": "Santiago",
+      "clues": [
+        "It's the longest north-south country in the world, stretching over 2,600 miles.",
+        "It's home to the driest non-polar desert on Earth, the Atacama.",
+        "Easter Island, famous for its stone statues, is part of its territory.",
+        "It hugs the western edge of South America along the Andes."
+      ]
+    },
+    {
+      "country": "Peru",
+      "capital": "Lima",
+      "clues": [
+        "It's home to Machu Picchu, the famous lost Inca city.",
+        "It's considered one of the origin points of the potato, with thousands of native varieties still grown there.",
+        "Its cuisine, ceviche, is one of its most famous culinary exports.",
+        "The ancient Inca Empire was centered here."
+      ]
+    },
+    {
+      "country": "Colombia",
+      "capital": "Bogotá",
+      "clues": [
+        "It's the only South American country with coastlines on both the Pacific and the Caribbean.",
+        "It's the world's second-largest coffee producer.",
+        "It's named after Christopher Columbus.",
+        "It's known for its emeralds, some of the finest in the world."
+      ]
+    },
+    {
+      "country": "Venezuela",
+      "capital": "Caracas",
+      "clues": [
+        "It's home to Angel Falls, the tallest waterfall in the world.",
+        "It has some of the largest proven oil reserves on Earth.",
+        "Its name is Spanish for 'little Venice,' inspired by stilt houses early explorers saw.",
+        "It sits along South America's northern Caribbean coast."
+      ]
+    },
+    {
+      "country": "Ecuador",
+      "capital": "Quito",
+      "clues": [
+        "It's named for the imaginary line that runs directly through it.",
+        "The Galápagos Islands, famous for inspiring Darwin's theory of evolution, belong to it.",
+        "Its capital sits at one of the highest elevations of any national capital in the world.",
+        "It straddles the equator on South America's Pacific coast."
+      ]
+    },
+    {
+      "country": "Bolivia",
+      "capital": "Sucre",
+      "clues": [
+        "It has two capital cities; one hosts the government, the other the judiciary.",
+        "It's home to the Salar de Uyuni, the world's largest salt flat.",
+        "It's one of only two landlocked countries in South America.",
+        "It's named after Simón Bolívar, the independence leader."
+      ]
+    },
+    {
+      "country": "Paraguay",
+      "capital": "Asunción",
+      "clues": [
+        "It's one of only two landlocked countries in South America.",
+        "Guaraní, an indigenous language, is an official language alongside Spanish.",
+        "It's home to one of the largest hydroelectric dams in the world, shared with Brazil.",
+        "It sits between Argentina, Brazil, and Bolivia."
+      ]
+    },
+    {
+      "country": "Uruguay",
+      "capital": "Montevideo",
+      "clues": [
+        "It's one of the most secular countries in Latin America, having separated church and state early.",
+        "It was the first country in the world to legalize marijuana nationwide.",
+        "It's one of the smallest countries in South America by area.",
+        "It sits between Argentina and Brazil along the Atlantic coast."
+      ]
+    },
+    {
+      "country": "Guyana",
+      "capital": "Georgetown",
+      "clues": [
+        "It's the only country in South America where English is the official language.",
+        "Its name means 'land of many waters' in an indigenous language.",
+        "Recent offshore oil discoveries have made it one of the fastest-growing economies in the world.",
+        "It was formerly a British colony known as British Guiana."
+      ]
+    },
+    {
+      "country": "Suriname",
+      "capital": "Paramaribo",
+      "clues": [
+        "It's the smallest sovereign country in South America.",
+        "It's the only country in the Americas where Dutch is the official language.",
+        "More than half of its land is covered in untouched rainforest.",
+        "It was formerly a Dutch colony known as Dutch Guiana."
+      ]
+    },
+    {
+      "country": "United Kingdom",
+      "capital": "London",
+      "clues": [
+        "It's made up of four constituent nations under one crown.",
+        "It's home to the world's oldest underground railway system, opened in 1863.",
+        "It gave the world the sport of football (soccer) in its modern codified form.",
+        "Big Ben and the Houses of Parliament sit along its river Thames."
+      ]
+    },
+    {
+      "country": "France",
+      "capital": "Paris",
+      "clues": [
+        "It's the most visited country in the world by international tourists.",
+        "It's home to the world's most-visited museum, the Louvre.",
+        "The metric system was created here in the 1790s.",
+        "The Eiffel Tower stands in its capital."
+      ]
+    },
+    {
+      "country": "Germany",
+      "capital": "Berlin",
+      "clues": [
+        "It's home to Oktoberfest, the world's largest beer festival.",
+        "It has no overall speed limit on many stretches of its highway system, the Autobahn.",
+        "It's the most populous country in the European Union.",
+        "Its capital was once divided by a famous wall."
+      ]
+    },
+    {
+      "country": "Spain",
+      "capital": "Madrid",
+      "clues": [
+        "It's home to more UNESCO World Heritage Sites than almost any other country.",
+        "It's the world's leading producer of olive oil.",
+        "Its capital, at over 2,100 feet, is one of the highest-elevation capitals in Europe.",
+        "Flamenco and bullfighting are two of its best-known cultural traditions."
+      ]
+    },
+    {
+      "country": "Portugal",
+      "capital": "Lisbon",
+      "clues": [
+        "It's the oldest nation-state in Europe with unchanged borders, dating to the 12th century.",
+        "It's the world's largest producer of cork.",
+        "Its explorers helped kick off the Age of Discovery in the 15th century.",
+        "It sits on the westernmost edge of mainland Europe."
+      ]
+    },
+    {
+      "country": "Italy",
+      "capital": "Rome",
+      "clues": [
+        "It's home to more UNESCO World Heritage Sites than any other country on Earth.",
+        "Two entire independent countries, Vatican City and San Marino, sit within its borders.",
+        "It's shaped like a boot on the map.",
+        "Its capital is home to the Colosseum."
+      ]
+    },
+    {
+      "country": "Ireland",
+      "capital": "Dublin",
+      "clues": [
+        "It's nicknamed the Emerald Isle for its lush green countryside.",
+        "Halloween traditions trace back largely to ancient Celtic festivals held here.",
+        "It's home to the Guinness Storehouse, one of its most visited attractions.",
+        "It shares its island with Northern Ireland, part of the UK."
+      ]
+    },
+    {
+      "country": "Netherlands",
+      "capital": "Amsterdam",
+      "clues": [
+        "Roughly a quarter of its land sits below sea level, held back by dikes.",
+        "It's the world's second-largest exporter of food by value, despite its small size.",
+        "It's world-famous for tulips and windmills.",
+        "Amsterdam, its capital, is known for its canals."
+      ]
+    },
+    {
+      "country": "Belgium",
+      "capital": "Brussels",
+      "clues": [
+        "It's headquarters to both the European Union and NATO.",
+        "It's famous worldwide for its chocolate, waffles, and beer.",
+        "It has three official languages: Dutch, French, and German.",
+        "It sits between France, Germany, and the Netherlands."
+      ]
+    },
+    {
+      "country": "Switzerland",
+      "capital": "Bern",
+      "clues": [
+        "It has remained militarily neutral in every major European conflict since 1815.",
+        "It has four official languages: German, French, Italian, and Romansh.",
+        "It's home to CERN, where the World Wide Web was invented.",
+        "It's famous for chocolate, watches, and the Alps."
+      ]
+    },
+    {
+      "country": "Austria",
+      "capital": "Vienna",
+      "clues": [
+        "It's the birthplace of composers Mozart and Beethoven's adopted musical home.",
+        "Its capital has been ranked one of the world's most livable cities for years running.",
+        "It's home to some of the oldest ski resorts in the world.",
+        "It sits in the heart of the Alps in Central Europe."
+      ]
+    },
+    {
+      "country": "Poland",
+      "capital": "Warsaw",
+      "clues": [
+        "Its capital was almost entirely rebuilt after being nearly destroyed in World War II.",
+        "It's the birthplace of Marie Curie, the first person to win Nobel Prizes in two sciences.",
+        "It's home to one of the oldest salt mines in the world, carved with underground chapels.",
+        "It borders Germany to the west."
+      ]
+    },
+    {
+      "country": "Ukraine",
+      "capital": "Kyiv",
+      "clues": [
+        "It's the largest country entirely within Europe by land area.",
+        "It's historically known as the 'breadbasket of Europe' for its fertile farmland.",
+        "Its capital is one of the oldest cities in Eastern Europe.",
+        "It borders Russia to the east and Poland to the west."
+      ]
+    },
+    {
+      "country": "Sweden",
+      "capital": "Stockholm",
+      "clues": [
+        "It's home to the Nobel Prize ceremony, awarded here every year (except the Peace Prize).",
+        "It gave the world IKEA and Spotify.",
+        "Its capital is built across 14 islands.",
+        "It's the largest country in Scandinavia."
+      ]
+    },
+    {
+      "country": "Norway",
+      "capital": "Oslo",
+      "clues": [
+        "It's famous for its fjords, deep coastal inlets carved by glaciers.",
+        "It awards the Nobel Peace Prize, even though the rest are awarded in Sweden.",
+        "Parts of it experience the midnight sun in summer, with sunlight nearly around the clock.",
+        "It sits along Scandinavia's western coast."
+      ]
+    },
+    {
+      "country": "Finland",
+      "capital": "Helsinki",
+      "clues": [
+        "It's home to more saunas than cars.",
+        "It's often ranked the happiest country in the world.",
+        "It gave the world Nokia and, before that, Angry Birds.",
+        "It borders Russia and shares Scandinavia's Nordic identity."
+      ]
+    },
+    {
+      "country": "Denmark",
+      "capital": "Copenhagen",
+      "clues": [
+        "It's the birthplace of Lego.",
+        "Greenland, the world's largest island, is part of its kingdom.",
+        "It's home to Hans Christian Andersen, author of 'The Little Mermaid.'",
+        "It's one of the smallest of the Nordic countries by land area."
+      ]
+    },
+    {
+      "country": "Iceland",
+      "capital": "Reykjavík",
+      "clues": [
+        "It runs almost entirely on renewable geothermal and hydroelectric power.",
+        "It has no standing army.",
+        "It's home to more active volcanoes per square mile than almost anywhere else.",
+        "Its capital is the northernmost capital of a sovereign country in the world."
+      ]
+    },
+    {
+      "country": "Greece",
+      "capital": "Athens",
+      "clues": [
+        "It's considered the birthplace of democracy.",
+        "It's home to more islands than any other country in the Mediterranean, over 6,000.",
+        "The original Olympic Games began here in 776 BC.",
+        "The Acropolis and Parthenon overlook its capital."
+      ]
+    },
+    {
+      "country": "Czechia",
+      "capital": "Prague",
+      "clues": [
+        "It has more castles per square mile than almost any other country.",
+        "It's the birthplace of the pilsner style of beer.",
+        "Its capital's Astronomical Clock is the oldest still-working clock of its kind in the world.",
+        "It was formerly known as Czechoslovakia before splitting peacefully in 1993."
+      ]
+    },
+    {
+      "country": "Czech Rep.",
+      "capital": "Prague",
+      "clues": [
+        "It has more castles per square mile than almost any other country.",
+        "It's the birthplace of the pilsner style of beer.",
+        "Its capital's Astronomical Clock is the oldest still-working clock of its kind in the world.",
+        "It was formerly known as Czechoslovakia before splitting peacefully in 1993."
+      ]
+    },
+    {
+      "country": "Hungary",
+      "capital": "Budapest",
+      "clues": [
+        "Its capital was originally two separate cities, Buda and Pest, joined by bridges.",
+        "It's home to Lake Balaton, the largest lake in Central Europe.",
+        "It gave the world the Rubik's Cube.",
+        "Its capital straddles the Danube River."
+      ]
+    },
+    {
+      "country": "Romania",
+      "capital": "Bucharest",
+      "clues": [
+        "It's home to Transylvania, the region tied to the legend of Dracula.",
+        "Its parliament building is the heaviest building in the world.",
+        "It's the largest country in the Balkans by area.",
+        "Its capital was once nicknamed 'Little Paris' for its architecture."
+      ]
+    },
+    {
+      "country": "Bulgaria",
+      "capital": "Sofia",
+      "clues": [
+        "It's the oldest country in Europe to keep its original name since it was founded, in 681.",
+        "It's one of the world's largest producers of rose oil, used in perfume.",
+        "Nodding your head here traditionally means 'no,' and shaking it means 'yes,' the reverse of most countries.",
+        "It sits on the Black Sea coast in southeastern Europe."
+      ]
+    },
+    {
+      "country": "Serbia",
+      "capital": "Belgrade",
+      "clues": [
+        "Its capital's name means 'white city.'",
+        "It's landlocked, sitting at the crossroads of Central and Southeastern Europe.",
+        "Tennis star Novak Djokovic was born in its capital.",
+        "It was once part of the country of Yugoslavia."
+      ]
+    },
+    {
+      "country": "Croatia",
+      "capital": "Zagreb",
+      "clues": [
+        "The necktie is believed to have originated with soldiers from here.",
+        "It's home to over a thousand islands along its Adriatic coastline.",
+        "Its walled city of Dubrovnik was used as a filming location for a famous fantasy TV series.",
+        "It was once part of the country of Yugoslavia."
+      ]
+    },
+    {
+      "country": "Bosnia and Herz.",
+      "capital": "Sarajevo",
+      "clues": [
+        "Its capital hosted the 1984 Winter Olympics.",
+        "The assassination that helped trigger World War I took place in its capital.",
+        "Its name combines two historical regions.",
+        "It was once part of the country of Yugoslavia."
+      ]
+    },
+    {
+      "country": "Slovakia",
+      "capital": "Bratislava",
+      "clues": [
+        "It has the highest number of castles and chateaux per capita in the world.",
+        "It was formerly joined with Czechia as one country, Czechoslovakia.",
+        "Its capital is the only national capital bordering two other countries, Austria and Hungary.",
+        "It sits east of Czechia in Central Europe."
+      ]
+    },
+    {
+      "country": "Slovenia",
+      "capital": "Ljubljana",
+      "clues": [
+        "Over half its territory is covered in forest.",
+        "It's home to Lake Bled, famous for its tiny island church reachable only by boat.",
+        "It was once part of the country of Yugoslavia.",
+        "It sits between Italy, Austria, and Croatia."
+      ]
+    },
+    {
+      "country": "Lithuania",
+      "capital": "Vilnius",
+      "clues": [
+        "It was the first Soviet republic to declare independence, in 1990.",
+        "It's one of the three Baltic states.",
+        "Its capital's Old Town is one of the largest in Eastern Europe.",
+        "It sits along the Baltic Sea, south of Latvia."
+      ]
+    },
+    {
+      "country": "Latvia",
+      "capital": "Riga",
+      "clues": [
+        "Its capital is known for having one of the finest collections of Art Nouveau buildings in the world.",
+        "It's one of the three Baltic states.",
+        "It's home to a tradition, the Latvian Song and Dance Festival, that draws tens of thousands of performers.",
+        "It sits between Estonia and Lithuania on the Baltic Sea."
+      ]
+    },
+    {
+      "country": "Estonia",
+      "capital": "Tallinn",
+      "clues": [
+        "It's considered one of the most digitally advanced nations, letting citizens vote online since 2005.",
+        "Skype was originally developed here.",
+        "It's one of the three Baltic states.",
+        "It sits just south of Finland across the Gulf of Finland."
+      ]
+    },
+    {
+      "country": "Belarus",
+      "capital": "Minsk",
+      "clues": [
+        "It's home to one of the last remaining primeval forests in Europe, Białowieża.",
+        "Its capital was almost completely rebuilt after being devastated in World War II.",
+        "It's landlocked, bordered by Russia, Ukraine, Poland, and the Baltic states.",
+        "It was formerly part of the Soviet Union."
+      ]
+    },
+    {
+      "country": "Moldova",
+      "capital": "Chișinău",
+      "clues": [
+        "It's one of the largest wine producers in the world relative to its size, with vineyards covering much of the country.",
+        "It's one of the least visited countries in Europe.",
+        "It's landlocked between Romania and Ukraine.",
+        "It was formerly part of the Soviet Union."
+      ]
+    },
+    {
+      "country": "Albania",
+      "capital": "Tirana",
+      "clues": [
+        "It was one of the most isolated countries in the world under Communist rule, with hundreds of thousands of bunkers built for a war that never came.",
+        "Its flag features a black double-headed eagle.",
+        "It sits across the Adriatic Sea from Italy.",
+        "It's on the Balkan Peninsula in Southeastern Europe."
+      ]
+    },
+    {
+      "country": "North Macedonia",
+      "capital": "Skopje",
+      "clues": [
+        "It changed its name in 2019 to resolve a decades-long dispute with Greece.",
+        "It's home to Lake Ohrid, one of the oldest and deepest lakes in Europe.",
+        "It was once part of the country of Yugoslavia.",
+        "It's landlocked in the Balkans, north of Greece."
+      ]
+    },
+    {
+      "country": "Macedonia",
+      "capital": "Skopje",
+      "clues": [
+        "It changed its name in 2019 to resolve a decades-long dispute with Greece.",
+        "It's home to Lake Ohrid, one of the oldest and deepest lakes in Europe.",
+        "It was once part of the country of Yugoslavia.",
+        "It's landlocked in the Balkans, north of Greece."
+      ]
+    },
+    {
+      "country": "Montenegro",
+      "capital": "Podgorica",
+      "clues": [
+        "Its name literally means 'black mountain' in several regional languages.",
+        "It's home to one of the deepest canyons in Europe, Tara River Canyon.",
+        "It was the last republic to split from Yugoslavia, in 2006.",
+        "It sits on the Adriatic coast near Croatia."
+      ]
+    },
+    {
+      "country": "Kosovo",
+      "capital": "Pristina",
+      "clues": [
+        "It declared independence from Serbia in 2008, though not all countries recognize it.",
+        "It's one of the youngest countries in Europe.",
+        "It's landlocked in the Balkans.",
+        "It was formerly part of Yugoslavia and then Serbia."
+      ]
+    },
+    {
+      "country": "Egypt",
+      "capital": "Cairo",
+      "clues": [
+        "It's home to the last surviving wonder of the ancient world, the Great Pyramid of Giza.",
+        "The Nile, the longest river in Africa, runs through it.",
+        "Its ancient civilization developed one of the earliest writing systems, hieroglyphics.",
+        "It sits in the far northeast corner of Africa."
+      ]
+    },
+    {
+      "country": "Algeria",
+      "capital": "Algiers",
+      "clues": [
+        "It's the largest country in Africa by land area.",
+        "Most of its territory lies within the Sahara Desert.",
+        "It gained independence from France in 1962 after a long war.",
+        "It sits along the Mediterranean coast of North Africa."
+      ]
+    },
+    {
+      "country": "Morocco",
+      "capital": "Rabat",
+      "clues": [
+        "It's home to Chefchaouen, a town famous for its blue-painted buildings.",
+        "It's separated from Europe by just 8 miles of water at its narrowest point.",
+        "Its markets, called souks, are famous for spices and leather goods.",
+        "It sits in the far northwest corner of Africa."
+      ]
+    },
+    {
+      "country": "Tunisia",
+      "capital": "Tunis",
+      "clues": [
+        "It's the smallest country in North Africa by area.",
+        "Ancient ruins of the city of Carthage sit near its capital.",
+        "It was the birthplace of the Arab Spring protests in 2010-2011.",
+        "It's the northernmost country in Africa."
+      ]
+    },
+    {
+      "country": "Libya",
+      "capital": "Tripoli",
+      "clues": [
+        "It holds Africa's largest proven oil reserves.",
+        "Over 90% of its land is desert.",
+        "It has one of the shortest coastlines relative to its size in North Africa.",
+        "It sits between Egypt and Tunisia along the Mediterranean."
+      ]
+    },
+    {
+      "country": "Nigeria",
+      "capital": "Abuja",
+      "clues": [
+        "It's the most populous country in Africa.",
+        "It's home to Nollywood, one of the largest film industries in the world by output.",
+        "Its capital was purpose-built in the 1980s to be more centrally located than the former capital, Lagos.",
+        "It sits on the Gulf of Guinea in West Africa."
+      ]
+    },
+    {
+      "country": "Ethiopia",
+      "capital": "Addis Ababa",
+      "clues": [
+        "It's the only African country never colonized by a European power.",
+        "It uses its own calendar, currently several years behind the Gregorian calendar.",
+        "It's considered one of the earliest regions where coffee was discovered.",
+        "It's in the Horn of Africa in East Africa."
+      ]
+    },
+    {
+      "country": "Kenya",
+      "capital": "Nairobi",
+      "clues": [
+        "It's home to the Great Migration, when millions of wildebeest cross the Serengeti-Mara ecosystem.",
+        "Its capital is one of the only major cities in the world with a national park inside its limits.",
+        "It's a major hub for long-distance running talent.",
+        "It sits on the Indian Ocean coast of East Africa."
+      ]
+    },
+    {
+      "country": "South Africa",
+      "capital": "Pretoria",
+      "clues": [
+        "It has three official capital cities, splitting executive, legislative, and judicial functions.",
+        "It has 12 official languages, more than almost any other country.",
+        "It's home to Table Mountain, one of the oldest mountains on Earth.",
+        "It sits at the southern tip of the African continent."
+      ]
+    },
+    {
+      "country": "Tanzania",
+      "capital": "Dodoma",
+      "clues": [
+        "It's home to Mount Kilimanjaro, the tallest mountain in Africa.",
+        "The island of Zanzibar, famous for spices, is part of its territory.",
+        "It's home to the Serengeti, famous for its annual animal migration.",
+        "It sits on the Indian Ocean coast of East Africa."
+      ]
+    },
+    {
+      "country": "Uganda",
+      "capital": "Kampala",
+      "clues": [
+        "It's nicknamed 'the Pearl of Africa,' a phrase credited to Winston Churchill.",
+        "It's home to more than half of the world's remaining mountain gorillas.",
+        "It's the source of the White Nile, one of the two main tributaries of the Nile.",
+        "It's landlocked in East Africa, bordering Kenya."
+      ]
+    },
+    {
+      "country": "Ghana",
+      "capital": "Accra",
+      "clues": [
+        "It was the first sub-Saharan African country to gain independence from colonial rule, in 1957.",
+        "It's one of the world's largest producers of cocoa.",
+        "It was formerly known as the Gold Coast.",
+        "It sits on the Gulf of Guinea in West Africa."
+      ]
+    },
+    {
+      "country": "Angola",
+      "capital": "Luanda",
+      "clues": [
+        "It's one of Africa's largest oil producers.",
+        "Portuguese is its official language.",
+        "It endured one of Africa's longest civil wars, lasting nearly three decades after independence.",
+        "It sits on the Atlantic coast of Southern Africa."
+      ]
+    },
+    {
+      "country": "Mozambique",
+      "capital": "Maputo",
+      "clues": [
+        "Its name comes from an Arab trader who once controlled an island off its coast.",
+        "It's one of the world's top producers of cashews.",
+        "Portuguese is its official language.",
+        "It sits on the Indian Ocean coast of Southeast Africa."
+      ]
+    },
+    {
+      "country": "Sudan",
+      "capital": "Khartoum",
+      "clues": [
+        "Its capital sits at the meeting point of the Blue Nile and White Nile.",
+        "It's home to more ancient pyramids than Egypt, though smaller in scale.",
+        "It was Africa's largest country by area until South Sudan split off in 2011.",
+        "It sits in Northeast Africa along the Red Sea."
+      ]
+    },
+    {
+      "country": "S. Sudan",
+      "capital": "Juba",
+      "clues": [
+        "It's the world's newest widely recognized country, formed in 2011.",
+        "It split off from Sudan after decades of civil war.",
+        "It's landlocked, sitting south of Sudan.",
+        "It's one of the least developed countries by infrastructure in the world."
+      ]
+    },
+    {
+      "country": "Somalia",
+      "capital": "Mogadishu",
+      "clues": [
+        "It has the longest coastline of any mainland African country.",
+        "It's located on the Horn of Africa, the continent's easternmost point.",
+        "Its capital was once nicknamed 'the White Pearl of the Indian Ocean' for its beaches and architecture.",
+        "It's shaped like the number seven on the map."
+      ]
+    },
+    {
+      "country": "Dem. Rep. Congo",
+      "capital": "Kinshasa",
+      "clues": [
+        "It's home to the world's second-largest rainforest, after the Amazon.",
+        "It holds vast reserves of cobalt, a key material in batteries for phones and electric cars.",
+        "The Congo River, the deepest river in the world, runs through it.",
+        "It's the largest country in sub-Saharan Africa by area."
+      ]
+    },
+    {
+      "country": "Congo",
+      "capital": "Brazzaville",
+      "clues": [
+        "Its capital sits directly across the Congo River from another country's capital, Kinshasa, the only place in the world where two capitals face each other like this.",
+        "Its territory is heavily covered by rainforest.",
+        "It's smaller and less populous than its similarly named neighbor, the Democratic Republic of Congo.",
+        "It sits on the Atlantic coast of Central Africa."
+      ]
+    },
+    {
+      "country": "Cameroon",
+      "capital": "Yaoundé",
+      "clues": [
+        "It's nicknamed 'Africa in miniature' for its wide range of landscapes and cultures.",
+        "It has two official languages, English and French, reflecting its colonial history.",
+        "Its national football team's success helped make it one of the continent's most recognized sporting nations.",
+        "It sits on the Gulf of Guinea in Central Africa."
+      ]
+    },
+    {
+      "country": "Côte d'Ivoire",
+      "capital": "Yamoussoukro",
+      "clues": [
+        "It's the world's largest producer of cocoa beans.",
+        "Its capital is home to a basilica modeled after St. Peter's in Rome but even larger.",
+        "Its name is French for 'Ivory Coast,' reflecting its colonial-era trade.",
+        "It sits on the Gulf of Guinea in West Africa."
+      ]
+    },
+    {
+      "country": "Ivory Coast",
+      "capital": "Yamoussoukro",
+      "clues": [
+        "It's the world's largest producer of cocoa beans.",
+        "Its capital is home to a basilica modeled after St. Peter's in Rome but even larger.",
+        "Its name reflects its colonial-era ivory trade.",
+        "It sits on the Gulf of Guinea in West Africa."
+      ]
+    },
+    {
+      "country": "Mali",
+      "capital": "Bamako",
+      "clues": [
+        "It's home to Timbuktu, a city once so remote and legendary it became a byword for the middle of nowhere.",
+        "Much of its northern territory lies within the Sahara Desert.",
+        "It was once part of a wealthy medieval empire whose ruler, Mansa Musa, is considered one of the richest people in history.",
+        "It's landlocked in West Africa."
+      ]
+    },
+    {
+      "country": "Niger",
+      "capital": "Niamey",
+      "clues": [
+        "It's one of the hottest countries in the world, with much of its land within the Sahara.",
+        "It's named after the Niger River, one of the major rivers of West Africa.",
+        "It's landlocked, bordering Nigeria to the south.",
+        "It's one of the least densely populated countries in the world."
+      ]
+    },
+    {
+      "country": "Chad",
+      "capital": "N'Djamena",
+      "clues": [
+        "It's named after Lake Chad, once one of Africa's largest lakes, now dramatically shrunken.",
+        "It's landlocked in north-central Africa.",
+        "Its northern reaches lie within the Sahara Desert.",
+        "It borders Libya to the north and Sudan to the east."
+      ]
+    },
+    {
+      "country": "Senegal",
+      "capital": "Dakar",
+      "clues": [
+        "It completely surrounds another country, the Gambia, on three sides.",
+        "It's home to the Pink Lake, whose waters turn rosy from algae.",
+        "Its capital hosts the finish of a famous off-road motor race, the Dakar Rally, named for the city.",
+        "It's the westernmost country in mainland Africa."
+      ]
+    },
+    {
+      "country": "Zimbabwe",
+      "capital": "Harare",
+      "clues": [
+        "It's home to Victoria Falls, one of the largest waterfalls in the world.",
+        "It's named after Great Zimbabwe, ancient stone ruins built without mortar.",
+        "It was formerly known as Rhodesia.",
+        "It's landlocked in Southern Africa."
+      ]
+    },
+    {
+      "country": "Zambia",
+      "capital": "Lusaka",
+      "clues": [
+        "It shares Victoria Falls with Zimbabwe across the Zambezi River.",
+        "It's one of the world's largest producers of copper.",
+        "It was formerly known as Northern Rhodesia.",
+        "It's landlocked in Southern Africa."
+      ]
+    },
+    {
+      "country": "Botswana",
+      "capital": "Gaborone",
+      "clues": [
+        "It's home to the Okavango Delta, a rare inland river delta that never reaches the sea.",
+        "It's one of the world's leading producers of diamonds.",
+        "Much of its territory is covered by the Kalahari Desert.",
+        "It's landlocked in Southern Africa."
+      ]
+    },
+    {
+      "country": "Namibia",
+      "capital": "Windhoek",
+      "clues": [
+        "It's home to some of the oldest and tallest sand dunes in the world, in the Namib Desert.",
+        "It was the last African country to gain independence from colonial rule, in 1990.",
+        "It's one of the least densely populated countries on Earth.",
+        "It sits along the Atlantic coast of Southern Africa."
+      ]
+    },
+    {
+      "country": "Madagascar",
+      "capital": "Antananarivo",
+      "clues": [
+        "It's the fourth-largest island in the world.",
+        "About 90% of its wildlife, including lemurs, exists nowhere else on Earth.",
+        "It split from mainland Africa roughly 160 million years ago.",
+        "It sits in the Indian Ocean off Africa's southeast coast."
+      ]
+    },
+    {
+      "country": "Mauritania",
+      "capital": "Nouakchott",
+      "clues": [
+        "It's home to the Eye of the Sahara, a massive circular rock formation visible from space.",
+        "Over 90% of its territory lies within the Sahara Desert.",
+        "It was the last country in the world to formally criminalize slavery, in 1981.",
+        "It sits on the Atlantic coast of Northwest Africa."
+      ]
+    },
+    {
+      "country": "Rwanda",
+      "capital": "Kigali",
+      "clues": [
+        "It's nicknamed 'the land of a thousand hills.'",
+        "Its capital is often ranked among the cleanest cities in Africa, thanks in part to a monthly nationwide community cleanup day.",
+        "It's one of the last strongholds of the endangered mountain gorilla.",
+        "It's landlocked in East-Central Africa."
+      ]
+    },
+    {
+      "country": "Burkina Faso",
+      "capital": "Ouagadougou",
+      "clues": [
+        "Its name translates roughly to 'land of upright/honest people.'",
+        "It was formerly known as Upper Volta before renaming in 1984.",
+        "It's landlocked in West Africa.",
+        "Its capital's name is often shortened to 'Ouaga' by locals."
+      ]
+    },
+    {
+      "country": "Guinea",
+      "capital": "Conakry",
+      "clues": [
+        "It holds some of the world's largest reserves of bauxite, the ore used to make aluminum.",
+        "It was the first French colony in West Africa to vote for full independence, in 1958.",
+        "Its capital sits on a narrow peninsula jutting into the Atlantic.",
+        "It sits on the Atlantic coast of West Africa."
+      ]
+    },
+    {
+      "country": "Benin",
+      "capital": "Porto-Novo",
+      "clues": [
+        "It's considered the birthplace of the Vodun (Voodoo) religion.",
+        "It has two major cities functioning as capital: one official, one the seat of government.",
+        "It was formerly known as Dahomey.",
+        "It sits on the Gulf of Guinea in West Africa."
+      ]
+    },
+    {
+      "country": "Central African Rep.",
+      "capital": "Bangui",
+      "clues": [
+        "It's one of the least developed countries in the world despite rich diamond and gold deposits.",
+        "It's landlocked at the geographic center of the African continent.",
+        "It was briefly declared an empire in the 1970s under a self-proclaimed emperor.",
+        "It borders Chad, Sudan, and the Democratic Republic of Congo."
+      ]
+    },
+    {
+      "country": "Malawi",
+      "capital": "Lilongwe",
+      "clues": [
+        "It's nicknamed 'the Warm Heart of Africa' for the friendliness of its people.",
+        "Lake Malawi, one of the largest and deepest lakes in Africa, covers much of its eastern border.",
+        "It's one of the most densely populated countries in Africa.",
+        "It's landlocked in Southeast Africa."
+      ]
+    },
+    {
+      "country": "Gabon",
+      "capital": "Libreville",
+      "clues": [
+        "Over 80% of its land is covered by rainforest, one of the highest rates in the world.",
+        "Its capital's name means 'free town' in French, founded by freed and rescued slaves.",
+        "It has one of the highest GDP-per-capita figures in sub-Saharan Africa, largely from oil.",
+        "It sits on the Atlantic coast of Central Africa, straddling the equator."
+      ]
+    },
+    {
+      "country": "Eritrea",
+      "capital": "Asmara",
+      "clues": [
+        "Its capital is renowned for its well-preserved Italian Art Deco architecture from the colonial era.",
+        "It fought a decades-long war for independence from Ethiopia, achieved in 1993.",
+        "It sits along the Red Sea in the Horn of Africa.",
+        "It's one of the least visited countries in the world."
+      ]
+    },
+    {
+      "country": "Togo",
+      "capital": "Lomé",
+      "clues": [
+        "It's one of the narrowest countries in Africa, stretching in a thin strip north to south.",
+        "Its capital sits right on the border with Ghana, close enough to walk between countries.",
+        "It was formerly split between French and British colonial rule.",
+        "It sits on the Gulf of Guinea in West Africa."
+      ]
+    },
+    {
+      "country": "Sierra Leone",
+      "capital": "Freetown",
+      "clues": [
+        "Its capital was founded as a settlement for freed and formerly enslaved people in 1792.",
+        "It's a major source of diamonds, some tied to the term 'blood diamonds.'",
+        "It endured a brutal civil war through the 1990s that later inspired global film attention.",
+        "It sits on the Atlantic coast of West Africa."
+      ]
+    },
+    {
+      "country": "Liberia",
+      "capital": "Monrovia",
+      "clues": [
+        "Its capital is named after U.S. President James Monroe.",
+        "It was founded in the 1800s as a settlement for freed American slaves.",
+        "It's one of only two African countries never formally colonized by a European power.",
+        "It sits on the Atlantic coast of West Africa."
+      ]
+    },
+    {
+      "country": "China",
+      "capital": "Beijing",
+      "clues": [
+        "It's home to the longest wall ever built by humans, stretching over 13,000 miles counting all its branches.",
+        "It's the most populous country in the world for most of recorded history, only recently overtaken by India.",
+        "It gave the world paper, gunpowder, the compass, and printing.",
+        "The Great Wall and Forbidden City sit near its capital."
+      ]
+    },
+    {
+      "country": "India",
+      "capital": "New Delhi",
+      "clues": [
+        "It's now the most populous country in the world.",
+        "It's home to the Taj Mahal, built as a mausoleum for an emperor's favorite wife.",
+        "Chess, the number zero, and the game of snakes and ladders all originated here.",
+        "It's shaped like a large peninsula jutting into the Indian Ocean."
+      ]
+    },
+    {
+      "country": "Japan",
+      "capital": "Tokyo",
+      "clues": [
+        "It's made up of over 6,800 islands, though most people live on just four main ones.",
+        "It's home to the world's oldest continuously running hereditary monarchy.",
+        "It gave the world sushi, karaoke, and the bullet train.",
+        "Its flag features a red circle representing the sun."
+      ]
+    },
+    {
+      "country": "South Korea",
+      "capital": "Seoul",
+      "clues": [
+        "It's one of the most densely populated countries in the world, with half its people living in and around its capital area.",
+        "It's the birthplace of K-pop and a major global exporter of pop culture.",
+        "It shares a heavily fortified border with its northern neighbor.",
+        "It occupies the southern half of the Korean Peninsula."
+      ]
+    },
+    {
+      "country": "North Korea",
+      "capital": "Pyongyang",
+      "clues": [
+        "It's one of the most isolated and secretive countries in the world.",
+        "It's ruled by the same family dynasty that has held power since its founding in 1948.",
+        "Its capital is known for its wide, largely traffic-free boulevards and monumental architecture.",
+        "It occupies the northern half of the Korean Peninsula."
+      ]
+    },
+    {
+      "country": "Mongolia",
+      "capital": "Ulaanbaatar",
+      "clues": [
+        "It's the least densely populated sovereign country in the world.",
+        "It was once the center of the largest contiguous land empire in history, under Genghis Khan.",
+        "Roughly a quarter of its population still lives a nomadic or semi-nomadic herding lifestyle.",
+        "It's landlocked between Russia and China."
+      ]
+    },
+    {
+      "country": "Russia",
+      "capital": "Moscow",
+      "clues": [
+        "It's the largest country in the world by area, spanning eleven time zones.",
+        "It's home to Lake Baikal, the deepest and oldest freshwater lake on Earth.",
+        "It spans two continents, Europe and Asia.",
+        "Its capital's Red Square sits beside the Kremlin."
+      ]
+    },
+    {
+      "country": "Kazakhstan",
+      "capital": "Astana",
+      "clues": [
+        "It's the largest landlocked country in the world.",
+        "It's home to the Baikonur Cosmodrome, the world's oldest and largest operational space launch facility.",
+        "Its capital was renamed several times in recent decades, reflecting shifting political tributes.",
+        "It's the largest country in Central Asia."
+      ]
+    },
+    {
+      "country": "Uzbekistan",
+      "capital": "Tashkent",
+      "clues": [
+        "It's one of only two doubly landlocked countries in the world, meaning it's landlocked by other landlocked countries.",
+        "It was a major hub of the ancient Silk Road, with cities like Samarkand and Bukhara.",
+        "It's the most populous country in Central Asia.",
+        "It borders Kazakhstan to the north."
+      ]
+    },
+    {
+      "country": "Turkmenistan",
+      "capital": "Ashgabat",
+      "clues": [
+        "It's home to the Darvaza gas crater, a fire pit that has burned continuously since the 1970s, nicknamed the 'Door to Hell.'",
+        "Its capital holds a Guinness World Record for having the highest concentration of white marble buildings in the world.",
+        "Much of its territory lies within the Karakum Desert.",
+        "It sits along the Caspian Sea in Central Asia."
+      ]
+    },
+    {
+      "country": "Kyrgyzstan",
+      "capital": "Bishkek",
+      "clues": [
+        "Nearly all of its territory is covered by mountains, mostly the Tian Shan range.",
+        "It's home to Issyk-Kul, one of the largest and deepest alpine lakes in the world.",
+        "It's landlocked in Central Asia.",
+        "It borders China to the east."
+      ]
+    },
+    {
+      "country": "Tajikistan",
+      "capital": "Dushanbe",
+      "clues": [
+        "It's the most mountainous country in Central Asia.",
+        "It's home to the Pamir Mountains, sometimes called the 'roof of the world.'",
+        "Its capital's name means 'Monday' in Persian, marking the day a market once opened there.",
+        "It's landlocked, bordering Afghanistan to the south."
+      ]
+    },
+    {
+      "country": "Afghanistan",
+      "capital": "Kabul",
+      "clues": [
+        "It's often nicknamed the 'graveyard of empires' for resisting outside conquest for centuries.",
+        "It's landlocked and mountainous, dominated by the Hindu Kush range.",
+        "It sits at a historic crossroads between Central and South Asia.",
+        "It borders Pakistan to the south and east."
+      ]
+    },
+    {
+      "country": "Pakistan",
+      "capital": "Islamabad",
+      "clues": [
+        "It's home to K2, the second-tallest mountain in the world.",
+        "It's the fifth most populous country in the world.",
+        "It was created in 1947 through the partition of British India.",
+        "It sits on the Arabian Sea in South Asia."
+      ]
+    },
+    {
+      "country": "Bangladesh",
+      "capital": "Dhaka",
+      "clues": [
+        "It's one of the most densely populated large countries in the world.",
+        "It's home to the Sundarbans, the largest mangrove forest in the world.",
+        "It was formerly known as East Pakistan before gaining independence in 1971.",
+        "It's largely surrounded by India, with a small coast on the Bay of Bengal."
+      ]
+    },
+    {
+      "country": "Nepal",
+      "capital": "Kathmandu",
+      "clues": [
+        "It's home to Mount Everest, the tallest mountain in the world.",
+        "It's the only country in the world with a non-rectangular national flag.",
+        "It's landlocked between India and China.",
+        "The Himalayas dominate its northern border."
+      ]
+    },
+    {
+      "country": "Bhutan",
+      "capital": "Thimphu",
+      "clues": [
+        "It measures national success using 'Gross National Happiness' instead of GDP alone.",
+        "It was the last country in the world to introduce television, in 1999.",
+        "It's landlocked in the Himalayas between India and China.",
+        "It's one of the least visited countries in the world, with tourism tightly regulated."
+      ]
+    },
+    {
+      "country": "Sri Lanka",
+      "capital": "Colombo",
+      "clues": [
+        "It's shaped like a teardrop off the southern tip of India.",
+        "It was formerly known as Ceylon, still used as a name for its famous tea.",
+        "Its administrative capital is actually a different city, Sri Jayawardenepura Kotte.",
+        "It's an island nation in the Indian Ocean."
+      ]
+    },
+    {
+      "country": "Myanmar",
+      "capital": "Naypyidaw",
+      "clues": [
+        "It's formerly known as Burma.",
+        "Its capital was built as an entirely new, largely empty city in the 2000s, replacing Yangon.",
+        "It's home to thousands of ancient Buddhist temples clustered in the plains of Bagan.",
+        "It sits in Southeast Asia, bordering Thailand and India."
+      ]
+    },
+    {
+      "country": "Thailand",
+      "capital": "Bangkok",
+      "clues": [
+        "It's the only country in Southeast Asia never colonized by a European power.",
+        "Its capital's full ceremonial name is one of the longest place names in the world.",
+        "It's one of the world's top rice exporters.",
+        "It's shaped somewhat like an elephant's head on the map."
+      ]
+    },
+    {
+      "country": "Vietnam",
+      "capital": "Hanoi",
+      "clues": [
+        "It's one of the world's largest exporters of coffee, second only to Brazil.",
+        "It's shaped like a long S curving along the South China Sea.",
+        "Its economy has grown rapidly since reforms in the 1980s opened it to global trade.",
+        "It borders China to the north."
+      ]
+    },
+    {
+      "country": "Laos",
+      "capital": "Vientiane",
+      "clues": [
+        "It's the only landlocked country in Southeast Asia.",
+        "It's nicknamed the 'Land of a Million Elephants,' referencing an old kingdom's name.",
+        "It's among the most heavily bombed countries per capita in history, from the Vietnam War era.",
+        "It sits between Thailand and Vietnam."
+      ]
+    },
+    {
+      "country": "Cambodia",
+      "capital": "Phnom Penh",
+      "clues": [
+        "It's home to Angkor Wat, the largest religious monument in the world.",
+        "Its flag is one of the only national flags to feature a building.",
+        "It endured a devastating genocide under the Khmer Rouge in the 1970s.",
+        "It sits between Thailand and Vietnam in Southeast Asia."
+      ]
+    },
+    {
+      "country": "Malaysia",
+      "capital": "Kuala Lumpur",
+      "clues": [
+        "It's split between a peninsula and a portion of the island of Borneo.",
+        "It's home to the Petronas Towers, once the tallest buildings in the world.",
+        "It's one of the most linguistically and ethnically diverse countries in Southeast Asia.",
+        "It sits just north of Singapore and Indonesia."
+      ]
+    },
+    {
+      "country": "Indonesia",
+      "capital": "Jakarta",
+      "clues": [
+        "It's made up of more than 17,000 islands, the most of any country.",
+        "It's the largest Muslim-majority country in the world by population.",
+        "It's home to Komodo dragons, the largest living lizards on Earth.",
+        "It stretches across Southeast Asia between the Indian and Pacific Oceans."
+      ]
+    },
+    {
+      "country": "Philippines",
+      "capital": "Manila",
+      "clues": [
+        "It's made up of over 7,000 islands.",
+        "It's one of the largest Christian-majority countries in Asia, a legacy of Spanish colonization.",
+        "It's home to some of the most text-message-heavy mobile phone use in the world.",
+        "It sits in the western Pacific, east of Vietnam."
+      ]
+    },
+    {
+      "country": "Iran",
+      "capital": "Tehran",
+      "clues": [
+        "It was known as Persia until officially adopting its current name internationally in 1935.",
+        "It's home to Persepolis, the ceremonial capital of the ancient Persian Empire.",
+        "It holds some of the world's largest natural gas reserves.",
+        "It sits between the Caspian Sea and the Persian Gulf."
+      ]
+    },
+    {
+      "country": "Iraq",
+      "capital": "Baghdad",
+      "clues": [
+        "It's home to the ancient region of Mesopotamia, considered the cradle of civilization.",
+        "The earliest known writing system, cuneiform, developed here.",
+        "The Tigris and Euphrates rivers both run through it.",
+        "It sits between Iran and Syria in the Middle East."
+      ]
+    },
+    {
+      "country": "Saudi Arabia",
+      "capital": "Riyadh",
+      "clues": [
+        "It's home to Mecca and Medina, Islam's two holiest cities.",
+        "It holds some of the largest proven oil reserves in the world.",
+        "It's the largest country in the Middle East by land area.",
+        "It occupies most of the Arabian Peninsula."
+      ]
+    },
+    {
+      "country": "Yemen",
+      "capital": "Sanaa",
+      "clues": [
+        "Its capital's old walled city is one of the oldest continuously inhabited urban centers in the world.",
+        "It's home to Socotra, an isolated island so unique in its plant life it's called the 'alien island.'",
+        "It sits at the southern tip of the Arabian Peninsula.",
+        "It borders Saudi Arabia and Oman."
+      ]
+    },
+    {
+      "country": "Oman",
+      "capital": "Muscat",
+      "clues": [
+        "It's home to some of the oldest frankincense trees in the world, once a hugely valuable trade good.",
+        "It's one of the oldest independent states in the Arab world.",
+        "It sits at the southeastern tip of the Arabian Peninsula.",
+        "It controls the Strait of Hormuz alongside Iran, a key oil-shipping route."
+      ]
+    },
+    {
+      "country": "United Arab Emirates",
+      "capital": "Abu Dhabi",
+      "clues": [
+        "It's home to the Burj Khalifa, the tallest building in the world.",
+        "It's a federation of seven separate emirates.",
+        "It transformed from a small fishing and pearling economy into a global business hub within a few decades.",
+        "It sits on the Persian Gulf on the Arabian Peninsula."
+      ]
+    },
+    {
+      "country": "Turkey",
+      "capital": "Ankara",
+      "clues": [
+        "It's the only country in the world that spans two continents through a single city, Istanbul.",
+        "It officially changed its international name to Türkiye in 2022.",
+        "It's home to Hagia Sophia, once a church, then a mosque, then a museum, and now a mosque again.",
+        "It bridges Europe and Asia at the Bosphorus Strait."
+      ]
+    },
+    {
+      "country": "Türkiye",
+      "capital": "Ankara",
+      "clues": [
+        "It's the only country in the world that spans two continents through a single city, Istanbul.",
+        "It officially adopted this spelling internationally in 2022.",
+        "It's home to Hagia Sophia, once a church, then a mosque, then a museum, and now a mosque again.",
+        "It bridges Europe and Asia at the Bosphorus Strait."
+      ]
+    },
+    {
+      "country": "Syria",
+      "capital": "Damascus",
+      "clues": [
+        "Its capital is considered one of the oldest continuously inhabited cities in the world.",
+        "It's been the site of one of the most devastating civil wars of the 21st century, beginning in 2011.",
+        "It sits between Turkey, Iraq, and Lebanon.",
+        "It has a Mediterranean coastline in the Middle East."
+      ]
+    },
+    {
+      "country": "Jordan",
+      "capital": "Amman",
+      "clues": [
+        "It's home to Petra, an ancient city carved directly into rose-colored rock.",
+        "It's one of the most water-scarce countries in the world.",
+        "It hosts one of the largest populations of refugees relative to its size in the world.",
+        "It sits between Saudi Arabia, Israel, and Syria."
+      ]
+    },
+    {
+      "country": "Israel",
+      "capital": "Jerusalem",
+      "clues": [
+        "It's one of the only countries in the world to successfully revive an ancient language, Hebrew, as an everyday spoken tongue.",
+        "It's home to the Dead Sea, the lowest point on Earth's land surface.",
+        "Its capital is considered holy by three major world religions.",
+        "It sits on the eastern Mediterranean coast."
+      ]
+    },
+    {
+      "country": "Lebanon",
+      "capital": "Beirut",
+      "clues": [
+        "It's home to some of the oldest cedar trees in the world, a national symbol on its flag.",
+        "Its capital was historically nicknamed 'the Paris of the Middle East.'",
+        "It's one of the smallest countries in mainland Asia.",
+        "It sits on the eastern Mediterranean coast, north of Israel."
+      ]
+    },
+    {
+      "country": "Georgia",
+      "capital": "Tbilisi",
+      "clues": [
+        "It's considered one of the birthplaces of winemaking, with evidence of grape cultivation over 8,000 years old.",
+        "Its capital's name comes from an old word for 'warm,' referencing local sulfur hot springs.",
+        "It sits at the crossroads of Eastern Europe and West Asia, along the Caucasus Mountains.",
+        "It borders Russia to the north and Turkey to the southwest."
+      ]
+    },
+    {
+      "country": "Armenia",
+      "capital": "Yerevan",
+      "clues": [
+        "It was the first country in the world to adopt Christianity as a state religion, in the early 4th century.",
+        "Its capital is considered one of the oldest continuously inhabited cities in the world.",
+        "It's landlocked in the South Caucasus region.",
+        "It borders Georgia, Turkey, and Azerbaijan."
+      ]
+    },
+    {
+      "country": "Azerbaijan",
+      "capital": "Baku",
+      "clues": [
+        "Its name is sometimes translated as 'Land of Fire,' tied to natural gas fires that burn from the ground.",
+        "It was one of the first places in the world to industrialize oil drilling, in the 19th century.",
+        "Its capital sits below sea level on the Caspian Sea.",
+        "It sits in the South Caucasus, between Russia, Iran, and Georgia."
+      ]
+    },
+    {
+      "country": "Australia",
+      "capital": "Canberra",
+      "clues": [
+        "Its capital was purpose-built as a compromise between two rival cities, Sydney and Melbourne.",
+        "It's the only country that is also an entire continent.",
+        "It's home to more venomous snake species than any other country.",
+        "It's famous for kangaroos, koalas, and the Sydney Opera House."
+      ]
+    },
+    {
+      "country": "New Zealand",
+      "capital": "Wellington",
+      "clues": [
+        "It's home to more sheep than people, though the ratio has shrunk over the decades.",
+        "It was the first country in the world to grant women the right to vote, in 1893.",
+        "Its capital is widely considered the windiest city in the world.",
+        "It's made up of two main islands in the South Pacific, southeast of Australia."
+      ]
+    },
+    {
+      "country": "Papua New Guinea",
+      "capital": "Port Moresby",
+      "clues": [
+        "It's one of the most linguistically diverse countries in the world, with over 800 languages spoken.",
+        "It shares its island with Indonesia, split roughly down the middle.",
+        "Much of its interior remains covered by dense, largely unexplored rainforest.",
+        "It sits just north of Australia in the South Pacific."
+      ]
+    },
+    {
+      "country": "Fiji",
+      "capital": "Suva",
+      "clues": [
+        "It's made up of more than 300 islands, though only about a third are inhabited.",
+        "It sits directly on the 180th meridian, near the International Date Line.",
+        "It's one of the most visited island nations in the South Pacific for tourism.",
+        "It's an island country east of Australia."
+      ]
+    },
+    {
+      "country": "Solomon Is.",
+      "capital": "Honiara",
+      "clues": [
+        "It was the site of some of the fiercest Pacific battles of World War II, including Guadalcanal.",
+        "It's made up of nearly 1,000 islands.",
+        "Its capital is named after a nearby mountain range and river.",
+        "It sits in the South Pacific, northeast of Australia."
+      ]
+    }
+  ]
+}

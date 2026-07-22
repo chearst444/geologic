@@ -576,25 +576,30 @@
     }
 
     let score = 0, streak = 0;
+    let FACTS = {};         // country name -> hand-written fact record
     let targets = [];       // features eligible to be quizzed
     let target = null;      // current target feature
     let locked = false;     // true briefly after a correct answer
 
-    d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
-        .then(world => {
-            const geoms = world.objects.countries.geometries;
+    Promise.all([
+        d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"),
+        d3.json("data/world_facts.json")
+    ]).then(([world, facts]) => {
+            for (const c of facts.countries) FACTS[c.country] = c;
+
             const features = topojson.feature(world, world.objects.countries).features;
-            // Land-border adjacency, aligned by index with the feature list.
-            const nb = topojson.neighbors(geoms);
-            features.forEach((f, i) => { f.__neighbors = nb[i] ? nb[i].length : 0; });
             renderMap(features);
             drawClimate();
-            targets = features.filter(f => DATA[f.properties.name]);
+            // Every country in DATA is drawn and coloured, but only the ones
+            // with hand-written clues can be asked about -- so dropping a new
+            // continent into data/world_facts.json is all it takes to add it.
+            targets = features.filter(f => DATA[f.properties.name] && FACTS[f.properties.name]);
             els.loading.remove();
             nextRound();
         })
         .catch(err => {
-            els.loading.textContent = "Could not load map data (need an internet connection).";
+            els.loading.textContent = "Could not load the map or clue data. The map needs an " +
+                "internet connection, and data/world_facts.json must sit next to this page.";
             console.error(err);
         });
 
@@ -695,61 +700,10 @@
         els.map.appendChild(layer);
     }
 
-    // Only returns a clue when the shape is genuinely distinctive; otherwise
-    // null, so an uninformative "chunky" line is never shown.
-    function describeShape(feature) {
-        const [[x0, y0], [x1, y1]] = geoPath.bounds(feature);
-        const w = x1 - x0, h = y1 - y0;
-        if (h > w * 1.9) return "On the map it appears long and narrow &mdash; taller than it is wide.";
-        if (w > h * 1.9) return "On the map it stretches wide &mdash; much broader than it is tall.";
-        return null;
-    }
-
-    function neighborClue(feature) {
-        const n = feature.__neighbors;
-        if (n === 0) return "It shares <strong>no land borders</strong> &mdash; an island or otherwise isolated nation.";
-        if (n === 1) return "It borders exactly <strong>one</strong> other country.";
-        if (n <= 3) return `It shares land borders with <strong>${n}</strong> countries.`;
-        if (n <= 6) return `It borders <strong>several</strong> countries (${n} on the map).`;
-        return `It borders <strong>many</strong> countries (${n} on the map).`;
-    }
-
-    function sizeClue(feature) {
-        const a = d3.geoArea(feature); // area on the globe, in steradians
-        if (a > 0.06)  return "By area it is <strong>one of the largest countries</strong> in the world.";
-        if (a < 0.004) return "It is a <strong>geographically small</strong> country.";
-        return "It is a <strong>medium-sized</strong> country by area.";
-    }
-
-    function latClue(lat) {
-        const a = Math.abs(lat);
-        if (a < 23.5) return "It lies largely within the <strong>tropics</strong>.";
-        if (a < 45)   return "It sits in the <strong>temperate mid-latitudes</strong>.";
-        if (a < 66.5) return "It lies in the <strong>higher temperate latitudes</strong>.";
-        return "It reaches into the <strong>polar latitudes</strong>.";
-    }
-
+    // Hand-written clues from data/world_facts.json, already ordered hardest
+    // (most obscure) to easiest, which is the order they are shown in.
     function buildClues(feature) {
-        const [name] = [feature.properties.name];
-        const [capital, continent] = DATA[name];
-        const [lon, lat] = d3.geoCentroid(feature);
-
-        const hemi = lat >= 0 ? "Northern" : "Southern";
-        const side = lon >= -25 && lon <= 65
-            ? "and sits over the Europe&ndash;Africa meridian band"
-            : (lon > 65 ? "and lies in the Eastern reaches of the map" : "and lies in the Western hemisphere");
-
-        const clues = [
-            `It is located in <strong>${continent}</strong>.`,
-            `It lies in the <strong>${hemi} Hemisphere</strong>, ${side}.`,
-            latClue(lat),
-            sizeClue(feature),
-            neighborClue(feature)
-        ];
-        const shape = describeShape(feature);
-        if (shape) clues.push(shape);
-        clues.push(`Its capital city begins with the letter <strong>${capital[0]}</strong>.`);
-        return clues;
+        return FACTS[feature.properties.name].clues;
     }
 
     function nextRound() {
@@ -759,8 +713,12 @@
         for (const p of els.map.children) p.classList.remove('correct', 'wrong');
 
         target = targets[Math.floor(Math.random() * targets.length)];
-        const clues = buildClues(target);
-        els.clues.innerHTML = clues.map(c => `<li>${c}</li>`).join('');
+        els.clues.innerHTML = '';
+        for (const c of buildClues(target)) {
+            const li = document.createElement('li');
+            li.textContent = c;   // clue text is prose, not markup
+            els.clues.appendChild(li);
+        }
     }
 
     function handleClick(feature, pathEl) {
