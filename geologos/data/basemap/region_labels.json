@@ -1,0 +1,365 @@
+{
+ "note": "New Testament region labels. source=awmc means the position is the Barrington Atlas label path; source=placed means it is a hand-placed centre, either because AWMC has no such label or because every candidate was a homonym.",
+ "labels": [
+  {
+   "text": "GALILAEA",
+   "at": [
+    35.3842,
+    33.004
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "SAMARIA",
+   "at": [
+    35.2855,
+    32.3859
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "PERAEA",
+   "at": [
+    35.6234,
+    31.873
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "PHOENICE",
+   "at": [
+    35.6111,
+    33.6785
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "NABATAEA",
+   "at": [
+    36.2237,
+    31.2584
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "COELE SYRIA",
+   "at": [
+    36.9242,
+    33.8031
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "IONIA",
+   "at": [
+    26.7876,
+    38.287
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "CARIA",
+   "at": [
+    28.0498,
+    37.4511
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "LYDIA",
+   "at": [
+    28.1776,
+    38.494
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "MYSIA",
+   "at": [
+    27.8356,
+    39.5848
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "PHRYGIA",
+   "at": [
+    31.0673,
+    38.7821
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "PISIDIA",
+   "at": [
+    30.9652,
+    37.4839
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "LYCIA",
+   "at": [
+    29.6005,
+    36.6445
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "PAMPHYLIA",
+   "at": [
+    30.9624,
+    36.9324
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "LYCAONIA",
+   "at": [
+    33.2904,
+    37.5844
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "CILICIA",
+   "at": [
+    35.5764,
+    37.2712
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "GALATIA",
+   "at": [
+    32.6848,
+    39.8967
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "BITHYNIA",
+   "at": [
+    30.6031,
+    40.4884
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "CAPPADOCIA",
+   "at": [
+    35.7801,
+    38.9445
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "COMMAGENE",
+   "at": [
+    37.5154,
+    37.6507
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "OSRHOENE",
+   "at": [
+    38.6725,
+    37.3659
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "ADIABENE",
+   "at": [
+    43.9348,
+    36.2856
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "MACEDONIA",
+   "at": [
+    22.4972,
+    41.0313
+   ],
+   "sm": false,
+   "source": "awmc"
+  },
+  {
+   "text": "ACHAIA",
+   "at": [
+    22.4,
+    38.1
+   ],
+   "sm": false,
+   "source": "placed"
+  },
+  {
+   "text": "ATTICA",
+   "at": [
+    23.8353,
+    37.9744
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "ARCADIA",
+   "at": [
+    22.187,
+    37.6987
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "ITALIA",
+   "at": [
+    13.2,
+    42.3
+   ],
+   "sm": false,
+   "source": "placed"
+  },
+  {
+   "text": "LATIUM",
+   "at": [
+    12.6956,
+    41.7358
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "CRETA",
+   "at": [
+    24.9,
+    35.2
+   ],
+   "sm": true,
+   "source": "placed"
+  },
+  {
+   "text": "CYPRUS",
+   "at": [
+    33.2,
+    35.05
+   ],
+   "sm": true,
+   "source": "placed"
+  },
+  {
+   "text": "MESOPOTAMIA",
+   "at": [
+    40.6618,
+    37.6675
+   ],
+   "sm": false,
+   "source": "awmc"
+  },
+  {
+   "text": "ASSYRIA",
+   "at": [
+    42.8,
+    36.2
+   ],
+   "sm": false,
+   "source": "placed"
+  },
+  {
+   "text": "BABYLONIA",
+   "at": [
+    45.4645,
+    31.6126
+   ],
+   "sm": false,
+   "source": "awmc"
+  },
+  {
+   "text": "SUSIANE",
+   "at": [
+    48.4,
+    32.0
+   ],
+   "sm": true,
+   "source": "placed"
+  },
+  {
+   "text": "ARMENIA",
+   "at": [
+    44.9349,
+    40.8933
+   ],
+   "sm": true,
+   "source": "awmc"
+  },
+  {
+   "text": "IUDAEA",
+   "at": [
+    35.15,
+    31.55
+   ],
+   "sm": false,
+   "source": "placed"
+  },
+  {
+   "text": "IDUMAEA",
+   "at": [
+    34.95,
+    31.0
+   ],
+   "sm": true,
+   "source": "placed"
+  },
+  {
+   "text": "DECAPOLIS",
+   "at": [
+    36.1,
+    32.4
+   ],
+   "sm": true,
+   "source": "placed"
+  },
+  {
+   "text": "AEGYPTUS",
+   "at": [
+    31.2,
+    27.2
+   ],
+   "sm": false,
+   "source": "placed"
+  },
+  {
+   "text": "SYRIA",
+   "at": [
+    37.6,
+    34.9
+   ],
+   "sm": false,
+   "source": "placed"
+  }
+ ]
+}

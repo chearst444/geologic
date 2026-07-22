@@ -382,27 +382,9 @@
         .country.t2 { fill: var(--land-4); }
         .country.t3 { fill: var(--land-5); }
 
-        /* Ancient era: hand-drawn kingdoms over a single undivided landmass. */
-        .realm {
-            stroke: var(--border-anc);
-            stroke-opacity: 0.9;
-            stroke-width: 0.8;
-            stroke-dasharray: 3 2.5;
-            vector-effect: non-scaling-stroke;
-            fill-opacity: 1;
-            pointer-events: none;
-        }
-        /* Five steps up from the indigo land, so a kingdom is told apart by
-           how far it lifts off the landmass rather than by hue. */
-        .realm.r0 { fill: var(--land-3); }
-        .realm.r1 { fill: var(--land-5); }
-        .realm.r2 { fill: var(--land-4); }
-        .realm.r3 { fill: var(--land-6); }
-        .realm.r4 { fill: var(--land-2); }
+        /* No ancient-region fills exist any more: the ancient maps are the
+           landmass, the water, and names. */
 
-        /* The lakes take the sea's own pale tone: against indigo land, one
-           water colour reads better than two, and the Dead Sea was sitting
-           too close to Moab's fill. */
         .water-body {
             fill: var(--water);
             stroke: var(--river);
@@ -437,19 +419,30 @@
             stroke-width: 2.6px;
         }
         .lbl-country.sm { font-size: 7px; letter-spacing: 0.07em; }
-        .lbl-realm {
+        .lbl-region {
             font-family: Georgia, 'Times New Roman', serif;
-            font-size: 10px;
+            font-size: 10.5px;
             font-weight: 700;
-            letter-spacing: 0.16em;
+            letter-spacing: 0.18em;
             text-anchor: middle;
             fill: var(--parchment-2);
             stroke: rgba(27, 58, 87, 0.85);
             stroke-width: 2.6px;
         }
-        .lbl-realm.sm { font-size: 7.5px; letter-spacing: 0.09em; }
-        /* Region names that span several kingdoms -- Canaan, Mesopotamia. */
-        .lbl-realm.wide {
+        .lbl-region.sm { font-size: 8px; letter-spacing: 0.1em; }
+        /* Real summits, from the same atlas linework. */
+        .lbl-mountain {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 7.5px;
+            letter-spacing: 0.04em;
+            text-anchor: middle;
+            fill: var(--gold-soft);
+            stroke: rgba(27, 58, 87, 0.85);
+            stroke-width: 2.4px;
+        }
+        /* Names that span several regions -- Canaan, Mesopotamia. */
+        .lbl-region.wide {
             font-size: 13px;
             letter-spacing: 0.42em;
             fill: rgba(232, 220, 192, 0.55);
@@ -944,8 +937,9 @@
             <div class="pill"><span class="lbl">Score</span><span id="score">0</span></div>
             <div class="pill"><span class="lbl">Streak</span><span id="streak">0</span></div>
             <div class="era" role="group" aria-label="Map era">
-                <button id="era-ancient" class="on" aria-pressed="true">Ancient Map</button>
-                <button id="era-modern" aria-pressed="false">Modern Map</button>
+                <button id="era-ot" class="on" aria-pressed="true">Old Testament</button>
+                <button id="era-nt" aria-pressed="false">New Testament</button>
+                <button id="era-modern" aria-pressed="false">Modern</button>
             </div>
             <select id="group-select" aria-label="Choose a region">
                 <option value="All">All Locations</option>
@@ -1096,105 +1090,49 @@
     // everywhere else, which the zoom absorbs.
     const BBOX = { lon: [11.0, 49.5], lat: [24.0, 44.0] };
 
-    // ---- Ancient era: hand-drawn kingdoms ------------------------------
-    // Approximate outlines, drawn to be recognisable rather than surveyed;
-    // borders shifted constantly across the Biblical period anyway. Order
-    // matters: the broad ones are drawn first and the small Levantine
-    // kingdoms last, so the crowded strip stays readable.
-    const REALMS = [
-        { name: "ARABIA", tint: 0, label: [38.8, 27.6], ring: [
-            [34.90,29.40],[40.00,31.40],[44.00,29.60],[42.50,25.60],[36.20,26.40],[34.90,28.00] ] },
-        { name: "EGYPT", tint: 1, label: [31.2, 27.2], ring: [
-            [29.80,31.40],[32.25,31.25],[32.55,30.10],[33.05,27.60],[33.45,24.60],
-            [32.35,24.15],[31.60,25.80],[30.70,28.60],[29.55,30.65] ] },
-        { name: "ASIA MINOR", tint: 1, label: [31.2, 38.9], ring: [
-            [26.00,40.35],[33.00,41.20],[36.20,40.00],[36.60,37.00],[34.00,36.15],
-            [29.00,36.50],[27.20,37.20],[26.20,38.60] ] },
-        // Traced loosely down the peninsula: the sea overlay trims it back to
-        // the coast, so only the boot itself ever shows.
-        { name: "ITALIA", tint: 2, label: [13.6, 42.3], ring: [
-            [10.20,44.00],[13.00,44.30],[13.60,43.00],[14.90,42.10],[16.20,41.50],
-            [18.40,40.20],[17.40,39.40],[16.20,38.00],[15.70,38.20],[14.20,40.60],
-            [12.40,41.30],[11.00,42.40],[10.10,43.20] ] },
-        { name: "ACHAEA", tint: 3, label: [22.0, 38.6], ring: [
-            [20.80,39.60],[23.50,40.20],[24.60,38.00],[23.20,36.40],[21.30,36.60],[20.30,38.30] ] },
-        // Philippi and Thessalonica are Macedonia, not Achaea -- Paul's first
-        // European church is a province north of the one Athens sits in.
-        { name: "MACEDONIA", tint: 0, label: [22.6, 41.0], sm: true, ring: [
-            [20.90,41.10],[23.00,41.40],[25.00,41.20],[25.00,40.60],
-            [23.60,40.30],[22.20,40.20],[20.90,40.50] ] },
-        // Wound clockwise in lon/lat like every other ring here: d3-geo reads
-        // a counter-clockwise ring as the whole sphere minus the shape.
-        { name: "ARMENIA", tint: 4, label: [43.4, 40.3], sm: true, ring: [
-            [41.80,39.55],[43.00,40.60],[46.10,40.60],[45.60,39.00],[42.50,38.40] ] },
-        { name: "ASSYRIA", tint: 4, label: [41.9, 35.6], ring: [
-            [40.40,36.05],[42.00,37.45],[44.30,37.60],[45.10,36.30],[43.60,34.60],[41.20,34.85] ] },
-        { name: "BABYLONIA", tint: 3, label: [44.9, 32.1], ring: [
-            [42.80,33.60],[45.10,34.20],[47.30,31.20],[46.10,29.85],[43.60,31.20] ] },
-        // Susa's home: Esther's city sits east of Babylonia, and the frame
-        // only just reaches it.
-        { name: "PERSIA", tint: 0, label: [48.4, 33.0], sm: true, ring: [
-            [47.40,34.00],[49.45,33.60],[49.45,29.80],[47.60,30.00],[47.20,32.00] ] },
-        { name: "SINAI", tint: 2, label: [33.7, 29.5], sm: true, ring: [
-            [32.60,30.25],[34.35,31.10],[34.90,29.45],[34.15,27.85],[33.05,28.90] ] },
-        // Reaches north-west far enough to take in Antioch, which the batch
-        // file places in the Roman province of Syria even though the site is
-        // in modern Turkey.
-        { name: "ARAM", tint: 0, label: [37.4, 34.4], ring: [
-            [35.85,36.45],[38.60,35.40],[38.40,33.30],[36.30,32.60],[35.70,33.30] ] },
-        // Reaches up the eastern shore to the Madaba plateau, so Mount Nebo
-        // falls in Moab as the batch file has it, rather than in the gap
-        // between Moab and Gilead.
-        { name: "MOAB & EDOM", tint: 3, label: [36.0, 30.5], sm: true, ring: [
-            [35.58,31.88],[36.30,31.80],[36.40,29.80],[35.30,29.55],
-            [35.15,30.55],[35.45,31.40] ] },
-        // The Levantine kingdoms carry a few more vertices than they strictly
-        // need: they are the ones a player zooms right into, and four-cornered
-        // boxes read as boxes at that range.
-        // Runs down to Tyre. Galilee stops inland of it: the coast from Tyre
-        // to Sidon is Phoenician, and Tyre was landing in Galilee.
-        { name: "PHOENICIA", tint: 2, label: [35.4, 34.0], sm: true, ring: [
-            [35.05,34.60],[35.40,34.62],[35.65,34.50],[35.72,34.00],[35.75,33.60],
-            [35.55,33.42],[35.32,33.28],[35.10,33.18] ] },
-        // Reaches up to Mount Hermon's foot so Caesarea Philippi sits inside
-        // it, as its card says -- the northern edge of Israel's territory.
-        { name: "GALILEE", tint: 1, label: [35.3, 32.95], sm: true, ring: [
-            [35.15,33.15],[35.45,33.25],[35.60,33.30],[35.78,33.28],[35.80,32.90],
-            [35.70,32.60],[35.35,32.58],[34.98,32.62],[34.96,32.95] ] },
-        // The coastal plain, so Joppa and Caesarea are not left on blank land.
-        // Samaria's hill country starts inland of it rather than overlapping.
-        { name: "SHARON", tint: 2, label: [34.83, 32.35], sm: true, ring: [
-            [34.75,32.66],[34.94,32.62],[34.90,31.98],[34.72,32.00] ] },
-        { name: "GILEAD", tint: 4, label: [36.0, 32.2], sm: true, ring: [
-            [35.62,32.60],[36.00,32.62],[36.35,32.50],[36.38,32.10],[36.28,31.95],
-            [35.90,31.92],[35.62,31.98],[35.58,32.20] ] },
-        // Samaria and Judah used to overlap along a thin band, which put
-        // Bethel inside both. The border now sits just south of Bethel, so it
-        // falls in the northern kingdom the way its card has it.
-        { name: "SAMARIA", tint: 0, label: [35.2, 32.3], sm: true, ring: [
-            [34.98,32.60],[35.25,32.62],[35.55,32.52],[35.60,32.25],[35.55,31.92],
-            [35.20,31.90],[34.96,31.94],[34.94,32.28] ] },
-        // North edge sits just over Mizpah, west edge just past Beersheba --
-        // "from Dan to Beersheba" marks the far end of the country, so the
-        // well itself should not fall outside it.
-        // The west edge bulges east around the Philistine cities and dips back
-        // out over Beersheba; the north edge sits just over Ramah and Mizpah,
-        // with Bethel and Ai north of it.
-        { name: "JUDAH", tint: 1, label: [35.1, 31.5], sm: true, ring: [
-            [34.95,31.90],[35.20,31.91],[35.50,31.88],[35.55,31.35],[35.30,30.95],
-            [34.98,31.05],[34.74,31.22],[34.84,31.45],[34.92,31.70] ] },
-        // Stops short of Judah's western edge: overlapping the two put a
-        // stripe of the wrong kingdom down the Judean hills.
-        { name: "PHILISTIA", tint: 3, label: [34.55, 31.45], sm: true, ring: [
-            [34.32,31.72],[34.88,31.80],[34.72,31.18],[34.28,31.32] ] }
+    // ---- Ancient regions: names only, never shapes -----------------------
+    // There were 20 filled polygons here, drawn by hand. They are gone, and
+    // nothing filled replaces them. Iron Age political boundaries do not exist
+    // as open data, and the Greek and Roman ones that do exist are still
+    // territory blobs laid over a map -- so this map draws only what is real
+    // underneath (coastline, rivers, lakes) and names its regions in text.
+    //
+    // A name at a real place is a claim worth making. A border is not.
+
+    // Old Testament names. No dataset carries Iron Age regions, so these are
+    // placed by hand at the centres scholarship puts them at.
+    const OT_REGIONS = [
+        { text: "JUDAH",      at: [35.05, 31.45] },
+        { text: "ISRAEL",     at: [35.30, 32.35] },
+        { text: "PHILISTIA",  at: [34.60, 31.45], sm: true },
+        { text: "PHOENICIA",  at: [35.50, 33.90], sm: true },
+        { text: "ARAM",       at: [37.30, 34.40] },
+        { text: "AMMON",      at: [36.05, 31.95], sm: true },
+        { text: "MOAB",       at: [35.85, 31.30], sm: true },
+        { text: "EDOM",       at: [35.55, 30.30], sm: true },
+        { text: "GILEAD",     at: [35.95, 32.45], sm: true },
+        { text: "BASHAN",     at: [36.20, 32.85], sm: true },
+        { text: "ASSYRIA",    at: [42.60, 36.20] },
+        { text: "BABYLONIA",  at: [44.60, 32.30] },
+        { text: "SUMER",      at: [46.10, 31.00], sm: true },
+        { text: "ELAM",       at: [48.40, 32.10], sm: true },
+        { text: "MEDIA",      at: [48.60, 35.40], sm: true },
+        { text: "URARTU",     at: [43.60, 39.20], sm: true },
+        { text: "EGYPT",      at: [31.20, 27.20] },
+        { text: "GOSHEN",     at: [31.75, 30.75], sm: true },
+        { text: "SINAI",      at: [33.70, 29.30], sm: true },
+        { text: "MIDIAN",     at: [35.70, 28.20], sm: true },
+        { text: "ARABIA",     at: [40.50, 27.80] },
+        { text: "MESOPOTAMIA", at: [41.30, 34.20], wide: true }
     ];
 
-    // Names that span several kingdoms rather than being one of them. Canaan
-    // would belong here too, but the Levant strip it covers is already carrying
-    // five kingdom labels; the reveal card names it instead.
-    const REALM_OVERLABELS = [
-        { text: "MESOPOTAMIA", at: [41.3, 33.6] }
-    ];
+    // New Testament names are resolved at build time by data/build_labels.py
+    // and read from data/basemap/region_labels.json. Each carries the source it
+    // came from: "awmc" for a position taken off the Barrington Atlas label
+    // paths, "placed" for one set by hand -- either because the atlas has no
+    // such label, or because every candidate with that name turned out to be a
+    // homonym somewhere else entirely. Assyria matched a label in Anatolia and
+    // Achaia one on the Black Sea coast, 15 degrees from Greece.
 
     // ---- Modern era: label placements ----------------------------------
     // Hand-placed rather than derived from centroids: half of these countries
@@ -1217,29 +1155,7 @@
         { text: "KUWAIT", at: [47.75, 29.35], sm: true }
     ];
 
-    // ---- Both eras: water ----------------------------------------------
-    const WATER_BODIES = [
-        { name: "Sea of Galilee", label: [35.95, 32.82], sm: true, ring: [
-            [35.53,32.90],[35.63,32.87],[35.66,32.78],[35.60,32.70],[35.52,32.74],[35.50,32.83] ] },
-        { name: "Dead Sea", label: [35.85, 31.35], sm: true, ring: [
-            [35.45,31.77],[35.57,31.62],[35.55,31.36],[35.50,31.10],[35.42,31.01],
-            [35.37,31.22],[35.39,31.52] ] }
-    ];
-
-    const RIVERS = [
-        { name: "Nile", label: [31.6, 26.6], coords: [
-            [32.90,24.05],[32.75,25.10],[32.10,26.10],[31.30,27.30],[31.05,28.30],
-            [31.20,29.40],[31.24,30.05],[30.45,31.35] ] },
-        { name: "Nile Delta", coords: [[31.24,30.05],[31.90,31.35]] },
-        { name: "Euphrates", label: [41.0, 34.2], coords: [
-            [38.30,37.05],[39.00,35.90],[40.50,34.75],[42.50,33.60],[43.90,32.60],
-            [45.30,31.50],[46.80,30.95],[47.45,30.50] ] },
-        { name: "Tigris", label: [44.6, 34.6], coords: [
-            [42.95,37.55],[43.20,36.35],[43.60,35.40],[44.40,33.35],[45.50,32.05],
-            [46.60,31.20],[47.45,30.50] ] },
-        { name: "Jordan", coords: [
-            [35.62,32.72],[35.58,32.42],[35.55,32.14],[35.53,31.90],[35.50,31.78] ] }
-    ];
+    // ---- Both eras: water is loaded from data/basemap, not traced here ---
 
     const SEA_LABELS = [
         { text: "MEDITERRANEAN SEA", at: [28.6, 33.7] },
@@ -1350,8 +1266,12 @@
     // ---- Load data ------------------------------------------------------
     Promise.all([
         d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-10m.json"),
-        d3.json("data/bible_locations.json")
-    ]).then(([world, data]) => {
+        d3.json("data/bible_locations.json"),
+        // Real geography, vendored. See data/basemap/ATTRIBUTION.md.
+        d3.json("data/basemap/rivers.geojson"),
+        d3.json("data/basemap/lakes.geojson"),
+        d3.json("data/basemap/region_labels.json")
+    ]).then(([world, data, rivers, lakes, ntLabels]) => {
         LOCS = data.locations;
         for (const l of LOCS) byName[l.place] = l;
 
@@ -1380,11 +1300,11 @@
         }) };
 
         drawModern(countries);
-        drawAncient(countries);
-        drawHydrography();
+        drawLand(countries);
+        drawHydrography(rivers, lakes);
         drawSites();
-        drawLabels();
-        setEra('ancient');
+        drawLabels(ntLabels);
+        setEra('ot');
 
         els.loading.remove();
         startRound('All');
@@ -1409,56 +1329,36 @@
         });
     }
 
-    function drawAncient(countries) {
-        // One undivided landmass -- modern borders have no business on the
-        // ancient map, but the coastlines are close enough to be honest.
-        const landD = geoPath(countries);
+    // The landmass, and nothing else. No regions are painted onto it.
+    function drawLand(countries) {
         const land = document.createElementNS(NS, "path");
-        land.setAttribute("d", landD);
+        land.setAttribute("d", geoPath(countries));
         land.setAttribute("class", "land");
         land.setAttribute("pointer-events", "none");
         els.ancient.appendChild(land);
-
-        for (const r of REALMS) {
-            const p = document.createElementNS(NS, "path");
-            p.setAttribute("d", geoPath({
-                type: "Polygon", coordinates: [[...r.ring, r.ring[0]]] }));
-            p.setAttribute("class", `realm r${r.tint}`);
-            els.ancient.appendChild(p);
-        }
-
-        // The kingdom outlines are drawn generously and spill into the sea.
-        // Rather than clip them to the coast -- a clip path this complex,
-        // 240-odd subpaths, is silently ignored -- the sea is repainted over
-        // the top: one huge rectangle with the landmass punched out of it by
-        // the even-odd rule.
-        const seaOver = document.createElementNS(NS, "path");
-        seaOver.setAttribute("d", `M-2000,-2000H3000V3000H-2000Z ${landD}`);
-        seaOver.setAttribute("fill-rule", "evenodd");
-        seaOver.setAttribute("class", "sea");
-        seaOver.setAttribute("pointer-events", "none");
-        els.ancient.appendChild(seaOver);
     }
 
-    function drawHydrography() {
-        for (const w of WATER_BODIES) {
+    // Rivers as Natural Earth's centrelines, lakes as AWMC's outlines. Both
+    // are real: the courses that used to be traced by hand here are gone.
+    function drawHydrography(rivers, lakes) {
+        for (const f of lakes.features) {
             const p = document.createElementNS(NS, "path");
-            p.setAttribute("d", geoPath({
-                type: "Polygon", coordinates: [[...w.ring, w.ring[0]]] }));
+            p.setAttribute("d", geoPath(f));
             p.setAttribute("class", "water-body");
+            p.setAttribute("pointer-events", "none");
             els.hydro.appendChild(p);
         }
-        for (const r of RIVERS) {
+        for (const f of rivers.features) {
+            const d = geoPath(f);
+            if (!d) continue;
             const p = document.createElementNS(NS, "path");
-            p.setAttribute("d", geoPath({ type: "LineString", coordinates: r.coords }));
+            p.setAttribute("d", d);
             p.setAttribute("class", "river");
+            p.setAttribute("pointer-events", "none");
             els.hydro.appendChild(p);
         }
     }
 
-    // One mark per location, at its real coordinates. A traced feature -- a
-    // river, a sea, an island -- gets a mark on each of its anchors, so the
-    // Jordan reads as a line of sites rather than one dot in the middle.
     function drawSites() {
         for (const loc of LOCS) {
             for (const at of loc.at) {
@@ -1494,20 +1394,18 @@
         els.sites.querySelectorAll('.site.found').forEach(g => g.classList.remove('found'));
     }
 
-    function drawLabels() {
+    function drawLabels(ntLabels) {
         const add = (spec, cls, eraTag) => {
             const t = labelAt(spec.at || spec.label, spec.text || spec.name,
-                              cls + (spec.sm ? ' sm' : ''));
+                              cls + (spec.sm ? ' sm' : '') + (spec.wide ? ' wide' : ''));
             if (eraTag) t.dataset.era = eraTag;
             els.labels.appendChild(t);
         };
 
-        for (const r of REALMS) add(r, 'lbl-realm', 'ancient');
-        for (const o of REALM_OVERLABELS) add(o, 'lbl-realm wide', 'ancient');
-        for (const c of COUNTRY_LABELS) add(c, 'lbl-country', 'modern');
-        for (const s of SEA_LABELS) add(s, 'lbl-water');
-        for (const w of WATER_BODIES) add(w, 'lbl-water');
-        for (const r of RIVERS) if (r.label) add(r, 'lbl-water');
+        for (const r of OT_REGIONS)      add(r, 'lbl-region', 'ot');
+        for (const r of ntLabels.labels) add(r, 'lbl-region', 'nt');
+        for (const c of COUNTRY_LABELS)  add(c, 'lbl-country', 'modern');
+        for (const w of SEA_LABELS)      add(w, 'lbl-water');
 
         scaleWithZoom(1);
     }
@@ -1526,15 +1424,19 @@
 
     function setEra(next) {
         era = next;
-        els.modern.style.display  = era === 'modern'  ? '' : 'none';
-        els.ancient.style.display = era === 'ancient' ? '' : 'none';
+        // Only the modern map paints its countries in; the two ancient maps
+        // share one landmass and differ purely in which names are written on
+        // it, which is the honest difference between them.
+        els.modern.style.display  = era === 'modern' ? '' : 'none';
+        els.ancient.style.display = era === 'modern' ? 'none' : '';
         els.labels.querySelectorAll('text[data-era]').forEach(t => {
             t.style.display = t.dataset.era === era ? '' : 'none';
         });
-        document.getElementById('era-ancient').classList.toggle('on', era === 'ancient');
-        document.getElementById('era-modern').classList.toggle('on', era === 'modern');
-        document.getElementById('era-ancient').setAttribute('aria-pressed', String(era === 'ancient'));
-        document.getElementById('era-modern').setAttribute('aria-pressed', String(era === 'modern'));
+        for (const [id, key] of [['era-ot', 'ot'], ['era-nt', 'nt'], ['era-modern', 'modern']]) {
+            const b = document.getElementById(id);
+            b.classList.toggle('on', era === key);
+            b.setAttribute('aria-pressed', String(era === key));
+        }
     }
 
     // ---- Guess geometry --------------------------------------------------
@@ -1634,6 +1536,11 @@
         }
 
         target = byName[bag.pop()];
+        // Show the map the clue belongs to. A player who has deliberately
+        // switched to the modern map is left on it.
+        if (era !== 'modern' && (target.era === 'ot' || target.era === 'nt')) {
+            setEra(target.era);
+        }
         // The batch orders its clues hardest first, which is exactly the
         // order they should be handed out in.
         clueQueue = target.clues.slice();
@@ -2014,7 +1921,8 @@
         if (!locked) revealClue();
     }));
 
-    document.getElementById('era-ancient').addEventListener('click', () => setEra('ancient'));
+    document.getElementById('era-ot').addEventListener('click', () => setEra('ot'));
+    document.getElementById('era-nt').addEventListener('click', () => setEra('nt'));
     document.getElementById('era-modern').addEventListener('click', () => setEra('modern'));
 
     els.groupSel.addEventListener('change', () => startRound(els.groupSel.value));
@@ -2052,7 +1960,7 @@
             case '-': case '_': zoomBy(1 / 1.8); break;
             case '0': resetView(400); break;
             case 's': case 'S': skipRound(); break;
-            case 'e': case 'E': setEra(era === 'ancient' ? 'modern' : 'ancient'); break;
+            case 'e': case 'E': setEra({ ot: 'nt', nt: 'modern', modern: 'ot' }[era]); break;
             case 'n': case 'N':
                 if (els.reveal.classList.contains('show')) nextPlace();
                 else if (!locked) revealClue();
