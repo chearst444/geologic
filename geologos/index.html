@@ -285,6 +285,8 @@
             transition: opacity 0.2s;
         }
         #miss-note.show { opacity: 1; }
+        /* An ambiguous click is not a miss: it costs nothing and reads calmly. */
+        #miss-note.info { color: var(--blue-mid); font-weight: 600; }
 
         /* ---- Map ------------------------------------------------------ */
         #map-viewport {
@@ -421,6 +423,51 @@
            each other in the Levant at low zoom, where that strip is only a
            few dozen pixels wide. They appear once there is room for them. */
         .zoom-hidden { display: none; }
+
+        /* ---- Ambiguity picker ------------------------------------------
+           Last resort, not the first line of defence: the map zooms to
+           separate close places, and this only appears when it cannot --
+           when two entries are the same summit under different names. */
+        #picker {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 70;
+            background: var(--card);
+            border-radius: 12px;
+            border-top: 4px solid var(--gold);
+            box-shadow: 0 14px 34px rgba(29, 53, 87, 0.28);
+            padding: 13px 15px;
+            width: min(310px, calc(100% - 28px));
+            text-align: center;
+        }
+        #picker.show { display: block; }
+        #picker .pk-q {
+            margin: 0 0 10px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        #pk-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 9px; }
+        #pk-list button {
+            width: 100%;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--deep-blue);
+        }
+        #pk-cancel {
+            border: none;
+            background: none;
+            min-height: 28px;
+            padding: 2px 8px;
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
 
         /* ---- Markers --------------------------------------------------- */
         #marker-layer { pointer-events: none; }
@@ -878,6 +925,14 @@
                 <button class="js-next-clue" disabled>Next clue &darr;</button>
                 <button class="js-skip">Skip &rarr;</button>
             </div>
+
+            <!-- Shown only when no amount of zooming could separate the
+                 places under the click -- Horeb and Sinai are one summit. -->
+            <div id="picker" role="dialog" aria-label="Which place do you mean?">
+                <p class="pk-q">These share the same spot. Which do you mean?</p>
+                <div id="pk-list"></div>
+                <button id="pk-cancel">Never mind</button>
+            </div>
         </div>
     </div>
 
@@ -949,6 +1004,19 @@
     const SCORE_CORRECT = 10;   // identical to the other editions
     const SCORE_BONUS   = 5;    // naming the modern country
 
+    // ---- Telling close places apart ------------------------------------
+    // The coordinates are the real ones, and the real ones are crowded:
+    // Golgotha and Mount Moriah are 500 m apart, the Mount of Olives and
+    // Gethsemane 560 m, and Horeb is Sinai -- the same summit under a second
+    // name. So a click is not judged against the answer until it has settled
+    // on one place. Ambiguity costs nothing: no streak lost, no clue spent.
+    const AMBIG_RATIO   = 2.5;  // the nearest must beat the runner-up by this
+    const SLOP_PX       = 22;   // how close a click counts as "at" a place
+    const SEPARATION_PX = 60;   // gap to open up between two contested places
+    const ZOOM_STEP     = 6;    // most one ambiguous click will zoom in by
+    const MAX_K         = 600;  // enough to separate Gethsemane from Moriah
+    const SAME_SPOT_KM  = 0.02; // below this, zooming will never help
+
     // The Biblical world, from Greece to Ur and from Ararat to the Red Sea.
     const BBOX = { lon: [19.5, 49.5], lat: [25.5, 42.2] };
 
@@ -968,6 +1036,11 @@
             [29.00,36.50],[26.20,38.60] ] },
         { name: "ACHAEA", tint: 4, label: [22.0, 38.6], ring: [
             [20.80,39.60],[23.50,40.20],[24.60,38.00],[23.20,36.40],[21.30,36.60],[20.30,38.30] ] },
+        // Philippi and Thessalonica are Macedonia, not Achaea -- Paul's first
+        // European church is a province north of the one Athens sits in.
+        { name: "MACEDONIA", tint: 3, label: [22.6, 41.0], sm: true, ring: [
+            [20.90,41.10],[23.00,41.40],[25.00,41.20],[25.00,40.60],
+            [23.60,40.30],[22.20,40.20],[20.90,40.50] ] },
         // Wound clockwise in lon/lat like every other ring here: d3-geo reads
         // a counter-clockwise ring as the whole sphere minus the shape.
         { name: "ARMENIA", tint: 4, label: [43.4, 40.3], sm: true, ring: [
@@ -983,8 +1056,12 @@
         // in modern Turkey.
         { name: "ARAM", tint: 1, label: [37.4, 34.4], ring: [
             [35.85,36.45],[38.60,35.40],[38.40,33.30],[36.30,32.60],[35.70,33.30] ] },
+        // Reaches up the eastern shore to the Madaba plateau, so Mount Nebo
+        // falls in Moab as the batch file has it, rather than in the gap
+        // between Moab and Gilead.
         { name: "MOAB & EDOM", tint: 2, label: [36.0, 30.5], sm: true, ring: [
-            [35.55,31.35],[36.30,31.30],[36.40,29.80],[35.30,29.55],[35.15,30.55] ] },
+            [35.58,31.88],[36.30,31.80],[36.40,29.80],[35.30,29.55],
+            [35.15,30.55],[35.45,31.40] ] },
         // The Levantine kingdoms carry a few more vertices than they strictly
         // need: they are the ones a player zooms right into, and four-cornered
         // boxes read as boxes at that range.
@@ -995,8 +1072,8 @@
             [35.02,33.28],[35.40,33.30],[35.70,33.22],[35.74,32.90],[35.70,32.60],
             [35.35,32.58],[34.98,32.62],[34.96,32.95] ] },
         { name: "GILEAD", tint: 0, label: [36.0, 32.2], sm: true, ring: [
-            [35.62,32.60],[36.00,32.62],[36.35,32.50],[36.38,32.10],[36.28,31.75],
-            [35.90,31.72],[35.62,31.80],[35.58,32.20] ] },
+            [35.62,32.60],[36.00,32.62],[36.35,32.50],[36.38,32.10],[36.28,31.95],
+            [35.90,31.92],[35.62,31.98],[35.58,32.20] ] },
         { name: "SAMARIA", tint: 4, label: [35.2, 32.3], sm: true, ring: [
             [34.92,32.60],[35.25,32.62],[35.55,32.52],[35.60,32.25],[35.55,31.95],
             [35.20,31.92],[34.90,31.96],[34.88,32.28] ] },
@@ -1081,6 +1158,8 @@
         hydro:      document.getElementById('hydro-layer'),
         labels:     document.getElementById('label-layer'),
         markers:    document.getElementById('marker-layer'),
+        picker:     document.getElementById('picker'),
+        pkList:     document.getElementById('pk-list'),
         reveal:     document.getElementById('reveal'),
         rvName:     document.getElementById('rv-name'),
         rvSub:      document.getElementById('rv-sub'),
@@ -1117,7 +1196,7 @@
     const svgSel = d3.select('#map-svg');
     const gSel = d3.select('#map-container');
     const zoom = d3.zoom()
-        .scaleExtent([1, 60])
+        .scaleExtent([1, MAX_K])
         .translateExtent([[0, 0], [W, H]])
         .on('zoom', (event) => {
             gSel.attr('transform', event.transform);
@@ -1324,13 +1403,21 @@
         return best;
     }
 
-    function nearestLocation(lonlat) {
-        let best = null, bestKm = Infinity;
-        for (const l of LOCS) {
-            const km = kmToLocation(lonlat, l);
-            if (km < bestKm) { bestKm = km; best = l; }
-        }
-        return { loc: best, km: bestKm };
+    function rankByDistance(lonlat) {
+        return LOCS
+            .map(l => ({ loc: l, km: kmToLocation(lonlat, l) }))
+            .sort((a, b) => a.km - b.km);
+    }
+
+    // Map units per km where the click landed. Measured rather than assumed:
+    // Mercator stretches with latitude, so Patmos and Ur are not to the same
+    // scale on screen.
+    function unitsPerKmAt(lonlat) {
+        const off = [lonlat[0] + 0.02, lonlat[1]];
+        const a = projection(lonlat), b = projection(off);
+        if (!a || !b) return 1;
+        const km = kmBetween(lonlat, off);
+        return km > 0 ? Math.hypot(b[0] - a[0], b[1] - a[1]) / km : 1;
     }
 
     // ---- Selection -------------------------------------------------------
@@ -1385,7 +1472,8 @@
         locked = false;
         els.reveal.classList.remove('show');
         els.markers.innerHTML = '';
-        setMissNote('');
+        closePicker();
+        setNote('');
         resetView(600);
 
         if (bag.length === 0) {
@@ -1433,31 +1521,118 @@
         }
     }
 
-    function setMissNote(text) {
+    function setNote(text, kind) {
         els.missNote.textContent = text;
         els.missNote.classList.toggle('show', !!text);
+        els.missNote.classList.toggle('info', kind === 'info');
+    }
+
+    // ---- Ambiguity picker ----------------------------------------------
+    function openPicker(cluster, lonlat, xy) {
+        els.pkList.innerHTML = '';
+        for (const loc of cluster) {
+            const b = document.createElement('button');
+            b.textContent = loc.place;
+            b.addEventListener('click', () => {
+                closePicker();
+                judge(loc, lonlat, xy);
+            });
+            els.pkList.appendChild(b);
+        }
+        setNote('');
+        els.picker.classList.add('show');
+    }
+
+    function closePicker() {
+        els.picker.classList.remove('show');
     }
 
     // ---- Guessing -------------------------------------------------------
+    // A click is resolved to a single place first, and only then judged. The
+    // resolving step never looks at the answer, so it gives nothing away:
+    // it behaves identically whether or not the target is one of the places
+    // under the cursor.
     function handleGuess(lonlat, xy) {
         if (locked) return;
+        closePicker();
 
+        const k = d3.zoomTransform(els.svg).k;
+        const upk = unitsPerKmAt(lonlat);
+        const slopKm = SLOP_PX / (upk * k);   // what the click can resolve
+
+        const ranked = rankByDistance(lonlat);
+        const first = ranked[0], second = ranked[1];
+
+        // Nothing plausible under the click: judged as an ordinary miss.
+        if (first.km > Math.max(first.loc.radiusKm, slopKm)) {
+            return judge(null, lonlat, xy);
+        }
+
+        if (!second) return judge(first.loc, lonlat, xy);
+
+        // One place is clearly meant -- either it beats the runner-up by a
+        // wide margin, or the two are further apart than this click could
+        // have distinguished anyway. Neither test means anything when the
+        // two sit on the same spot: a ratio against a zero distance always
+        // looks decisive, which would have quietly answered Horeb as Sinai.
+        const sameSpot = closestPairKm([first.loc, second.loc]) <= SAME_SPOT_KM;
+        const clear = !sameSpot && (
+               second.km >= first.km * AMBIG_RATIO
+            || second.km - first.km >= slopKm);
+        if (clear) return judge(first.loc, lonlat, xy);
+
+        disambiguate(ranked, lonlat, xy, k, upk, slopKm);
+    }
+
+    // Zoom in on the two places actually in contention, one step at a time,
+    // so a click over the Judean hills drills down rather than teleporting
+    // to the scale that separates Gethsemane from Mount Moriah. When no zoom
+    // could ever separate them, ask outright.
+    function disambiguate(ranked, lonlat, xy, k, upk, slopKm) {
+        const gapKm = closestPairKm([ranked[0].loc, ranked[1].loc]);
+        const needed = gapKm > SAME_SPOT_KM ? SEPARATION_PX / (upk * gapKm) : Infinity;
+        const next = Math.min(needed, k * ZOOM_STEP, MAX_K);
+
+        if (gapKm > SAME_SPOT_KM && next > k * 1.15) {
+            zoomToPoint(lonlat, next);
+            setNote('Several places sit close together here — zoomed in so you can pick one.', 'info');
+            return;
+        }
+
+        // Either they share a summit, or the map is already as close as it
+        // goes. Name the candidates and let the player choose -- but only
+        // the ones that are genuinely inseparable. Judged at full zoom, not
+        // at the current one, so the list never pads itself out with a place
+        // 60 km away that simply looked near at k=1.
+        const unresolvableKm = Math.max(SAME_SPOT_KM, SEPARATION_PX / (upk * MAX_K));
+        const cluster = ranked
+            .filter(r => r.km <= ranked[0].km + unresolvableKm)
+            .map(r => r.loc);
+        openPicker(cluster.length > 1 ? cluster : [ranked[0].loc, ranked[1].loc], lonlat, xy);
+    }
+
+    function closestPairKm(list) {
+        let best = Infinity;
+        for (let i = 0; i < list.length; i++)
+            for (let j = i + 1; j < list.length; j++)
+                for (const p of list[i].at)
+                    for (const q of list[j].at)
+                        best = Math.min(best, kmBetween(p, q));
+        return best;
+    }
+
+    // The click has settled on `cand` (or on nothing at all); score it.
+    function judge(cand, lonlat, xy) {
         const km = kmToLocation(lonlat, target);
-        const near = nearestLocation(lonlat);
-        // Two conditions, both fair to a player who zooms in: the click has
-        // to land inside the target's own radius, and no other location may
-        // be closer -- otherwise a single tap over the Judean hills would
-        // answer for Jerusalem, Bethlehem and Bethany alike.
-        const hit = km <= target.radiusKm && near.loc === target;
 
-        if (hit) {
+        if (cand === target && km <= target.radiusKm) {
             locked = true;
             score += SCORE_CORRECT;
             streak += 1;
             roundCorrect += 1;
             els.score.textContent = score;
             els.streak.textContent = streak;
-            setMissNote('');
+            setNote('');
             dropPin(target, true);
             syncClueUI();
             zoomToTarget();
@@ -1465,14 +1640,21 @@
         } else {
             streak = 0;
             els.streak.textContent = streak;
-            markMiss(xy);
-            // Distance only. A bearing, or the name of whatever was closer,
+            if (xy) markMiss(xy);
+            // Distance only. A bearing, or the name of whatever was nearer,
             // would give the answer away.
-            setMissNote(km < 40
-                ? `So close — ${Math.round(km)} km off. Zoom in and try again.`
-                : `${formatKm(km)} away.`);
+            setNote(km < 40
+                ? `So close — ${Math.round(km)} km off.`
+                : `${formatKm(km)} away.`, 'miss');
             revealClue();   // a miss earns the next clue
         }
+    }
+
+    function zoomToPoint(lonlat, k) {
+        const p = projection(lonlat);
+        if (!p) return;
+        const t = d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-p[0], -p[1]);
+        svgSel.transition().duration(650).call(zoom.transform, t);
     }
 
     function formatKm(km) {
@@ -1548,7 +1730,8 @@
         locked = true;
         streak = 0;
         els.streak.textContent = 0;
-        setMissNote('');
+        closePicker();
+        setNote('');
         // Show where it actually was before moving on -- a skipped place the
         // player never sees on the map teaches nothing.
         dropPin(target, false);
@@ -1696,6 +1879,8 @@
         if (e.key === 'Enter') { e.preventDefault(); submitBonus(); }
         e.stopPropagation();   // typing must not trigger map shortcuts
     });
+
+    document.getElementById('pk-cancel').addEventListener('click', closePicker);
 
     document.getElementById('zc-in').addEventListener('click', () => zoomBy(1.8));
     document.getElementById('zc-out').addEventListener('click', () => zoomBy(1 / 1.8));

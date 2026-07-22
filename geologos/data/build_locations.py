@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-"""Merge the hand-written clue batch with map geometry.
+"""Merge the hand-written clue batches with map geometry.
 
-The batch file carries no coordinates, and the game needs something to click.
+The batch files carry no coordinates, and the game needs something to click.
 Each entry here adds: `at` (one or more [lon, lat] anchors -- a list, so that
 rivers and seas can be traced rather than pinned), `radiusKm` (how close a
 click has to land), and `group` (the round filter).
+
+Coordinates are the real ones, and several of them are genuinely on top of
+each other: Golgotha and Mount Moriah are 500 m apart, and Horeb *is* Sinai,
+the same summit under a second name. Nothing here is nudged to make the map
+easier -- the game resolves the crowding by zooming, and asks which one the
+player means when even that is not enough.
 """
 import json, collections, pathlib
 
@@ -48,9 +54,47 @@ GEO = {
     "Egypt (Goshen)": dict(at=[[31.85, 30.75], [31.35, 30.55], [31.24, 30.05],
                                [31.10, 29.40], [32.30, 30.60]],
                            radiusKm=95, group=EGYPT),
+
+    # ---- batch 2 -----------------------------------------------------------
+    # Horeb is Sinai. Same summit, same coordinates, a second set of clues
+    # about Elijah rather than Moses -- so no amount of zooming will ever
+    # separate the two, and the picker is what settles it.
+    "Mount Sinai (Elijah/Horeb)": dict(at=[[33.9750, 28.5392]], radiusKm=70, group=EGYPT),
+
+    # The Jerusalem sites. Radii are small because the neighbours are close,
+    # not to make them fiddly: Golgotha to Mount Moriah is about 500 m.
+    "Golgotha":        dict(at=[[35.2298, 31.7784]], radiusKm=0.7, group=HOLY),
+    "Mount Moriah":    dict(at=[[35.2354, 31.7780]], radiusKm=0.7, group=HOLY),
+    "Gethsemane":      dict(at=[[35.2397, 31.7794]], radiusKm=0.7, group=HOLY),
+    "Mount of Olives": dict(at=[[35.2455, 31.7784]], radiusKm=1.0, group=HOLY),
+
+    "Shechem":       dict(at=[[35.2806, 32.2137]], radiusKm=8,  group=HOLY),
+    "Mount Carmel":  dict(at=[[35.0281, 32.7264]], radiusKm=12, group=HOLY),
+    "Cana":          dict(at=[[35.3417, 32.7472]], radiusKm=7,  group=HOLY),
+    "Emmaus":        dict(at=[[34.9894, 31.8394]], radiusKm=8,  group=HOLY),
+    "Caesarea":      dict(at=[[34.8917, 32.5000]], radiusKm=10, group=HOLY),
+    "Mount Nebo":    dict(at=[[35.7256, 31.7683]], radiusKm=7,  group=HOLY),
+    "Shiloh":        dict(at=[[35.2894, 32.0556]], radiusKm=7,  group=HOLY),
+    "Hebron":        dict(at=[[35.0997, 31.5326]], radiusKm=10, group=HOLY),
+    "Haran":         dict(at=[[39.0311, 36.8642]], radiusKm=25, group=EAST),
+    "Tarsus":        dict(at=[[34.8950, 36.9177]], radiusKm=20, group=ASIA),
+    "Philippi":      dict(at=[[24.2864, 41.0136]], radiusKm=18, group=ASIA),
+    "Thessalonica":  dict(at=[[22.9444, 40.6403]], radiusKm=20, group=ASIA),
+    "Athens":        dict(at=[[23.7275, 37.9838]], radiusKm=18, group=ASIA),
+
+    # Two peaks flanking Shechem, and one entry covering both.
+    "Mount Gerizim / Mount Ebal": dict(at=[[35.2733, 32.2003], [35.2769, 32.2350]],
+                                       radiusKm=2.5, group=HOLY),
+    # The lake itself, anchored out on the water: Capernaum sits on its
+    # northern shore and has to stay tellable from it.
+    "Sea of Galilee": dict(at=[[35.5900, 32.8000], [35.5600, 32.8600],
+                               [35.6250, 32.8300], [35.5650, 32.7500]],
+                           radiusKm=7, group=HOLY),
 }
 
-src = json.loads((ROOT / "bible_facts_batch1.json").read_text())
+src = {"locations": []}
+for name in ("bible_facts_batch1.json", "bible_facts_batch2.json"):
+    src["locations"] += json.loads((ROOT / name).read_text())["locations"]
 
 out = []
 for loc in src["locations"]:
@@ -69,11 +113,12 @@ for loc in src["locations"]:
     ))
 
 doc = collections.OrderedDict(
-    source="bible_facts_batch1.json",
-    notes=("Playable form of batch 1. Clues, modernCountry, ancientRegion and "
-           "didYouKnow are verbatim from the source batch; `at` (lon/lat "
-           "anchors), `radiusKm` (click tolerance) and `group` (round filter) "
-           "were added so the location can be found on the map."),
+    source=["bible_facts_batch1.json", "bible_facts_batch2.json"],
+    notes=("Playable form of both batches. Clues, modernCountry, ancientRegion "
+           "and didYouKnow are verbatim from the source batches; `at` (real "
+           "lon/lat anchors), `radiusKm` (click tolerance) and `group` (round "
+           "filter) were added so the location can be found on the map. "
+           "Regenerate with build_locations.py; do not hand-edit."),
     locations=out,
 )
 (ROOT / "bible_locations.json").write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")

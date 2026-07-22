@@ -1,6 +1,9 @@
 {
-  "source": "bible_facts_batch1.json",
-  "notes": "Playable form of batch 1. Clues, modernCountry, ancientRegion and didYouKnow are verbatim from the source batch; `at` (lon/lat anchors), `radiusKm` (click tolerance) and `group` (round filter) were added so the location can be found on the map.",
+  "source": [
+    "bible_facts_batch1.json",
+    "bible_facts_batch2.json"
+  ],
+  "notes": "Playable form of both batches. Clues, modernCountry, ancientRegion and didYouKnow are verbatim from the source batches; `at` (real lon/lat anchors), `radiusKm` (click tolerance) and `group` (round filter) were added so the location can be found on the map. Regenerate with build_locations.py; do not hand-edit.",
   "locations": [
     {
       "place": "Jerusalem",
@@ -461,6 +464,422 @@
         "The Israelites were enslaved here for centuries before the Exodus."
       ],
       "didYouKnow": "The river Moses was placed in, the Nile, is still the longest river in Africa today."
+    },
+    {
+      "place": "Mount Sinai (Elijah/Horeb)",
+      "modernCountry": "Egypt",
+      "ancientRegion": "Sinai Peninsula",
+      "group": "Egypt & Sinai",
+      "at": [
+        [
+          33.975,
+          28.5392
+        ]
+      ],
+      "radiusKm": 70,
+      "clues": [
+        "A discouraged prophet fled here after Jezebel threatened his life.",
+        "God spoke to him not in wind, earthquake, or fire, but in a still, small voice.",
+        "This was the same mountain where Moses had received the Law centuries earlier.",
+        "Elijah encountered God here after a 40-day journey through the wilderness."
+      ],
+      "didYouKnow": "This mountain is also called Horeb in several Old Testament passages, the same name and place."
+    },
+    {
+      "place": "Shechem",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Canaan",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2806,
+          32.2137
+        ]
+      ],
+      "radiusKm": 8,
+      "clues": [
+        "Abraham built an altar here after God first promised him this land.",
+        "Joseph's brothers were tending flocks near here before selling him into slavery.",
+        "Joshua gathered all of Israel here to renew their covenant with God before he died.",
+        "It sat between Mount Ebal and Mount Gerizim in the hill country of Canaan."
+      ],
+      "didYouKnow": "Jacob's well, associated with Jesus's conversation with the Samaritan woman, is traditionally located near ancient Shechem."
+    },
+    {
+      "place": "Mount Carmel",
+      "modernCountry": "Israel",
+      "ancientRegion": "Israel (Northern Kingdom)",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.0281,
+          32.7264
+        ]
+      ],
+      "radiusKm": 12,
+      "clues": [
+        "Elijah challenged 450 prophets of Baal to a dramatic contest here.",
+        "Fire fell from heaven and consumed Elijah's water-soaked sacrifice in front of all Israel.",
+        "The false prophets were defeated and Elijah prayed for rain to end a long drought.",
+        "It's a mountain ridge overlooking the Mediterranean coast in northern Israel."
+      ],
+      "didYouKnow": "Mount Carmel's name means 'garden' or 'vineyard' in Hebrew, reflecting its lush, fertile slopes."
+    },
+    {
+      "place": "Sea of Galilee",
+      "modernCountry": "Israel",
+      "ancientRegion": "Galilee",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.59,
+          32.8
+        ],
+        [
+          35.56,
+          32.86
+        ],
+        [
+          35.625,
+          32.83
+        ],
+        [
+          35.565,
+          32.75
+        ]
+      ],
+      "radiusKm": 7,
+      "clues": [
+        "Jesus called his first disciples away from their fishing nets along this shore.",
+        "Jesus walked on the water of this sea during a storm.",
+        "Jesus calmed a violent storm here with just a word.",
+        "Much of Jesus's ministry took place around the towns lining this freshwater lake."
+      ],
+      "didYouKnow": "Despite its name, the Sea of Galilee is actually a freshwater lake, the lowest one on Earth."
+    },
+    {
+      "place": "Cana",
+      "modernCountry": "Israel",
+      "ancientRegion": "Galilee",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.3417,
+          32.7472
+        ]
+      ],
+      "radiusKm": 7,
+      "clues": [
+        "Jesus attended a wedding here with his mother and disciples.",
+        "The wine ran out, and Mary asked Jesus to help.",
+        "Jesus turned water into wine here, his first recorded miracle.",
+        "It was a small village in Galilee, not far from Nazareth."
+      ],
+      "didYouKnow": "Cana's exact modern location is debated, with a few different villages in Israel claiming the site."
+    },
+    {
+      "place": "Gethsemane",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Judea",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2397,
+          31.7794
+        ]
+      ],
+      "radiusKm": 0.7,
+      "clues": [
+        "Jesus prayed so intensely here that his sweat was described as being like drops of blood.",
+        "He asked his disciples to stay awake with him, but they fell asleep instead.",
+        "Judas betrayed Jesus with a kiss in this garden.",
+        "It sat at the base of the Mount of Olives, just outside Jerusalem."
+      ],
+      "didYouKnow": "Gethsemane means 'oil press' in Hebrew/Aramaic, likely named for olive presses once operated there."
+    },
+    {
+      "place": "Golgotha",
+      "modernCountry": "Israel",
+      "ancientRegion": "Judea",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2298,
+          31.7784
+        ]
+      ],
+      "radiusKm": 0.7,
+      "clues": [
+        "Its name means 'place of the skull.'",
+        "Simon of Cyrene was forced to carry a cross toward this place.",
+        "Jesus was crucified here between two criminals.",
+        "It sat just outside the walls of Jerusalem."
+      ],
+      "didYouKnow": "The exact modern location of Golgotha is debated, with two main sites in Jerusalem both claimed by different traditions."
+    },
+    {
+      "place": "Emmaus",
+      "modernCountry": "Palestinian Territories/Israel",
+      "ancientRegion": "Judea",
+      "group": "The Holy Land",
+      "at": [
+        [
+          34.9894,
+          31.8394
+        ]
+      ],
+      "radiusKm": 8,
+      "clues": [
+        "Two discouraged travelers walked this road on the same day Jesus rose from the dead.",
+        "A stranger joined them and explained the Scriptures the whole way.",
+        "They only recognized the risen Jesus when he broke bread with them.",
+        "It sat roughly seven miles outside Jerusalem."
+      ],
+      "didYouKnow": "Several different modern sites have been proposed as ancient Emmaus, and none is universally agreed upon."
+    },
+    {
+      "place": "Mount of Olives",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Judea",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2455,
+          31.7784
+        ]
+      ],
+      "radiusKm": 1.0,
+      "clues": [
+        "Jesus wept over Jerusalem while looking down at the city from this hillside.",
+        "He rode down from here on a donkey as crowds waved palm branches.",
+        "After his resurrection, Jesus ascended into heaven from this location.",
+        "It overlooks Jerusalem from the east, across the Kidron Valley."
+      ],
+      "didYouKnow": "The Mount of Olives is named for the olive groves that have covered its slopes for thousands of years."
+    },
+    {
+      "place": "Mount Moriah",
+      "modernCountry": "Israel",
+      "ancientRegion": "Canaan/Judah",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2354,
+          31.778
+        ]
+      ],
+      "radiusKm": 0.7,
+      "clues": [
+        "God tested Abraham by asking him to sacrifice his son here, only to provide a ram at the last moment.",
+        "This mountain was later identified as the site where Solomon would build the Temple.",
+        "It's considered one of the most sacred sites in Jerusalem's history.",
+        "It's traditionally located within what is now Jerusalem's Old City."
+      ],
+      "didYouKnow": "Jewish, Christian, and Islamic tradition all treat this site as deeply sacred, though for different reasons."
+    },
+    {
+      "place": "Haran",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Mesopotamia",
+      "group": "Mesopotamia & the East",
+      "at": [
+        [
+          39.0311,
+          36.8642
+        ]
+      ],
+      "radiusKm": 25,
+      "clues": [
+        "Abraham's family settled here temporarily on their way from Ur to Canaan.",
+        "Abraham's father Terah died in this city.",
+        "Jacob fled here to escape his brother Esau's anger, and later met Rachel at a well nearby.",
+        "It sat along a trade route in upper Mesopotamia."
+      ],
+      "didYouKnow": "Haran's ruins still exist today in southeastern Turkey, near the Syrian border."
+    },
+    {
+      "place": "Mount Gerizim / Mount Ebal",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Samaria",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2733,
+          32.2003
+        ],
+        [
+          35.2769,
+          32.235
+        ]
+      ],
+      "radiusKm": 2.5,
+      "clues": [
+        "Moses instructed that blessings be read from one of these mountains and curses from the other.",
+        "The Samaritans built their own temple on one of these peaks, rivaling Jerusalem's.",
+        "Jesus referenced this location in his conversation with the Samaritan woman at the well.",
+        "These twin mountains flank the town of Shechem in the hill country of Samaria."
+      ],
+      "didYouKnow": "A small Samaritan community still worships on Mount Gerizim today, considering it more sacred than Jerusalem."
+    },
+    {
+      "place": "Tarsus",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Cilicia (Roman province)",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          34.895,
+          36.9177
+        ]
+      ],
+      "radiusKm": 20,
+      "clues": [
+        "Paul was born a Roman citizen in this city.",
+        "It was known in the ancient world as a center of learning and philosophy.",
+        "Paul returned here after his conversion before beginning his public ministry.",
+        "It sat in the region of Cilicia, in what is now southern Turkey."
+      ],
+      "didYouKnow": "Tarsus was considered one of the leading intellectual centers of the Roman world, alongside Athens and Alexandria."
+    },
+    {
+      "place": "Philippi",
+      "modernCountry": "Greece",
+      "ancientRegion": "Macedonia",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          24.2864,
+          41.0136
+        ]
+      ],
+      "radiusKm": 18,
+      "clues": [
+        "Paul and Silas were beaten and imprisoned here, then sang hymns at midnight.",
+        "An earthquake shook the prison doors open, but the prisoners chose not to flee.",
+        "The jailer and his household believed and were baptized that same night.",
+        "It was the first city in Europe where Paul established a church."
+      ],
+      "didYouKnow": "Philippi was named after Philip II of Macedon, the father of Alexander the Great."
+    },
+    {
+      "place": "Thessalonica",
+      "modernCountry": "Greece",
+      "ancientRegion": "Macedonia",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          22.9444,
+          40.6403
+        ]
+      ],
+      "radiusKm": 20,
+      "clues": [
+        "A mob formed here after Paul's preaching, dragging some believers before city officials instead.",
+        "Paul had to leave the city quickly at night to avoid the growing hostility.",
+        "Paul later wrote two letters back to the church he'd started in this city.",
+        "It was a major port city in the Roman province of Macedonia."
+      ],
+      "didYouKnow": "Thessalonica is still a major Greek city today, known as Thessaloniki."
+    },
+    {
+      "place": "Athens",
+      "modernCountry": "Greece",
+      "ancientRegion": "Achaea",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          23.7275,
+          37.9838
+        ]
+      ],
+      "radiusKm": 18,
+      "clues": [
+        "Paul was deeply troubled by the sheer number of idols he saw filling this city.",
+        "He addressed the philosophers here at a famous public gathering place.",
+        "Paul referenced an altar 'to an unknown god' as a way into his message.",
+        "It was the birthplace of Western philosophy and democracy."
+      ],
+      "didYouKnow": "The gathering place where Paul spoke, the Areopagus, still stands as a rocky outcrop below the Acropolis today."
+    },
+    {
+      "place": "Caesarea",
+      "modernCountry": "Israel",
+      "ancientRegion": "Judea (Roman province)",
+      "group": "The Holy Land",
+      "at": [
+        [
+          34.8917,
+          32.5
+        ]
+      ],
+      "radiusKm": 10,
+      "clues": [
+        "Cornelius, a Roman centurion, became one of the first Gentile believers here.",
+        "Paul was imprisoned here for two years before appealing to Caesar.",
+        "It served as the Roman administrative capital of the province of Judea.",
+        "It was a major port city built by Herod the Great along the Mediterranean coast."
+      ],
+      "didYouKnow": "Caesarea was named in honor of Caesar Augustus, the Roman emperor at the time it was built."
+    },
+    {
+      "place": "Mount Nebo",
+      "modernCountry": "Jordan",
+      "ancientRegion": "Moab",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.7256,
+          31.7683
+        ]
+      ],
+      "radiusKm": 7,
+      "clues": [
+        "Moses climbed this mountain after 40 years leading Israel through the wilderness.",
+        "From its summit, God showed him the entire Promised Land he would not enter.",
+        "Moses died here and was buried in an unknown location nearby.",
+        "It overlooks the Jordan Valley from the east side of the Jordan River."
+      ],
+      "didYouKnow": "On a clear day, Jerusalem and the Dead Sea are both visible from the summit of Mount Nebo."
+    },
+    {
+      "place": "Shiloh",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Canaan/Israel",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2894,
+          32.0556
+        ]
+      ],
+      "radiusKm": 7,
+      "clues": [
+        "Hannah prayed silently here for a son, and the priest Eli thought she was drunk.",
+        "Her son Samuel was raised here, serving in the tabernacle from childhood.",
+        "The Ark of the Covenant rested here for centuries before it was later captured in battle.",
+        "It served as Israel's religious center before Jerusalem took that role."
+      ],
+      "didYouKnow": "Shiloh was the location of the tabernacle for roughly 300 years before the Temple was ever built in Jerusalem."
+    },
+    {
+      "place": "Hebron",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Judah",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.0997,
+          31.5326
+        ]
+      ],
+      "radiusKm": 10,
+      "clues": [
+        "Abraham purchased a cave here as a burial site for his wife Sarah.",
+        "Abraham, Isaac, Jacob, and their wives were all eventually buried in that same cave.",
+        "David was first crowned king here before later moving his capital to Jerusalem.",
+        "It's one of the oldest continuously inhabited cities in the world."
+      ],
+      "didYouKnow": "The Cave of the Patriarchs in Hebron is considered sacred by Jews, Christians, and Muslims alike."
     }
   ]
 }
