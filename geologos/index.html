@@ -518,6 +518,27 @@
             letter-spacing: 0.08em;
         }
 
+        /* ---- Sites ------------------------------------------------------
+           Every one of the 93 locations, marked but not named. Naming them
+           would print the answers on the map; leaving them off entirely --
+           which is what shipped -- left nothing to aim at, which is worse.
+           The clue tells you which place; the map shows you where the places
+           are. Hit-testing is done on coordinates, so these never intercept
+           the click themselves. */
+        #site-layer { pointer-events: none; }
+        .site-halo {
+            fill: var(--parchment);
+            fill-opacity: 0.22;
+        }
+        .site-dot {
+            fill: var(--clay-soft);
+            stroke: var(--parchment);
+            stroke-width: 1.1;
+            vector-effect: non-scaling-stroke;
+        }
+        /* The answered one stays lit for the rest of the round. */
+        .site.found .site-dot { fill: var(--gold-soft); }
+
         /* ---- Markers --------------------------------------------------- */
         #marker-layer { pointer-events: none; }
 
@@ -961,6 +982,7 @@
                     <g id="modern-layer"></g>
                     <g id="ancient-layer"></g>
                     <g id="hydro-layer"></g>
+                    <g id="site-layer"></g>
                     <g id="label-layer"></g>
                     <g id="marker-layer"></g>
                 </g>
@@ -1244,6 +1266,7 @@
         hydro:      document.getElementById('hydro-layer'),
         labels:     document.getElementById('label-layer'),
         markers:    document.getElementById('marker-layer'),
+        sites:      document.getElementById('site-layer'),
         picker:     document.getElementById('picker'),
         pkList:     document.getElementById('pk-list'),
         reveal:     document.getElementById('reveal'),
@@ -1359,6 +1382,7 @@
         drawModern(countries);
         drawAncient(countries);
         drawHydrography();
+        drawSites();
         drawLabels();
         setEra('ancient');
 
@@ -1430,6 +1454,44 @@
             p.setAttribute("class", "river");
             els.hydro.appendChild(p);
         }
+    }
+
+    // One mark per location, at its real coordinates. A traced feature -- a
+    // river, a sea, an island -- gets a mark on each of its anchors, so the
+    // Jordan reads as a line of sites rather than one dot in the middle.
+    function drawSites() {
+        for (const loc of LOCS) {
+            for (const at of loc.at) {
+                const xy = projection(at);
+                if (!xy) continue;
+                const g = document.createElementNS(NS, "g");
+                g.setAttribute("class", "site zoom-fixed");
+                g.__anchor = xy;
+
+                const halo = document.createElementNS(NS, "circle");
+                halo.setAttribute("class", "site-halo");
+                halo.setAttribute("r", 5.5);
+                g.appendChild(halo);
+
+                const dot = document.createElementNS(NS, "circle");
+                dot.setAttribute("class", "site-dot");
+                dot.setAttribute("r", 2.6);
+                g.appendChild(dot);
+
+                g.dataset.place = loc.place;
+                els.sites.appendChild(g);
+            }
+        }
+    }
+
+    function markSiteFound(loc) {
+        els.sites.querySelectorAll('.site').forEach(g => {
+            g.classList.toggle('found', g.dataset.place === loc.place);
+        });
+    }
+
+    function clearFoundSites() {
+        els.sites.querySelectorAll('.site.found').forEach(g => g.classList.remove('found'));
     }
 
     function drawLabels() {
@@ -1558,6 +1620,7 @@
         locked = false;
         els.reveal.classList.remove('show');
         els.markers.innerHTML = '';
+        clearFoundSites();
         closePicker();
         setNote('');
         resetView(600);
@@ -1719,6 +1782,7 @@
             els.score.textContent = score;
             els.streak.textContent = streak;
             setNote('');
+            markSiteFound(target);
             dropPin(target, true);
             syncClueUI();
             zoomToTarget();
@@ -1822,6 +1886,7 @@
         setNote('');
         // Show where it actually was before moving on -- a skipped place the
         // player never sees on the map teaches nothing.
+        markSiteFound(target);
         dropPin(target, false);
         syncClueUI();
         zoomToTarget();
