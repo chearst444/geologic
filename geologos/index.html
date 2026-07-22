@@ -1241,24 +1241,28 @@
 
     // Text and markers live inside the zoomed group, so they need an inverse
     // scale to stay the same size on screen as the map grows underneath them.
-    // Names and markers used to hold one size on screen at every zoom, which
-    // meant they were sized for the close-up view and read as scratches on the
-    // whole-world one. They now start larger and ease back to that base size as
-    // the map opens up: big enough to read when the whole Biblical world is on
-    // screen, out of the way once you are down among the streets of Jerusalem.
-    const LABEL_BOOST = 1.9;   // times bigger at k = 1
-    const SITE_BOOST  = 2.4;   // markers start bigger still: they were pinheads
-    const BOOST_ENDS  = 8;     // by this zoom both are back to their base size
+    // Names and markers open large enough to read with the whole Biblical
+    // world on screen, and get larger still as you zoom in. Holding one size
+    // on screen sounds neutral but reads as shrinking: everything else on the
+    // map is growing around it.
+    const LABEL_BOOST = 1.9;   // the opening size, at k = 1
+    const SITE_BOOST  = 2.4;   // markers start bigger: they were pinheads
+    const LABEL_GROWTH = 0.22; // and both keep growing as you go in
+    const SITE_GROWTH  = 0.18;
+    const LABEL_MAX = 3.0;     // ...to a point. Past this a name owns the screen
+    const SITE_MAX  = 3.2;
 
-    function screenScale(k, boost) {
-        // boost at k = 1, easing to 1 at k = BOOST_ENDS, flat thereafter.
-        const falloff = Math.log(boost) / Math.log(BOOST_ENDS);
-        return Math.max(1, boost * Math.pow(k, -falloff));
+    function screenScale(k, boost, growth, cap) {
+        // Opens at `boost` and grows from there, because zooming in should
+        // bring you closer to a thing, not further from it. Capped so that at
+        // the zoom it takes to separate Gethsemane from Mount Moriah a region
+        // name is not covering both of them.
+        return Math.min(cap, boost * Math.pow(k, growth));
     }
 
     function scaleWithZoom(k) {
-        const labelScale = screenScale(k, LABEL_BOOST) / k;
-        const siteScale  = screenScale(k, SITE_BOOST) / k;
+        const labelScale = screenScale(k, LABEL_BOOST, LABEL_GROWTH, LABEL_MAX) / k;
+        const siteScale  = screenScale(k, SITE_BOOST, SITE_GROWTH, SITE_MAX) / k;
         els.svg.querySelectorAll('.zoom-fixed').forEach(el => {
             const [x, y] = el.__anchor;
             const sc = el.classList.contains('site') ? siteScale : labelScale;
