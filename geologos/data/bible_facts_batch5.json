@@ -1,0 +1,84 @@
+{
+  "batch": "5 - Final Wrap-Up Locations",
+  "notes": "Final batch, completing the full GeoLogos location set alongside batches 1-4. Same format: 4 event-based clues per location, ordered hardest -> easiest, plus modernCountry, ancientRegion, and a didYouKnow fact.",
+  "locations": [
+    {"place": "Tyre", "modernCountry": "Lebanon", "ancientRegion": "Phoenicia", "clues": [
+      "Jesus withdrew to this region and encountered a persistent Canaanite woman seeking healing for her daughter.",
+      "Hiram, king of this city, supplied cedar and skilled workers to help build Solomon's Temple.",
+      "Ezekiel pronounced a famous prophecy of judgment against this wealthy trading city.",
+      "It was a major Phoenician port city on the Mediterranean coast, north of Israel."
+    ], "didYouKnow": "Tyre was so confident in its island fortress that Alexander the Great famously had to build an entire land bridge out to sea just to conquer it."},
+    {"place": "Sidon", "modernCountry": "Lebanon", "ancientRegion": "Phoenicia", "clues": [
+      "Jesus's ministry and reputation reached crowds coming from this coastal city.",
+      "It's frequently paired with its sister city, Tyre, as a symbol of pagan wealth and pride in prophetic warnings.",
+      "Jezebel, the infamous queen who promoted Baal worship in Israel, came from this city's royal family.",
+      "It sat on the Phoenician coast, north of Israel, near Tyre."
+    ], "didYouKnow": "Sidon is considered one of the oldest continuously inhabited cities in the world, mentioned in Genesis as one of Canaan's sons."},
+    {"place": "Zarephath", "modernCountry": "Lebanon", "ancientRegion": "Phoenicia (between Tyre and Sidon)", "clues": [
+      "Elijah was sent here during a severe famine, to the house of a poor foreign widow.",
+      "Her jar of flour and jug of oil miraculously never ran out for the rest of the famine.",
+      "Elijah later raised her son back to life after the boy stopped breathing.",
+      "It sat on the Phoenician coast between Tyre and Sidon."
+    ], "didYouKnow": "Jesus specifically referenced this widow centuries later, noting that Elijah was sent to her rather than to any widow in Israel."},
+    {"place": "Gath", "modernCountry": "Israel", "ancientRegion": "Philistia", "clues": [
+      "This was one of the five major Philistine cities, home to some of their most feared warriors.",
+      "Goliath, the giant who challenged Israel's army, came from this city.",
+      "David briefly sought refuge here from Saul, feigning madness to survive among his enemies.",
+      "It sat inland from the Mediterranean coast, in Philistine territory."
+    ], "didYouKnow": "Gath is associated with unusually tall warriors in the Bible, likely explaining why it produced legendary giants like Goliath."},
+    {"place": "Ashdod", "modernCountry": "Israel", "ancientRegion": "Philistia", "clues": [
+      "The captured Ark of the Covenant was brought here as war plunder by the Philistines.",
+      "The statue of their god Dagon was found fallen face-down before the Ark, then found broken the next morning.",
+      "The people here were struck with tumors until they finally sent the Ark away.",
+      "It was one of the five major Philistine coastal cities."
+    ], "didYouKnow": "The Philistines moved the Ark between multiple cities trying to escape the plagues it brought, before finally sending it back to Israel entirely."},
+    {"place": "Ekron", "modernCountry": "Israel", "ancientRegion": "Philistia", "clues": [
+      "This was the last of the Philistine cities to receive the captured Ark of the Covenant before it was sent home.",
+      "King Ahaziah of Israel sent messengers here to consult its god about whether he would recover from an injury.",
+      "Elijah intercepted those messengers and rebuked the king for seeking a foreign god instead of the Lord.",
+      "It was one of the five major Philistine cities, the northernmost of them."
+    ], "didYouKnow": "Ekron's god, Baal-zebub, whose name means 'lord of the flies,' later became associated with a name for the devil himself."},
+    {"place": "Shunem", "modernCountry": "Israel", "ancientRegion": "Jezreel Valley", "clues": [
+      "A wealthy woman here regularly hosted the prophet Elisha and built him a small room to stay in.",
+      "Elisha promised her a son as a reward for her hospitality, even though she had none and her husband was old.",
+      "Years later, that same son died suddenly, and she rushed to find Elisha for help.",
+      "Elisha raised the boy back to life after stretching himself out over him."
+    ], "didYouKnow": "This woman is never named in the text, remembered simply as 'the Shunammite woman' for her extraordinary hospitality and faith."},
+    {"place": "Bethsaida", "modernCountry": "Israel", "ancientRegion": "Galilee", "clues": [
+      "This fishing town was the hometown of Peter, Andrew, and Philip.",
+      "Jesus healed a blind man here in stages, first seeing men 'like trees walking' before full sight was restored.",
+      "Jesus fed a crowd of thousands near this town with just a few loaves and fish.",
+      "It sat on the northern shore of the Sea of Galilee, near Capernaum."
+    ], "didYouKnow": "Despite Jesus performing many miracles here, he specifically pronounced a woe over this town for its lack of repentance."},
+    {"place": "Arimathea", "modernCountry": "Israel", "ancientRegion": "Judea", "clues": [
+      "A wealthy and secret follower of Jesus came from this town.",
+      "That man, Joseph, boldly asked Pilate for Jesus's body after the crucifixion.",
+      "He wrapped Jesus in linen and laid him in his own new, unused tomb.",
+      "This act fulfilled a prophecy that the Messiah would be with a rich man in his death."
+    ], "didYouKnow": "The exact modern location of Arimathea is still debated among scholars, though it's traditionally linked to a site northwest of Jerusalem."},
+    {"place": "Bethphage", "modernCountry": "Palestinian Territories", "ancientRegion": "Judea (near Jerusalem)", "clues": [
+      "Jesus sent two disciples ahead into this village to find a young donkey tied there.",
+      "He instructed them that if anyone asked, they should simply say 'the Lord needs it.'",
+      "It served as the starting point for Jesus's triumphal entry into Jerusalem.",
+      "It sat near Bethany, on the Mount of Olives, just outside Jerusalem."
+    ], "didYouKnow": "Bethphage's name means 'house of unripe figs,' likely describing the produce of the area."},
+    {"place": "Ramah", "modernCountry": "Palestinian Territories", "ancientRegion": "Benjamin (Israel)", "clues": [
+      "This was the hometown and burial place of the prophet Samuel.",
+      "David fled here to Samuel for protection when Saul was trying to kill him.",
+      "Its name was later invoked by the prophet Jeremiah to describe a mother weeping for her children.",
+      "That same image was later applied to the grief following the massacre of infants after Jesus's birth."
+    ], "didYouKnow": "The phrase 'a voice was heard in Ramah, weeping' connects an Old Testament image of grief directly to the New Testament's account of Herod's slaughter of the innocents."},
+    {"place": "Shittim", "modernCountry": "Jordan", "ancientRegion": "Plains of Moab", "clues": [
+      "Israel camped here just before crossing the Jordan River into the Promised Land.",
+      "A foreign prophet named Balaam was hired to curse Israel nearby but blessed them instead, despite his talking donkey's warnings.",
+      "The Israelites fell into idolatry and immorality with Moabite women while camped here, provoking a plague.",
+      "Joshua sent two spies out from here to scout Jericho before the conquest began."
+    ], "didYouKnow": "Balaam's donkey is one of only two animals in the entire Bible recorded as speaking with a human voice, the other being the serpent in Eden."},
+    {"place": "Gaza", "modernCountry": "Palestinian Territories (Gaza Strip)", "ancientRegion": "Philistia", "clues": [
+      "Samson carried off this city's heavy gates on his shoulders after being trapped inside overnight.",
+      "He was later captured, blinded, and imprisoned here after Delilah betrayed him.",
+      "He brought down a great temple here, killing more Philistines in his death than in his life.",
+      "It was one of the five major Philistine cities, the southernmost along the coast."
+    ], "didYouKnow": "Gaza remains a real, densely inhabited coastal region in the Middle East today, carrying the same name it did in Samson's time."}
+  ]
+}

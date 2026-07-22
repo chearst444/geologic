@@ -879,7 +879,9 @@
             </div>
             <select id="group-select" aria-label="Choose a region">
                 <option value="All">All Locations</option>
-                <option value="The Holy Land">The Holy Land</option>
+                <option value="Jerusalem &amp; Judea">Jerusalem &amp; Judea</option>
+                <option value="Samaria &amp; the Coast">Samaria &amp; the Coast</option>
+                <option value="Galilee &amp; the North">Galilee &amp; the North</option>
                 <option value="Egypt &amp; Sinai">Egypt &amp; Sinai</option>
                 <option value="Mesopotamia &amp; the East">Mesopotamia &amp; the East</option>
                 <option value="Greece, Rome &amp; Asia Minor">Greece, Rome &amp; Asia Minor</option>
@@ -1078,13 +1080,15 @@
         // The Levantine kingdoms carry a few more vertices than they strictly
         // need: they are the ones a player zooms right into, and four-cornered
         // boxes read as boxes at that range.
+        // Runs down to Tyre. Galilee stops inland of it: the coast from Tyre
+        // to Sidon is Phoenician, and Tyre was landing in Galilee.
         { name: "PHOENICIA", tint: 3, label: [35.4, 34.0], sm: true, ring: [
             [35.05,34.60],[35.40,34.62],[35.65,34.50],[35.72,34.00],[35.75,33.60],
-            [35.60,33.40],[35.25,33.38],[35.08,33.42] ] },
+            [35.55,33.42],[35.32,33.28],[35.10,33.18] ] },
         // Reaches up to Mount Hermon's foot so Caesarea Philippi sits inside
         // it, as its card says -- the northern edge of Israel's territory.
         { name: "GALILEE", tint: 1, label: [35.3, 32.95], sm: true, ring: [
-            [35.02,33.28],[35.30,33.32],[35.60,33.34],[35.78,33.28],[35.80,32.90],
+            [35.15,33.15],[35.45,33.25],[35.60,33.30],[35.78,33.28],[35.80,32.90],
             [35.70,32.60],[35.35,32.58],[34.98,32.62],[34.96,32.95] ] },
         // The coastal plain, so Joppa and Caesarea are not left on blank land.
         // Samaria's hill country starts inland of it rather than overlapping.
@@ -1102,13 +1106,16 @@
         // North edge sits just over Mizpah, west edge just past Beersheba --
         // "from Dan to Beersheba" marks the far end of the country, so the
         // well itself should not fall outside it.
+        // The west edge bulges east around the Philistine cities and dips back
+        // out over Beersheba; the north edge sits just over Ramah and Mizpah,
+        // with Bethel and Ai north of it.
         { name: "JUDAH", tint: 2, label: [35.1, 31.5], sm: true, ring: [
-            [34.86,31.90],[35.20,31.895],[35.50,31.88],[35.55,31.35],[35.30,30.95],
-            [34.98,31.05],[34.76,31.18],[34.75,31.60] ] },
+            [34.95,31.90],[35.20,31.91],[35.50,31.88],[35.55,31.35],[35.30,30.95],
+            [34.98,31.05],[34.74,31.22],[34.84,31.45],[34.92,31.70] ] },
         // Stops short of Judah's western edge: overlapping the two put a
         // stripe of the wrong kingdom down the Judean hills.
         { name: "PHILISTIA", tint: 3, label: [34.55, 31.45], sm: true, ring: [
-            [34.32,31.72],[34.80,31.68],[34.72,31.18],[34.28,31.32] ] }
+            [34.32,31.72],[34.88,31.80],[34.72,31.18],[34.28,31.32] ] }
     ];
 
     // Names that span several kingdoms rather than being one of them. Canaan
@@ -1673,9 +1680,11 @@
             if (xy) markMiss(xy);
             // Distance only. A bearing, or the name of whatever was nearer,
             // would give the answer away.
-            setNote(km < 40
-                ? `So close — ${Math.round(km)} km off.`
-                : `${formatKm(km)} away.`, 'miss');
+            // Metres below a kilometre: with Bethphage 450 m from the Mount
+            // of Olives, "0 km off" is the wrong way to say "very close".
+            setNote(km < 1 ? `So close — ${Math.round(km * 1000)} m off.`
+                  : km < 40 ? `So close — ${Math.round(km)} km off.`
+                            : `${formatKm(km)} away.`, 'miss');
             revealClue();   // a miss earns the next clue
         }
     }

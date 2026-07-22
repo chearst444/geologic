@@ -3,7 +3,8 @@
     "bible_facts_batch1.json",
     "bible_facts_batch2.json",
     "bible_facts_batch3.json",
-    "bible_facts_batch4.json"
+    "bible_facts_batch4.json",
+    "bible_facts_batch5.json"
   ],
   "notes": "Playable form of every batch. Clues, modernCountry, ancientRegion and didYouKnow are verbatim from the source batches; `at` (real lon/lat anchors), `radiusKm` (click tolerance) and `group` (round filter) were added so the location can be found on the map. Regenerate with build_locations.py; do not hand-edit.",
   "locations": [
@@ -11,7 +12,7 @@
       "place": "Jerusalem",
       "modernCountry": "Israel/Palestinian Territories",
       "ancientRegion": "Judah",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.2137,
@@ -31,7 +32,7 @@
       "place": "Bethlehem",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Judah",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.202,
@@ -51,7 +52,7 @@
       "place": "Nazareth",
       "modernCountry": "Israel",
       "ancientRegion": "Galilee",
-      "group": "The Holy Land",
+      "group": "Galilee & the North",
       "at": [
         [
           35.3035,
@@ -71,7 +72,7 @@
       "place": "Jericho",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.4444,
@@ -91,7 +92,7 @@
       "place": "Bethany",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Judea",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.262,
@@ -111,7 +112,7 @@
       "place": "Capernaum",
       "modernCountry": "Israel",
       "ancientRegion": "Galilee",
-      "group": "The Holy Land",
+      "group": "Galilee & the North",
       "at": [
         [
           35.575,
@@ -371,7 +372,7 @@
       "place": "Jordan River",
       "modernCountry": "Israel/Jordan",
       "ancientRegion": "Canaan/Jordan Valley",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.62,
@@ -407,7 +408,7 @@
       "place": "Sodom (Dead Sea region)",
       "modernCountry": "Israel/Jordan",
       "ancientRegion": "Cities of the Plain",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.4,
@@ -491,7 +492,7 @@
       "place": "Shechem",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan",
-      "group": "The Holy Land",
+      "group": "Samaria & the Coast",
       "at": [
         [
           35.2806,
@@ -511,7 +512,7 @@
       "place": "Mount Carmel",
       "modernCountry": "Israel",
       "ancientRegion": "Israel (Northern Kingdom)",
-      "group": "The Holy Land",
+      "group": "Galilee & the North",
       "at": [
         [
           35.0281,
@@ -531,7 +532,7 @@
       "place": "Sea of Galilee",
       "modernCountry": "Israel",
       "ancientRegion": "Galilee",
-      "group": "The Holy Land",
+      "group": "Galilee & the North",
       "at": [
         [
           35.59,
@@ -563,7 +564,7 @@
       "place": "Cana",
       "modernCountry": "Israel",
       "ancientRegion": "Galilee",
-      "group": "The Holy Land",
+      "group": "Galilee & the North",
       "at": [
         [
           35.3417,
@@ -583,7 +584,7 @@
       "place": "Gethsemane",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Judea",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.2397,
@@ -603,7 +604,7 @@
       "place": "Golgotha",
       "modernCountry": "Israel",
       "ancientRegion": "Judea",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.2298,
@@ -623,7 +624,7 @@
       "place": "Emmaus",
       "modernCountry": "Palestinian Territories/Israel",
       "ancientRegion": "Judea",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           34.9894,
@@ -643,7 +644,7 @@
       "place": "Mount of Olives",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Judea",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.2455,
@@ -663,7 +664,7 @@
       "place": "Mount Moriah",
       "modernCountry": "Israel",
       "ancientRegion": "Canaan/Judah",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.2354,
@@ -703,7 +704,7 @@
       "place": "Mount Gerizim / Mount Ebal",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Samaria",
-      "group": "The Holy Land",
+      "group": "Samaria & the Coast",
       "at": [
         [
           35.2733,
@@ -807,7 +808,7 @@
       "place": "Caesarea",
       "modernCountry": "Israel",
       "ancientRegion": "Judea (Roman province)",
-      "group": "The Holy Land",
+      "group": "Samaria & the Coast",
       "at": [
         [
           34.8917,
@@ -827,7 +828,7 @@
       "place": "Mount Nebo",
       "modernCountry": "Jordan",
       "ancientRegion": "Moab",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.7256,
@@ -847,7 +848,7 @@
       "place": "Shiloh",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan/Israel",
-      "group": "The Holy Land",
+      "group": "Samaria & the Coast",
       "at": [
         [
           35.2894,
@@ -867,7 +868,7 @@
       "place": "Hebron",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Judah",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.0997,
@@ -887,7 +888,7 @@
       "place": "Joppa",
       "modernCountry": "Israel",
       "ancientRegion": "Canaan/Judah (coast)",
-      "group": "The Holy Land",
+      "group": "Samaria & the Coast",
       "at": [
         [
           34.7519,
@@ -907,7 +908,7 @@
       "place": "Caesarea Philippi",
       "modernCountry": "Israel/Golan Heights",
       "ancientRegion": "Galilee (northern border)",
-      "group": "The Holy Land",
+      "group": "Galilee & the North",
       "at": [
         [
           35.6944,
@@ -927,7 +928,7 @@
       "place": "Upper Room (Jerusalem)",
       "modernCountry": "Israel",
       "ancientRegion": "Judea",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.2292,
@@ -947,7 +948,7 @@
       "place": "Samaria (city)",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Samaria",
-      "group": "The Holy Land",
+      "group": "Samaria & the Coast",
       "at": [
         [
           35.1919,
@@ -967,7 +968,7 @@
       "place": "Sychar (Jacob's Well)",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Samaria",
-      "group": "The Holy Land",
+      "group": "Samaria & the Coast",
       "at": [
         [
           35.2839,
@@ -1007,7 +1008,7 @@
       "place": "Mount Hermon",
       "modernCountry": "Lebanon/Syria/Israel",
       "ancientRegion": "Northern border of Israel",
-      "group": "The Holy Land",
+      "group": "Galilee & the North",
       "at": [
         [
           35.8572,
@@ -1027,7 +1028,7 @@
       "place": "Bethel",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan/Israel",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.2361,
@@ -1047,7 +1048,7 @@
       "place": "Peniel / Jabbok",
       "modernCountry": "Jordan",
       "ancientRegion": "Transjordan",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.68,
@@ -1067,7 +1068,7 @@
       "place": "Dothan",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan/Israel",
-      "group": "The Holy Land",
+      "group": "Samaria & the Coast",
       "at": [
         [
           35.2222,
@@ -1267,7 +1268,7 @@
       "place": "Ashkelon",
       "modernCountry": "Israel",
       "ancientRegion": "Philistia",
-      "group": "The Holy Land",
+      "group": "Samaria & the Coast",
       "at": [
         [
           34.55,
@@ -1439,7 +1440,7 @@
       "place": "Beersheba",
       "modernCountry": "Israel",
       "ancientRegion": "Negev (southern Canaan)",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           34.7913,
@@ -1459,7 +1460,7 @@
       "place": "Dan",
       "modernCountry": "Israel",
       "ancientRegion": "Northern Israel",
-      "group": "The Holy Land",
+      "group": "Galilee & the North",
       "at": [
         [
           35.6522,
@@ -1479,7 +1480,7 @@
       "place": "Mizpah",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Benjamin (Israel)",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.2161,
@@ -1499,7 +1500,7 @@
       "place": "Endor",
       "modernCountry": "Israel",
       "ancientRegion": "Northern Israel",
-      "group": "The Holy Land",
+      "group": "Galilee & the North",
       "at": [
         [
           35.4053,
@@ -1519,7 +1520,7 @@
       "place": "Mount Gilboa",
       "modernCountry": "Israel",
       "ancientRegion": "Northern Israel",
-      "group": "The Holy Land",
+      "group": "Galilee & the North",
       "at": [
         [
           35.41,
@@ -1539,7 +1540,7 @@
       "place": "Jezreel",
       "modernCountry": "Israel",
       "ancientRegion": "Northern Israel",
-      "group": "The Holy Land",
+      "group": "Galilee & the North",
       "at": [
         [
           35.3306,
@@ -1559,7 +1560,7 @@
       "place": "Megiddo",
       "modernCountry": "Israel",
       "ancientRegion": "Jezreel Valley",
-      "group": "The Holy Land",
+      "group": "Galilee & the North",
       "at": [
         [
           35.185,
@@ -1579,7 +1580,7 @@
       "place": "Gibeon",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan/Benjamin",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.1847,
@@ -1599,7 +1600,7 @@
       "place": "Ai",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.2611,
@@ -1619,7 +1620,7 @@
       "place": "Mamre",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan (near Hebron)",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.1108,
@@ -1639,7 +1640,7 @@
       "place": "Ziklag",
       "modernCountry": "Israel",
       "ancientRegion": "Philistia border",
-      "group": "The Holy Land",
+      "group": "Samaria & the Coast",
       "at": [
         [
           34.6892,
@@ -1659,7 +1660,7 @@
       "place": "En Gedi",
       "modernCountry": "Israel",
       "ancientRegion": "Judean wilderness",
-      "group": "The Holy Land",
+      "group": "Jerusalem & Judea",
       "at": [
         [
           35.3883,
@@ -1694,6 +1695,266 @@
         "The queen, Esther, risked her life by approaching the king here uninvited to save her people."
       ],
       "didYouKnow": "Susa served as one of the primary capitals of the vast Persian Empire, the same empire that had earlier allowed Jewish exiles to return home."
+    },
+    {
+      "place": "Tyre",
+      "modernCountry": "Lebanon",
+      "ancientRegion": "Phoenicia",
+      "group": "Galilee & the North",
+      "at": [
+        [
+          35.1939,
+          33.2705
+        ]
+      ],
+      "radiusKm": 8,
+      "clues": [
+        "Jesus withdrew to this region and encountered a persistent Canaanite woman seeking healing for her daughter.",
+        "Hiram, king of this city, supplied cedar and skilled workers to help build Solomon's Temple.",
+        "Ezekiel pronounced a famous prophecy of judgment against this wealthy trading city.",
+        "It was a major Phoenician port city on the Mediterranean coast, north of Israel."
+      ],
+      "didYouKnow": "Tyre was so confident in its island fortress that Alexander the Great famously had to build an entire land bridge out to sea just to conquer it."
+    },
+    {
+      "place": "Sidon",
+      "modernCountry": "Lebanon",
+      "ancientRegion": "Phoenicia",
+      "group": "Galilee & the North",
+      "at": [
+        [
+          35.3714,
+          33.5571
+        ]
+      ],
+      "radiusKm": 8,
+      "clues": [
+        "Jesus's ministry and reputation reached crowds coming from this coastal city.",
+        "It's frequently paired with its sister city, Tyre, as a symbol of pagan wealth and pride in prophetic warnings.",
+        "Jezebel, the infamous queen who promoted Baal worship in Israel, came from this city's royal family.",
+        "It sat on the Phoenician coast, north of Israel, near Tyre."
+      ],
+      "didYouKnow": "Sidon is considered one of the oldest continuously inhabited cities in the world, mentioned in Genesis as one of Canaan's sons."
+    },
+    {
+      "place": "Zarephath",
+      "modernCountry": "Lebanon",
+      "ancientRegion": "Phoenicia (between Tyre and Sidon)",
+      "group": "Galilee & the North",
+      "at": [
+        [
+          35.29,
+          33.4531
+        ]
+      ],
+      "radiusKm": 4,
+      "clues": [
+        "Elijah was sent here during a severe famine, to the house of a poor foreign widow.",
+        "Her jar of flour and jug of oil miraculously never ran out for the rest of the famine.",
+        "Elijah later raised her son back to life after the boy stopped breathing.",
+        "It sat on the Phoenician coast between Tyre and Sidon."
+      ],
+      "didYouKnow": "Jesus specifically referenced this widow centuries later, noting that Elijah was sent to her rather than to any widow in Israel."
+    },
+    {
+      "place": "Gath",
+      "modernCountry": "Israel",
+      "ancientRegion": "Philistia",
+      "group": "Samaria & the Coast",
+      "at": [
+        [
+          34.8472,
+          31.6997
+        ]
+      ],
+      "radiusKm": 6,
+      "clues": [
+        "This was one of the five major Philistine cities, home to some of their most feared warriors.",
+        "Goliath, the giant who challenged Israel's army, came from this city.",
+        "David briefly sought refuge here from Saul, feigning madness to survive among his enemies.",
+        "It sat inland from the Mediterranean coast, in Philistine territory."
+      ],
+      "didYouKnow": "Gath is associated with unusually tall warriors in the Bible, likely explaining why it produced legendary giants like Goliath."
+    },
+    {
+      "place": "Ashdod",
+      "modernCountry": "Israel",
+      "ancientRegion": "Philistia",
+      "group": "Samaria & the Coast",
+      "at": [
+        [
+          34.6497,
+          31.7522
+        ]
+      ],
+      "radiusKm": 6,
+      "clues": [
+        "The captured Ark of the Covenant was brought here as war plunder by the Philistines.",
+        "The statue of their god Dagon was found fallen face-down before the Ark, then found broken the next morning.",
+        "The people here were struck with tumors until they finally sent the Ark away.",
+        "It was one of the five major Philistine coastal cities."
+      ],
+      "didYouKnow": "The Philistines moved the Ark between multiple cities trying to escape the plagues it brought, before finally sending it back to Israel entirely."
+    },
+    {
+      "place": "Ekron",
+      "modernCountry": "Israel",
+      "ancientRegion": "Philistia",
+      "group": "Samaria & the Coast",
+      "at": [
+        [
+          34.8531,
+          31.7783
+        ]
+      ],
+      "radiusKm": 5,
+      "clues": [
+        "This was the last of the Philistine cities to receive the captured Ark of the Covenant before it was sent home.",
+        "King Ahaziah of Israel sent messengers here to consult its god about whether he would recover from an injury.",
+        "Elijah intercepted those messengers and rebuked the king for seeking a foreign god instead of the Lord.",
+        "It was one of the five major Philistine cities, the northernmost of them."
+      ],
+      "didYouKnow": "Ekron's god, Baal-zebub, whose name means 'lord of the flies,' later became associated with a name for the devil himself."
+    },
+    {
+      "place": "Shunem",
+      "modernCountry": "Israel",
+      "ancientRegion": "Jezreel Valley",
+      "group": "Galilee & the North",
+      "at": [
+        [
+          35.335,
+          32.6031
+        ]
+      ],
+      "radiusKm": 4,
+      "clues": [
+        "A wealthy woman here regularly hosted the prophet Elisha and built him a small room to stay in.",
+        "Elisha promised her a son as a reward for her hospitality, even though she had none and her husband was old.",
+        "Years later, that same son died suddenly, and she rushed to find Elisha for help.",
+        "Elisha raised the boy back to life after stretching himself out over him."
+      ],
+      "didYouKnow": "This woman is never named in the text, remembered simply as 'the Shunammite woman' for her extraordinary hospitality and faith."
+    },
+    {
+      "place": "Bethsaida",
+      "modernCountry": "Israel",
+      "ancientRegion": "Galilee",
+      "group": "Galilee & the North",
+      "at": [
+        [
+          35.6306,
+          32.91
+        ]
+      ],
+      "radiusKm": 4,
+      "clues": [
+        "This fishing town was the hometown of Peter, Andrew, and Philip.",
+        "Jesus healed a blind man here in stages, first seeing men 'like trees walking' before full sight was restored.",
+        "Jesus fed a crowd of thousands near this town with just a few loaves and fish.",
+        "It sat on the northern shore of the Sea of Galilee, near Capernaum."
+      ],
+      "didYouKnow": "Despite Jesus performing many miracles here, he specifically pronounced a woe over this town for its lack of repentance."
+    },
+    {
+      "place": "Arimathea",
+      "modernCountry": "Israel",
+      "ancientRegion": "Judea",
+      "group": "Jerusalem & Judea",
+      "at": [
+        [
+          35.0333,
+          32.0167
+        ]
+      ],
+      "radiusKm": 8,
+      "clues": [
+        "A wealthy and secret follower of Jesus came from this town.",
+        "That man, Joseph, boldly asked Pilate for Jesus's body after the crucifixion.",
+        "He wrapped Jesus in linen and laid him in his own new, unused tomb.",
+        "This act fulfilled a prophecy that the Messiah would be with a rich man in his death."
+      ],
+      "didYouKnow": "The exact modern location of Arimathea is still debated among scholars, though it's traditionally linked to a site northwest of Jerusalem."
+    },
+    {
+      "place": "Bethphage",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Judea (near Jerusalem)",
+      "group": "Jerusalem & Judea",
+      "at": [
+        [
+          35.2489,
+          31.7756
+        ]
+      ],
+      "radiusKm": 0.5,
+      "clues": [
+        "Jesus sent two disciples ahead into this village to find a young donkey tied there.",
+        "He instructed them that if anyone asked, they should simply say 'the Lord needs it.'",
+        "It served as the starting point for Jesus's triumphal entry into Jerusalem.",
+        "It sat near Bethany, on the Mount of Olives, just outside Jerusalem."
+      ],
+      "didYouKnow": "Bethphage's name means 'house of unripe figs,' likely describing the produce of the area."
+    },
+    {
+      "place": "Ramah",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Benjamin (Israel)",
+      "group": "Jerusalem & Judea",
+      "at": [
+        [
+          35.23,
+          31.8961
+        ]
+      ],
+      "radiusKm": 3,
+      "clues": [
+        "This was the hometown and burial place of the prophet Samuel.",
+        "David fled here to Samuel for protection when Saul was trying to kill him.",
+        "Its name was later invoked by the prophet Jeremiah to describe a mother weeping for her children.",
+        "That same image was later applied to the grief following the massacre of infants after Jesus's birth."
+      ],
+      "didYouKnow": "The phrase 'a voice was heard in Ramah, weeping' connects an Old Testament image of grief directly to the New Testament's account of Herod's slaughter of the innocents."
+    },
+    {
+      "place": "Shittim",
+      "modernCountry": "Jordan",
+      "ancientRegion": "Plains of Moab",
+      "group": "Jerusalem & Judea",
+      "at": [
+        [
+          35.62,
+          31.83
+        ]
+      ],
+      "radiusKm": 8,
+      "clues": [
+        "Israel camped here just before crossing the Jordan River into the Promised Land.",
+        "A foreign prophet named Balaam was hired to curse Israel nearby but blessed them instead, despite his talking donkey's warnings.",
+        "The Israelites fell into idolatry and immorality with Moabite women while camped here, provoking a plague.",
+        "Joshua sent two spies out from here to scout Jericho before the conquest began."
+      ],
+      "didYouKnow": "Balaam's donkey is one of only two animals in the entire Bible recorded as speaking with a human voice, the other being the serpent in Eden."
+    },
+    {
+      "place": "Gaza",
+      "modernCountry": "Palestinian Territories (Gaza Strip)",
+      "ancientRegion": "Philistia",
+      "group": "Samaria & the Coast",
+      "at": [
+        [
+          34.4667,
+          31.5
+        ]
+      ],
+      "radiusKm": 8,
+      "clues": [
+        "Samson carried off this city's heavy gates on his shoulders after being trapped inside overnight.",
+        "He was later captured, blinded, and imprisoned here after Delilah betrayed him.",
+        "He brought down a great temple here, killing more Philistines in his death than in his life.",
+        "It was one of the five major Philistine cities, the southernmost along the coast."
+      ],
+      "didYouKnow": "Gaza remains a real, densely inhabited coastal region in the Middle East today, carrying the same name it did in Samson's time."
     }
   ]
 }
