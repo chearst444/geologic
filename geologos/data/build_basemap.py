@@ -12,6 +12,9 @@ DST  = ROOT / "basemap"
 BB   = (11.0, 49.5, 24.0, 44.0)          # lon0, lon1, lat0, lat1
 RAW  = "https://raw.githubusercontent.com/AWMC/geodata/master/"
 
+NE = ("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/"
+      "geojson/ne_10m_rivers_lake_centerlines.geojson")
+
 SOURCES = [
     ("herods_kingdom.geojson",
      RAW + "Cultural-Data/political_shading/herod/herods_kingdom.geojson", None, 0),
@@ -21,7 +24,19 @@ SOURCES = [
     ("regional_names.geojson",
      RAW + "Cultural-Data/regional_name_linework/regional_names_linework.geojson",
      ["TITLE", "TYPE", "MINDATE", "MAXDATE"], 3),
+    # Public domain, and proper line geometry. AWMC carries inland water as
+    # thousands of small polygons instead -- the Nile alone comes in 128
+    # fragments -- which is the wrong shape for drawing a river course.
+    ("rivers.geojson", NE, ["name", "name_en"], 0),
 ]
+
+# The lakes that the clues actually name, pulled out of AWMC's inland water by
+# their ancient titles rather than by dragging in 2.3 MB of marshland.
+LAKES = ("https://raw.githubusercontent.com/AWMC/geodata/master/"
+         "Physical%20Data/inland_water/inland-water-OSM.geojson")
+LAKE_TITLES = ("Mortuum Mare/Asphaltitis L.",      # the Dead Sea
+               "Tiberiadis Mare/Gennesar L.",      # the Sea of Galilee
+               "Semachonitis L.")                  # Lake Huleh, up the Jordan
 # Label linework only: the file also carries thousands of two-point ticks for
 # individual islets, which are noise at this scale.
 NAME_TYPES = ("region", "mountain", "plain", "people, tribe")
@@ -73,6 +88,22 @@ def main():
         json.dump(fc, open(path, "w"), separators=(",", ":"))
         print(f"  {name:32} {len(out):>5} features  {points(fc):>7,} pts  "
               f"{path.stat().st_size / 1024:>7,.0f} KB")
+
+    with urllib.request.urlopen(LAKES) as r:
+        src = json.load(r)
+    out = []
+    for f in src["features"]:
+        p = f.get("properties") or {}
+        title = (p.get("EN_NAME") or p.get("TITLE") or "").strip()
+        if title in LAKE_TITLES and in_frame(f["geometry"]):
+            out.append({"type": "Feature",
+                        "properties": {"TITLE": title},
+                        "geometry": f["geometry"]})
+    fc = {"type": "FeatureCollection", "features": out}
+    path = DST / "lakes.geojson"
+    json.dump(fc, open(path, "w"), separators=(",", ":"))
+    print(f"  {'lakes.geojson':32} {len(out):>5} features  {points(fc):>7,} pts  "
+          f"{path.stat().st_size / 1024:>7,.0f} KB")
 
 
 if __name__ == "__main__":

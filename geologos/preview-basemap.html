@@ -1,0 +1,121 @@
+<meta charset="utf-8">
+<title>GeoLogos — base map preview</title>
+<style>
+  :root{--parchment:#F5EEDD;--sand:#E8DCC0;--land:#1B3A57;--land-3:#2C5B7A;--land-5:#5A87A0;
+        --water:#E1E9EE;--clay:#C06B45;--clay-soft:#DA9A78;--gold:#C9A227;--gold-soft:#E0C468;
+        --ink:#4A3B2C;--head:#2C3E50;--river:#7FB3C4;--border-anc:#7A6A4F;--muted:#6B5C48;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--parchment);color:var(--ink);
+       font:14px/1.5 system-ui,-apple-system,sans-serif}
+  header{padding:14px 20px;background:#fff;box-shadow:0 2px 10px rgba(74,59,44,.10);
+         display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  h1{margin:0;font:700 1.2rem Georgia,serif;color:var(--head)}
+  .note{color:var(--muted);font-size:.8rem;max-width:46ch}
+  button{font:inherit;font-weight:600;padding:7px 14px;border-radius:999px;cursor:pointer;
+         border:1.5px solid #D9C9A3;background:#fff;color:var(--head)}
+  button.on{background:var(--land);border-color:var(--land);color:var(--parchment)}
+  #wrap{padding:14px}
+  svg{width:100%;height:auto;display:block;background:var(--water);border-radius:12px;
+      box-shadow:inset 0 0 0 1px rgba(74,59,44,.16)}
+  .land{fill:var(--sand)}
+  .country{fill:var(--land-3);stroke:rgba(245,238,221,.45);stroke-width:.6;vector-effect:non-scaling-stroke}
+  .herod{fill:var(--land-3);fill-opacity:.85;stroke:var(--land);stroke-width:1.1;vector-effect:non-scaling-stroke}
+  .prov{fill:none;stroke:var(--clay);stroke-width:1.1;vector-effect:non-scaling-stroke}
+  .fake{fill:var(--clay);fill-opacity:.45;stroke:var(--border-anc);stroke-width:.9;
+        stroke-dasharray:3 2.5;vector-effect:non-scaling-stroke}
+  .lake{fill:var(--water);stroke:#3E7B8C;stroke-opacity:.6;stroke-width:.6;vector-effect:non-scaling-stroke}
+  .river{fill:none;stroke:#3E7B8C;stroke-width:1.1;stroke-linecap:round;vector-effect:non-scaling-stroke}
+  .site{fill:var(--clay-soft);stroke:var(--parchment);stroke-width:1;vector-effect:non-scaling-stroke}
+  .lbl{font:700 9px system-ui;fill:var(--ink);stroke:var(--sand);stroke-width:2.4px;
+       paint-order:stroke;text-anchor:middle;letter-spacing:.1em}
+  #stat{color:var(--muted);font-size:.8rem;padding:0 20px 12px}
+</style>
+<header>
+  <h1>GeoLogos — base map preview</h1>
+  <button id="b-fake" class="on">What ships today (hand-drawn)</button>
+  <button id="b-nt">New Testament (real)</button>
+  <button id="b-mod">Modern (real)</button>
+  <span class="note">Not the game — a preview of the vendored data in the game's
+    projection and palette. The 93 sites are drawn on every view.</span>
+</header>
+<div id="stat">loading…</div>
+<div id="wrap"><svg id="map" viewBox="0 0 975 610" preserveAspectRatio="xMidYMid meet">
+  <g id="g"></g></svg></div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+<script>
+const W=975,H=610,BBOX={lon:[11,49.5],lat:[24,44]};
+const NS="http://www.w3.org/2000/svg";
+const g=document.getElementById('g'), stat=document.getElementById('stat');
+let proj, path;
+
+// the hand-drawn rings currently shipping, pulled straight out of the game
+async function shippedRealms(){
+  const src = await (await fetch('index.html')).text();
+  const i = src.indexOf('const REALMS = ['), j = src.indexOf('\n    ];', i);
+  return eval(src.slice(i + 'const REALMS = '.length, j) + '\n    ]');
+}
+
+Promise.all([
+  d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-10m.json"),
+  d3.json("data/basemap/herods_kingdom.geojson"),
+  d3.json("data/basemap/roman_provinces_ce200.geojson"),
+  d3.json("data/basemap/rivers.geojson"),
+  d3.json("data/basemap/lakes.geojson"),
+  d3.json("data/bible_locations.json"),
+  shippedRealms()
+]).then(([world,herod,prov,rivers,lakes,locs,realms])=>{
+  proj = d3.geoMercator().fitExtent([[22,16],[W-22,H-16]],
+    {type:"MultiPoint",coordinates:[[BBOX.lon[0],BBOX.lat[0]],[BBOX.lon[1],BBOX.lat[0]],
+                                    [BBOX.lon[1],BBOX.lat[1]],[BBOX.lon[0],BBOX.lat[1]]]});
+  path = d3.geoPath(proj);
+  const feats = topojson.feature(world,world.objects.countries).features.filter(f=>{
+    const [[x0,y0],[x1,y1]]=d3.geoBounds(f);
+    if(x1-x0>90||y1-y0>60) return false;
+    return x1>=8&&x0<=53&&y1>=20&&y0<=46;
+  });
+  const add=(d,cls,parent)=>{ if(!d) return; const p=document.createElementNS(NS,"path");
+    p.setAttribute("d",d); p.setAttribute("class",cls); (parent||g).appendChild(p); };
+
+  const countPts=fc=>JSON.stringify(fc).split('[').length-1;
+
+  function draw(mode){
+    g.innerHTML='';
+    if(mode==='mod'){
+      feats.forEach(f=>add(path(f),"country"));
+    } else {
+      add(path({type:"FeatureCollection",features:feats}),"land");
+      if(mode==='fake') realms.forEach(r=>
+        add(path({type:"Polygon",coordinates:[[...r.ring,r.ring[0]]]}),"fake"));
+      if(mode==='nt'){
+        herod.features.forEach(f=>add(path(f),"herod"));
+        prov.features.forEach(f=>add(path(f),"prov"));
+      }
+    }
+    lakes.features.forEach(f=>add(path(f),"lake"));
+    rivers.features.forEach(f=>add(path(f),"river"));
+    locs.locations.forEach(l=>l.at.forEach(a=>{
+      const xy=proj(a); if(!xy) return;
+      const c=document.createElementNS(NS,"circle");
+      c.setAttribute("cx",xy[0]); c.setAttribute("cy",xy[1]); c.setAttribute("r",2.4);
+      c.setAttribute("class","site"); g.appendChild(c);
+    }));
+    const n = mode==='fake'
+      ? realms.reduce((s,r)=>s+r.ring.length,0)
+      : mode==='nt' ? countPts(herod)+countPts(prov) : countPts({f:feats}) ;
+    stat.textContent = mode==='fake'
+      ? `Hand-drawn: ${realms.length} regions, ${n} vertices for the whole ancient world.`
+      : mode==='nt'
+      ? `Real: Herod's kingdom + ${prov.features.length} Roman province boundaries from the Barrington Atlas (AWMC, ODbL), ~2,200 points. Plus real rivers and lakes.`
+      : `Real: Natural Earth 1:10m country borders, public domain.`;
+  }
+  const btns={fake:'b-fake',nt:'b-nt',mod:'b-mod'};
+  Object.entries(btns).forEach(([mode,id])=>
+    document.getElementById(id).addEventListener('click',()=>{
+      Object.values(btns).forEach(b=>document.getElementById(b).classList.remove('on'));
+      document.getElementById(id).classList.add('on'); draw(mode);
+    }));
+  draw('fake');
+}).catch(e=>{ stat.textContent='Failed to load: '+e; console.error(e); });
+</script>

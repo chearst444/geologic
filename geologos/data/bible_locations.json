@@ -12,6 +12,7 @@
       "place": "Jerusalem",
       "modernCountry": "Israel/Palestinian Territories",
       "ancientRegion": "Judah",
+      "era": "both",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -32,6 +33,7 @@
       "place": "Bethlehem",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Judah",
+      "era": "both",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -52,6 +54,7 @@
       "place": "Nazareth",
       "modernCountry": "Israel",
       "ancientRegion": "Galilee",
+      "era": "nt",
       "group": "Galilee & the North",
       "at": [
         [
@@ -72,6 +75,7 @@
       "place": "Jericho",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan",
+      "era": "both",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -92,6 +96,7 @@
       "place": "Bethany",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Judea",
+      "era": "nt",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -112,6 +117,7 @@
       "place": "Capernaum",
       "modernCountry": "Israel",
       "ancientRegion": "Galilee",
+      "era": "nt",
       "group": "Galilee & the North",
       "at": [
         [
@@ -132,6 +138,7 @@
       "place": "Mount Sinai",
       "modernCountry": "Egypt",
       "ancientRegion": "Sinai Peninsula",
+      "era": "ot",
       "group": "Egypt & Sinai",
       "at": [
         [
@@ -152,6 +159,7 @@
       "place": "Babylon",
       "modernCountry": "Iraq",
       "ancientRegion": "Babylonia",
+      "era": "ot",
       "group": "Mesopotamia & the East",
       "at": [
         [
@@ -172,6 +180,7 @@
       "place": "Ur",
       "modernCountry": "Iraq",
       "ancientRegion": "Mesopotamia",
+      "era": "ot",
       "group": "Mesopotamia & the East",
       "at": [
         [
@@ -192,6 +201,7 @@
       "place": "Nineveh",
       "modernCountry": "Iraq",
       "ancientRegion": "Assyria",
+      "era": "ot",
       "group": "Mesopotamia & the East",
       "at": [
         [
@@ -212,6 +222,7 @@
       "place": "Damascus",
       "modernCountry": "Syria",
       "ancientRegion": "Syria",
+      "era": "both",
       "group": "Mesopotamia & the East",
       "at": [
         [
@@ -232,6 +243,7 @@
       "place": "Antioch",
       "modernCountry": "Turkey",
       "ancientRegion": "Syria (Roman province)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -252,6 +264,7 @@
       "place": "Corinth",
       "modernCountry": "Greece",
       "ancientRegion": "Achaea",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -272,6 +285,7 @@
       "place": "Ephesus",
       "modernCountry": "Turkey",
       "ancientRegion": "Asia Minor (Roman province of Asia)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -292,6 +306,7 @@
       "place": "Patmos",
       "modernCountry": "Greece",
       "ancientRegion": "Aegean Islands",
+      "era": "both",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -312,6 +327,7 @@
       "place": "Mount Ararat",
       "modernCountry": "Turkey",
       "ancientRegion": "Armenia (ancient Urartu)",
+      "era": "ot",
       "group": "Mesopotamia & the East",
       "at": [
         [
@@ -332,6 +348,7 @@
       "place": "Red Sea",
       "modernCountry": "Egypt",
       "ancientRegion": "Egypt/Sinai border",
+      "era": "ot",
       "group": "Egypt & Sinai",
       "at": [
         [
@@ -372,6 +389,7 @@
       "place": "Jordan River",
       "modernCountry": "Israel/Jordan",
       "ancientRegion": "Canaan/Jordan Valley",
+      "era": "both",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -408,6 +426,7 @@
       "place": "Sodom (Dead Sea region)",
       "modernCountry": "Israel/Jordan",
       "ancientRegion": "Cities of the Plain",
+      "era": "ot",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -436,6 +455,7 @@
       "place": "Egypt (Goshen)",
       "modernCountry": "Egypt",
       "ancientRegion": "Egypt",
+      "era": "ot",
       "group": "Egypt & Sinai",
       "at": [
         [
@@ -472,6 +492,7 @@
       "place": "Mount Sinai (Elijah/Horeb)",
       "modernCountry": "Egypt",
       "ancientRegion": "Sinai Peninsula",
+      "era": "ot",
       "group": "Egypt & Sinai",
       "at": [
         [
@@ -492,6 +513,7 @@
       "place": "Shechem",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan",
+      "era": "both",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -512,6 +534,7 @@
       "place": "Mount Carmel",
       "modernCountry": "Israel",
       "ancientRegion": "Israel (Northern Kingdom)",
+      "era": "ot",
       "group": "Galilee & the North",
       "at": [
         [
@@ -532,6 +555,7 @@
       "place": "Sea of Galilee",
       "modernCountry": "Israel",
       "ancientRegion": "Galilee",
+      "era": "nt",
       "group": "Galilee & the North",
       "at": [
         [
@@ -564,6 +588,7 @@
       "place": "Cana",
       "modernCountry": "Israel",
       "ancientRegion": "Galilee",
+      "era": "nt",
       "group": "Galilee & the North",
       "at": [
         [
@@ -584,6 +609,7 @@
       "place": "Gethsemane",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Judea",
+      "era": "nt",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -604,6 +630,7 @@
       "place": "Golgotha",
       "modernCountry": "Israel",
       "ancientRegion": "Judea",
+      "era": "nt",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -624,6 +651,7 @@
       "place": "Emmaus",
       "modernCountry": "Palestinian Territories/Israel",
       "ancientRegion": "Judea",
+      "era": "nt",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -644,6 +672,7 @@
       "place": "Mount of Olives",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Judea",
+      "era": "nt",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -664,6 +693,7 @@
       "place": "Mount Moriah",
       "modernCountry": "Israel",
       "ancientRegion": "Canaan/Judah",
+      "era": "both",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -684,6 +714,7 @@
       "place": "Haran",
       "modernCountry": "Turkey",
       "ancientRegion": "Mesopotamia",
+      "era": "ot",
       "group": "Mesopotamia & the East",
       "at": [
         [
@@ -704,6 +735,7 @@
       "place": "Mount Gerizim / Mount Ebal",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Samaria",
+      "era": "both",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -728,6 +760,7 @@
       "place": "Tarsus",
       "modernCountry": "Turkey",
       "ancientRegion": "Cilicia (Roman province)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -748,6 +781,7 @@
       "place": "Philippi",
       "modernCountry": "Greece",
       "ancientRegion": "Macedonia",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -768,6 +802,7 @@
       "place": "Thessalonica",
       "modernCountry": "Greece",
       "ancientRegion": "Macedonia",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -788,6 +823,7 @@
       "place": "Athens",
       "modernCountry": "Greece",
       "ancientRegion": "Achaea",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -808,6 +844,7 @@
       "place": "Caesarea",
       "modernCountry": "Israel",
       "ancientRegion": "Judea (Roman province)",
+      "era": "nt",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -828,6 +865,7 @@
       "place": "Mount Nebo",
       "modernCountry": "Jordan",
       "ancientRegion": "Moab",
+      "era": "ot",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -848,6 +886,7 @@
       "place": "Shiloh",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan/Israel",
+      "era": "ot",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -868,6 +907,7 @@
       "place": "Hebron",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Judah",
+      "era": "both",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -888,6 +928,7 @@
       "place": "Joppa",
       "modernCountry": "Israel",
       "ancientRegion": "Canaan/Judah (coast)",
+      "era": "both",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -908,6 +949,7 @@
       "place": "Caesarea Philippi",
       "modernCountry": "Israel/Golan Heights",
       "ancientRegion": "Galilee (northern border)",
+      "era": "nt",
       "group": "Galilee & the North",
       "at": [
         [
@@ -928,6 +970,7 @@
       "place": "Upper Room (Jerusalem)",
       "modernCountry": "Israel",
       "ancientRegion": "Judea",
+      "era": "nt",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -948,6 +991,7 @@
       "place": "Samaria (city)",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Samaria",
+      "era": "both",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -968,6 +1012,7 @@
       "place": "Sychar (Jacob's Well)",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Samaria",
+      "era": "both",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -988,6 +1033,7 @@
       "place": "Kadesh-Barnea",
       "modernCountry": "Egypt/Israel border",
       "ancientRegion": "Wilderness of Zin",
+      "era": "ot",
       "group": "Egypt & Sinai",
       "at": [
         [
@@ -1008,6 +1054,7 @@
       "place": "Mount Hermon",
       "modernCountry": "Lebanon/Syria/Israel",
       "ancientRegion": "Northern border of Israel",
+      "era": "both",
       "group": "Galilee & the North",
       "at": [
         [
@@ -1028,6 +1075,7 @@
       "place": "Bethel",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan/Israel",
+      "era": "ot",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -1048,6 +1096,7 @@
       "place": "Peniel / Jabbok",
       "modernCountry": "Jordan",
       "ancientRegion": "Transjordan",
+      "era": "ot",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -1068,6 +1117,7 @@
       "place": "Dothan",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan/Israel",
+      "era": "ot",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -1088,6 +1138,7 @@
       "place": "Lystra",
       "modernCountry": "Turkey",
       "ancientRegion": "Lycaonia (Roman province of Galatia)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1108,6 +1159,7 @@
       "place": "Derbe",
       "modernCountry": "Turkey",
       "ancientRegion": "Lycaonia (Roman province of Galatia)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1128,6 +1180,7 @@
       "place": "Iconium",
       "modernCountry": "Turkey",
       "ancientRegion": "Phrygia/Galatia",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1148,6 +1201,7 @@
       "place": "Colossae",
       "modernCountry": "Turkey",
       "ancientRegion": "Phrygia (Roman province of Asia)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1168,6 +1222,7 @@
       "place": "Laodicea",
       "modernCountry": "Turkey",
       "ancientRegion": "Phrygia (Roman province of Asia)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1188,6 +1243,7 @@
       "place": "Smyrna",
       "modernCountry": "Turkey",
       "ancientRegion": "Ionia (Roman province of Asia)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1208,6 +1264,7 @@
       "place": "Pergamum",
       "modernCountry": "Turkey",
       "ancientRegion": "Mysia (Roman province of Asia)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1228,6 +1285,7 @@
       "place": "Sardis",
       "modernCountry": "Turkey",
       "ancientRegion": "Lydia (Roman province of Asia)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1248,6 +1306,7 @@
       "place": "Philadelphia (Asia Minor)",
       "modernCountry": "Turkey",
       "ancientRegion": "Lydia (Roman province of Asia)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1268,6 +1327,7 @@
       "place": "Ashkelon",
       "modernCountry": "Israel",
       "ancientRegion": "Philistia",
+      "era": "ot",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -1288,6 +1348,7 @@
       "place": "Rome",
       "modernCountry": "Italy",
       "ancientRegion": "Roman Empire (capital)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1308,6 +1369,7 @@
       "place": "Malta",
       "modernCountry": "Malta",
       "ancientRegion": "Roman province (island)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1328,6 +1390,7 @@
       "place": "Troas",
       "modernCountry": "Turkey",
       "ancientRegion": "Mysia (Roman province of Asia)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1348,6 +1411,7 @@
       "place": "Miletus",
       "modernCountry": "Turkey",
       "ancientRegion": "Caria (Roman province of Asia)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1368,6 +1432,7 @@
       "place": "Berea",
       "modernCountry": "Greece",
       "ancientRegion": "Macedonia",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1388,6 +1453,7 @@
       "place": "Cyprus",
       "modernCountry": "Cyprus",
       "ancientRegion": "Roman province (island)",
+      "era": "both",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1420,6 +1486,7 @@
       "place": "Perga",
       "modernCountry": "Turkey",
       "ancientRegion": "Pamphylia (Roman province)",
+      "era": "nt",
       "group": "Greece, Rome & Asia Minor",
       "at": [
         [
@@ -1440,6 +1507,7 @@
       "place": "Beersheba",
       "modernCountry": "Israel",
       "ancientRegion": "Negev (southern Canaan)",
+      "era": "ot",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -1460,6 +1528,7 @@
       "place": "Dan",
       "modernCountry": "Israel",
       "ancientRegion": "Northern Israel",
+      "era": "ot",
       "group": "Galilee & the North",
       "at": [
         [
@@ -1480,6 +1549,7 @@
       "place": "Mizpah",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Benjamin (Israel)",
+      "era": "ot",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -1500,6 +1570,7 @@
       "place": "Endor",
       "modernCountry": "Israel",
       "ancientRegion": "Northern Israel",
+      "era": "ot",
       "group": "Galilee & the North",
       "at": [
         [
@@ -1520,6 +1591,7 @@
       "place": "Mount Gilboa",
       "modernCountry": "Israel",
       "ancientRegion": "Northern Israel",
+      "era": "ot",
       "group": "Galilee & the North",
       "at": [
         [
@@ -1540,6 +1612,7 @@
       "place": "Jezreel",
       "modernCountry": "Israel",
       "ancientRegion": "Northern Israel",
+      "era": "ot",
       "group": "Galilee & the North",
       "at": [
         [
@@ -1560,6 +1633,7 @@
       "place": "Megiddo",
       "modernCountry": "Israel",
       "ancientRegion": "Jezreel Valley",
+      "era": "both",
       "group": "Galilee & the North",
       "at": [
         [
@@ -1580,6 +1654,7 @@
       "place": "Gibeon",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan/Benjamin",
+      "era": "ot",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -1600,6 +1675,7 @@
       "place": "Ai",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan",
+      "era": "ot",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -1620,6 +1696,7 @@
       "place": "Mamre",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Canaan (near Hebron)",
+      "era": "ot",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -1640,6 +1717,7 @@
       "place": "Ziklag",
       "modernCountry": "Israel",
       "ancientRegion": "Philistia border",
+      "era": "ot",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -1660,6 +1738,7 @@
       "place": "En Gedi",
       "modernCountry": "Israel",
       "ancientRegion": "Judean wilderness",
+      "era": "ot",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -1680,6 +1759,7 @@
       "place": "Susa",
       "modernCountry": "Iran",
       "ancientRegion": "Persia",
+      "era": "ot",
       "group": "Mesopotamia & the East",
       "at": [
         [
@@ -1700,6 +1780,7 @@
       "place": "Tyre",
       "modernCountry": "Lebanon",
       "ancientRegion": "Phoenicia",
+      "era": "both",
       "group": "Galilee & the North",
       "at": [
         [
@@ -1720,6 +1801,7 @@
       "place": "Sidon",
       "modernCountry": "Lebanon",
       "ancientRegion": "Phoenicia",
+      "era": "both",
       "group": "Galilee & the North",
       "at": [
         [
@@ -1740,6 +1822,7 @@
       "place": "Zarephath",
       "modernCountry": "Lebanon",
       "ancientRegion": "Phoenicia (between Tyre and Sidon)",
+      "era": "both",
       "group": "Galilee & the North",
       "at": [
         [
@@ -1760,6 +1843,7 @@
       "place": "Gath",
       "modernCountry": "Israel",
       "ancientRegion": "Philistia",
+      "era": "ot",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -1780,6 +1864,7 @@
       "place": "Ashdod",
       "modernCountry": "Israel",
       "ancientRegion": "Philistia",
+      "era": "ot",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -1800,6 +1885,7 @@
       "place": "Ekron",
       "modernCountry": "Israel",
       "ancientRegion": "Philistia",
+      "era": "ot",
       "group": "Samaria & the Coast",
       "at": [
         [
@@ -1820,6 +1906,7 @@
       "place": "Shunem",
       "modernCountry": "Israel",
       "ancientRegion": "Jezreel Valley",
+      "era": "ot",
       "group": "Galilee & the North",
       "at": [
         [
@@ -1840,6 +1927,7 @@
       "place": "Bethsaida",
       "modernCountry": "Israel",
       "ancientRegion": "Galilee",
+      "era": "nt",
       "group": "Galilee & the North",
       "at": [
         [
@@ -1860,6 +1948,7 @@
       "place": "Arimathea",
       "modernCountry": "Israel",
       "ancientRegion": "Judea",
+      "era": "both",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -1880,6 +1969,7 @@
       "place": "Bethphage",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Judea (near Jerusalem)",
+      "era": "nt",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -1900,6 +1990,7 @@
       "place": "Ramah",
       "modernCountry": "Palestinian Territories",
       "ancientRegion": "Benjamin (Israel)",
+      "era": "both",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -1920,6 +2011,7 @@
       "place": "Shittim",
       "modernCountry": "Jordan",
       "ancientRegion": "Plains of Moab",
+      "era": "ot",
       "group": "Jerusalem & Judea",
       "at": [
         [
@@ -1940,6 +2032,7 @@
       "place": "Gaza",
       "modernCountry": "Palestinian Territories (Gaza Strip)",
       "ancientRegion": "Philistia",
+      "era": "ot",
       "group": "Samaria & the Coast",
       "at": [
         [

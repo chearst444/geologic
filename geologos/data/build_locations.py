@@ -12,7 +12,7 @@ the same summit under a second name. Nothing here is nudged to make the map
 easier -- the game resolves the crowding by zooming, and asks which one the
 player means when even that is not enough.
 """
-import json, collections, pathlib
+import json, collections, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent
 
@@ -177,6 +177,33 @@ GEO = {
     "Shittim":   dict(at=[[35.6200, 31.8300]], radiusKm=8, group=JUDEA),
 }
 
+# ---------------------------------------------------------------------------
+# Which map a location belongs on. Read off the clues themselves: a place whose
+# clues talk about Paul and the churches is a New Testament place, one whose
+# clues talk about the patriarchs and the kings is an Old Testament place, and
+# plenty are both -- Jerusalem, Bethlehem, Damascus. The map follows the clue,
+# so a Revelation church is never shown against Assyria and Babylon.
+NT_WORDS = re.compile(
+    r"jesus|christ|paul|peter|apostle|disciple|gospel|church|revelation|barnabas"
+    r"|silas|timothy|herod|roman|pentecost|crucif|resurrect|baptiz|caesar")
+OT_WORDS = re.compile(
+    r"abraham|isaac|jacob|joseph|moses|joshua|david|solomon|elijah|elisha|samuel"
+    r"|saul|ahab|jezebel|jonah|daniel|esther|noah|israelites|philistin"
+    r"|ark of the covenant|tabernacle|exile|nebuchadnezzar|pharaoh|patriarch"
+    r"|covenant|prophet")
+# Two the words miss: Sodom's clues name only Lot and the angels, and Dan's
+# only the tribe and Jeroboam's calf.
+ERA_OVERRIDE = {"Sodom (Dead Sea region)": "ot", "Dan": "ot"}
+
+
+def era_of(loc):
+    if loc["place"] in ERA_OVERRIDE:
+        return ERA_OVERRIDE[loc["place"]]
+    text = " ".join(loc["clues"] + [loc["didYouKnow"]]).lower()
+    nt, ot = bool(NT_WORDS.search(text)), bool(OT_WORDS.search(text))
+    return "both" if nt and ot else ("nt" if nt else "ot")
+
+
 src = {"locations": []}
 for name in ("bible_facts_batch1.json", "bible_facts_batch2.json",
              "bible_facts_batch3.json", "bible_facts_batch4.json",
@@ -192,6 +219,7 @@ for loc in src["locations"]:
         place=loc["place"],
         modernCountry=loc["modernCountry"],
         ancientRegion=loc["ancientRegion"],
+        era=era_of(loc),
         group=geo["group"],
         at=geo["at"],
         radiusKm=geo["radiusKm"],
@@ -214,3 +242,5 @@ doc = collections.OrderedDict(
 print(f"wrote {len(out)} locations")
 for g in (JUDEA, COAST, NORTH, EGYPT, EAST, ASIA):
     print(" ", g, sum(1 for o in out if o["group"] == g))
+for e in ("ot", "nt", "both"):
+    print(" ", e, sum(1 for o in out if o["era"] == e))
