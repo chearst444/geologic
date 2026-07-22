@@ -1,0 +1,126 @@
+{
+  "batch": "1 - Major Locations",
+  "notes": "Each location has 4 event-based clues ordered hardest/most obscure -> most obvious, a modernCountry (for the modern-map toggle), an ancientRegion (for the ancient-map toggle), and a didYouKnow bonus fact. Deduce-and-click format: clue describes what happened there, player finds the place on the map.",
+  "locations": [
+    {"place": "Jerusalem", "modernCountry": "Israel/Palestinian Territories", "ancientRegion": "Judah", "clues": [
+      "David captured this city from the Jebusites and made it his capital.",
+      "Solomon built the first Temple here to house the Ark of the Covenant.",
+      "Jesus was crucified and rose again just outside this city's walls.",
+      "It's considered the holiest city in Christianity, Judaism, and one of the holiest in Islam."
+    ], "didYouKnow": "The name Jerusalem appears over 800 times in the Bible, more than any other place name."},
+    {"place": "Bethlehem", "modernCountry": "Palestinian Territories", "ancientRegion": "Judah", "clues": [
+      "Ruth gleaned in the barley fields here, later becoming the great-grandmother of King David.",
+      "The prophet Micah foretold that a ruler would come from this small town.",
+      "David was born and anointed king here.",
+      "Jesus was born here, in a manger, because there was no room at the inn."
+    ], "didYouKnow": "Bethlehem's name in Hebrew means 'house of bread.'"},
+    {"place": "Nazareth", "modernCountry": "Israel", "ancientRegion": "Galilee", "clues": [
+      "The angel Gabriel appeared to Mary here to announce she would bear a son.",
+      "Jesus was nearly thrown off a cliff by an angry crowd here early in his ministry.",
+      "It was such an obscure town that one of Jesus's own future disciples asked, 'Can anything good come from there?'",
+      "Jesus grew up here, giving him the name 'Jesus of Nazareth.'"
+    ], "didYouKnow": "Nazareth isn't mentioned anywhere in the Old Testament, it was a small, easily overlooked village in Jesus's time."},
+    {"place": "Jericho", "modernCountry": "Palestinian Territories", "ancientRegion": "Canaan", "clues": [
+      "Rahab hid Israelite spies here inside the city walls before it fell.",
+      "Joshua led the Israelites to march around this city's walls seven times until they collapsed.",
+      "Jesus healed a blind beggar named Bartimaeus here.",
+      "It's considered one of the oldest continuously inhabited cities in the world."
+    ], "didYouKnow": "Jericho sits below sea level, making it one of the lowest cities on Earth."},
+    {"place": "Bethany", "modernCountry": "Palestinian Territories", "ancientRegion": "Judea", "clues": [
+      "Mary anointed Jesus's feet with expensive perfume here.",
+      "Jesus wept before performing one of his most famous miracles here.",
+      "Lazarus was raised from the dead here after four days in the tomb.",
+      "It sat just outside Jerusalem, near the Mount of Olives."
+    ], "didYouKnow": "Bethany's name may mean 'house of affliction' or 'house of figs,' scholars still debate which."},
+    {"place": "Capernaum", "modernCountry": "Israel", "ancientRegion": "Galilee", "clues": [
+      "Jesus healed a Roman centurion's servant here without ever entering the man's house.",
+      "Peter's mother-in-law was healed of a fever here.",
+      "Jesus made this fishing town his home base after leaving Nazareth.",
+      "It sits on the northern shore of the Sea of Galilee."
+    ], "didYouKnow": "Jesus called Capernaum his own city in the Gospel of Matthew, more than any other town."},
+    {"place": "Mount Sinai", "modernCountry": "Egypt", "ancientRegion": "Sinai Peninsula", "clues": [
+      "Moses saw a bush that burned but was not consumed near this mountain.",
+      "The Israelites camped here for nearly a year after fleeing Egypt.",
+      "Moses received the Ten Commandments on this mountain.",
+      "It's the traditional site of God giving the Law to Israel."
+    ], "didYouKnow": "Its exact modern location is actually debated among scholars; the traditional site sits in Egypt's Sinai Peninsula."},
+    {"place": "Babylon", "modernCountry": "Iraq", "ancientRegion": "Babylonia", "clues": [
+      "A king here had a dream about a giant statue that Daniel alone could interpret.",
+      "Three men were thrown into a fiery furnace here for refusing to bow to a golden image.",
+      "The Israelites were exiled here after Jerusalem's temple was destroyed.",
+      "Its famous hanging gardens were considered one of the wonders of the ancient world."
+    ], "didYouKnow": "Babylon sat along the Euphrates River, in what is now central Iraq, south of Baghdad."},
+    {"place": "Ur", "modernCountry": "Iraq", "ancientRegion": "Mesopotamia", "clues": [
+      "God called a man to leave this city and go to a land he would later show him.",
+      "It was one of the most advanced cities of its time, with a great ziggurat temple.",
+      "Abraham's family originally came from here before setting out for Canaan.",
+      "It sat near the Euphrates River in ancient Mesopotamia."
+    ], "didYouKnow": "Ur's ziggurat still stands partially today, in southern Iraq."},
+    {"place": "Nineveh", "modernCountry": "Iraq", "ancientRegion": "Assyria", "clues": [
+      "A prophet tried to flee from God's call to preach here by boarding a ship instead.",
+      "That same prophet was swallowed by a great fish before finally obeying.",
+      "The entire city, from the king down, repented in sackcloth and ashes after Jonah's warning.",
+      "It was once the capital of the mighty Assyrian Empire."
+    ], "didYouKnow": "Nineveh's ruins sit across the Tigris River from modern-day Mosul, Iraq."},
+    {"place": "Damascus", "modernCountry": "Syria", "ancientRegion": "Syria", "clues": [
+      "A persecutor of Christians was blinded by a bright light on the road leading here.",
+      "That man, Saul, had his sight restored here and became the apostle Paul.",
+      "Believers had to lower Paul over this city's wall in a basket to help him escape.",
+      "It's considered one of the oldest continuously inhabited cities in the world."
+    ], "didYouKnow": "Damascus is still Syria's capital today, making it one of the very few Biblical cities that never lost that role."},
+    {"place": "Antioch", "modernCountry": "Turkey", "ancientRegion": "Syria (Roman province)", "clues": [
+      "Believers in Jesus were first called 'Christians' in this city.",
+      "Paul and Barnabas were sent out from here on the first missionary journey.",
+      "It became one of the earliest major centers of the Christian church outside Jerusalem.",
+      "It sat in the Roman province of Syria, in what is now southern Turkey."
+    ], "didYouKnow": "Antioch was once one of the largest cities in the entire Roman Empire, rivaling Rome and Alexandria."},
+    {"place": "Corinth", "modernCountry": "Greece", "ancientRegion": "Achaea", "clues": [
+      "Paul lived and worked here as a tentmaker alongside Priscilla and Aquila.",
+      "Paul wrote two of his most famous New Testament letters to the church in this city.",
+      "It was known in the ancient world for its wealth, immorality, and busy trade routes.",
+      "It sat on a narrow strip of land connecting mainland Greece to the Peloponnese."
+    ], "didYouKnow": "Corinth's location made it a major crossroads for sea trade between the Aegean and Ionian Seas."},
+    {"place": "Ephesus", "modernCountry": "Turkey", "ancientRegion": "Asia Minor (Roman province of Asia)", "clues": [
+      "Silversmiths here started a riot because Paul's preaching was hurting their idol-making business.",
+      "Paul spent about three years teaching in this city, longer than almost anywhere else.",
+      "It's home to one of the seven churches addressed directly in the Book of Revelation.",
+      "It was famous in the ancient world for its massive temple to the goddess Artemis."
+    ], "didYouKnow": "The Temple of Artemis at Ephesus was considered one of the Seven Wonders of the Ancient World."},
+    {"place": "Patmos", "modernCountry": "Greece", "ancientRegion": "Aegean Islands", "clues": [
+      "The apostle John was exiled here for preaching the word of God.",
+      "John received the visions that make up the last book of the New Testament while here.",
+      "It's a small, rocky island in the Aegean Sea.",
+      "It's the traditional setting where the Book of Revelation was written."
+    ], "didYouKnow": "Patmos is a real, small Greek island that still draws Christian pilgrims today."},
+    {"place": "Mount Ararat", "modernCountry": "Turkey", "ancientRegion": "Armenia (ancient Urartu)", "clues": [
+      "After 40 days of rain and months adrift, a boat came to rest on mountains in this region.",
+      "Noah sent out a dove and a raven from here to check if the waters had receded.",
+      "It's the traditional resting place of Noah's Ark.",
+      "It's the tallest mountain in modern-day Turkey."
+    ], "didYouKnow": "Mount Ararat has been the subject of expeditions for centuries by people searching for remains of the ark."},
+    {"place": "Red Sea", "modernCountry": "Egypt", "ancientRegion": "Egypt/Sinai border", "clues": [
+      "Moses stretched out his hand and the waters split, letting Israel pass on dry ground.",
+      "Pharaoh's pursuing army was swallowed up when the waters returned.",
+      "It marked Israel's dramatic escape from centuries of slavery in Egypt.",
+      "It separates Egypt from the Arabian Peninsula."
+    ], "didYouKnow": "Some scholars debate whether the original Hebrew, 'Yam Suph,' refers to the Red Sea or a nearby 'Sea of Reeds.'"},
+    {"place": "Jordan River", "modernCountry": "Israel/Jordan", "ancientRegion": "Canaan/Jordan Valley", "clues": [
+      "Joshua led Israel across this river on dry ground to finally enter the Promised Land.",
+      "Naaman, a foreign commander, was healed of leprosy after washing in this river seven times.",
+      "John the Baptist baptized people in this river, including Jesus.",
+      "It's the river that flows into the Dead Sea."
+    ], "didYouKnow": "The Jordan River is fed largely by melting snow from Mount Hermon, far to the north."},
+    {"place": "Sodom (Dead Sea region)", "modernCountry": "Israel/Jordan", "ancientRegion": "Cities of the Plain", "clues": [
+      "Angels warned Lot to flee this city before its destruction.",
+      "Lot's wife looked back at it and turned into a pillar of salt.",
+      "God destroyed this city, along with Gomorrah, with fire and sulfur from the sky.",
+      "It's traditionally located near the Dead Sea, one of the saltiest bodies of water on Earth."
+    ], "didYouKnow": "The Dead Sea's shoreline is the lowest point on Earth's land surface, over 1,400 feet below sea level."},
+    {"place": "Egypt (Goshen)", "modernCountry": "Egypt", "ancientRegion": "Egypt", "clues": [
+      "Joseph rose from slavery to become second-in-command over this entire land.",
+      "Joseph's family settled in a fertile region here called Goshen during a famine.",
+      "Baby Moses was placed in a basket among the reeds along a great river here.",
+      "The Israelites were enslaved here for centuries before the Exodus."
+    ], "didYouKnow": "The river Moses was placed in, the Nile, is still the longest river in Africa today."}
+  ]
+}
