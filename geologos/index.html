@@ -1107,11 +1107,11 @@
     // Old Testament names. No dataset carries Iron Age regions, so these are
     // placed by hand at the centres scholarship puts them at.
     const OT_REGIONS = [
-        { text: "JUDAH",      at: [35.05, 31.45] },
-        { text: "ISRAEL",     at: [35.30, 32.35] },
+        { text: "JUDAH",      at: [34.95, 31.28] },
+        { text: "ISRAEL",     at: [35.35, 32.60] },
         { text: "PHILISTIA",  at: [34.60, 31.45], sm: true },
         { text: "PHOENICIA",  at: [35.50, 33.90], sm: true },
-        { text: "ARAM",       at: [37.30, 34.40] },
+        { text: "ARAM",       at: [36.90, 35.25] },
         { text: "AMMON",      at: [36.05, 31.95], sm: true },
         { text: "MOAB",       at: [35.85, 31.30], sm: true },
         { text: "EDOM",       at: [35.55, 30.30], sm: true },
@@ -1128,7 +1128,7 @@
         { text: "SINAI",      at: [33.70, 29.30], sm: true },
         { text: "MIDIAN",     at: [35.70, 28.20], sm: true },
         { text: "ARABIA",     at: [40.50, 27.80] },
-        { text: "MESOPOTAMIA", at: [41.30, 34.20], wide: true }
+        { text: "MESOPOTAMIA", at: [42.20, 33.90], wide: true }
     ];
 
     // New Testament names are resolved at build time by data/build_labels.py
@@ -1241,15 +1241,34 @@
 
     // Text and markers live inside the zoomed group, so they need an inverse
     // scale to stay the same size on screen as the map grows underneath them.
+    // Names and markers used to hold one size on screen at every zoom, which
+    // meant they were sized for the close-up view and read as scratches on the
+    // whole-world one. They now start larger and ease back to that base size as
+    // the map opens up: big enough to read when the whole Biblical world is on
+    // screen, out of the way once you are down among the streets of Jerusalem.
+    const LABEL_BOOST = 1.9;   // times bigger at k = 1
+    const SITE_BOOST  = 2.4;   // markers start bigger still: they were pinheads
+    const BOOST_ENDS  = 8;     // by this zoom both are back to their base size
+
+    function screenScale(k, boost) {
+        // boost at k = 1, easing to 1 at k = BOOST_ENDS, flat thereafter.
+        const falloff = Math.log(boost) / Math.log(BOOST_ENDS);
+        return Math.max(1, boost * Math.pow(k, -falloff));
+    }
+
     function scaleWithZoom(k) {
-        const inv = 1 / k;
+        const labelScale = screenScale(k, LABEL_BOOST) / k;
+        const siteScale  = screenScale(k, SITE_BOOST) / k;
         els.svg.querySelectorAll('.zoom-fixed').forEach(el => {
             const [x, y] = el.__anchor;
-            el.setAttribute('transform', `translate(${x},${y}) scale(${inv})`);
+            const sc = el.classList.contains('site') ? siteScale : labelScale;
+            el.setAttribute('transform', `translate(${x},${y}) scale(${sc})`);
         });
         // Era visibility is set as an inline style and still wins over this,
-        // so a modern label never reappears on the ancient map.
-        const roomy = k >= 2.5;
+        // so a modern label never reappears on the ancient map. The small
+        // names arrive a little earlier than they used to, now that they are
+        // legible when they do.
+        const roomy = k >= 2.2;
         els.labels.querySelectorAll('.sm').forEach(t => {
             t.classList.toggle('zoom-hidden', !roomy);
         });
