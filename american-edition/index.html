@@ -460,16 +460,22 @@
         #landmark-tip.show { opacity: 1; }
         #landmark-tip b { display: block; color: var(--brick); margin-bottom: 2px; }
 
-        /* ---- Reveal card ---------------------------------------------- */
+        /* ---- Reveal card ----------------------------------------------
+           Fixed to the viewport rather than to the map, so a short map area
+           on a phone can never squeeze it. The card is a flex column: the
+           title bar and the action bar are pinned, and only the middle
+           scrolls, so "Next state" and the close button are always in view. */
         #reveal {
-            position: absolute;
+            position: fixed;
             inset: 0;
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 14px;
-            background: rgba(27, 42, 74, 0.30);
-            z-index: 100;
+            padding: 16px;
+            padding-top: max(16px, env(safe-area-inset-top));
+            padding-bottom: max(16px, env(safe-area-inset-bottom));
+            background: rgba(27, 42, 74, 0.42);
+            z-index: 200;
         }
         #reveal.show { display: flex; }
 
@@ -478,12 +484,12 @@
             border-radius: 14px;
             width: min(430px, 100%);
             max-height: 100%;
-            overflow-y: auto;
-            touch-action: pan-y;
-            overscroll-behavior: contain;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
             box-shadow: 0 24px 48px rgba(27, 42, 74, 0.32);
             border-top: 5px solid var(--brick);
-            padding: 16px 18px 18px;
             animation: card-in 0.32s ease-out;
         }
         @keyframes card-in {
@@ -491,35 +497,107 @@
             to   { opacity: 1; transform: none; }
         }
 
-        .reveal-card h3 {
+        /* Pinned title bar */
+        .rv-head {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 14px 16px 10px;
+            border-bottom: 1px solid var(--line);
+        }
+        .rv-head h3 {
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--navy);
             letter-spacing: 0.01em;
         }
         .reveal-sub {
-            margin: 2px 0 12px;
-            font-size: 0.72rem;
+            margin: 2px 0 0;
+            font-size: 0.7rem;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--brick);
         }
+        #rv-close {
+            flex: 0 0 auto;
+            width: 34px;
+            height: 34px;
+            min-height: 34px;
+            padding: 0;
+            border-radius: 50%;
+            font-size: 1rem;
+            line-height: 1;
+            border-color: var(--line);
+            color: var(--text-muted);
+        }
 
+        /* The only scrolling region */
+        .rv-body {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            touch-action: pan-y;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+            padding: 14px 16px 4px;
+        }
+
+        /* Pinned action bar */
+        .rv-foot {
+            flex: 0 0 auto;
+            display: flex;
+            gap: 8px;
+            padding: 12px 16px;
+            border-top: 1px solid var(--line);
+            background: var(--card);
+        }
+        .rv-foot button { flex: 1; }
+
+        /* Natural intrinsic sizing -- no aspect-ratio box and no object-fit,
+           so there is no mechanism by which a flag can be cropped. */
         .flag-wrap {
-            width: 100%;
-            aspect-ratio: 3 / 2;
             background: var(--beige);
             border: 1px solid var(--line);
             border-radius: 8px;
-            overflow: hidden;
+            padding: 8px;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .flag-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .flag-wrap img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: min(34vh, 230px);
+        }
         .flag-wrap.missing { display: none; }
+
+        /* Full clue list, still readable now that the card covers the page */
+        #rv-clues {
+            border-top: 1px solid var(--line);
+            padding-top: 10px;
+            margin-bottom: 4px;
+        }
+        #rv-clues summary {
+            cursor: pointer;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        #rv-clues ol {
+            max-height: none;
+            overflow: visible;
+            margin-top: 8px;
+            padding-left: 20px;
+        }
+        #rv-clues li { font-size: 0.88rem; line-height: 1.4; animation: none; }
 
         /* Capital bonus */
         #cap-block {
@@ -595,18 +673,29 @@
 
         /* ---- Round summary -------------------------------------------- */
         #summary {
-            position: absolute;
+            position: fixed;
             inset: 0;
             display: none;
             align-items: center;
             justify-content: center;
             padding: 16px;
-            background: rgba(27, 42, 74, 0.36);
-            z-index: 110;
+            background: rgba(27, 42, 74, 0.42);
+            z-index: 210;
             text-align: center;
         }
         #summary.show { display: flex; }
-        #summary .reveal-card { text-align: center; }
+        #summary .reveal-card {
+            text-align: center;
+            display: block;
+            overflow: visible;
+            padding: 18px 18px 16px;
+        }
+        #summary .reveal-card h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: var(--navy);
+        }
+        #summary .reveal-sub { margin: 2px 0 0; }
         #summary .big {
             font-size: 2.6rem;
             font-weight: 800;
@@ -681,8 +770,10 @@
             #clue-card { padding: 11px 13px; border-left-width: 4px; }
             li { font-size: 0.95rem; margin-bottom: 5px; }
             ol { max-height: 24vh; padding-left: 19px; }
-            .reveal-card { padding: 14px 15px 16px; }
-            .reveal-card h3 { font-size: 1.25rem; }
+            .rv-head { padding: 12px 13px 9px; }
+            .rv-body { padding: 12px 13px 4px; }
+            .rv-foot { padding: 10px 13px; }
+            .rv-head h3 { font-size: 1.2rem; }
         }
 
         /* Short/landscape phones: give the map as much height as possible. */
@@ -694,7 +785,11 @@
             .clue-head { margin-bottom: 5px; }
             ol { max-height: 19vh; }
             li { font-size: 0.88rem; margin-bottom: 3px; }
-            .flag-wrap { aspect-ratio: 5 / 2; }
+            /* Landscape phones are short: cap the flag so the pinned action
+               bar and the capital prompt still fit without scrolling. */
+            .flag-wrap img { max-height: 26vh; }
+            .rv-head { padding: 9px 13px 7px; }
+            .rv-head h3 { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -755,52 +850,67 @@
                 <button class="js-skip">Skip &rarr;</button>
             </div>
 
-            <!-- Post-guess reveal: flag, capital bonus, bird/flower, fun fact -->
-            <div id="reveal">
-                <div class="reveal-card">
+        </div>
+    </div>
+
+    <!-- Post-guess reveal: flag, capital bonus, bird/flower, fun fact.
+         Deliberately a sibling of the layout, not a child of the map, so it
+         is sized by the viewport rather than by the map's leftover height. -->
+    <div id="reveal">
+        <div class="reveal-card">
+            <div class="rv-head">
+                <div>
                     <h3 id="rv-name"></h3>
                     <p class="reveal-sub" id="rv-sub"></p>
-
-                    <div class="flag-wrap" id="rv-flag-wrap">
-                        <img id="rv-flag" alt="">
-                    </div>
-
-                    <div id="cap-block">
-                        <p class="q" id="cap-q"></p>
-                        <div class="cap-row" id="cap-row">
-                            <input id="cap-input" type="text" autocomplete="off"
-                                   autocorrect="off" autocapitalize="words" spellcheck="false"
-                                   placeholder="Capital city&hellip;">
-                            <button id="cap-submit" class="primary">Answer</button>
-                        </div>
-                        <p id="cap-result"></p>
-                    </div>
-
-                    <div class="chips">
-                        <div class="chip"><span class="k">State bird</span><span class="v" id="rv-bird"></span></div>
-                        <div class="chip"><span class="k">State flower</span><span class="v" id="rv-flower"></span></div>
-                    </div>
-
-                    <div id="dyk"><b>Did you know?</b><span id="rv-dyk"></span></div>
-
-                    <div class="reveal-actions">
-                        <button id="rv-next" class="primary">Next state &rarr;</button>
-                    </div>
                 </div>
+                <button id="rv-close" title="Close" aria-label="Close">&#10005;</button>
             </div>
 
-            <!-- Regional round complete -->
-            <div id="summary">
-                <div class="reveal-card">
-                    <h3 id="sm-title"></h3>
-                    <p class="reveal-sub">Round complete</p>
-                    <div class="big" id="sm-score"></div>
-                    <p id="sm-detail" style="margin:0 0 14px; color:var(--text-muted); font-size:0.9rem;"></p>
-                    <div class="reveal-actions">
-                        <button id="sm-again" class="primary">Play again</button>
-                        <button id="sm-all">All 50 states</button>
-                    </div>
+            <div class="rv-body">
+                <div class="flag-wrap" id="rv-flag-wrap">
+                    <img id="rv-flag" alt="">
                 </div>
+
+                <div id="cap-block">
+                    <p class="q" id="cap-q"></p>
+                    <div class="cap-row" id="cap-row">
+                        <input id="cap-input" type="text" autocomplete="off"
+                               autocorrect="off" autocapitalize="words" spellcheck="false"
+                               placeholder="Capital city&hellip;">
+                        <button id="cap-submit" class="primary">Answer</button>
+                    </div>
+                    <p id="cap-result"></p>
+                </div>
+
+                <div class="chips">
+                    <div class="chip"><span class="k">State bird</span><span class="v" id="rv-bird"></span></div>
+                    <div class="chip"><span class="k">State flower</span><span class="v" id="rv-flower"></span></div>
+                </div>
+
+                <div id="dyk"><b>Did you know?</b><span id="rv-dyk"></span></div>
+
+                <details id="rv-clues">
+                    <summary>All clues for this state</summary>
+                    <ol id="rv-clue-list"></ol>
+                </details>
+            </div>
+
+            <div class="rv-foot">
+                <button id="rv-next" class="primary">Next state &rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Regional round complete -->
+    <div id="summary">
+        <div class="reveal-card">
+            <h3 id="sm-title"></h3>
+            <p class="reveal-sub">Round complete</p>
+            <div class="big" id="sm-score"></div>
+            <p id="sm-detail" style="margin:0 0 14px; color:var(--text-muted); font-size:0.9rem;"></p>
+            <div class="reveal-actions">
+                <button id="sm-again" class="primary">Play again</button>
+                <button id="sm-all">All 50 states</button>
             </div>
         </div>
     </div>
@@ -888,6 +998,7 @@
         rvBird:     document.getElementById('rv-bird'),
         rvFlower:   document.getElementById('rv-flower'),
         rvDyk:      document.getElementById('rv-dyk'),
+        rvClues:    document.getElementById('rv-clue-list'),
         capQ:       document.getElementById('cap-q'),
         capRow:     document.getElementById('cap-row'),
         capInput:   document.getElementById('cap-input'),
@@ -1246,6 +1357,16 @@
         els.rvFlower.textContent = f.flower;
         els.rvDyk.textContent = f.didYouKnow;
 
+        // The card covers the clue list, so carry the full set into it --
+        // including any clues the player never needed to see.
+        els.rvClues.innerHTML = '';
+        for (const c of clueQueue) {
+            const li = document.createElement('li');
+            li.textContent = c.text;
+            if (c.bonus) li.className = 'bonus';
+            els.rvClues.appendChild(li);
+        }
+
         // Capital bonus
         els.capQ.textContent = `Bonus: name the capital of ${f.state} for +${SCORE_CAPITAL}.`;
         els.capRow.style.display = '';
@@ -1359,6 +1480,11 @@
 
     els.regionSel.addEventListener('change', () => startRound(els.regionSel.value));
     document.getElementById('rv-next').addEventListener('click', nextState);
+    document.getElementById('rv-close').addEventListener('click', nextState);
+    // Tapping the dimmed backdrop dismisses, but a tap inside the card must not.
+    els.reveal.addEventListener('click', (e) => {
+        if (e.target === els.reveal) nextState();
+    });
     document.getElementById('sm-again').addEventListener('click', () => startRound(region));
     document.getElementById('sm-all').addEventListener('click', () => startRound('All'));
 
@@ -1375,6 +1501,11 @@
     // Desktop keyboard shortcuts.
     document.addEventListener('keydown', (e) => {
         if (e.metaKey || e.ctrlKey || e.altKey) return;
+        // Escape closes the reveal even from inside the capital field.
+        if (e.key === 'Escape') {
+            if (els.reveal.classList.contains('show')) { nextState(); e.preventDefault(); }
+            return;
+        }
         if (e.target === els.capInput) return;
         switch (e.key) {
             case '+': case '=': zoomBy(1.6); break;
