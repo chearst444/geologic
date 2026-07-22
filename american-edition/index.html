@@ -47,6 +47,9 @@
             inset: 0;
             width: 100%;
             height: 100%;
+            /* Stop iOS inflating text in landscape. */
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
         }
 
         body {
@@ -616,7 +619,9 @@
             flex: 1;
             min-width: 0;
             font: inherit;
-            font-size: 0.95rem;
+            /* Must stay at 16px: iOS Safari zooms the page when focusing an
+               input with a smaller font, which would wreck the fixed layout. */
+            font-size: 16px;
             padding: 9px 12px;
             border-radius: 8px;
             border: 1.5px solid var(--slate);
@@ -631,9 +636,9 @@
         #cap-result.right { color: #1F7A4D; }
         #cap-result.miss  { color: var(--brick); }
 
-        .chips { display: flex; gap: 8px; margin-bottom: 12px; }
+        .chips { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
         .chip {
-            flex: 1;
+            flex: 1 1 130px;
             background: var(--beige);
             border-radius: 10px;
             padding: 9px 11px;
@@ -744,18 +749,45 @@
 
         /* ---- Responsive layout ---------------------------------------- */
         @media (max-width: 720px) {
+            /* Stack into two tidy rows -- a brand line and a single-row
+               control strip -- instead of letting eight controls wrap into
+               three or four rows and eat the map's height. */
             header {
-                padding: 9px 12px;
-                padding-top: max(9px, env(safe-area-inset-top));
+                flex-direction: column;
+                align-items: stretch;
+                flex-wrap: nowrap;
+                gap: 7px;
+                padding: 8px 12px;
+                padding-top: max(8px, env(safe-area-inset-top));
                 padding-left: max(12px, env(safe-area-inset-left));
                 padding-right: max(12px, env(safe-area-inset-right));
             }
-            h1 { font-size: 1.02rem; }
+            h1 { font-size: 1rem; line-height: 1.2; }
             h1 span { display: none; }
-            .brand { gap: 8px; }
-            .badge { font-size: 0.6rem; padding: 4px 9px 4px 6px; }
+            .brand {
+                gap: 8px;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .badge { font-size: 0.58rem; padding: 4px 9px 4px 6px; flex: 0 0 auto; }
             .badge .stars { width: 20px; }
-            .stats { gap: 6px; }
+
+            /* The controls scroll sideways rather than wrapping. */
+            .stats {
+                gap: 6px;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                overscroll-behavior-x: contain;
+                touch-action: pan-x;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding-bottom: 1px;
+            }
+            .stats::-webkit-scrollbar { display: none; }
+            .stats > * { flex: 0 0 auto; }
+
             .pill { font-size: 0.82rem; padding: 5px 11px; }
             .pill .lbl { font-size: 0.64rem; }
             button, select { padding: 6px 11px; font-size: 0.82rem; }
@@ -776,10 +808,37 @@
             .rv-head h3 { font-size: 1.2rem; }
         }
 
+        /* Very narrow phones: drop the title's "-- America 250" rather than
+           the badge, which already says "Est. 1776 - 250 Years". That keeps
+           the brand line to one row without losing the anniversary. */
+        @media (max-width: 400px) {
+            h1 em { display: none; }
+            h1 { font-size: 0.95rem; }
+            .pill { font-size: 0.78rem; padding: 5px 9px; }
+            #game-container { padding: 8px; gap: 8px; }
+            ol { max-height: 22vh; }
+        }
+
+        /* Smallest phones: now the badge goes too. */
+        @media (max-width: 340px) {
+            .badge { display: none; }
+        }
+
         /* Short/landscape phones: give the map as much height as possible. */
         @media (max-height: 560px) and (orientation: landscape) {
-            header { padding-top: 5px; padding-bottom: 5px; }
+            /* Height is the scarce axis here, so put the header back on one
+               row; the control strip still scrolls sideways if it overflows. */
+            header {
+                flex-direction: row;
+                align-items: center;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                gap: 8px;
+            }
+            .brand { flex: 0 1 auto; min-width: 0; }
+            .stats { flex: 1 1 auto; justify-content: flex-end; min-width: 0; }
             h1 { font-size: 0.92rem; }
+            .badge { display: none; }
             #game-container { padding: 8px; gap: 8px; }
             #clue-card { padding: 8px 11px; }
             .clue-head { margin-bottom: 5px; }
