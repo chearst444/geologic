@@ -343,6 +343,42 @@
         svg { width: 100%; height: 100%; display: block; cursor: crosshair; }
         svg:active { cursor: grabbing; }
 
+        /* ---- Locator inset ---------------------------------------------- */
+        #locator {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            width: 168px;
+            height: 105px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(74, 59, 44, 0.28);
+            background: var(--water);
+            /* Faded out unless zoomed in; JS adds .show. Never eats a click. */
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s;
+            z-index: 45;
+        }
+        #locator.show { opacity: 0.92; }
+        .loc-sea   { fill: var(--water); }
+        #loc-land  { fill: var(--land); stroke: none; }
+        #loc-box {
+            fill: var(--gold-soft);
+            fill-opacity: 0.28;
+            stroke: var(--gold-deep);
+            stroke-width: 6;
+            vector-effect: non-scaling-stroke;
+            paint-order: stroke;
+        }
+        /* On a phone the inset would crowd the map; hidden below the width
+           where the header collapses to two rows. */
+        @media (max-width: 720px) {
+            #locator { width: 116px; height: 73px; right: 10px; top: 10px; }
+        }
+        @media (max-width: 420px) {
+            #locator { display: none; }
+        }
+
         #zoom-controls {
             position: absolute;
             left: 12px;
@@ -1004,6 +1040,16 @@
                 </g>
             </svg>
 
+            <!-- Locator inset: a thumbnail of the whole region with a box
+                 around the current view. Appears only once zoomed in enough
+                 that the wider context is off-screen. Non-interactive. -->
+            <svg id="locator" viewBox="0 0 975 610" preserveAspectRatio="xMidYMid meet"
+                 aria-hidden="true">
+                <rect class="loc-sea" x="0" y="0" width="975" height="610"></rect>
+                <path id="loc-land"></path>
+                <rect id="loc-box"></rect>
+            </svg>
+
             <div id="zoom-controls">
                 <button id="zc-in" title="Zoom in" aria-label="Zoom in">+</button>
                 <button id="zc-out" title="Zoom out" aria-label="Zoom out">&minus;</button>
@@ -1205,6 +1251,9 @@
         labels:     document.getElementById('label-layer'),
         markers:    document.getElementById('marker-layer'),
         sites:      document.getElementById('site-layer'),
+        locator:    document.getElementById('locator'),
+        locLand:    document.getElementById('loc-land'),
+        locBox:     document.getElementById('loc-box'),
         picker:     document.getElementById('picker'),
         pkList:     document.getElementById('pk-list'),
         reveal:     document.getElementById('reveal'),
@@ -1298,6 +1347,27 @@
         });
     }
 
+    // The inset shares the main map's viewBox, so the current view in map
+    // coordinates is just the transform inverted -- no projection maths. The
+    // box is the slab of the world the main SVG is showing, drawn on the
+    // thumbnail. It appears past LOCATOR_FROM, by which point enough of the
+    // surroundings are off-screen that a player can lose their bearings.
+    const LOCATOR_FROM = 2.5;
+
+    function updateLocator(t) {
+        const on = t.k >= LOCATOR_FROM;
+        els.locator.classList.toggle('show', on);
+        if (!on) return;
+        // Invert the transform at the two screen corners of the viewBox to get
+        // the visible rectangle in map units.
+        const x0 = (0 - t.x) / t.k, y0 = (0 - t.y) / t.k;
+        const x1 = (W - t.x) / t.k, y1 = (H - t.y) / t.k;
+        els.locBox.setAttribute('x', x0);
+        els.locBox.setAttribute('y', y0);
+        els.locBox.setAttribute('width',  Math.max(1, x1 - x0));
+        els.locBox.setAttribute('height', Math.max(1, y1 - y0));
+    }
+
     function scaleWithZoom(k) {
         const labelScale = screenScale(k, LABEL_BOOST, LABEL_GROWTH, LABEL_MAX) / k;
         const siteScale  = screenScale(k, SITE_BOOST, SITE_GROWTH, SITE_MAX) / k;
@@ -1306,6 +1376,8 @@
             const sc = el.classList.contains('site') ? siteScale : labelScale;
             el.setAttribute('transform', `translate(${x},${y}) scale(${sc})`);
         });
+        updateLocator(d3.zoomTransform(els.svg));
+
         // Era visibility is set as an inline style and still wins over this,
         // so a modern label never reappears on the ancient map. The small
         // names arrive a little earlier than they used to, now that they are
@@ -1397,13 +1469,16 @@
         });
     }
 
-    // The landmass, and nothing else. No regions are painted onto it.
+    // The landmass, and nothing else. No regions are painted onto it. The
+    // same path drives the locator inset, which shares this SVG's viewBox.
     function drawLand(countries) {
+        const d = geoPath(countries);
         const land = document.createElementNS(NS, "path");
-        land.setAttribute("d", geoPath(countries));
+        land.setAttribute("d", d);
         land.setAttribute("class", "land");
         land.setAttribute("pointer-events", "none");
         els.ancient.appendChild(land);
+        els.locLand.setAttribute("d", d);
     }
 
     // Rivers as Natural Earth's centrelines, lakes as AWMC's outlines. Both
