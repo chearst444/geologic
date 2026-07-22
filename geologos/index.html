@@ -23,8 +23,10 @@
             --blue-mid:   #2C5B7A;   /* Slate blue  */
             --blue-soft:  #5A87A0;   /* Dusty blue  */
 
-            /* Muted gold: accents, correct guess, borders */
-            --gold-deep:  #A8842E;
+            /* Muted gold: accents, correct guess, borders. The deep gold is
+               nudged darker than the swatch's #A8842E so small type clears
+               4.5:1 -- 5.0 on the white card, 4.4 on parchment. */
+            --gold-deep:  #8A6A20;
             --gold:       #C9A227;
             --gold-soft:  #E0C468;
 
@@ -47,11 +49,25 @@
             --border-anc: #7A6A4F;   /* Ancient borders */
             --river:      #3E7B8C;   /* River lines     */
 
-            /* The palette names no sea. These are Dusty Blue lifted toward
-               white -- 30% for open water, 45% for the lakes -- so the
-               Mediterranean belongs to the same family as everything else. */
-            --water:      #BDCFD9;
-            --water-deep: #9CB7C6;
+            /* The land carries the deep blues, so the sea is the pale one:
+               Dusty Blue lifted most of the way to white, with the lakes a
+               few steps down so they still read against it. */
+            --water:      #E1E9EE;
+            --water-deep: #BDCFD9;
+
+            /* Map fill. The landmass is deep indigo; the regions drawn on it
+               are lighter steps of the same family, so every kingdom reads
+               against the land and against its neighbours. */
+            --land:       #1B3A57;
+            --land-2:     #24486A;
+            --land-3:     #2C5B7A;
+            --land-4:     #40708C;
+            --land-5:     #5A87A0;
+            --land-6:     #7CA0B5;
+
+            /* The palette's river blue is for the pale sea; on indigo land it
+               would disappear, so the lines themselves run a few steps up. */
+            --river-line: #7FB3C4;
         }
 
         * { box-sizing: border-box; }
@@ -350,51 +366,54 @@
 
         /* ---- Map paint ------------------------------------------------- */
         .sea { fill: var(--water); }
-        .land { fill: var(--sand); }
+        .land { fill: var(--land); }
 
         /* Modern era: real borders, four muted tints cycled by index. */
         .country {
-            stroke: rgba(122, 106, 79, 0.55);
+            /* Light hairlines: the ancient border brown is for the ancient
+               map, and would vanish against these fills. */
+            stroke: rgba(245, 238, 221, 0.45);
             stroke-width: 0.6;
             vector-effect: non-scaling-stroke;
             pointer-events: none;
         }
-        .country.t0 { fill: #E8DCC0; }
-        .country.t1 { fill: #DFD1B0; }
-        .country.t2 { fill: #EDE3CB; }
-        .country.t3 { fill: #D9C9A3; }
+        .country.t0 { fill: var(--land); }
+        .country.t1 { fill: var(--land-3); }
+        .country.t2 { fill: var(--land-4); }
+        .country.t3 { fill: var(--land-5); }
 
         /* Ancient era: hand-drawn kingdoms over a single undivided landmass. */
         .realm {
             stroke: var(--border-anc);
-            stroke-opacity: 0.75;
+            stroke-opacity: 0.9;
             stroke-width: 0.8;
             stroke-dasharray: 3 2.5;
             vector-effect: non-scaling-stroke;
-            /* The palette's accents are saturated by design; laid over sand
-               at this weight they settle into map tints rather than shouting. */
-            fill-opacity: 0.45;
+            fill-opacity: 1;
             pointer-events: none;
         }
-        /* Four warm tints and one cool. The cool one is kept for inland
-           kingdoms: a blue region on a coast reads as more sea. */
-        .realm.r0 { fill: #C9A227; }   /* muted gold  */
-        .realm.r1 { fill: #E0C468; }   /* light gold  */
-        .realm.r2 { fill: #C06B45; }   /* clay        */
-        .realm.r3 { fill: #DA9A78; }   /* light clay  */
-        .realm.r4 { fill: #5A87A0; }   /* dusty blue, inland only */
+        /* Five steps up from the indigo land, so a kingdom is told apart by
+           how far it lifts off the landmass rather than by hue. */
+        .realm.r0 { fill: var(--land-3); }
+        .realm.r1 { fill: var(--land-5); }
+        .realm.r2 { fill: var(--land-4); }
+        .realm.r3 { fill: var(--land-6); }
+        .realm.r4 { fill: var(--land-2); }
 
+        /* The lakes take the sea's own pale tone: against indigo land, one
+           water colour reads better than two, and the Dead Sea was sitting
+           too close to Moab's fill. */
         .water-body {
-            fill: var(--water-deep);
+            fill: var(--water);
             stroke: var(--river);
-            stroke-opacity: 0.5;
+            stroke-opacity: 0.55;
             stroke-width: 0.5;
             vector-effect: non-scaling-stroke;
             pointer-events: none;
         }
         .river {
             fill: none;
-            stroke: var(--river);
+            stroke: var(--river-line);
             stroke-width: 1.5;
             stroke-linecap: round;
             stroke-linejoin: round;
@@ -413,8 +432,8 @@
             font-weight: 700;
             letter-spacing: 0.12em;
             text-anchor: middle;
-            fill: var(--border-anc);
-            stroke: var(--sand);
+            fill: var(--parchment-2);
+            stroke: rgba(27, 58, 87, 0.85);
             stroke-width: 2.6px;
         }
         .lbl-country.sm { font-size: 7px; letter-spacing: 0.07em; }
@@ -424,8 +443,8 @@
             font-weight: 700;
             letter-spacing: 0.16em;
             text-anchor: middle;
-            fill: var(--text-main);
-            stroke: var(--sand);
+            fill: var(--parchment-2);
+            stroke: rgba(27, 58, 87, 0.85);
             stroke-width: 2.6px;
         }
         .lbl-realm.sm { font-size: 7.5px; letter-spacing: 0.09em; }
@@ -433,7 +452,7 @@
         .lbl-realm.wide {
             font-size: 13px;
             letter-spacing: 0.42em;
-            fill: rgba(122, 106, 79, 0.55);
+            fill: rgba(232, 220, 192, 0.55);
             stroke-width: 3px;
         }
         .lbl-water {
@@ -445,6 +464,7 @@
             fill: var(--river);
             stroke: var(--water);
             stroke-width: 2.4px;
+            paint-order: stroke;
         }
         .lbl-water.sm { font-size: 6.5px; letter-spacing: 0.04em; }
 
@@ -502,8 +522,8 @@
         #marker-layer { pointer-events: none; }
 
         .guess-x {
-            stroke: var(--clay-deep);
-            stroke-width: 2;
+            stroke: var(--clay-soft);
+            stroke-width: 2.4;
             vector-effect: non-scaling-stroke;
             stroke-linecap: round;
             animation: x-fade 1.6s ease-out forwards;
@@ -518,7 +538,7 @@
            property is not safe across browsers, a transform is. */
         .pin circle.halo {
             fill: none;
-            stroke: var(--gold);
+            stroke: var(--gold-soft);
             stroke-width: 2;
             vector-effect: non-scaling-stroke;
             transform-box: fill-box;
@@ -540,8 +560,8 @@
             font-size: 10px;
             font-weight: 700;
             text-anchor: middle;
-            fill: var(--deep-blue);
-            stroke: var(--parchment);
+            fill: var(--parchment);
+            stroke: rgba(27, 58, 87, 0.9);
             stroke-width: 3px;
         }
 
