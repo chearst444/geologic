@@ -5,30 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="theme-color" content="#F7F0E1">
+    <meta name="theme-color" content="#F5EEDD">
     <title>GeoLogos &mdash; A Biblical Geography Game</title>
     <style>
         :root {
-            /* Warm and earthy: parchment, sand, deep blue, muted gold.
-               Placeholder values -- swap when the exact palette lands. */
-            --parchment:  #F7F0E1;
-            --parchment-2:#EFE4CD;
-            --sand:       #E2D2B0;
-            --sand-deep:  #CDB98F;
-            --gold:       #B4923C;
-            --gold-soft:  #D8BE7A;
-            --deep-blue:  #1D3557;
-            --blue-mid:   #33587F;
-            --blue-soft:  #8AA6C0;
-            --water:      #C9DAE0;
-            --water-deep: #A9C4CE;
-            --clay:       #A8623C;
-            --olive:      #7C8654;
-            --card:       #FFFBF3;
+            /* The palette, from geologos_palette.html. Variable names are the
+               ones the rest of the sheet already used; only the values moved. */
 
-            --text-main:  #2B2317;
-            --text-muted: #7C6E58;
-            --line:       rgba(43, 35, 23, 0.14);
+            /* Background / base */
+            --parchment:  #F5EEDD;   /* Parchment  */
+            --parchment-2:#E8DCC0;   /* Warm sand  */
+            --sand:       #E8DCC0;   /* Warm sand, as the land fill */
+            --sand-deep:  #D9C9A3;   /* Deep sand  */
+
+            /* Deep blues: map fill, headers */
+            --deep-blue:  #1B3A57;   /* Deep indigo */
+            --blue-mid:   #2C5B7A;   /* Slate blue  */
+            --blue-soft:  #5A87A0;   /* Dusty blue  */
+
+            /* Muted gold: accents, correct guess, borders */
+            --gold-deep:  #A8842E;
+            --gold:       #C9A227;
+            --gold-soft:  #E0C468;
+
+            /* Terracotta clay: hover, highlight, secondary accent */
+            --clay-deep:  #9C4A2E;
+            --clay:       #C06B45;
+            --clay-soft:  #DA9A78;
+
+            /* Text */
+            --text-head:  #2C3E50;
+            --text-main:  #4A3B2C;
+            --card:       #FFFFFF;
+            /* Not in the palette: the body brown, lightened, for small print.
+               Dark enough to clear 4.5:1 on warm sand, which the score and
+               streak labels sit on. */
+            --text-muted: #6B5C48;
+            --line:       rgba(74, 59, 44, 0.16);
+
+            /* Map overlay lines */
+            --border-anc: #7A6A4F;   /* Ancient borders */
+            --river:      #3E7B8C;   /* River lines     */
+
+            /* The palette names no sea. These are Dusty Blue lifted toward
+               white -- 30% for open water, 45% for the lakes -- so the
+               Mediterranean belongs to the same family as everything else. */
+            --water:      #BDCFD9;
+            --water-deep: #9CB7C6;
         }
 
         * { box-sizing: border-box; }
@@ -75,7 +98,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(43, 35, 23, 0.10);
+            box-shadow: 0 2px 10px rgba(74, 59, 44, 0.10);
             z-index: 10;
             flex-wrap: wrap;
             gap: 10px;
@@ -100,7 +123,7 @@
             font-family: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
             font-size: 1.5rem;
             letter-spacing: 0.02em;
-            color: var(--deep-blue);
+            color: var(--text-head);
             font-weight: 700;
         }
         h1 span {
@@ -119,7 +142,7 @@
         .pill {
             font-size: 0.95rem;
             font-weight: 700;
-            color: var(--clay);
+            color: var(--clay-deep);
             background: var(--parchment-2);
             border: 1px solid var(--line);
             padding: 6px 14px;
@@ -218,7 +241,7 @@
             background-color: var(--card);
             border-radius: 12px;
             padding: 14px 18px;
-            box-shadow: 0 4px 14px rgba(43, 35, 23, 0.10);
+            box-shadow: 0 4px 14px rgba(74, 59, 44, 0.10);
             border-left: 5px solid var(--gold);
             z-index: 5;
         }
@@ -262,7 +285,7 @@
             line-height: 1.4;
             animation: clue-in 0.28s ease-out;
         }
-        li::marker { color: var(--gold); font-weight: 700; }
+        li::marker { color: var(--gold-deep); font-weight: 700; }
         @keyframes clue-in {
             from { opacity: 0; transform: translateY(-4px); }
             to   { opacity: 1; transform: none; }
@@ -280,7 +303,7 @@
         #miss-note {
             font-size: 0.84rem;
             font-weight: 600;
-            color: var(--clay);
+            color: var(--clay-deep);
             opacity: 0;
             transition: opacity 0.2s;
         }
@@ -319,7 +342,7 @@
             font-size: 1.25rem;
             line-height: 1;
             border-radius: 10px;
-            background: rgba(255, 251, 243, 0.93);
+            background: rgba(255, 255, 255, 0.93);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -331,41 +354,47 @@
 
         /* Modern era: real borders, four muted tints cycled by index. */
         .country {
-            stroke: rgba(43, 35, 23, 0.30);
+            stroke: rgba(122, 106, 79, 0.55);
             stroke-width: 0.6;
             vector-effect: non-scaling-stroke;
             pointer-events: none;
         }
-        .country.t0 { fill: #E2D2B0; }
-        .country.t1 { fill: #D9C9A6; }
-        .country.t2 { fill: #E7DCC0; }
-        .country.t3 { fill: #D2C6A2; }
+        .country.t0 { fill: #E8DCC0; }
+        .country.t1 { fill: #DFD1B0; }
+        .country.t2 { fill: #EDE3CB; }
+        .country.t3 { fill: #D9C9A3; }
 
         /* Ancient era: hand-drawn kingdoms over a single undivided landmass. */
         .realm {
-            stroke: rgba(43, 35, 23, 0.28);
+            stroke: var(--border-anc);
+            stroke-opacity: 0.75;
             stroke-width: 0.8;
             stroke-dasharray: 3 2.5;
             vector-effect: non-scaling-stroke;
-            fill-opacity: 0.55;
+            /* The palette's accents are saturated by design; laid over sand
+               at this weight they settle into map tints rather than shouting. */
+            fill-opacity: 0.45;
             pointer-events: none;
         }
-        .realm.r0 { fill: #B99C5E; }
-        .realm.r1 { fill: #93A26A; }
-        .realm.r2 { fill: #B57F5B; }
-        .realm.r3 { fill: #8FA3B5; }
-        .realm.r4 { fill: #A98CA0; }
+        /* Four warm tints and one cool. The cool one is kept for inland
+           kingdoms: a blue region on a coast reads as more sea. */
+        .realm.r0 { fill: #C9A227; }   /* muted gold  */
+        .realm.r1 { fill: #E0C468; }   /* light gold  */
+        .realm.r2 { fill: #C06B45; }   /* clay        */
+        .realm.r3 { fill: #DA9A78; }   /* light clay  */
+        .realm.r4 { fill: #5A87A0; }   /* dusty blue, inland only */
 
         .water-body {
             fill: var(--water-deep);
-            stroke: var(--water-deep);
+            stroke: var(--river);
+            stroke-opacity: 0.5;
             stroke-width: 0.5;
             vector-effect: non-scaling-stroke;
             pointer-events: none;
         }
         .river {
             fill: none;
-            stroke: var(--water-deep);
+            stroke: var(--river);
             stroke-width: 1.5;
             stroke-linecap: round;
             stroke-linejoin: round;
@@ -384,7 +413,7 @@
             font-weight: 700;
             letter-spacing: 0.12em;
             text-anchor: middle;
-            fill: #6B5C42;
+            fill: var(--border-anc);
             stroke: var(--sand);
             stroke-width: 2.6px;
         }
@@ -395,7 +424,7 @@
             font-weight: 700;
             letter-spacing: 0.16em;
             text-anchor: middle;
-            fill: #5B4526;
+            fill: var(--text-main);
             stroke: var(--sand);
             stroke-width: 2.6px;
         }
@@ -404,7 +433,7 @@
         .lbl-realm.wide {
             font-size: 13px;
             letter-spacing: 0.42em;
-            fill: rgba(91, 69, 38, 0.5);
+            fill: rgba(122, 106, 79, 0.55);
             stroke-width: 3px;
         }
         .lbl-water {
@@ -413,7 +442,7 @@
             font-size: 9px;
             letter-spacing: 0.1em;
             text-anchor: middle;
-            fill: #4E7383;
+            fill: var(--river);
             stroke: var(--water);
             stroke-width: 2.4px;
         }
@@ -438,7 +467,7 @@
             background: var(--card);
             border-radius: 12px;
             border-top: 4px solid var(--gold);
-            box-shadow: 0 14px 34px rgba(29, 53, 87, 0.28);
+            box-shadow: 0 14px 34px rgba(27, 58, 87, 0.28);
             padding: 13px 15px;
             width: min(310px, calc(100% - 28px));
             text-align: center;
@@ -473,7 +502,7 @@
         #marker-layer { pointer-events: none; }
 
         .guess-x {
-            stroke: var(--clay);
+            stroke: var(--clay-deep);
             stroke-width: 2;
             vector-effect: non-scaling-stroke;
             stroke-linecap: round;
@@ -530,7 +559,7 @@
             padding: 16px;
             padding-top: max(16px, env(safe-area-inset-top));
             padding-bottom: max(16px, env(safe-area-inset-bottom));
-            background: rgba(29, 53, 87, 0.44);
+            background: rgba(27, 58, 87, 0.46);
             z-index: 200;
         }
         #reveal.show { display: flex; }
@@ -544,7 +573,7 @@
             flex-direction: column;
             min-height: 0;
             overflow: hidden;
-            box-shadow: 0 24px 48px rgba(29, 53, 87, 0.30);
+            box-shadow: 0 24px 48px rgba(27, 58, 87, 0.30);
             border-top: 5px solid var(--gold);
             animation: card-in 0.32s ease-out;
         }
@@ -567,7 +596,7 @@
             font-family: Georgia, 'Times New Roman', serif;
             font-size: 1.45rem;
             font-weight: 700;
-            color: var(--deep-blue);
+            color: var(--text-head);
             letter-spacing: 0.01em;
         }
         .reveal-sub {
@@ -576,7 +605,7 @@
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--gold);
+            color: var(--gold-deep);
         }
         #rv-close {
             flex: 0 0 auto;
@@ -640,8 +669,8 @@
         }
         #bonus-input:focus { outline: 2px solid var(--gold); outline-offset: -1px; }
         #bonus-result { margin: 8px 0 0; font-size: 0.9rem; font-weight: 700; }
-        #bonus-result.right { color: #4A7A3E; }
-        #bonus-result.miss  { color: var(--clay); }
+        #bonus-result.right { color: var(--gold-deep); }
+        #bonus-result.miss  { color: var(--clay-deep); }
 
         .chips { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
         .chip {
@@ -660,11 +689,11 @@
             color: var(--text-muted);
             margin-bottom: 2px;
         }
-        .chip .v { font-size: 0.92rem; font-weight: 600; color: var(--deep-blue); }
+        .chip .v { font-size: 0.92rem; font-weight: 600; color: var(--text-head); }
 
         #dyk {
             border-left: 4px solid var(--gold);
-            background: #FBF6E9;
+            background: #FAF4E6;
             border-radius: 0 8px 8px 0;
             padding: 10px 12px;
             margin-bottom: 14px;
@@ -676,7 +705,7 @@
             font-size: 0.64rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--gold);
+            color: var(--gold-deep);
             margin-bottom: 4px;
         }
 
@@ -712,7 +741,7 @@
             align-items: center;
             justify-content: center;
             padding: 16px;
-            background: rgba(29, 53, 87, 0.44);
+            background: rgba(27, 58, 87, 0.46);
             z-index: 210;
             text-align: center;
         }
@@ -727,13 +756,13 @@
             margin: 0;
             font-family: Georgia, 'Times New Roman', serif;
             font-size: 1.4rem;
-            color: var(--deep-blue);
+            color: var(--text-head);
         }
         #summary .reveal-sub { margin: 2px 0 0; }
         #summary .big {
             font-size: 2.6rem;
             font-weight: 800;
-            color: var(--clay);
+            color: var(--clay-deep);
             margin: 6px 0 2px;
         }
 
@@ -768,7 +797,7 @@
             min-width: 104px;
             font-size: 0.92rem;
             border-radius: 12px;
-            background: rgba(255, 251, 243, 0.94);
+            background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(2px);
         }
 
@@ -1036,7 +1065,7 @@
         { name: "EGYPT", tint: 1, label: [31.2, 27.2], ring: [
             [29.80,31.40],[32.25,31.25],[32.55,30.10],[33.05,27.60],[33.45,24.60],
             [32.35,24.15],[31.60,25.80],[30.70,28.60],[29.55,30.65] ] },
-        { name: "ASIA MINOR", tint: 3, label: [31.2, 38.9], ring: [
+        { name: "ASIA MINOR", tint: 1, label: [31.2, 38.9], ring: [
             [26.00,40.35],[33.00,41.20],[36.20,40.00],[36.60,37.00],[34.00,36.15],
             [29.00,36.50],[27.20,37.20],[26.20,38.60] ] },
         // Traced loosely down the peninsula: the sea overlay trims it back to
@@ -1045,36 +1074,36 @@
             [10.20,44.00],[13.00,44.30],[13.60,43.00],[14.90,42.10],[16.20,41.50],
             [18.40,40.20],[17.40,39.40],[16.20,38.00],[15.70,38.20],[14.20,40.60],
             [12.40,41.30],[11.00,42.40],[10.10,43.20] ] },
-        { name: "ACHAEA", tint: 4, label: [22.0, 38.6], ring: [
+        { name: "ACHAEA", tint: 3, label: [22.0, 38.6], ring: [
             [20.80,39.60],[23.50,40.20],[24.60,38.00],[23.20,36.40],[21.30,36.60],[20.30,38.30] ] },
         // Philippi and Thessalonica are Macedonia, not Achaea -- Paul's first
         // European church is a province north of the one Athens sits in.
-        { name: "MACEDONIA", tint: 3, label: [22.6, 41.0], sm: true, ring: [
+        { name: "MACEDONIA", tint: 0, label: [22.6, 41.0], sm: true, ring: [
             [20.90,41.10],[23.00,41.40],[25.00,41.20],[25.00,40.60],
             [23.60,40.30],[22.20,40.20],[20.90,40.50] ] },
         // Wound clockwise in lon/lat like every other ring here: d3-geo reads
         // a counter-clockwise ring as the whole sphere minus the shape.
         { name: "ARMENIA", tint: 4, label: [43.4, 40.3], sm: true, ring: [
             [41.80,39.55],[43.00,40.60],[46.10,40.60],[45.60,39.00],[42.50,38.40] ] },
-        { name: "ASSYRIA", tint: 2, label: [41.9, 35.6], ring: [
+        { name: "ASSYRIA", tint: 4, label: [41.9, 35.6], ring: [
             [40.40,36.05],[42.00,37.45],[44.30,37.60],[45.10,36.30],[43.60,34.60],[41.20,34.85] ] },
-        { name: "BABYLONIA", tint: 2, label: [44.9, 32.1], ring: [
+        { name: "BABYLONIA", tint: 3, label: [44.9, 32.1], ring: [
             [42.80,33.60],[45.10,34.20],[47.30,31.20],[46.10,29.85],[43.60,31.20] ] },
         // Susa's home: Esther's city sits east of Babylonia, and the frame
         // only just reaches it.
-        { name: "PERSIA", tint: 4, label: [48.4, 33.0], sm: true, ring: [
+        { name: "PERSIA", tint: 0, label: [48.4, 33.0], sm: true, ring: [
             [47.40,34.00],[49.45,33.60],[49.45,29.80],[47.60,30.00],[47.20,32.00] ] },
-        { name: "SINAI", tint: 0, label: [33.7, 29.5], sm: true, ring: [
+        { name: "SINAI", tint: 2, label: [33.7, 29.5], sm: true, ring: [
             [32.60,30.25],[34.35,31.10],[34.90,29.45],[34.15,27.85],[33.05,28.90] ] },
         // Reaches north-west far enough to take in Antioch, which the batch
         // file places in the Roman province of Syria even though the site is
         // in modern Turkey.
-        { name: "ARAM", tint: 1, label: [37.4, 34.4], ring: [
+        { name: "ARAM", tint: 0, label: [37.4, 34.4], ring: [
             [35.85,36.45],[38.60,35.40],[38.40,33.30],[36.30,32.60],[35.70,33.30] ] },
         // Reaches up the eastern shore to the Madaba plateau, so Mount Nebo
         // falls in Moab as the batch file has it, rather than in the gap
         // between Moab and Gilead.
-        { name: "MOAB & EDOM", tint: 2, label: [36.0, 30.5], sm: true, ring: [
+        { name: "MOAB & EDOM", tint: 3, label: [36.0, 30.5], sm: true, ring: [
             [35.58,31.88],[36.30,31.80],[36.40,29.80],[35.30,29.55],
             [35.15,30.55],[35.45,31.40] ] },
         // The Levantine kingdoms carry a few more vertices than they strictly
@@ -1082,7 +1111,7 @@
         // boxes read as boxes at that range.
         // Runs down to Tyre. Galilee stops inland of it: the coast from Tyre
         // to Sidon is Phoenician, and Tyre was landing in Galilee.
-        { name: "PHOENICIA", tint: 3, label: [35.4, 34.0], sm: true, ring: [
+        { name: "PHOENICIA", tint: 2, label: [35.4, 34.0], sm: true, ring: [
             [35.05,34.60],[35.40,34.62],[35.65,34.50],[35.72,34.00],[35.75,33.60],
             [35.55,33.42],[35.32,33.28],[35.10,33.18] ] },
         // Reaches up to Mount Hermon's foot so Caesarea Philippi sits inside
@@ -1092,15 +1121,15 @@
             [35.70,32.60],[35.35,32.58],[34.98,32.62],[34.96,32.95] ] },
         // The coastal plain, so Joppa and Caesarea are not left on blank land.
         // Samaria's hill country starts inland of it rather than overlapping.
-        { name: "SHARON", tint: 1, label: [34.83, 32.35], sm: true, ring: [
+        { name: "SHARON", tint: 2, label: [34.83, 32.35], sm: true, ring: [
             [34.75,32.66],[34.94,32.62],[34.90,31.98],[34.72,32.00] ] },
-        { name: "GILEAD", tint: 0, label: [36.0, 32.2], sm: true, ring: [
+        { name: "GILEAD", tint: 4, label: [36.0, 32.2], sm: true, ring: [
             [35.62,32.60],[36.00,32.62],[36.35,32.50],[36.38,32.10],[36.28,31.95],
             [35.90,31.92],[35.62,31.98],[35.58,32.20] ] },
         // Samaria and Judah used to overlap along a thin band, which put
         // Bethel inside both. The border now sits just south of Bethel, so it
         // falls in the northern kingdom the way its card has it.
-        { name: "SAMARIA", tint: 4, label: [35.2, 32.3], sm: true, ring: [
+        { name: "SAMARIA", tint: 0, label: [35.2, 32.3], sm: true, ring: [
             [34.98,32.60],[35.25,32.62],[35.55,32.52],[35.60,32.25],[35.55,31.92],
             [35.20,31.90],[34.96,31.94],[34.94,32.28] ] },
         // North edge sits just over Mizpah, west edge just past Beersheba --
@@ -1109,7 +1138,7 @@
         // The west edge bulges east around the Philistine cities and dips back
         // out over Beersheba; the north edge sits just over Ramah and Mizpah,
         // with Bethel and Ai north of it.
-        { name: "JUDAH", tint: 2, label: [35.1, 31.5], sm: true, ring: [
+        { name: "JUDAH", tint: 1, label: [35.1, 31.5], sm: true, ring: [
             [34.95,31.90],[35.20,31.91],[35.50,31.88],[35.55,31.35],[35.30,30.95],
             [34.98,31.05],[34.74,31.22],[34.84,31.45],[34.92,31.70] ] },
         // Stops short of Judah's western edge: overlapping the two put a
