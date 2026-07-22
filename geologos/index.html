@@ -529,6 +529,22 @@
             vector-effect: non-scaling-stroke;
         }
         /* The answered one stays lit for the rest of the round. */
+        /* Study mode writes every site's name on the map. Hidden the rest of
+           the time: naming them during play would print the answers. */
+        .site-name {
+            display: none;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 7.5px;
+            font-weight: 700;
+            text-anchor: middle;
+            fill: #33281A;
+            stroke: var(--land);
+            stroke-width: 2.4px;
+            paint-order: stroke;
+        }
+        html.study .site-name { display: block; }
+        html.study .site-name.crowded { display: none; }
+
         /* Gold sits at almost exactly the brightness of the brown land, so
            the answered site differs in weight, not only in hue. */
         .site.found .site-dot {
@@ -955,6 +971,7 @@
                 <option value="Mesopotamia &amp; the East">Mesopotamia &amp; the East</option>
                 <option value="Greece, Rome &amp; Asia Minor">Greece, Rome &amp; Asia Minor</option>
             </select>
+            <button class="js-study" aria-pressed="false">Study map</button>
             <button class="js-skip">Skip &rarr;</button>
         </div>
     </header>
@@ -1260,6 +1277,27 @@
         return Math.min(cap, boost * Math.pow(k, growth));
     }
 
+    // With 93 names on at once the Levant is a stack of type, so the names
+    // are thinned greedily: walk them in order and drop any that would land
+    // on one already kept. Batch order puts Jerusalem and Bethlehem first, so
+    // the famous places are the ones that survive the thinning.
+    const NAME_SPACING = 52;
+
+    function declutterNames(k) {
+        if (!studyMode) return;
+        const t = d3.zoomTransform(els.svg);
+        const kept = [];
+        els.sites.querySelectorAll('.site').forEach(g => {
+            const name = g.querySelector('.site-name');
+            if (!name) return;
+            const [ax, ay] = g.__anchor;
+            const x = t.applyX(ax), y = t.applyY(ay);
+            const clash = kept.some(p => Math.hypot(p[0] - x, p[1] - y) < NAME_SPACING);
+            name.classList.toggle('crowded', clash);
+            if (!clash) kept.push([x, y]);
+        });
+    }
+
     function scaleWithZoom(k) {
         const labelScale = screenScale(k, LABEL_BOOST, LABEL_GROWTH, LABEL_MAX) / k;
         const siteScale  = screenScale(k, SITE_BOOST, SITE_GROWTH, SITE_MAX) / k;
@@ -1276,6 +1314,7 @@
         els.labels.querySelectorAll('.sm').forEach(t => {
             t.classList.toggle('zoom-hidden', !roomy);
         });
+        declutterNames(k);
     }
 
     // ---- Game state -----------------------------------------------------
@@ -1290,6 +1329,7 @@
     let clueQueue = [];
     let shown = 0;
     let locked = false;      // true once the round is answered
+    let studyMode = false;   // browsing the named map; nothing is scored
 
     // ---- Load data ------------------------------------------------------
     Promise.all([
@@ -1405,6 +1445,16 @@
                 dot.setAttribute("class", "site-dot");
                 dot.setAttribute("r", 2.6);
                 g.appendChild(dot);
+
+                // Only the middle anchor of a traced feature carries the name,
+                // so the Jordan is labelled once rather than five times.
+                if (at === loc.at[Math.floor(loc.at.length / 2)]) {
+                    const t = document.createElementNS(NS, "text");
+                    t.setAttribute("class", "site-name");
+                    t.setAttribute("y", -6.5);
+                    t.textContent = loc.place;
+                    g.appendChild(t);
+                }
 
                 g.dataset.place = loc.place;
                 els.sites.appendChild(g);
@@ -1637,7 +1687,7 @@
     // it behaves identically whether or not the target is one of the places
     // under the cursor.
     function handleGuess(lonlat, xy) {
-        if (locked) return;
+        if (locked || studyMode) return;
         closePicker();
 
         const k = d3.zoomTransform(els.svg).k;
@@ -1812,6 +1862,39 @@
         svgSel.transition().duration(900).call(zoom.transform, t);
     }
 
+    // Study mode is the labelled atlas. It abandons the round on the way in
+    // -- otherwise it would be a way to read the current answer off the map --
+    // and deals a fresh place on the way out, so nothing is learned about the
+    // place you were on.
+    function toggleStudy() {
+        studyMode = !studyMode;
+        document.documentElement.classList.toggle('study', studyMode);
+        document.querySelectorAll('.js-study').forEach(b => {
+            b.classList.toggle('on', studyMode);
+            b.setAttribute('aria-pressed', String(studyMode));
+            // Label stays put: a button that changes width re-flows the header
+            // every time it is pressed. The lit state says it is on.
+            b.textContent = 'Study map';
+        });
+
+        if (studyMode) {
+            locked = true;                       // no guessing while browsing
+            closePicker();
+            els.reveal.classList.remove('show');
+            els.summary.classList.remove('show');
+            setNote('Every place named. Nothing is scored — press again to play.', 'info');
+            els.clues.innerHTML = '';
+            els.clueTitle.textContent = 'Study map';
+            els.progress.textContent = '';
+            document.querySelectorAll('.js-next-clue, .js-skip').forEach(b => b.disabled = true);
+            declutterNames(d3.zoomTransform(els.svg).k);
+        } else {
+            document.querySelectorAll('.js-skip').forEach(b => b.disabled = false);
+            setNote('');
+            nextPlace();                         // a fresh place, unspoiled
+        }
+    }
+
     function skipRound() {
         if (locked) return;
         locked = true;
@@ -1945,6 +2028,7 @@
     const zoomBy = (k) => svgSel.transition().duration(250).call(zoom.scaleBy, k);
 
     document.querySelectorAll('.js-skip').forEach(b => b.addEventListener('click', skipRound));
+    document.querySelectorAll('.js-study').forEach(b => b.addEventListener('click', toggleStudy));
     document.querySelectorAll('.js-next-clue').forEach(b => b.addEventListener('click', () => {
         if (!locked) revealClue();
     }));
@@ -1988,6 +2072,7 @@
             case '-': case '_': zoomBy(1 / 1.8); break;
             case '0': resetView(400); break;
             case 's': case 'S': skipRound(); break;
+            case 'm': case 'M': toggleStudy(); break;
             case 'e': case 'E': setEra({ ot: 'nt', nt: 'modern', modern: 'ot' }[era]); break;
             case 'n': case 'N':
                 if (els.reveal.classList.contains('show')) nextPlace();
