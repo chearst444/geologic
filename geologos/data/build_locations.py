@@ -85,6 +85,34 @@ GEO = {
     # Two peaks flanking Shechem, and one entry covering both.
     "Mount Gerizim / Mount Ebal": dict(at=[[35.2733, 32.2003], [35.2769, 32.2350]],
                                        radiusKm=2.5, group=HOLY),
+
+    # ---- batch 3 -----------------------------------------------------------
+    # The Upper Room is a fifth entry inside Jerusalem's old city, 750 m from
+    # Golgotha; Sychar's well is 570 m from Shechem. Both stay where they are.
+    "Upper Room (Jerusalem)": dict(at=[[35.2292, 31.7717]], radiusKm=0.6, group=HOLY),
+    "Sychar (Jacob's Well)":  dict(at=[[35.2839, 32.2094]], radiusKm=1.5, group=HOLY),
+
+    "Joppa":            dict(at=[[34.7519, 32.0533]], radiusKm=8,  group=HOLY),
+    "Caesarea Philippi":dict(at=[[35.6944, 33.2486]], radiusKm=8,  group=HOLY),
+    "Samaria (city)":   dict(at=[[35.1919, 32.2792]], radiusKm=6,  group=HOLY),
+    "Mount Hermon":     dict(at=[[35.8572, 33.4164]], radiusKm=12, group=HOLY),
+    "Bethel":           dict(at=[[35.2361, 31.9308]], radiusKm=5,  group=HOLY),
+    "Peniel / Jabbok":  dict(at=[[35.6800, 32.1800]], radiusKm=6,  group=HOLY),
+    "Dothan":           dict(at=[[35.2222, 32.4111]], radiusKm=6,  group=HOLY),
+    "Ashkelon":         dict(at=[[34.5500, 31.6667]], radiusKm=8,  group=HOLY),
+    "Kadesh-Barnea":    dict(at=[[34.4167, 30.6833]], radiusKm=15, group=EGYPT),
+
+    # Paul's first journey through Lycaonia and Phrygia, and the churches of
+    # Revelation -- Ephesus is already in batch 1.
+    "Lystra":                   dict(at=[[32.4550, 37.5800]], radiusKm=12, group=ASIA),
+    "Derbe":                    dict(at=[[33.3167, 37.3500]], radiusKm=12, group=ASIA),
+    "Iconium":                  dict(at=[[32.4833, 37.8667]], radiusKm=15, group=ASIA),
+    "Colossae":                 dict(at=[[29.2600, 37.7900]], radiusKm=7,  group=ASIA),
+    "Laodicea":                 dict(at=[[29.1078, 37.8361]], radiusKm=7,  group=ASIA),
+    "Smyrna":                   dict(at=[[27.1428, 38.4192]], radiusKm=15, group=ASIA),
+    "Pergamum":                 dict(at=[[27.1833, 39.1200]], radiusKm=12, group=ASIA),
+    "Sardis":                   dict(at=[[28.0400, 38.4886]], radiusKm=10, group=ASIA),
+    "Philadelphia (Asia Minor)":dict(at=[[28.5167, 38.3500]], radiusKm=10, group=ASIA),
     # The lake itself, anchored out on the water: Capernaum sits on its
     # northern shore and has to stay tellable from it.
     "Sea of Galilee": dict(at=[[35.5900, 32.8000], [35.5600, 32.8600],
@@ -93,7 +121,8 @@ GEO = {
 }
 
 src = {"locations": []}
-for name in ("bible_facts_batch1.json", "bible_facts_batch2.json"):
+for name in ("bible_facts_batch1.json", "bible_facts_batch2.json",
+             "bible_facts_batch3.json"):
     src["locations"] += json.loads((ROOT / name).read_text())["locations"]
 
 out = []
@@ -113,8 +142,9 @@ for loc in src["locations"]:
     ))
 
 doc = collections.OrderedDict(
-    source=["bible_facts_batch1.json", "bible_facts_batch2.json"],
-    notes=("Playable form of both batches. Clues, modernCountry, ancientRegion "
+    source=["bible_facts_batch1.json", "bible_facts_batch2.json",
+            "bible_facts_batch3.json"],
+    notes=("Playable form of every batch. Clues, modernCountry, ancientRegion "
            "and didYouKnow are verbatim from the source batches; `at` (real "
            "lon/lat anchors), `radiusKm` (click tolerance) and `group` (round "
            "filter) were added so the location can be found on the map. "

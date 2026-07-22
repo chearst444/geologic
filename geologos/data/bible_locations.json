@@ -1,9 +1,10 @@
 {
   "source": [
     "bible_facts_batch1.json",
-    "bible_facts_batch2.json"
+    "bible_facts_batch2.json",
+    "bible_facts_batch3.json"
   ],
-  "notes": "Playable form of both batches. Clues, modernCountry, ancientRegion and didYouKnow are verbatim from the source batches; `at` (real lon/lat anchors), `radiusKm` (click tolerance) and `group` (round filter) were added so the location can be found on the map. Regenerate with build_locations.py; do not hand-edit.",
+  "notes": "Playable form of every batch. Clues, modernCountry, ancientRegion and didYouKnow are verbatim from the source batches; `at` (real lon/lat anchors), `radiusKm` (click tolerance) and `group` (round filter) were added so the location can be found on the map. Regenerate with build_locations.py; do not hand-edit.",
   "locations": [
     {
       "place": "Jerusalem",
@@ -880,6 +881,406 @@
         "It's one of the oldest continuously inhabited cities in the world."
       ],
       "didYouKnow": "The Cave of the Patriarchs in Hebron is considered sacred by Jews, Christians, and Muslims alike."
+    },
+    {
+      "place": "Joppa",
+      "modernCountry": "Israel",
+      "ancientRegion": "Canaan/Judah (coast)",
+      "group": "The Holy Land",
+      "at": [
+        [
+          34.7519,
+          32.0533
+        ]
+      ],
+      "radiusKm": 8,
+      "clues": [
+        "A prophet boarded a ship here trying to sail as far from Nineveh as possible.",
+        "That prophet, Jonah, was thrown overboard and swallowed by a great fish soon after leaving this port.",
+        "Peter had a rooftop vision here of a sheet full of animals, teaching him not to call anyone unclean.",
+        "It's an ancient port city on the Mediterranean coast, part of modern-day Tel Aviv-Jaffa."
+      ],
+      "didYouKnow": "Joppa is one of the oldest port cities in the world, with harbor use dating back thousands of years before Jonah."
+    },
+    {
+      "place": "Caesarea Philippi",
+      "modernCountry": "Israel/Golan Heights",
+      "ancientRegion": "Galilee (northern border)",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.6944,
+          33.2486
+        ]
+      ],
+      "radiusKm": 8,
+      "clues": [
+        "Jesus asked his disciples here, 'Who do people say that I am?'",
+        "Peter made his famous declaration here, calling Jesus 'the Christ, the Son of the living God.'",
+        "Jesus said he would build his church on this confession, 'the rock.'",
+        "It sat near the base of Mount Hermon, at the northern edge of Israel's territory."
+      ],
+      "didYouKnow": "The site was historically associated with pagan worship, including a shrine to the Greek god Pan, before this conversation took place there."
+    },
+    {
+      "place": "Upper Room (Jerusalem)",
+      "modernCountry": "Israel",
+      "ancientRegion": "Judea",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2292,
+          31.7717
+        ]
+      ],
+      "radiusKm": 0.6,
+      "clues": [
+        "Jesus washed his disciples' feet in this room the night before his crucifixion.",
+        "He shared the Last Supper with his disciples here, instituting what became communion.",
+        "The disciples were gathered here in fear after the crucifixion when the risen Jesus appeared among them.",
+        "The Holy Spirit famously descended on the believers gathered here at Pentecost."
+      ],
+      "didYouKnow": "The same room is traditionally believed to be the site of both the Last Supper and the Day of Pentecost."
+    },
+    {
+      "place": "Samaria (city)",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Samaria",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.1919,
+          32.2792
+        ]
+      ],
+      "radiusKm": 6,
+      "clues": [
+        "It served as the capital of the Northern Kingdom of Israel after splitting from Judah.",
+        "Ahab and Jezebel ruled from this city, promoting the worship of Baal.",
+        "Elisha performed several miracles in and around this city during a siege.",
+        "Philip preached here after the early church scattered, and many believed."
+      ],
+      "didYouKnow": "Samaria was founded by King Omri, who purchased the hill it sits on specifically to build his new capital."
+    },
+    {
+      "place": "Sychar (Jacob's Well)",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Samaria",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2839,
+          32.2094
+        ]
+      ],
+      "radiusKm": 1.5,
+      "clues": [
+        "Jesus, tired from his journey, sat down and rested at a well here around noon.",
+        "He asked a Samaritan woman drawing water for a drink, crossing a deep cultural divide.",
+        "He told her about 'living water' that would become a spring welling up to eternal life.",
+        "The well here was traditionally linked back to the patriarch Jacob."
+      ],
+      "didYouKnow": "Jews and Samaritans typically avoided each other entirely at the time, making this conversation especially remarkable."
+    },
+    {
+      "place": "Kadesh-Barnea",
+      "modernCountry": "Egypt/Israel border",
+      "ancientRegion": "Wilderness of Zin",
+      "group": "Egypt & Sinai",
+      "at": [
+        [
+          34.4167,
+          30.6833
+        ]
+      ],
+      "radiusKm": 15,
+      "clues": [
+        "Twelve spies were sent out from here to scout the Promised Land.",
+        "Ten of them returned with a fearful report, causing the people to despair and rebel.",
+        "Because of that rebellion, Israel wandered the wilderness for 40 years instead of entering the land directly.",
+        "It sat on the edge of the wilderness, near the southern border of Canaan."
+      ],
+      "didYouKnow": "Kadesh-Barnea also later became the site where Moses struck a rock in anger, an act that cost him entry into the Promised Land himself."
+    },
+    {
+      "place": "Mount Hermon",
+      "modernCountry": "Lebanon/Syria/Israel",
+      "ancientRegion": "Northern border of Israel",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.8572,
+          33.4164
+        ]
+      ],
+      "radiusKm": 12,
+      "clues": [
+        "Jesus was transfigured on a high mountain traditionally identified as this one.",
+        "His face shone like the sun and his clothes became dazzling white here.",
+        "Moses and Elijah appeared beside him, speaking with him on this mountaintop.",
+        "It's the tallest mountain in the region, its snowmelt feeding the Jordan River."
+      ],
+      "didYouKnow": "Mount Hermon's peak is snow-capped much of the year, making it visible from great distances across the region."
+    },
+    {
+      "place": "Bethel",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Canaan/Israel",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2361,
+          31.9308
+        ]
+      ],
+      "radiusKm": 5,
+      "clues": [
+        "Jacob dreamed of a ladder reaching to heaven with angels ascending and descending here.",
+        "He woke and declared, 'Surely the Lord is in this place, and I did not know it.'",
+        "He set up a stone pillar and renamed the place, which means 'house of God.'",
+        "It later became one of two rival worship centers in the divided Northern Kingdom."
+      ],
+      "didYouKnow": "Bethel was originally called Luz before Jacob renamed it after his dream."
+    },
+    {
+      "place": "Peniel / Jabbok",
+      "modernCountry": "Jordan",
+      "ancientRegion": "Transjordan",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.68,
+          32.18
+        ]
+      ],
+      "radiusKm": 6,
+      "clues": [
+        "Jacob wrestled all night with a mysterious figure at this river crossing.",
+        "His hip was wrenched out of joint during the struggle, leaving him with a permanent limp.",
+        "He was given a new name here, Israel, meaning 'he struggles with God.'",
+        "It sat along a tributary of the Jordan River, on Jacob's return journey to Canaan."
+      ],
+      "didYouKnow": "Jacob named the site Peniel, meaning 'face of God,' saying he had seen God face to face and survived."
+    },
+    {
+      "place": "Dothan",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Canaan/Israel",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2222,
+          32.4111
+        ]
+      ],
+      "radiusKm": 6,
+      "clues": [
+        "Joseph was sent by his father to check on his brothers' flocks near this town.",
+        "His brothers spotted him from a distance and plotted against him here.",
+        "He was thrown into a pit and later sold into slavery to traders passing through.",
+        "It sat along a major trade route linking Canaan to Egypt."
+      ],
+      "didYouKnow": "Dothan is also where Elisha's servant saw the surrounding hills full of horses and chariots of fire once his eyes were opened."
+    },
+    {
+      "place": "Lystra",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Lycaonia (Roman province of Galatia)",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          32.455,
+          37.58
+        ]
+      ],
+      "radiusKm": 12,
+      "clues": [
+        "Paul healed a man who had been lame from birth in this city.",
+        "The crowds mistook Paul and Barnabas for Greek gods and tried to offer sacrifices to them.",
+        "Paul was later stoned here and left for dead, only to get up and walk back into the city.",
+        "Timothy, one of Paul's closest companions, was from this city."
+      ],
+      "didYouKnow": "The crowd specifically called Barnabas 'Zeus' and Paul 'Hermes,' since Paul was the main speaker."
+    },
+    {
+      "place": "Derbe",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Lycaonia (Roman province of Galatia)",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          33.3167,
+          37.35
+        ]
+      ],
+      "radiusKm": 12,
+      "clues": [
+        "Paul fled here after being stoned in a nearby city.",
+        "It served as a safer stop where Paul and Barnabas made many disciples.",
+        "It was one of the final stops on Paul's first missionary journey before turning back.",
+        "It sat in the region of Lycaonia, in what is now south-central Turkey."
+      ],
+      "didYouKnow": "Derbe was likely chosen partly because it sat just outside the direct jurisdiction of the officials who had Paul stoned in Lystra."
+    },
+    {
+      "place": "Iconium",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Phrygia/Galatia",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          32.4833,
+          37.8667
+        ]
+      ],
+      "radiusKm": 15,
+      "clues": [
+        "Paul and Barnabas preached in the synagogue here, and a great number of Jews and Greeks believed.",
+        "The city became divided, with some siding with the apostles and others plotting to stone them.",
+        "Paul and Barnabas fled here after learning of the plot against their lives.",
+        "It was one of the main cities on Paul's first missionary journey through Asia Minor."
+      ],
+      "didYouKnow": "Iconium survives today as the modern Turkish city of Konya."
+    },
+    {
+      "place": "Colossae",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Phrygia (Roman province of Asia)",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          29.26,
+          37.79
+        ]
+      ],
+      "radiusKm": 7,
+      "clues": [
+        "Paul wrote a letter to the church in this city while imprisoned, though he had likely never visited in person.",
+        "The letter warned against false teachings blending philosophy and religious ritual.",
+        "Epaphras, a local believer, is credited with founding the church here.",
+        "It sat along the Lycus River valley in the Roman province of Asia."
+      ],
+      "didYouKnow": "Colossae was a declining town by Paul's time, already overshadowed by its larger neighbors Laodicea and Hierapolis."
+    },
+    {
+      "place": "Laodicea",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Phrygia (Roman province of Asia)",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          29.1078,
+          37.8361
+        ]
+      ],
+      "radiusKm": 7,
+      "clues": [
+        "This church was famously rebuked in Revelation for being 'lukewarm, neither cold nor hot.'",
+        "It was told it was actually 'wretched, poor, blind, and naked' despite believing itself wealthy.",
+        "It's one of the seven churches addressed directly in the Book of Revelation.",
+        "It was a genuinely wealthy banking and textile city in the Roman province of Asia."
+      ],
+      "didYouKnow": "Laodicea's real water supply came through pipes from nearby hot springs, arriving lukewarm by the time it reached the city, likely the inspiration behind the famous rebuke."
+    },
+    {
+      "place": "Smyrna",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Ionia (Roman province of Asia)",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          27.1428,
+          38.4192
+        ]
+      ],
+      "radiusKm": 15,
+      "clues": [
+        "This church was told it would suffer persecution but to remain faithful even unto death.",
+        "It was promised a 'crown of life' for enduring hardship.",
+        "It's one of only two of the seven churches in Revelation to receive no criticism at all.",
+        "It survives today as the modern Turkish city of Izmir."
+      ],
+      "didYouKnow": "Smyrna is one of the very few ancient cities named in the Bible that has remained a major, continuously inhabited city right up to today."
+    },
+    {
+      "place": "Pergamum",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Mysia (Roman province of Asia)",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          27.1833,
+          39.12
+        ]
+      ],
+      "radiusKm": 12,
+      "clues": [
+        "This church was described as dwelling 'where Satan's throne is.'",
+        "It was warned against followers of Balaam and the Nicolaitans within its ranks.",
+        "It's one of the seven churches addressed directly in the Book of Revelation.",
+        "It was home to a massive altar to Zeus and a famous library that once rivaled Alexandria's."
+      ],
+      "didYouKnow": "Pergamum's great library was so renowned that parchment itself is believed to take its name from the city."
+    },
+    {
+      "place": "Sardis",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Lydia (Roman province of Asia)",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          28.04,
+          38.4886
+        ]
+      ],
+      "radiusKm": 10,
+      "clues": [
+        "This church was told, 'You have a reputation of being alive, but you are dead.'",
+        "It was urged to wake up and strengthen what little remained before it died out completely.",
+        "It's one of the seven churches addressed directly in the Book of Revelation.",
+        "It was once the wealthy capital of the ancient kingdom of Lydia."
+      ],
+      "didYouKnow": "Sardis was famously captured twice in history by enemies who scaled its supposedly unassailable cliffs while its guards weren't watching, a detail echoed in Revelation's warning to 'wake up.'"
+    },
+    {
+      "place": "Philadelphia (Asia Minor)",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Lydia (Roman province of Asia)",
+      "group": "Greece & Asia Minor",
+      "at": [
+        [
+          28.5167,
+          38.35
+        ]
+      ],
+      "radiusKm": 10,
+      "clues": [
+        "This church was told God had set before it 'an open door that no one can shut.'",
+        "It's one of only two of the seven churches in Revelation to receive no criticism at all.",
+        "It was praised for keeping God's word despite having 'little strength.'",
+        "It survives today as the modern Turkish city of Alaşehir."
+      ],
+      "didYouKnow": "This ancient Philadelphia predates the American city by well over a thousand years, and both names mean 'brotherly love' in Greek."
+    },
+    {
+      "place": "Ashkelon",
+      "modernCountry": "Israel",
+      "ancientRegion": "Philistia",
+      "group": "The Holy Land",
+      "at": [
+        [
+          34.55,
+          31.6667
+        ]
+      ],
+      "radiusKm": 8,
+      "clues": [
+        "This was one of the five major cities of the Philistines along the coast.",
+        "Samson killed thirty men here after losing a riddle bet at his wedding feast.",
+        "David lamented that news of Saul and Jonathan's deaths should not be told in its streets.",
+        "It sat on the Mediterranean coast, west of Jerusalem."
+      ],
+      "didYouKnow": "Ashkelon is one of the oldest and largest seaports discovered in the ancient world, with harbor use dating back over 3,000 years."
     }
   ]
 }
