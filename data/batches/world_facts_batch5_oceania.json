@@ -1,0 +1,36 @@
+{
+  "batch": "Oceania",
+  "notes": "4 clues per country, ordered hardest/most obscure -> most obvious, matching the format of all previous batches. This completes the full 152-entry set alongside Americas, Europe, Africa, and Asia.",
+  "countries": [
+    {"country": "Australia", "capital": "Canberra", "clues": [
+      "Its capital was purpose-built as a compromise between two rival cities, Sydney and Melbourne.",
+      "It's the only country that is also an entire continent.",
+      "It's home to more venomous snake species than any other country.",
+      "It's famous for kangaroos, koalas, and the Sydney Opera House."
+    ]},
+    {"country": "New Zealand", "capital": "Wellington", "clues": [
+      "It's home to more sheep than people, though the ratio has shrunk over the decades.",
+      "It was the first country in the world to grant women the right to vote, in 1893.",
+      "Its capital is widely considered the windiest city in the world.",
+      "It's made up of two main islands in the South Pacific, southeast of Australia."
+    ]},
+    {"country": "Papua New Guinea", "capital": "Port Moresby", "clues": [
+      "It's one of the most linguistically diverse countries in the world, with over 800 languages spoken.",
+      "It shares its island with Indonesia, split roughly down the middle.",
+      "Much of its interior remains covered by dense, largely unexplored rainforest.",
+      "It sits just north of Australia in the South Pacific."
+    ]},
+    {"country": "Fiji", "capital": "Suva", "clues": [
+      "It's made up of more than 300 islands, though only about a third are inhabited.",
+      "It sits directly on the 180th meridian, near the International Date Line.",
+      "It's one of the most visited island nations in the South Pacific for tourism.",
+      "It's an island country east of Australia."
+    ]},
+    {"country": "Solomon Is.", "capital": "Honiara", "clues": [
+      "It was the site of some of the fiercest Pacific battles of World War II, including Guadalcanal.",
+      "It's made up of nearly 1,000 islands.",
+      "Its capital is named after a nearby mountain range and river.",
+      "It sits in the South Pacific, northeast of Australia."
+    ]}
+  ]
+}

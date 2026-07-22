@@ -1,0 +1,240 @@
+{
+  "batch": "Europe",
+  "notes": "4 clues per country, ordered hardest/most obscure -> most obvious. Includes duplicate-name aliases from the original DATA object (Czechia/Czech Rep., North Macedonia/Macedonia) so both keys resolve to the same facts.",
+  "countries": [
+    {"country": "United Kingdom", "capital": "London", "clues": [
+      "It's made up of four constituent nations under one crown.",
+      "It's home to the world's oldest underground railway system, opened in 1863.",
+      "It gave the world the sport of football (soccer) in its modern codified form.",
+      "Big Ben and the Houses of Parliament sit along its river Thames."
+    ]},
+    {"country": "France", "capital": "Paris", "clues": [
+      "It's the most visited country in the world by international tourists.",
+      "It's home to the world's most-visited museum, the Louvre.",
+      "The metric system was created here in the 1790s.",
+      "The Eiffel Tower stands in its capital."
+    ]},
+    {"country": "Germany", "capital": "Berlin", "clues": [
+      "It's home to Oktoberfest, the world's largest beer festival.",
+      "It has no overall speed limit on many stretches of its highway system, the Autobahn.",
+      "It's the most populous country in the European Union.",
+      "Its capital was once divided by a famous wall."
+    ]},
+    {"country": "Spain", "capital": "Madrid", "clues": [
+      "It's home to more UNESCO World Heritage Sites than almost any other country.",
+      "It's the world's leading producer of olive oil.",
+      "Its capital, at over 2,100 feet, is one of the highest-elevation capitals in Europe.",
+      "Flamenco and bullfighting are two of its best-known cultural traditions."
+    ]},
+    {"country": "Portugal", "capital": "Lisbon", "clues": [
+      "It's the oldest nation-state in Europe with unchanged borders, dating to the 12th century.",
+      "It's the world's largest producer of cork.",
+      "Its explorers helped kick off the Age of Discovery in the 15th century.",
+      "It sits on the westernmost edge of mainland Europe."
+    ]},
+    {"country": "Italy", "capital": "Rome", "clues": [
+      "It's home to more UNESCO World Heritage Sites than any other country on Earth.",
+      "Two entire independent countries, Vatican City and San Marino, sit within its borders.",
+      "It's shaped like a boot on the map.",
+      "Its capital is home to the Colosseum."
+    ]},
+    {"country": "Ireland", "capital": "Dublin", "clues": [
+      "It's nicknamed the Emerald Isle for its lush green countryside.",
+      "Halloween traditions trace back largely to ancient Celtic festivals held here.",
+      "It's home to the Guinness Storehouse, one of its most visited attractions.",
+      "It shares its island with Northern Ireland, part of the UK."
+    ]},
+    {"country": "Netherlands", "capital": "Amsterdam", "clues": [
+      "Roughly a quarter of its land sits below sea level, held back by dikes.",
+      "It's the world's second-largest exporter of food by value, despite its small size.",
+      "It's world-famous for tulips and windmills.",
+      "Amsterdam, its capital, is known for its canals."
+    ]},
+    {"country": "Belgium", "capital": "Brussels", "clues": [
+      "It's headquarters to both the European Union and NATO.",
+      "It's famous worldwide for its chocolate, waffles, and beer.",
+      "It has three official languages: Dutch, French, and German.",
+      "It sits between France, Germany, and the Netherlands."
+    ]},
+    {"country": "Switzerland", "capital": "Bern", "clues": [
+      "It has remained militarily neutral in every major European conflict since 1815.",
+      "It has four official languages: German, French, Italian, and Romansh.",
+      "It's home to CERN, where the World Wide Web was invented.",
+      "It's famous for chocolate, watches, and the Alps."
+    ]},
+    {"country": "Austria", "capital": "Vienna", "clues": [
+      "It's the birthplace of composers Mozart and Beethoven's adopted musical home.",
+      "Its capital has been ranked one of the world's most livable cities for years running.",
+      "It's home to some of the oldest ski resorts in the world.",
+      "It sits in the heart of the Alps in Central Europe."
+    ]},
+    {"country": "Poland", "capital": "Warsaw", "clues": [
+      "Its capital was almost entirely rebuilt after being nearly destroyed in World War II.",
+      "It's the birthplace of Marie Curie, the first person to win Nobel Prizes in two sciences.",
+      "It's home to one of the oldest salt mines in the world, carved with underground chapels.",
+      "It borders Germany to the west."
+    ]},
+    {"country": "Ukraine", "capital": "Kyiv", "clues": [
+      "It's the largest country entirely within Europe by land area.",
+      "It's historically known as the 'breadbasket of Europe' for its fertile farmland.",
+      "Its capital is one of the oldest cities in Eastern Europe.",
+      "It borders Russia to the east and Poland to the west."
+    ]},
+    {"country": "Sweden", "capital": "Stockholm", "clues": [
+      "It's home to the Nobel Prize ceremony, awarded here every year (except the Peace Prize).",
+      "It gave the world IKEA and Spotify.",
+      "Its capital is built across 14 islands.",
+      "It's the largest country in Scandinavia."
+    ]},
+    {"country": "Norway", "capital": "Oslo", "clues": [
+      "It's famous for its fjords, deep coastal inlets carved by glaciers.",
+      "It awards the Nobel Peace Prize, even though the rest are awarded in Sweden.",
+      "Parts of it experience the midnight sun in summer, with sunlight nearly around the clock.",
+      "It sits along Scandinavia's western coast."
+    ]},
+    {"country": "Finland", "capital": "Helsinki", "clues": [
+      "It's home to more saunas than cars.",
+      "It's often ranked the happiest country in the world.",
+      "It gave the world Nokia and, before that, Angry Birds.",
+      "It borders Russia and shares Scandinavia's Nordic identity."
+    ]},
+    {"country": "Denmark", "capital": "Copenhagen", "clues": [
+      "It's the birthplace of Lego.",
+      "Greenland, the world's largest island, is part of its kingdom.",
+      "It's home to Hans Christian Andersen, author of 'The Little Mermaid.'",
+      "It's one of the smallest of the Nordic countries by land area."
+    ]},
+    {"country": "Iceland", "capital": "Reykjavík", "clues": [
+      "It runs almost entirely on renewable geothermal and hydroelectric power.",
+      "It has no standing army.",
+      "It's home to more active volcanoes per square mile than almost anywhere else.",
+      "Its capital is the northernmost capital of a sovereign country in the world."
+    ]},
+    {"country": "Greece", "capital": "Athens", "clues": [
+      "It's considered the birthplace of democracy.",
+      "It's home to more islands than any other country in the Mediterranean, over 6,000.",
+      "The original Olympic Games began here in 776 BC.",
+      "The Acropolis and Parthenon overlook its capital."
+    ]},
+    {"country": "Czechia", "capital": "Prague", "clues": [
+      "It has more castles per square mile than almost any other country.",
+      "It's the birthplace of the pilsner style of beer.",
+      "Its capital's Astronomical Clock is the oldest still-working clock of its kind in the world.",
+      "It was formerly known as Czechoslovakia before splitting peacefully in 1993."
+    ]},
+    {"country": "Czech Rep.", "capital": "Prague", "clues": [
+      "It has more castles per square mile than almost any other country.",
+      "It's the birthplace of the pilsner style of beer.",
+      "Its capital's Astronomical Clock is the oldest still-working clock of its kind in the world.",
+      "It was formerly known as Czechoslovakia before splitting peacefully in 1993."
+    ]},
+    {"country": "Hungary", "capital": "Budapest", "clues": [
+      "Its capital was originally two separate cities, Buda and Pest, joined by bridges.",
+      "It's home to Lake Balaton, the largest lake in Central Europe.",
+      "It gave the world the Rubik's Cube.",
+      "Its capital straddles the Danube River."
+    ]},
+    {"country": "Romania", "capital": "Bucharest", "clues": [
+      "It's home to Transylvania, the region tied to the legend of Dracula.",
+      "Its parliament building is the heaviest building in the world.",
+      "It's the largest country in the Balkans by area.",
+      "Its capital was once nicknamed 'Little Paris' for its architecture."
+    ]},
+    {"country": "Bulgaria", "capital": "Sofia", "clues": [
+      "It's the oldest country in Europe to keep its original name since it was founded, in 681.",
+      "It's one of the world's largest producers of rose oil, used in perfume.",
+      "Nodding your head here traditionally means 'no,' and shaking it means 'yes,' the reverse of most countries.",
+      "It sits on the Black Sea coast in southeastern Europe."
+    ]},
+    {"country": "Serbia", "capital": "Belgrade", "clues": [
+      "Its capital's name means 'white city.'",
+      "It's landlocked, sitting at the crossroads of Central and Southeastern Europe.",
+      "Tennis star Novak Djokovic was born in its capital.",
+      "It was once part of the country of Yugoslavia."
+    ]},
+    {"country": "Croatia", "capital": "Zagreb", "clues": [
+      "The necktie is believed to have originated with soldiers from here.",
+      "It's home to over a thousand islands along its Adriatic coastline.",
+      "Its walled city of Dubrovnik was used as a filming location for a famous fantasy TV series.",
+      "It was once part of the country of Yugoslavia."
+    ]},
+    {"country": "Bosnia and Herz.", "capital": "Sarajevo", "clues": [
+      "Its capital hosted the 1984 Winter Olympics.",
+      "The assassination that helped trigger World War I took place in its capital.",
+      "Its name combines two historical regions.",
+      "It was once part of the country of Yugoslavia."
+    ]},
+    {"country": "Slovakia", "capital": "Bratislava", "clues": [
+      "It has the highest number of castles and chateaux per capita in the world.",
+      "It was formerly joined with Czechia as one country, Czechoslovakia.",
+      "Its capital is the only national capital bordering two other countries, Austria and Hungary.",
+      "It sits east of Czechia in Central Europe."
+    ]},
+    {"country": "Slovenia", "capital": "Ljubljana", "clues": [
+      "Over half its territory is covered in forest.",
+      "It's home to Lake Bled, famous for its tiny island church reachable only by boat.",
+      "It was once part of the country of Yugoslavia.",
+      "It sits between Italy, Austria, and Croatia."
+    ]},
+    {"country": "Lithuania", "capital": "Vilnius", "clues": [
+      "It was the first Soviet republic to declare independence, in 1990.",
+      "It's one of the three Baltic states.",
+      "Its capital's Old Town is one of the largest in Eastern Europe.",
+      "It sits along the Baltic Sea, south of Latvia."
+    ]},
+    {"country": "Latvia", "capital": "Riga", "clues": [
+      "Its capital is known for having one of the finest collections of Art Nouveau buildings in the world.",
+      "It's one of the three Baltic states.",
+      "It's home to a tradition, the Latvian Song and Dance Festival, that draws tens of thousands of performers.",
+      "It sits between Estonia and Lithuania on the Baltic Sea."
+    ]},
+    {"country": "Estonia", "capital": "Tallinn", "clues": [
+      "It's considered one of the most digitally advanced nations, letting citizens vote online since 2005.",
+      "Skype was originally developed here.",
+      "It's one of the three Baltic states.",
+      "It sits just south of Finland across the Gulf of Finland."
+    ]},
+    {"country": "Belarus", "capital": "Minsk", "clues": [
+      "It's home to one of the last remaining primeval forests in Europe, Białowieża.",
+      "Its capital was almost completely rebuilt after being devastated in World War II.",
+      "It's landlocked, bordered by Russia, Ukraine, Poland, and the Baltic states.",
+      "It was formerly part of the Soviet Union."
+    ]},
+    {"country": "Moldova", "capital": "Chișinău", "clues": [
+      "It's one of the largest wine producers in the world relative to its size, with vineyards covering much of the country.",
+      "It's one of the least visited countries in Europe.",
+      "It's landlocked between Romania and Ukraine.",
+      "It was formerly part of the Soviet Union."
+    ]},
+    {"country": "Albania", "capital": "Tirana", "clues": [
+      "It was one of the most isolated countries in the world under Communist rule, with hundreds of thousands of bunkers built for a war that never came.",
+      "Its flag features a black double-headed eagle.",
+      "It sits across the Adriatic Sea from Italy.",
+      "It's on the Balkan Peninsula in Southeastern Europe."
+    ]},
+    {"country": "North Macedonia", "capital": "Skopje", "clues": [
+      "It changed its name in 2019 to resolve a decades-long dispute with Greece.",
+      "It's home to Lake Ohrid, one of the oldest and deepest lakes in Europe.",
+      "It was once part of the country of Yugoslavia.",
+      "It's landlocked in the Balkans, north of Greece."
+    ]},
+    {"country": "Macedonia", "capital": "Skopje", "clues": [
+      "It changed its name in 2019 to resolve a decades-long dispute with Greece.",
+      "It's home to Lake Ohrid, one of the oldest and deepest lakes in Europe.",
+      "It was once part of the country of Yugoslavia.",
+      "It's landlocked in the Balkans, north of Greece."
+    ]},
+    {"country": "Montenegro", "capital": "Podgorica", "clues": [
+      "Its name literally means 'black mountain' in several regional languages.",
+      "It's home to one of the deepest canyons in Europe, Tara River Canyon.",
+      "It was the last republic to split from Yugoslavia, in 2006.",
+      "It sits on the Adriatic coast near Croatia."
+    ]},
+    {"country": "Kosovo", "capital": "Pristina", "clues": [
+      "It declared independence from Serbia in 2008, though not all countries recognize it.",
+      "It's one of the youngest countries in Europe.",
+      "It's landlocked in the Balkans.",
+      "It was formerly part of Yugoslavia and then Serbia."
+    ]}
+  ]
+}

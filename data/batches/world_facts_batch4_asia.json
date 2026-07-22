@@ -1,0 +1,252 @@
+{
+  "batch": "Asia",
+  "notes": "4 clues per country, ordered hardest/most obscure -> most obvious, matching the format of the previous batches. Includes duplicate-name aliases (Turkey/Türkiye) so both keys resolve to the same facts.",
+  "countries": [
+    {"country": "China", "capital": "Beijing", "clues": [
+      "It's home to the longest wall ever built by humans, stretching over 13,000 miles counting all its branches.",
+      "It's the most populous country in the world for most of recorded history, only recently overtaken by India.",
+      "It gave the world paper, gunpowder, the compass, and printing.",
+      "The Great Wall and Forbidden City sit near its capital."
+    ]},
+    {"country": "India", "capital": "New Delhi", "clues": [
+      "It's now the most populous country in the world.",
+      "It's home to the Taj Mahal, built as a mausoleum for an emperor's favorite wife.",
+      "Chess, the number zero, and the game of snakes and ladders all originated here.",
+      "It's shaped like a large peninsula jutting into the Indian Ocean."
+    ]},
+    {"country": "Japan", "capital": "Tokyo", "clues": [
+      "It's made up of over 6,800 islands, though most people live on just four main ones.",
+      "It's home to the world's oldest continuously running hereditary monarchy.",
+      "It gave the world sushi, karaoke, and the bullet train.",
+      "Its flag features a red circle representing the sun."
+    ]},
+    {"country": "South Korea", "capital": "Seoul", "clues": [
+      "It's one of the most densely populated countries in the world, with half its people living in and around its capital area.",
+      "It's the birthplace of K-pop and a major global exporter of pop culture.",
+      "It shares a heavily fortified border with its northern neighbor.",
+      "It occupies the southern half of the Korean Peninsula."
+    ]},
+    {"country": "North Korea", "capital": "Pyongyang", "clues": [
+      "It's one of the most isolated and secretive countries in the world.",
+      "It's ruled by the same family dynasty that has held power since its founding in 1948.",
+      "Its capital is known for its wide, largely traffic-free boulevards and monumental architecture.",
+      "It occupies the northern half of the Korean Peninsula."
+    ]},
+    {"country": "Mongolia", "capital": "Ulaanbaatar", "clues": [
+      "It's the least densely populated sovereign country in the world.",
+      "It was once the center of the largest contiguous land empire in history, under Genghis Khan.",
+      "Roughly a quarter of its population still lives a nomadic or semi-nomadic herding lifestyle.",
+      "It's landlocked between Russia and China."
+    ]},
+    {"country": "Russia", "capital": "Moscow", "clues": [
+      "It's the largest country in the world by area, spanning eleven time zones.",
+      "It's home to Lake Baikal, the deepest and oldest freshwater lake on Earth.",
+      "It spans two continents, Europe and Asia.",
+      "Its capital's Red Square sits beside the Kremlin."
+    ]},
+    {"country": "Kazakhstan", "capital": "Astana", "clues": [
+      "It's the largest landlocked country in the world.",
+      "It's home to the Baikonur Cosmodrome, the world's oldest and largest operational space launch facility.",
+      "Its capital was renamed several times in recent decades, reflecting shifting political tributes.",
+      "It's the largest country in Central Asia."
+    ]},
+    {"country": "Uzbekistan", "capital": "Tashkent", "clues": [
+      "It's one of only two doubly landlocked countries in the world, meaning it's landlocked by other landlocked countries.",
+      "It was a major hub of the ancient Silk Road, with cities like Samarkand and Bukhara.",
+      "It's the most populous country in Central Asia.",
+      "It borders Kazakhstan to the north."
+    ]},
+    {"country": "Turkmenistan", "capital": "Ashgabat", "clues": [
+      "It's home to the Darvaza gas crater, a fire pit that has burned continuously since the 1970s, nicknamed the 'Door to Hell.'",
+      "Its capital holds a Guinness World Record for having the highest concentration of white marble buildings in the world.",
+      "Much of its territory lies within the Karakum Desert.",
+      "It sits along the Caspian Sea in Central Asia."
+    ]},
+    {"country": "Kyrgyzstan", "capital": "Bishkek", "clues": [
+      "Nearly all of its territory is covered by mountains, mostly the Tian Shan range.",
+      "It's home to Issyk-Kul, one of the largest and deepest alpine lakes in the world.",
+      "It's landlocked in Central Asia.",
+      "It borders China to the east."
+    ]},
+    {"country": "Tajikistan", "capital": "Dushanbe", "clues": [
+      "It's the most mountainous country in Central Asia.",
+      "It's home to the Pamir Mountains, sometimes called the 'roof of the world.'",
+      "Its capital's name means 'Monday' in Persian, marking the day a market once opened there.",
+      "It's landlocked, bordering Afghanistan to the south."
+    ]},
+    {"country": "Afghanistan", "capital": "Kabul", "clues": [
+      "It's often nicknamed the 'graveyard of empires' for resisting outside conquest for centuries.",
+      "It's landlocked and mountainous, dominated by the Hindu Kush range.",
+      "It sits at a historic crossroads between Central and South Asia.",
+      "It borders Pakistan to the south and east."
+    ]},
+    {"country": "Pakistan", "capital": "Islamabad", "clues": [
+      "It's home to K2, the second-tallest mountain in the world.",
+      "It's the fifth most populous country in the world.",
+      "It was created in 1947 through the partition of British India.",
+      "It sits on the Arabian Sea in South Asia."
+    ]},
+    {"country": "Bangladesh", "capital": "Dhaka", "clues": [
+      "It's one of the most densely populated large countries in the world.",
+      "It's home to the Sundarbans, the largest mangrove forest in the world.",
+      "It was formerly known as East Pakistan before gaining independence in 1971.",
+      "It's largely surrounded by India, with a small coast on the Bay of Bengal."
+    ]},
+    {"country": "Nepal", "capital": "Kathmandu", "clues": [
+      "It's home to Mount Everest, the tallest mountain in the world.",
+      "It's the only country in the world with a non-rectangular national flag.",
+      "It's landlocked between India and China.",
+      "The Himalayas dominate its northern border."
+    ]},
+    {"country": "Bhutan", "capital": "Thimphu", "clues": [
+      "It measures national success using 'Gross National Happiness' instead of GDP alone.",
+      "It was the last country in the world to introduce television, in 1999.",
+      "It's landlocked in the Himalayas between India and China.",
+      "It's one of the least visited countries in the world, with tourism tightly regulated."
+    ]},
+    {"country": "Sri Lanka", "capital": "Colombo", "clues": [
+      "It's shaped like a teardrop off the southern tip of India.",
+      "It was formerly known as Ceylon, still used as a name for its famous tea.",
+      "Its administrative capital is actually a different city, Sri Jayawardenepura Kotte.",
+      "It's an island nation in the Indian Ocean."
+    ]},
+    {"country": "Myanmar", "capital": "Naypyidaw", "clues": [
+      "It's formerly known as Burma.",
+      "Its capital was built as an entirely new, largely empty city in the 2000s, replacing Yangon.",
+      "It's home to thousands of ancient Buddhist temples clustered in the plains of Bagan.",
+      "It sits in Southeast Asia, bordering Thailand and India."
+    ]},
+    {"country": "Thailand", "capital": "Bangkok", "clues": [
+      "It's the only country in Southeast Asia never colonized by a European power.",
+      "Its capital's full ceremonial name is one of the longest place names in the world.",
+      "It's one of the world's top rice exporters.",
+      "It's shaped somewhat like an elephant's head on the map."
+    ]},
+    {"country": "Vietnam", "capital": "Hanoi", "clues": [
+      "It's one of the world's largest exporters of coffee, second only to Brazil.",
+      "It's shaped like a long S curving along the South China Sea.",
+      "Its economy has grown rapidly since reforms in the 1980s opened it to global trade.",
+      "It borders China to the north."
+    ]},
+    {"country": "Laos", "capital": "Vientiane", "clues": [
+      "It's the only landlocked country in Southeast Asia.",
+      "It's nicknamed the 'Land of a Million Elephants,' referencing an old kingdom's name.",
+      "It's among the most heavily bombed countries per capita in history, from the Vietnam War era.",
+      "It sits between Thailand and Vietnam."
+    ]},
+    {"country": "Cambodia", "capital": "Phnom Penh", "clues": [
+      "It's home to Angkor Wat, the largest religious monument in the world.",
+      "Its flag is one of the only national flags to feature a building.",
+      "It endured a devastating genocide under the Khmer Rouge in the 1970s.",
+      "It sits between Thailand and Vietnam in Southeast Asia."
+    ]},
+    {"country": "Malaysia", "capital": "Kuala Lumpur", "clues": [
+      "It's split between a peninsula and a portion of the island of Borneo.",
+      "It's home to the Petronas Towers, once the tallest buildings in the world.",
+      "It's one of the most linguistically and ethnically diverse countries in Southeast Asia.",
+      "It sits just north of Singapore and Indonesia."
+    ]},
+    {"country": "Indonesia", "capital": "Jakarta", "clues": [
+      "It's made up of more than 17,000 islands, the most of any country.",
+      "It's the largest Muslim-majority country in the world by population.",
+      "It's home to Komodo dragons, the largest living lizards on Earth.",
+      "It stretches across Southeast Asia between the Indian and Pacific Oceans."
+    ]},
+    {"country": "Philippines", "capital": "Manila", "clues": [
+      "It's made up of over 7,000 islands.",
+      "It's one of the largest Christian-majority countries in Asia, a legacy of Spanish colonization.",
+      "It's home to some of the most text-message-heavy mobile phone use in the world.",
+      "It sits in the western Pacific, east of Vietnam."
+    ]},
+    {"country": "Iran", "capital": "Tehran", "clues": [
+      "It was known as Persia until officially adopting its current name internationally in 1935.",
+      "It's home to Persepolis, the ceremonial capital of the ancient Persian Empire.",
+      "It holds some of the world's largest natural gas reserves.",
+      "It sits between the Caspian Sea and the Persian Gulf."
+    ]},
+    {"country": "Iraq", "capital": "Baghdad", "clues": [
+      "It's home to the ancient region of Mesopotamia, considered the cradle of civilization.",
+      "The earliest known writing system, cuneiform, developed here.",
+      "The Tigris and Euphrates rivers both run through it.",
+      "It sits between Iran and Syria in the Middle East."
+    ]},
+    {"country": "Saudi Arabia", "capital": "Riyadh", "clues": [
+      "It's home to Mecca and Medina, Islam's two holiest cities.",
+      "It holds some of the largest proven oil reserves in the world.",
+      "It's the largest country in the Middle East by land area.",
+      "It occupies most of the Arabian Peninsula."
+    ]},
+    {"country": "Yemen", "capital": "Sanaa", "clues": [
+      "Its capital's old walled city is one of the oldest continuously inhabited urban centers in the world.",
+      "It's home to Socotra, an isolated island so unique in its plant life it's called the 'alien island.'",
+      "It sits at the southern tip of the Arabian Peninsula.",
+      "It borders Saudi Arabia and Oman."
+    ]},
+    {"country": "Oman", "capital": "Muscat", "clues": [
+      "It's home to some of the oldest frankincense trees in the world, once a hugely valuable trade good.",
+      "It's one of the oldest independent states in the Arab world.",
+      "It sits at the southeastern tip of the Arabian Peninsula.",
+      "It controls the Strait of Hormuz alongside Iran, a key oil-shipping route."
+    ]},
+    {"country": "United Arab Emirates", "capital": "Abu Dhabi", "clues": [
+      "It's home to the Burj Khalifa, the tallest building in the world.",
+      "It's a federation of seven separate emirates.",
+      "It transformed from a small fishing and pearling economy into a global business hub within a few decades.",
+      "It sits on the Persian Gulf on the Arabian Peninsula."
+    ]},
+    {"country": "Turkey", "capital": "Ankara", "clues": [
+      "It's the only country in the world that spans two continents through a single city, Istanbul.",
+      "It officially changed its international name to Türkiye in 2022.",
+      "It's home to Hagia Sophia, once a church, then a mosque, then a museum, and now a mosque again.",
+      "It bridges Europe and Asia at the Bosphorus Strait."
+    ]},
+    {"country": "Türkiye", "capital": "Ankara", "clues": [
+      "It's the only country in the world that spans two continents through a single city, Istanbul.",
+      "It officially adopted this spelling internationally in 2022.",
+      "It's home to Hagia Sophia, once a church, then a mosque, then a museum, and now a mosque again.",
+      "It bridges Europe and Asia at the Bosphorus Strait."
+    ]},
+    {"country": "Syria", "capital": "Damascus", "clues": [
+      "Its capital is considered one of the oldest continuously inhabited cities in the world.",
+      "It's been the site of one of the most devastating civil wars of the 21st century, beginning in 2011.",
+      "It sits between Turkey, Iraq, and Lebanon.",
+      "It has a Mediterranean coastline in the Middle East."
+    ]},
+    {"country": "Jordan", "capital": "Amman", "clues": [
+      "It's home to Petra, an ancient city carved directly into rose-colored rock.",
+      "It's one of the most water-scarce countries in the world.",
+      "It hosts one of the largest populations of refugees relative to its size in the world.",
+      "It sits between Saudi Arabia, Israel, and Syria."
+    ]},
+    {"country": "Israel", "capital": "Jerusalem", "clues": [
+      "It's one of the only countries in the world to successfully revive an ancient language, Hebrew, as an everyday spoken tongue.",
+      "It's home to the Dead Sea, the lowest point on Earth's land surface.",
+      "Its capital is considered holy by three major world religions.",
+      "It sits on the eastern Mediterranean coast."
+    ]},
+    {"country": "Lebanon", "capital": "Beirut", "clues": [
+      "It's home to some of the oldest cedar trees in the world, a national symbol on its flag.",
+      "Its capital was historically nicknamed 'the Paris of the Middle East.'",
+      "It's one of the smallest countries in mainland Asia.",
+      "It sits on the eastern Mediterranean coast, north of Israel."
+    ]},
+    {"country": "Georgia", "capital": "Tbilisi", "clues": [
+      "It's considered one of the birthplaces of winemaking, with evidence of grape cultivation over 8,000 years old.",
+      "Its capital's name comes from an old word for 'warm,' referencing local sulfur hot springs.",
+      "It sits at the crossroads of Eastern Europe and West Asia, along the Caucasus Mountains.",
+      "It borders Russia to the north and Turkey to the southwest."
+    ]},
+    {"country": "Armenia", "capital": "Yerevan", "clues": [
+      "It was the first country in the world to adopt Christianity as a state religion, in the early 4th century.",
+      "Its capital is considered one of the oldest continuously inhabited cities in the world.",
+      "It's landlocked in the South Caucasus region.",
+      "It borders Georgia, Turkey, and Azerbaijan."
+    ]},
+    {"country": "Azerbaijan", "capital": "Baku", "clues": [
+      "Its name is sometimes translated as 'Land of Fire,' tied to natural gas fires that burn from the ground.",
+      "It was one of the first places in the world to industrialize oil drilling, in the 19th century.",
+      "Its capital sits below sea level on the Caspian Sea.",
+      "It sits in the South Caucasus, between Russia, Iran, and Georgia."
+    ]}
+  ]
+}

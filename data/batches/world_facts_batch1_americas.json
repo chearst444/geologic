@@ -1,0 +1,150 @@
+{
+  "batch": "North America + South America",
+  "notes": "4 clues per country, ordered hardest/most obscure -> most obvious, replacing the old auto-generated hemisphere/size/border clues.",
+  "countries": [
+    {"country": "United States of America", "capital": "Washington, D.C.", "clues": [
+      "Its capital was carved out of land donated by two states and belongs to no state at all.",
+      "It's home to the world's first national park, established in 1872.",
+      "It's the third-largest country in the world by population.",
+      "Its flag has 50 stars, one for each state."
+    ]},
+    {"country": "Canada", "capital": "Ottawa", "clues": [
+      "It has more lakes than the rest of the world's lakes combined.",
+      "Its capital was chosen partly because it sat safely between two rival cities, Toronto and Quebec City.",
+      "It's the second-largest country in the world by area, despite a relatively small population.",
+      "Its flag features a maple leaf."
+    ]},
+    {"country": "Mexico", "capital": "Mexico City", "clues": [
+      "Its capital was built atop the ruins of the Aztec city of Tenochtitlan.",
+      "It gave the world chocolate, chili peppers, and corn.",
+      "It has more UNESCO World Heritage Sites than any other country in the Americas.",
+      "Its flag features an eagle eating a snake atop a cactus."
+    ]},
+    {"country": "Guatemala", "capital": "Guatemala City", "clues": [
+      "It's home to Tikal, one of the largest ancient Maya cities ever discovered.",
+      "It's one of the world's top exporters of cardamom, a spice more associated with India.",
+      "Its name is thought to come from a Nahuatl word meaning 'place of many trees.'",
+      "It's the most populous country in Central America."
+    ]},
+    {"country": "Cuba", "capital": "Havana", "clues": [
+      "It's the largest island in the Caribbean.",
+      "Classic American cars from the 1950s are still commonly driven here today.",
+      "It's known worldwide for cigars and son-based music styles that shaped salsa.",
+      "It lies just about 90 miles south of Florida."
+    ]},
+    {"country": "Honduras", "capital": "Tegucigalpa", "clues": [
+      "Its name is Spanish for 'depths,' possibly referring to deep coastal waters Columbus encountered.",
+      "It's home to the ancient Maya ruins of Copán.",
+      "It has coastline on the Caribbean Sea but not the Pacific Ocean mainland proper.",
+      "Its capital's name comes from an indigenous word meaning 'silver hill.'"
+    ]},
+    {"country": "Nicaragua", "capital": "Managua", "clues": [
+      "It's home to Lake Nicaragua, one of the only freshwater lakes in the world with sharks.",
+      "It's the largest country in Central America by land area.",
+      "Its capital was chosen as a compromise between two rival cities, León and Granada.",
+      "It's known for volcanoes, including one that people can board down."
+    ]},
+    {"country": "Costa Rica", "capital": "San José", "clues": [
+      "It abolished its military entirely in 1948.",
+      "It contains about 5% of the world's biodiversity despite its small size.",
+      "Its name is Spanish for 'rich coast.'",
+      "It's a top destination for eco-tourism in Central America."
+    ]},
+    {"country": "Panama", "capital": "Panama City", "clues": [
+      "It's the narrowest country in Central America, home to a famous man-made shortcut for ships.",
+      "Its canal took over a decade to complete and reshaped global shipping routes.",
+      "It's the only place in the world where you can see the sun rise on the Pacific and set on the Atlantic from certain points.",
+      "It connects Central America to South America."
+    ]},
+    {"country": "Dominican Rep.", "capital": "Santo Domingo", "clues": [
+      "It shares its island with Haiti, the only island in the world split between two countries.",
+      "Its capital is the oldest continuously inhabited European-founded city in the Americas.",
+      "It's the birthplace of merengue music.",
+      "It occupies the eastern two-thirds of the island of Hispaniola."
+    ]},
+    {"country": "Haiti", "capital": "Port-au-Prince", "clues": [
+      "It was the first country in the Americas to abolish slavery and gain independence from a European colonial power, in 1804.",
+      "It shares its island with the Dominican Republic.",
+      "French and Haitian Creole are its two official languages.",
+      "It occupies the western third of the island of Hispaniola."
+    ]},
+    {"country": "Belize", "capital": "Belmopan", "clues": [
+      "It's the only country in Central America where English is the official language.",
+      "It's home to the Great Blue Hole, a massive underwater sinkhole visible from space.",
+      "Its capital was built inland after a hurricane destroyed the previous capital in 1961.",
+      "It was formerly known as British Honduras."
+    ]},
+    {"country": "Brazil", "capital": "Brasília", "clues": [
+      "Its capital was built from scratch in the 1950s and shaped like an airplane from above.",
+      "It's home to more of the Amazon rainforest than any other country.",
+      "It's the largest country in South America by both size and population.",
+      "It's the only Portuguese-speaking country in the Americas."
+    ]},
+    {"country": "Argentina", "capital": "Buenos Aires", "clues": [
+      "It's home to Ushuaia, often called the southernmost city in the world.",
+      "Its name comes from the Latin word for silver, argentum.",
+      "It's the birthplace of tango.",
+      "It's the second-largest country in South America."
+    ]},
+    {"country": "Chile", "capital": "Santiago", "clues": [
+      "It's the longest north-south country in the world, stretching over 2,600 miles.",
+      "It's home to the driest non-polar desert on Earth, the Atacama.",
+      "Easter Island, famous for its stone statues, is part of its territory.",
+      "It hugs the western edge of South America along the Andes."
+    ]},
+    {"country": "Peru", "capital": "Lima", "clues": [
+      "It's home to Machu Picchu, the famous lost Inca city.",
+      "It's considered one of the origin points of the potato, with thousands of native varieties still grown there.",
+      "Its cuisine, ceviche, is one of its most famous culinary exports.",
+      "The ancient Inca Empire was centered here."
+    ]},
+    {"country": "Colombia", "capital": "Bogotá", "clues": [
+      "It's the only South American country with coastlines on both the Pacific and the Caribbean.",
+      "It's the world's second-largest coffee producer.",
+      "It's named after Christopher Columbus.",
+      "It's known for its emeralds, some of the finest in the world."
+    ]},
+    {"country": "Venezuela", "capital": "Caracas", "clues": [
+      "It's home to Angel Falls, the tallest waterfall in the world.",
+      "It has some of the largest proven oil reserves on Earth.",
+      "Its name is Spanish for 'little Venice,' inspired by stilt houses early explorers saw.",
+      "It sits along South America's northern Caribbean coast."
+    ]},
+    {"country": "Ecuador", "capital": "Quito", "clues": [
+      "It's named for the imaginary line that runs directly through it.",
+      "The Galápagos Islands, famous for inspiring Darwin's theory of evolution, belong to it.",
+      "Its capital sits at one of the highest elevations of any national capital in the world.",
+      "It straddles the equator on South America's Pacific coast."
+    ]},
+    {"country": "Bolivia", "capital": "Sucre", "clues": [
+      "It has two capital cities; one hosts the government, the other the judiciary.",
+      "It's home to the Salar de Uyuni, the world's largest salt flat.",
+      "It's one of only two landlocked countries in South America.",
+      "It's named after Simón Bolívar, the independence leader."
+    ]},
+    {"country": "Paraguay", "capital": "Asunción", "clues": [
+      "It's one of only two landlocked countries in South America.",
+      "Guaraní, an indigenous language, is an official language alongside Spanish.",
+      "It's home to one of the largest hydroelectric dams in the world, shared with Brazil.",
+      "It sits between Argentina, Brazil, and Bolivia."
+    ]},
+    {"country": "Uruguay", "capital": "Montevideo", "clues": [
+      "It's one of the most secular countries in Latin America, having separated church and state early.",
+      "It was the first country in the world to legalize marijuana nationwide.",
+      "It's one of the smallest countries in South America by area.",
+      "It sits between Argentina and Brazil along the Atlantic coast."
+    ]},
+    {"country": "Guyana", "capital": "Georgetown", "clues": [
+      "It's the only country in South America where English is the official language.",
+      "Its name means 'land of many waters' in an indigenous language.",
+      "Recent offshore oil discoveries have made it one of the fastest-growing economies in the world.",
+      "It was formerly a British colony known as British Guiana."
+    ]},
+    {"country": "Suriname", "capital": "Paramaribo", "clues": [
+      "It's the smallest sovereign country in South America.",
+      "It's the only country in the Americas where Dutch is the official language.",
+      "More than half of its land is covered in untouched rainforest.",
+      "It was formerly a Dutch colony known as Dutch Guiana."
+    ]}
+  ]
+}

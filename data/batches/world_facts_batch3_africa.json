@@ -1,0 +1,264 @@
+{
+  "batch": "Africa",
+  "notes": "4 clues per country, ordered hardest/most obscure -> most obvious, matching the format of the Americas and Europe batches.",
+  "countries": [
+    {"country": "Egypt", "capital": "Cairo", "clues": [
+      "It's home to the last surviving wonder of the ancient world, the Great Pyramid of Giza.",
+      "The Nile, the longest river in Africa, runs through it.",
+      "Its ancient civilization developed one of the earliest writing systems, hieroglyphics.",
+      "It sits in the far northeast corner of Africa."
+    ]},
+    {"country": "Algeria", "capital": "Algiers", "clues": [
+      "It's the largest country in Africa by land area.",
+      "Most of its territory lies within the Sahara Desert.",
+      "It gained independence from France in 1962 after a long war.",
+      "It sits along the Mediterranean coast of North Africa."
+    ]},
+    {"country": "Morocco", "capital": "Rabat", "clues": [
+      "It's home to Chefchaouen, a town famous for its blue-painted buildings.",
+      "It's separated from Europe by just 8 miles of water at its narrowest point.",
+      "Its markets, called souks, are famous for spices and leather goods.",
+      "It sits in the far northwest corner of Africa."
+    ]},
+    {"country": "Tunisia", "capital": "Tunis", "clues": [
+      "It's the smallest country in North Africa by area.",
+      "Ancient ruins of the city of Carthage sit near its capital.",
+      "It was the birthplace of the Arab Spring protests in 2010-2011.",
+      "It's the northernmost country in Africa."
+    ]},
+    {"country": "Libya", "capital": "Tripoli", "clues": [
+      "It holds Africa's largest proven oil reserves.",
+      "Over 90% of its land is desert.",
+      "It has one of the shortest coastlines relative to its size in North Africa.",
+      "It sits between Egypt and Tunisia along the Mediterranean."
+    ]},
+    {"country": "Nigeria", "capital": "Abuja", "clues": [
+      "It's the most populous country in Africa.",
+      "It's home to Nollywood, one of the largest film industries in the world by output.",
+      "Its capital was purpose-built in the 1980s to be more centrally located than the former capital, Lagos.",
+      "It sits on the Gulf of Guinea in West Africa."
+    ]},
+    {"country": "Ethiopia", "capital": "Addis Ababa", "clues": [
+      "It's the only African country never colonized by a European power.",
+      "It uses its own calendar, currently several years behind the Gregorian calendar.",
+      "It's considered one of the earliest regions where coffee was discovered.",
+      "It's in the Horn of Africa in East Africa."
+    ]},
+    {"country": "Kenya", "capital": "Nairobi", "clues": [
+      "It's home to the Great Migration, when millions of wildebeest cross the Serengeti-Mara ecosystem.",
+      "Its capital is one of the only major cities in the world with a national park inside its limits.",
+      "It's a major hub for long-distance running talent.",
+      "It sits on the Indian Ocean coast of East Africa."
+    ]},
+    {"country": "South Africa", "capital": "Pretoria", "clues": [
+      "It has three official capital cities, splitting executive, legislative, and judicial functions.",
+      "It has 12 official languages, more than almost any other country.",
+      "It's home to Table Mountain, one of the oldest mountains on Earth.",
+      "It sits at the southern tip of the African continent."
+    ]},
+    {"country": "Tanzania", "capital": "Dodoma", "clues": [
+      "It's home to Mount Kilimanjaro, the tallest mountain in Africa.",
+      "The island of Zanzibar, famous for spices, is part of its territory.",
+      "It's home to the Serengeti, famous for its annual animal migration.",
+      "It sits on the Indian Ocean coast of East Africa."
+    ]},
+    {"country": "Uganda", "capital": "Kampala", "clues": [
+      "It's nicknamed 'the Pearl of Africa,' a phrase credited to Winston Churchill.",
+      "It's home to more than half of the world's remaining mountain gorillas.",
+      "It's the source of the White Nile, one of the two main tributaries of the Nile.",
+      "It's landlocked in East Africa, bordering Kenya."
+    ]},
+    {"country": "Ghana", "capital": "Accra", "clues": [
+      "It was the first sub-Saharan African country to gain independence from colonial rule, in 1957.",
+      "It's one of the world's largest producers of cocoa.",
+      "It was formerly known as the Gold Coast.",
+      "It sits on the Gulf of Guinea in West Africa."
+    ]},
+    {"country": "Angola", "capital": "Luanda", "clues": [
+      "It's one of Africa's largest oil producers.",
+      "Portuguese is its official language.",
+      "It endured one of Africa's longest civil wars, lasting nearly three decades after independence.",
+      "It sits on the Atlantic coast of Southern Africa."
+    ]},
+    {"country": "Mozambique", "capital": "Maputo", "clues": [
+      "Its name comes from an Arab trader who once controlled an island off its coast.",
+      "It's one of the world's top producers of cashews.",
+      "Portuguese is its official language.",
+      "It sits on the Indian Ocean coast of Southeast Africa."
+    ]},
+    {"country": "Sudan", "capital": "Khartoum", "clues": [
+      "Its capital sits at the meeting point of the Blue Nile and White Nile.",
+      "It's home to more ancient pyramids than Egypt, though smaller in scale.",
+      "It was Africa's largest country by area until South Sudan split off in 2011.",
+      "It sits in Northeast Africa along the Red Sea."
+    ]},
+    {"country": "S. Sudan", "capital": "Juba", "clues": [
+      "It's the world's newest widely recognized country, formed in 2011.",
+      "It split off from Sudan after decades of civil war.",
+      "It's landlocked, sitting south of Sudan.",
+      "It's one of the least developed countries by infrastructure in the world."
+    ]},
+    {"country": "Somalia", "capital": "Mogadishu", "clues": [
+      "It has the longest coastline of any mainland African country.",
+      "It's located on the Horn of Africa, the continent's easternmost point.",
+      "Its capital was once nicknamed 'the White Pearl of the Indian Ocean' for its beaches and architecture.",
+      "It's shaped like the number seven on the map."
+    ]},
+    {"country": "Dem. Rep. Congo", "capital": "Kinshasa", "clues": [
+      "It's home to the world's second-largest rainforest, after the Amazon.",
+      "It holds vast reserves of cobalt, a key material in batteries for phones and electric cars.",
+      "The Congo River, the deepest river in the world, runs through it.",
+      "It's the largest country in sub-Saharan Africa by area."
+    ]},
+    {"country": "Congo", "capital": "Brazzaville", "clues": [
+      "Its capital sits directly across the Congo River from another country's capital, Kinshasa, the only place in the world where two capitals face each other like this.",
+      "Its territory is heavily covered by rainforest.",
+      "It's smaller and less populous than its similarly named neighbor, the Democratic Republic of Congo.",
+      "It sits on the Atlantic coast of Central Africa."
+    ]},
+    {"country": "Cameroon", "capital": "Yaoundé", "clues": [
+      "It's nicknamed 'Africa in miniature' for its wide range of landscapes and cultures.",
+      "It has two official languages, English and French, reflecting its colonial history.",
+      "Its national football team's success helped make it one of the continent's most recognized sporting nations.",
+      "It sits on the Gulf of Guinea in Central Africa."
+    ]},
+    {"country": "Côte d'Ivoire", "capital": "Yamoussoukro", "clues": [
+      "It's the world's largest producer of cocoa beans.",
+      "Its capital is home to a basilica modeled after St. Peter's in Rome but even larger.",
+      "Its name is French for 'Ivory Coast,' reflecting its colonial-era trade.",
+      "It sits on the Gulf of Guinea in West Africa."
+    ]},
+    {"country": "Ivory Coast", "capital": "Yamoussoukro", "clues": [
+      "It's the world's largest producer of cocoa beans.",
+      "Its capital is home to a basilica modeled after St. Peter's in Rome but even larger.",
+      "Its name reflects its colonial-era ivory trade.",
+      "It sits on the Gulf of Guinea in West Africa."
+    ]},
+    {"country": "Mali", "capital": "Bamako", "clues": [
+      "It's home to Timbuktu, a city once so remote and legendary it became a byword for the middle of nowhere.",
+      "Much of its northern territory lies within the Sahara Desert.",
+      "It was once part of a wealthy medieval empire whose ruler, Mansa Musa, is considered one of the richest people in history.",
+      "It's landlocked in West Africa."
+    ]},
+    {"country": "Niger", "capital": "Niamey", "clues": [
+      "It's one of the hottest countries in the world, with much of its land within the Sahara.",
+      "It's named after the Niger River, one of the major rivers of West Africa.",
+      "It's landlocked, bordering Nigeria to the south.",
+      "It's one of the least densely populated countries in the world."
+    ]},
+    {"country": "Chad", "capital": "N'Djamena", "clues": [
+      "It's named after Lake Chad, once one of Africa's largest lakes, now dramatically shrunken.",
+      "It's landlocked in north-central Africa.",
+      "Its northern reaches lie within the Sahara Desert.",
+      "It borders Libya to the north and Sudan to the east."
+    ]},
+    {"country": "Senegal", "capital": "Dakar", "clues": [
+      "It completely surrounds another country, the Gambia, on three sides.",
+      "It's home to the Pink Lake, whose waters turn rosy from algae.",
+      "Its capital hosts the finish of a famous off-road motor race, the Dakar Rally, named for the city.",
+      "It's the westernmost country in mainland Africa."
+    ]},
+    {"country": "Zimbabwe", "capital": "Harare", "clues": [
+      "It's home to Victoria Falls, one of the largest waterfalls in the world.",
+      "It's named after Great Zimbabwe, ancient stone ruins built without mortar.",
+      "It was formerly known as Rhodesia.",
+      "It's landlocked in Southern Africa."
+    ]},
+    {"country": "Zambia", "capital": "Lusaka", "clues": [
+      "It shares Victoria Falls with Zimbabwe across the Zambezi River.",
+      "It's one of the world's largest producers of copper.",
+      "It was formerly known as Northern Rhodesia.",
+      "It's landlocked in Southern Africa."
+    ]},
+    {"country": "Botswana", "capital": "Gaborone", "clues": [
+      "It's home to the Okavango Delta, a rare inland river delta that never reaches the sea.",
+      "It's one of the world's leading producers of diamonds.",
+      "Much of its territory is covered by the Kalahari Desert.",
+      "It's landlocked in Southern Africa."
+    ]},
+    {"country": "Namibia", "capital": "Windhoek", "clues": [
+      "It's home to some of the oldest and tallest sand dunes in the world, in the Namib Desert.",
+      "It was the last African country to gain independence from colonial rule, in 1990.",
+      "It's one of the least densely populated countries on Earth.",
+      "It sits along the Atlantic coast of Southern Africa."
+    ]},
+    {"country": "Madagascar", "capital": "Antananarivo", "clues": [
+      "It's the fourth-largest island in the world.",
+      "About 90% of its wildlife, including lemurs, exists nowhere else on Earth.",
+      "It split from mainland Africa roughly 160 million years ago.",
+      "It sits in the Indian Ocean off Africa's southeast coast."
+    ]},
+    {"country": "Mauritania", "capital": "Nouakchott", "clues": [
+      "It's home to the Eye of the Sahara, a massive circular rock formation visible from space.",
+      "Over 90% of its territory lies within the Sahara Desert.",
+      "It was the last country in the world to formally criminalize slavery, in 1981.",
+      "It sits on the Atlantic coast of Northwest Africa."
+    ]},
+    {"country": "Rwanda", "capital": "Kigali", "clues": [
+      "It's nicknamed 'the land of a thousand hills.'",
+      "Its capital is often ranked among the cleanest cities in Africa, thanks in part to a monthly nationwide community cleanup day.",
+      "It's one of the last strongholds of the endangered mountain gorilla.",
+      "It's landlocked in East-Central Africa."
+    ]},
+    {"country": "Burkina Faso", "capital": "Ouagadougou", "clues": [
+      "Its name translates roughly to 'land of upright/honest people.'",
+      "It was formerly known as Upper Volta before renaming in 1984.",
+      "It's landlocked in West Africa.",
+      "Its capital's name is often shortened to 'Ouaga' by locals."
+    ]},
+    {"country": "Guinea", "capital": "Conakry", "clues": [
+      "It holds some of the world's largest reserves of bauxite, the ore used to make aluminum.",
+      "It was the first French colony in West Africa to vote for full independence, in 1958.",
+      "Its capital sits on a narrow peninsula jutting into the Atlantic.",
+      "It sits on the Atlantic coast of West Africa."
+    ]},
+    {"country": "Benin", "capital": "Porto-Novo", "clues": [
+      "It's considered the birthplace of the Vodun (Voodoo) religion.",
+      "It has two major cities functioning as capital: one official, one the seat of government.",
+      "It was formerly known as Dahomey.",
+      "It sits on the Gulf of Guinea in West Africa."
+    ]},
+    {"country": "Central African Rep.", "capital": "Bangui", "clues": [
+      "It's one of the least developed countries in the world despite rich diamond and gold deposits.",
+      "It's landlocked at the geographic center of the African continent.",
+      "It was briefly declared an empire in the 1970s under a self-proclaimed emperor.",
+      "It borders Chad, Sudan, and the Democratic Republic of Congo."
+    ]},
+    {"country": "Malawi", "capital": "Lilongwe", "clues": [
+      "It's nicknamed 'the Warm Heart of Africa' for the friendliness of its people.",
+      "Lake Malawi, one of the largest and deepest lakes in Africa, covers much of its eastern border.",
+      "It's one of the most densely populated countries in Africa.",
+      "It's landlocked in Southeast Africa."
+    ]},
+    {"country": "Gabon", "capital": "Libreville", "clues": [
+      "Over 80% of its land is covered by rainforest, one of the highest rates in the world.",
+      "Its capital's name means 'free town' in French, founded by freed and rescued slaves.",
+      "It has one of the highest GDP-per-capita figures in sub-Saharan Africa, largely from oil.",
+      "It sits on the Atlantic coast of Central Africa, straddling the equator."
+    ]},
+    {"country": "Eritrea", "capital": "Asmara", "clues": [
+      "Its capital is renowned for its well-preserved Italian Art Deco architecture from the colonial era.",
+      "It fought a decades-long war for independence from Ethiopia, achieved in 1993.",
+      "It sits along the Red Sea in the Horn of Africa.",
+      "It's one of the least visited countries in the world."
+    ]},
+    {"country": "Togo", "capital": "Lomé", "clues": [
+      "It's one of the narrowest countries in Africa, stretching in a thin strip north to south.",
+      "Its capital sits right on the border with Ghana, close enough to walk between countries.",
+      "It was formerly split between French and British colonial rule.",
+      "It sits on the Gulf of Guinea in West Africa."
+    ]},
+    {"country": "Sierra Leone", "capital": "Freetown", "clues": [
+      "Its capital was founded as a settlement for freed and formerly enslaved people in 1792.",
+      "It's a major source of diamonds, some tied to the term 'blood diamonds.'",
+      "It endured a brutal civil war through the 1990s that later inspired global film attention.",
+      "It sits on the Atlantic coast of West Africa."
+    ]},
+    {"country": "Liberia", "capital": "Monrovia", "clues": [
+      "Its capital is named after U.S. President James Monroe.",
+      "It was founded in the 1800s as a settlement for freed American slaves.",
+      "It's one of only two African countries never formally colonized by a European power.",
+      "It sits on the Atlantic coast of West Africa."
+    ]}
+  ]
+}
