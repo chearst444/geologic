@@ -17,7 +17,8 @@ import json, collections, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent
 
 HOLY, EGYPT, EAST, ASIA = (
-    "The Holy Land", "Egypt & Sinai", "Mesopotamia & the East", "Greece & Asia Minor")
+    "The Holy Land", "Egypt & Sinai", "Mesopotamia & the East",
+    "Greece, Rome & Asia Minor")
 
 GEO = {
     # City-sized targets: one anchor, tight radius.
@@ -118,11 +119,41 @@ GEO = {
     "Sea of Galilee": dict(at=[[35.5900, 32.8000], [35.5600, 32.8600],
                                [35.6250, 32.8300], [35.5650, 32.7500]],
                            radiusKm=7, group=HOLY),
+
+    # ---- batch 4 -----------------------------------------------------------
+    # Rome and Malta are why the map now reaches Italy.
+    "Rome":  dict(at=[[12.4964, 41.9028]], radiusKm=30, group=ASIA),
+    "Malta": dict(at=[[14.3800, 35.9500]], radiusKm=14, group=ASIA),
+    # An island, traced rather than pinned, so any part of it counts.
+    "Cyprus": dict(at=[[32.9000, 35.1500], [33.5000, 35.0500],
+                       [34.0000, 35.3000], [32.6000, 34.9500]],
+                   radiusKm=25, group=ASIA),
+
+    "Troas":    dict(at=[[26.1589, 39.7500]], radiusKm=12, group=ASIA),
+    "Miletus":  dict(at=[[27.2775, 37.5306]], radiusKm=10, group=ASIA),
+    "Berea":    dict(at=[[22.2025, 40.5236]], radiusKm=12, group=ASIA),
+    "Perga":    dict(at=[[30.8536, 36.9611]], radiusKm=12, group=ASIA),
+    "Susa":     dict(at=[[48.2468, 32.1892]], radiusKm=30, group=EAST),
+
+    # Saul's last days, the Jezreel valley, and Joshua's campaigns -- close
+    # neighbours again: Ai is 2.8 km from Bethel, Mamre 3.8 km from Hebron.
+    "Beersheba":    dict(at=[[34.7913, 31.2518]], radiusKm=12, group=HOLY),
+    "Dan":          dict(at=[[35.6522, 33.2489]], radiusKm=3,  group=HOLY),
+    "Mizpah":       dict(at=[[35.2161, 31.8869]], radiusKm=4,  group=HOLY),
+    "Endor":        dict(at=[[35.4053, 32.6300]], radiusKm=5,  group=HOLY),
+    "Mount Gilboa": dict(at=[[35.4100, 32.4900]], radiusKm=8,  group=HOLY),
+    "Jezreel":      dict(at=[[35.3306, 32.5578]], radiusKm=5,  group=HOLY),
+    "Megiddo":      dict(at=[[35.1850, 32.5844]], radiusKm=6,  group=HOLY),
+    "Gibeon":       dict(at=[[35.1847, 31.8464]], radiusKm=4,  group=HOLY),
+    "Ai":           dict(at=[[35.2611, 31.9172]], radiusKm=3,  group=HOLY),
+    "Mamre":        dict(at=[[35.1108, 31.5661]], radiusKm=3,  group=HOLY),
+    "Ziklag":       dict(at=[[34.6892, 31.3928]], radiusKm=12, group=HOLY),
+    "En Gedi":      dict(at=[[35.3883, 31.4617]], radiusKm=6,  group=HOLY),
 }
 
 src = {"locations": []}
 for name in ("bible_facts_batch1.json", "bible_facts_batch2.json",
-             "bible_facts_batch3.json"):
+             "bible_facts_batch3.json", "bible_facts_batch4.json"):
     src["locations"] += json.loads((ROOT / name).read_text())["locations"]
 
 out = []
@@ -143,7 +174,7 @@ for loc in src["locations"]:
 
 doc = collections.OrderedDict(
     source=["bible_facts_batch1.json", "bible_facts_batch2.json",
-            "bible_facts_batch3.json"],
+            "bible_facts_batch3.json", "bible_facts_batch4.json"],
     notes=("Playable form of every batch. Clues, modernCountry, ancientRegion "
            "and didYouKnow are verbatim from the source batches; `at` (real "
            "lon/lat anchors), `radiusKm` (click tolerance) and `group` (round "

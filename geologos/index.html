@@ -882,7 +882,7 @@
                 <option value="The Holy Land">The Holy Land</option>
                 <option value="Egypt &amp; Sinai">Egypt &amp; Sinai</option>
                 <option value="Mesopotamia &amp; the East">Mesopotamia &amp; the East</option>
-                <option value="Greece &amp; Asia Minor">Greece &amp; Asia Minor</option>
+                <option value="Greece, Rome &amp; Asia Minor">Greece, Rome &amp; Asia Minor</option>
             </select>
             <button class="js-skip">Skip &rarr;</button>
         </div>
@@ -1014,11 +1014,14 @@
     const SLOP_PX       = 22;   // how close a click counts as "at" a place
     const SEPARATION_PX = 60;   // gap to open up between two contested places
     const ZOOM_STEP     = 6;    // most one ambiguous click will zoom in by
-    const MAX_K         = 600;  // enough to separate Gethsemane from Moriah
+    const MAX_K         = 800;  // enough to separate Gethsemane from Moriah
     const SAME_SPOT_KM  = 0.02; // below this, zooming will never help
 
-    // The Biblical world, from Greece to Ur and from Ararat to the Red Sea.
-    const BBOX = { lon: [19.5, 49.5], lat: [25.5, 42.2] };
+    // The Biblical world: Rome and Malta in the west, Ur and Susa in the
+    // east, Ararat in the north, the Red Sea in the south. The frame reaches
+    // Italy because Paul did -- it costs about a fifth of the scale
+    // everywhere else, which the zoom absorbs.
+    const BBOX = { lon: [11.0, 49.5], lat: [24.0, 44.0] };
 
     // ---- Ancient era: hand-drawn kingdoms ------------------------------
     // Approximate outlines, drawn to be recognisable rather than surveyed;
@@ -1033,7 +1036,13 @@
             [32.35,24.15],[31.60,25.80],[30.70,28.60],[29.55,30.65] ] },
         { name: "ASIA MINOR", tint: 3, label: [31.2, 38.9], ring: [
             [26.00,40.35],[33.00,41.20],[36.20,40.00],[36.60,37.00],[34.00,36.15],
-            [29.00,36.50],[26.20,38.60] ] },
+            [29.00,36.50],[27.20,37.20],[26.20,38.60] ] },
+        // Traced loosely down the peninsula: the sea overlay trims it back to
+        // the coast, so only the boot itself ever shows.
+        { name: "ITALIA", tint: 2, label: [13.6, 42.3], ring: [
+            [10.20,44.00],[13.00,44.30],[13.60,43.00],[14.90,42.10],[16.20,41.50],
+            [18.40,40.20],[17.40,39.40],[16.20,38.00],[15.70,38.20],[14.20,40.60],
+            [12.40,41.30],[11.00,42.40],[10.10,43.20] ] },
         { name: "ACHAEA", tint: 4, label: [22.0, 38.6], ring: [
             [20.80,39.60],[23.50,40.20],[24.60,38.00],[23.20,36.40],[21.30,36.60],[20.30,38.30] ] },
         // Philippi and Thessalonica are Macedonia, not Achaea -- Paul's first
@@ -1049,6 +1058,10 @@
             [40.40,36.05],[42.00,37.45],[44.30,37.60],[45.10,36.30],[43.60,34.60],[41.20,34.85] ] },
         { name: "BABYLONIA", tint: 2, label: [44.9, 32.1], ring: [
             [42.80,33.60],[45.10,34.20],[47.30,31.20],[46.10,29.85],[43.60,31.20] ] },
+        // Susa's home: Esther's city sits east of Babylonia, and the frame
+        // only just reaches it.
+        { name: "PERSIA", tint: 4, label: [48.4, 33.0], sm: true, ring: [
+            [47.40,34.00],[49.45,33.60],[49.45,29.80],[47.60,30.00],[47.20,32.00] ] },
         { name: "SINAI", tint: 0, label: [33.7, 29.5], sm: true, ring: [
             [32.60,30.25],[34.35,31.10],[34.90,29.45],[34.15,27.85],[33.05,28.90] ] },
         // Reaches north-west far enough to take in Antioch, which the batch
@@ -1086,9 +1099,12 @@
         { name: "SAMARIA", tint: 4, label: [35.2, 32.3], sm: true, ring: [
             [34.98,32.60],[35.25,32.62],[35.55,32.52],[35.60,32.25],[35.55,31.92],
             [35.20,31.90],[34.96,31.94],[34.94,32.28] ] },
+        // North edge sits just over Mizpah, west edge just past Beersheba --
+        // "from Dan to Beersheba" marks the far end of the country, so the
+        // well itself should not fall outside it.
         { name: "JUDAH", tint: 2, label: [35.1, 31.5], sm: true, ring: [
-            [34.86,31.90],[35.20,31.88],[35.50,31.88],[35.55,31.35],[35.30,30.95],
-            [34.98,31.05],[34.82,31.20],[34.75,31.60] ] },
+            [34.86,31.90],[35.20,31.895],[35.50,31.88],[35.55,31.35],[35.30,30.95],
+            [34.98,31.05],[34.76,31.18],[34.75,31.60] ] },
         // Stops short of Judah's western edge: overlapping the two put a
         // stripe of the wrong kingdom down the Judean hills.
         { name: "PHILISTIA", tint: 3, label: [34.55, 31.45], sm: true, ring: [
@@ -1108,6 +1124,8 @@
     const COUNTRY_LABELS = [
         { text: "TURKEY", at: [32.6, 39.0] },
         { text: "GREECE", at: [22.0, 39.3] },
+        { text: "ITALY", at: [14.6, 41.3] },
+        { text: "MALTA", at: [14.40, 35.75], sm: true },
         { text: "SYRIA", at: [38.4, 34.8] },
         { text: "IRAQ", at: [43.4, 33.4] },
         { text: "IRAN", at: [47.8, 33.4] },
@@ -1148,6 +1166,9 @@
     const SEA_LABELS = [
         { text: "MEDITERRANEAN SEA", at: [28.6, 33.7] },
         { text: "AEGEAN SEA", at: [24.9, 38.5], sm: true },
+        { text: "IONIAN SEA", at: [18.6, 37.6], sm: true },
+        { text: "ADRIATIC SEA", at: [17.4, 42.2], sm: true },
+        { text: "TYRRHENIAN SEA", at: [12.2, 39.6], sm: true },
         { text: "BLACK SEA", at: [33.5, 41.7], sm: true },
         { text: "RED SEA", at: [35.9, 26.3], sm: true },
         { text: "PERSIAN GULF", at: [49.0, 29.2], sm: true }
@@ -1276,7 +1297,7 @@
             // across the globe, and projecting one of those into Mercator
             // paints a shape over the entire map -- land and sea alike.
             if (x1 - x0 > 90 || y1 - y0 > 60) return false;
-            return x1 >= 17 && x0 <= 53 && y1 >= 21 && y0 <= 45;
+            return x1 >= 8 && x0 <= 53 && y1 >= 20 && y0 <= 46;
         }) };
 
         drawModern(countries);

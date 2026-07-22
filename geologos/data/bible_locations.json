@@ -2,7 +2,8 @@
   "source": [
     "bible_facts_batch1.json",
     "bible_facts_batch2.json",
-    "bible_facts_batch3.json"
+    "bible_facts_batch3.json",
+    "bible_facts_batch4.json"
   ],
   "notes": "Playable form of every batch. Clues, modernCountry, ancientRegion and didYouKnow are verbatim from the source batches; `at` (real lon/lat anchors), `radiusKm` (click tolerance) and `group` (round filter) were added so the location can be found on the map. Regenerate with build_locations.py; do not hand-edit.",
   "locations": [
@@ -230,7 +231,7 @@
       "place": "Antioch",
       "modernCountry": "Turkey",
       "ancientRegion": "Syria (Roman province)",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           36.1611,
@@ -250,7 +251,7 @@
       "place": "Corinth",
       "modernCountry": "Greece",
       "ancientRegion": "Achaea",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           22.9319,
@@ -270,7 +271,7 @@
       "place": "Ephesus",
       "modernCountry": "Turkey",
       "ancientRegion": "Asia Minor (Roman province of Asia)",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           27.3417,
@@ -290,7 +291,7 @@
       "place": "Patmos",
       "modernCountry": "Greece",
       "ancientRegion": "Aegean Islands",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           26.547,
@@ -726,7 +727,7 @@
       "place": "Tarsus",
       "modernCountry": "Turkey",
       "ancientRegion": "Cilicia (Roman province)",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           34.895,
@@ -746,7 +747,7 @@
       "place": "Philippi",
       "modernCountry": "Greece",
       "ancientRegion": "Macedonia",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           24.2864,
@@ -766,7 +767,7 @@
       "place": "Thessalonica",
       "modernCountry": "Greece",
       "ancientRegion": "Macedonia",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           22.9444,
@@ -786,7 +787,7 @@
       "place": "Athens",
       "modernCountry": "Greece",
       "ancientRegion": "Achaea",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           23.7275,
@@ -1086,7 +1087,7 @@
       "place": "Lystra",
       "modernCountry": "Turkey",
       "ancientRegion": "Lycaonia (Roman province of Galatia)",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           32.455,
@@ -1106,7 +1107,7 @@
       "place": "Derbe",
       "modernCountry": "Turkey",
       "ancientRegion": "Lycaonia (Roman province of Galatia)",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           33.3167,
@@ -1126,7 +1127,7 @@
       "place": "Iconium",
       "modernCountry": "Turkey",
       "ancientRegion": "Phrygia/Galatia",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           32.4833,
@@ -1146,7 +1147,7 @@
       "place": "Colossae",
       "modernCountry": "Turkey",
       "ancientRegion": "Phrygia (Roman province of Asia)",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           29.26,
@@ -1166,7 +1167,7 @@
       "place": "Laodicea",
       "modernCountry": "Turkey",
       "ancientRegion": "Phrygia (Roman province of Asia)",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           29.1078,
@@ -1186,7 +1187,7 @@
       "place": "Smyrna",
       "modernCountry": "Turkey",
       "ancientRegion": "Ionia (Roman province of Asia)",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           27.1428,
@@ -1206,7 +1207,7 @@
       "place": "Pergamum",
       "modernCountry": "Turkey",
       "ancientRegion": "Mysia (Roman province of Asia)",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           27.1833,
@@ -1226,7 +1227,7 @@
       "place": "Sardis",
       "modernCountry": "Turkey",
       "ancientRegion": "Lydia (Roman province of Asia)",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           28.04,
@@ -1246,7 +1247,7 @@
       "place": "Philadelphia (Asia Minor)",
       "modernCountry": "Turkey",
       "ancientRegion": "Lydia (Roman province of Asia)",
-      "group": "Greece & Asia Minor",
+      "group": "Greece, Rome & Asia Minor",
       "at": [
         [
           28.5167,
@@ -1281,6 +1282,418 @@
         "It sat on the Mediterranean coast, west of Jerusalem."
       ],
       "didYouKnow": "Ashkelon is one of the oldest and largest seaports discovered in the ancient world, with harbor use dating back over 3,000 years."
+    },
+    {
+      "place": "Rome",
+      "modernCountry": "Italy",
+      "ancientRegion": "Roman Empire (capital)",
+      "group": "Greece, Rome & Asia Minor",
+      "at": [
+        [
+          12.4964,
+          41.9028
+        ]
+      ],
+      "radiusKm": 30,
+      "clues": [
+        "Paul had long wanted to visit this city and finally arrived there under armed guard.",
+        "He spent two years under house arrest here, still preaching and writing letters.",
+        "Paul wrote his letter to the believers already living in this city years before he ever arrived.",
+        "It was the capital of the empire that ruled over nearly the entire Biblical world in the New Testament."
+      ],
+      "didYouKnow": "Tradition holds that both Paul and Peter were eventually martyred in Rome under Emperor Nero."
+    },
+    {
+      "place": "Malta",
+      "modernCountry": "Malta",
+      "ancientRegion": "Roman province (island)",
+      "group": "Greece, Rome & Asia Minor",
+      "at": [
+        [
+          14.38,
+          35.95
+        ]
+      ],
+      "radiusKm": 14,
+      "clues": [
+        "Paul's ship wrecked on this island's shore during a violent storm while he was being taken to Rome.",
+        "A viper bit Paul here while he was gathering firewood, but he suffered no harm.",
+        "The islanders first thought he was a murderer, then decided he must be a god.",
+        "He healed the sick father of the island's chief official during his stay here."
+      ],
+      "didYouKnow": "Malta still celebrates 'St. Paul's Shipwreck' as a public holiday every February."
+    },
+    {
+      "place": "Troas",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Mysia (Roman province of Asia)",
+      "group": "Greece, Rome & Asia Minor",
+      "at": [
+        [
+          26.1589,
+          39.75
+        ]
+      ],
+      "radiusKm": 12,
+      "clues": [
+        "Paul had a night vision here of a man from Macedonia begging him to come help.",
+        "That vision redirected his entire missionary journey from Asia into Europe.",
+        "A young man named Eutychus fell asleep during one of Paul's long sermons here and fell from a window.",
+        "Paul raised Eutychus back to life after he fell three stories to his apparent death."
+      ],
+      "didYouKnow": "Troas sat near the ruins of ancient Troy, the setting of Homer's Iliad."
+    },
+    {
+      "place": "Miletus",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Caria (Roman province of Asia)",
+      "group": "Greece, Rome & Asia Minor",
+      "at": [
+        [
+          27.2775,
+          37.5306
+        ]
+      ],
+      "radiusKm": 10,
+      "clues": [
+        "Paul called the elders of a nearby city to meet him here rather than delay his journey by visiting in person.",
+        "He gave them an emotional farewell speech, telling them they would never see his face again.",
+        "The elders wept and embraced him before he sailed on toward Jerusalem.",
+        "It sat on the coast near Ephesus, in the Roman province of Asia."
+      ],
+      "didYouKnow": "Miletus was once a great center of Greek philosophy, home to some of the earliest known scientific thinkers."
+    },
+    {
+      "place": "Berea",
+      "modernCountry": "Greece",
+      "ancientRegion": "Macedonia",
+      "group": "Greece, Rome & Asia Minor",
+      "at": [
+        [
+          22.2025,
+          40.5236
+        ]
+      ],
+      "radiusKm": 12,
+      "clues": [
+        "The Jewish community here was described as more noble than those in a nearby city, for testing Paul's teaching against Scripture.",
+        "They examined the Scriptures daily to see if what Paul said was true.",
+        "Paul had to be quickly sent away from here once opponents from Thessalonica arrived stirring up trouble.",
+        "It sat in the Roman province of Macedonia, in what is now northern Greece."
+      ],
+      "didYouKnow": "The phrase 'noble Bereans' is still used today to describe someone who carefully checks teaching against Scripture rather than accepting it blindly."
+    },
+    {
+      "place": "Cyprus",
+      "modernCountry": "Cyprus",
+      "ancientRegion": "Roman province (island)",
+      "group": "Greece, Rome & Asia Minor",
+      "at": [
+        [
+          32.9,
+          35.15
+        ],
+        [
+          33.5,
+          35.05
+        ],
+        [
+          34.0,
+          35.3
+        ],
+        [
+          32.6,
+          34.95
+        ]
+      ],
+      "radiusKm": 25,
+      "clues": [
+        "Paul and Barnabas made this island their first stop on their first missionary journey.",
+        "A sorcerer here tried to turn a Roman official away from the faith and was struck blind.",
+        "It was the homeland of Barnabas, Paul's traveling companion.",
+        "It's a large island in the eastern Mediterranean Sea."
+      ],
+      "didYouKnow": "Cyprus is where Saul is first referred to by his Roman name, Paul, in the book of Acts."
+    },
+    {
+      "place": "Perga",
+      "modernCountry": "Turkey",
+      "ancientRegion": "Pamphylia (Roman province)",
+      "group": "Greece, Rome & Asia Minor",
+      "at": [
+        [
+          30.8536,
+          36.9611
+        ]
+      ],
+      "radiusKm": 12,
+      "clues": [
+        "Paul and Barnabas arrived here after sailing from Cyprus on their first missionary journey.",
+        "John Mark left the group and returned to Jerusalem from this city, later causing a sharp disagreement between Paul and Barnabas.",
+        "Paul preached here again on his return journey before sailing home.",
+        "It sat inland from the southern coast of Asia Minor, in the region of Pamphylia."
+      ],
+      "didYouKnow": "John Mark's departure here later became such a point of contention that Paul and Barnabas split into separate missionary teams over it."
+    },
+    {
+      "place": "Beersheba",
+      "modernCountry": "Israel",
+      "ancientRegion": "Negev (southern Canaan)",
+      "group": "The Holy Land",
+      "at": [
+        [
+          34.7913,
+          31.2518
+        ]
+      ],
+      "radiusKm": 12,
+      "clues": [
+        "Abraham made a covenant here with a local king over a dispute about a well.",
+        "He named the site after an oath, its name meaning 'well of the oath' or 'well of seven.'",
+        "Isaac later dug wells and had his own covenant meeting here as well.",
+        "It marked the southern boundary of Israel in the phrase 'from Dan to Beersheba.'"
+      ],
+      "didYouKnow": "The phrase 'from Dan to Beersheba' was the ancient equivalent of saying 'from one end of the country to the other.'"
+    },
+    {
+      "place": "Dan",
+      "modernCountry": "Israel",
+      "ancientRegion": "Northern Israel",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.6522,
+          33.2489
+        ]
+      ],
+      "radiusKm": 3,
+      "clues": [
+        "This city marked the northernmost point of Israelite territory.",
+        "The tribe of Dan conquered and resettled this city, renaming it after their tribal ancestor.",
+        "King Jeroboam set up one of two golden calves here to keep people from worshiping in Jerusalem.",
+        "It sat at the base of Mount Hermon, near one of the main sources of the Jordan River."
+      ],
+      "didYouKnow": "One of the main headwater springs of the Jordan River still flows from this site today."
+    },
+    {
+      "place": "Mizpah",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Benjamin (Israel)",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2161,
+          31.8869
+        ]
+      ],
+      "radiusKm": 4,
+      "clues": [
+        "Jacob and his father-in-law Laban made a covenant here and set up a stone heap as a witness.",
+        "The Israelites gathered here to fast and repent under Samuel's leadership.",
+        "Samuel judged Israel from this location for many years.",
+        "Saul was chosen and publicly presented here as Israel's first king."
+      ],
+      "didYouKnow": "The name Mizpah is often invoked today in the phrase 'the Lord watch between me and thee,' drawn from Jacob and Laban's covenant here."
+    },
+    {
+      "place": "Endor",
+      "modernCountry": "Israel",
+      "ancientRegion": "Northern Israel",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.4053,
+          32.63
+        ]
+      ],
+      "radiusKm": 5,
+      "clues": [
+        "Saul disguised himself and traveled here in desperation the night before his final battle.",
+        "He sought out a medium here, despite having banned such practices himself.",
+        "The medium summoned the spirit of Samuel, who predicted Saul's defeat and death.",
+        "It sat near Mount Gilboa, where Saul would die the very next day."
+      ],
+      "didYouKnow": "This event is one of the most debated passages in the Old Testament regarding what actually appeared to Saul."
+    },
+    {
+      "place": "Mount Gilboa",
+      "modernCountry": "Israel",
+      "ancientRegion": "Northern Israel",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.41,
+          32.49
+        ]
+      ],
+      "radiusKm": 8,
+      "clues": [
+        "King Saul and his sons died in battle against the Philistines on this mountain.",
+        "David composed a mournful lament after hearing the news of their deaths here.",
+        "That lament famously repeats the line, 'How the mighty have fallen.'",
+        "It sits in northern Israel, overlooking the Jezreel Valley."
+      ],
+      "didYouKnow": "David's lament asked that dew and rain never again fall on these mountains, as a mark of mourning."
+    },
+    {
+      "place": "Jezreel",
+      "modernCountry": "Israel",
+      "ancientRegion": "Northern Israel",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.3306,
+          32.5578
+        ]
+      ],
+      "radiusKm": 5,
+      "clues": [
+        "King Ahab coveted a vineyard here that belonged to a man named Naboth.",
+        "Queen Jezebel arranged to have Naboth falsely accused and killed to seize his land.",
+        "Elijah confronted Ahab here, prophesying doom for both him and Jezebel.",
+        "It sat in a fertile valley overlooked by Mount Gilboa."
+      ],
+      "didYouKnow": "Jezebel's own name later became a byword for wickedness, largely because of what happened in this valley."
+    },
+    {
+      "place": "Megiddo",
+      "modernCountry": "Israel",
+      "ancientRegion": "Jezreel Valley",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.185,
+          32.5844
+        ]
+      ],
+      "radiusKm": 6,
+      "clues": [
+        "This heavily fortified city guarded one of the most important trade and military routes in the ancient world.",
+        "King Josiah of Judah was killed in battle here against an Egyptian pharaoh.",
+        "Its name, combined with a Hebrew word for 'mountain,' gives us a famous word from Revelation.",
+        "It's the traditional site referenced as 'Armageddon,' the location of a final great battle."
+      ],
+      "didYouKnow": "Armageddon literally means 'Mountain of Megiddo,' referencing this real archaeological site in northern Israel."
+    },
+    {
+      "place": "Gibeon",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Canaan/Benjamin",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.1847,
+          31.8464
+        ]
+      ],
+      "radiusKm": 4,
+      "clues": [
+        "This city's inhabitants tricked Joshua into a peace treaty by disguising themselves as weary travelers from far away.",
+        "Five kings attacked this city for making peace with Israel, prompting Joshua to come to its defense.",
+        "During that battle, Joshua asked God to make the sun stand still in the sky.",
+        "It sat in the hill country near Jerusalem, within the territory of Benjamin."
+      ],
+      "didYouKnow": "The book of Joshua explicitly notes that there was no day like it before or since, when the Lord listened to a human voice."
+    },
+    {
+      "place": "Ai",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Canaan",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.2611,
+          31.9172
+        ]
+      ],
+      "radiusKm": 3,
+      "clues": [
+        "Israel suffered a surprising defeat here shortly after their victory at Jericho.",
+        "The defeat was traced back to a man named Achan, who had secretly kept forbidden plunder.",
+        "Once the sin was dealt with, Joshua used an ambush strategy to finally conquer this city.",
+        "It was the second city Israel took after entering the Promised Land."
+      ],
+      "didYouKnow": "The city's name, Ai, simply means 'the ruin' in Hebrew, likely a description rather than an original proper name."
+    },
+    {
+      "place": "Mamre",
+      "modernCountry": "Palestinian Territories",
+      "ancientRegion": "Canaan (near Hebron)",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.1108,
+          31.5661
+        ]
+      ],
+      "radiusKm": 3,
+      "clues": [
+        "Abraham pitched his tents among the great trees here for much of his life.",
+        "Three visitors, understood to include the Lord himself, appeared to him here and promised Sarah a son.",
+        "Sarah laughed to herself upon overhearing the promise, since she was long past childbearing age.",
+        "It sat near Hebron, in the hill country of Canaan."
+      ],
+      "didYouKnow": "The 'great trees of Mamre' are mentioned as a landmark significant enough that Abraham built an altar there."
+    },
+    {
+      "place": "Ziklag",
+      "modernCountry": "Israel",
+      "ancientRegion": "Philistia border",
+      "group": "The Holy Land",
+      "at": [
+        [
+          34.6892,
+          31.3928
+        ]
+      ],
+      "radiusKm": 12,
+      "clues": [
+        "David was given this town as a refuge while fleeing King Saul.",
+        "It was raided and burned by Amalekites while David and his men were away.",
+        "David pursued the raiders and recovered everything and everyone that had been taken.",
+        "It sat on the border between Israelite and Philistine territory in the south."
+      ],
+      "didYouKnow": "David was living in Ziklag under Philistine protection at the very time King Saul died at Mount Gilboa."
+    },
+    {
+      "place": "En Gedi",
+      "modernCountry": "Israel",
+      "ancientRegion": "Judean wilderness",
+      "group": "The Holy Land",
+      "at": [
+        [
+          35.3883,
+          31.4617
+        ]
+      ],
+      "radiusKm": 6,
+      "clues": [
+        "David hid in caves in this rugged wilderness area while being pursued by King Saul.",
+        "In one of these caves, David secretly cut off a piece of Saul's robe rather than kill him.",
+        "It's known for its natural springs in the middle of an otherwise harsh desert landscape.",
+        "It sits along the western shore of the Dead Sea."
+      ],
+      "didYouKnow": "En Gedi remains a lush desert oasis today, with waterfalls and wildlife rare anywhere else nearby."
+    },
+    {
+      "place": "Susa",
+      "modernCountry": "Iran",
+      "ancientRegion": "Persia",
+      "group": "Mesopotamia & the East",
+      "at": [
+        [
+          48.2468,
+          32.1892
+        ]
+      ],
+      "radiusKm": 30,
+      "clues": [
+        "A Jewish woman was brought here to become queen after winning a kingdom-wide beauty search.",
+        "Her cousin Mordecai discovered a plot to assassinate the king while sitting at this city's gate.",
+        "A royal official named Haman plotted here to destroy the entire Jewish people.",
+        "The queen, Esther, risked her life by approaching the king here uninvited to save her people."
+      ],
+      "didYouKnow": "Susa served as one of the primary capitals of the vast Persian Empire, the same empire that had earlier allowed Jewish exiles to return home."
     }
   ]
 }
