@@ -49,25 +49,26 @@
             --border-anc: #7A6A4F;   /* Ancient borders */
             --river:      #3E7B8C;   /* River lines     */
 
-            /* The land carries the deep blues, so the sea is the pale one:
-               Dusty Blue lifted most of the way to white, with the lakes a
-               few steps down so they still read against it. */
-            --water:      #E1E9EE;
-            --water-deep: #BDCFD9;
+            /* Water is blue and land is parchment, the way every map has done
+               it since people started drawing them. This was inverted for a
+               while -- indigo land, pale sea -- and no amount of accurate
+               coastline could rescue it: the eye reads the blue as the sea and
+               refuses to be told otherwise. */
+            --water:      #1B3A57;   /* Deep indigo: the open sea  */
+            --water-deep: #2C5B7A;   /* Slate: lakes, a step lifted */
 
-            /* Map fill. The landmass is deep indigo; the regions drawn on it
-               are lighter steps of the same family, so every kingdom reads
-               against the land and against its neighbours. */
-            --land:       #1B3A57;
-            --land-2:     #24486A;
-            --land-3:     #2C5B7A;
-            --land-4:     #40708C;
-            --land-5:     #5A87A0;
-            --land-6:     #7CA0B5;
+            /* Land is brown -- an earth tone against the indigo sea, rather
+               than the near-white parchment the cards and chrome use. Four
+               steps, light to deep, for the modern map's countries. */
+            --land:       #BE9B6F;
+            --land-2:     #CBAC85;
+            --land-3:     #B08C5F;
+            --land-4:     #9E7C52;
 
-            /* The palette's river blue is for the pale sea; on indigo land it
-               would disappear, so the lines themselves run a few steps up. */
-            --river-line: #7FB3C4;
+            /* Rivers take the sea's blue -- all water one colour -- because the
+               palette's lighter #3E7B8C reads at 1.8:1 against brown land,
+               which is to say not at all. */
+            --river-line: #1B3A57;
         }
 
         * { box-sizing: border-box; }
@@ -370,17 +371,15 @@
 
         /* Modern era: real borders, four muted tints cycled by index. */
         .country {
-            /* Light hairlines: the ancient border brown is for the ancient
-               map, and would vanish against these fills. */
-            stroke: rgba(245, 238, 221, 0.45);
+            stroke: rgba(122, 106, 79, 0.55);
             stroke-width: 0.6;
             vector-effect: non-scaling-stroke;
             pointer-events: none;
         }
         .country.t0 { fill: var(--land); }
         .country.t1 { fill: var(--land-3); }
-        .country.t2 { fill: var(--land-4); }
-        .country.t3 { fill: var(--land-5); }
+        .country.t2 { fill: var(--land-2); }
+        .country.t3 { fill: var(--land-4); }
 
         /* No ancient-region fills exist any more: the ancient maps are the
            landmass, the water, and names. */
@@ -414,8 +413,8 @@
             font-weight: 700;
             letter-spacing: 0.12em;
             text-anchor: middle;
-            fill: var(--parchment-2);
-            stroke: rgba(27, 58, 87, 0.85);
+            fill: #3E3220;
+            stroke: var(--land);
             stroke-width: 2.6px;
         }
         .lbl-country.sm { font-size: 7px; letter-spacing: 0.07em; }
@@ -425,9 +424,9 @@
             font-weight: 700;
             letter-spacing: 0.18em;
             text-anchor: middle;
-            fill: var(--parchment-2);
-            stroke: rgba(27, 58, 87, 0.85);
-            stroke-width: 2.6px;
+            fill: #33281A;
+            stroke: var(--land);
+            stroke-width: 2.8px;
         }
         .lbl-region.sm { font-size: 8px; letter-spacing: 0.1em; }
         /* Real summits, from the same atlas linework. */
@@ -445,7 +444,7 @@
         .lbl-region.wide {
             font-size: 13px;
             letter-spacing: 0.42em;
-            fill: rgba(232, 220, 192, 0.55);
+            fill: rgba(51, 40, 26, 0.5);
             stroke-width: 3px;
         }
         .lbl-water {
@@ -454,8 +453,8 @@
             font-size: 9px;
             letter-spacing: 0.1em;
             text-anchor: middle;
-            fill: var(--river);
-            stroke: var(--water);
+            fill: #9FBBCB;
+            stroke: rgba(27, 58, 87, 0.9);
             stroke-width: 2.4px;
             paint-order: stroke;
         }
@@ -520,23 +519,29 @@
            the click themselves. */
         #site-layer { pointer-events: none; }
         .site-halo {
-            fill: var(--parchment);
-            fill-opacity: 0.22;
+            fill: var(--water);
+            fill-opacity: 0.12;
         }
         .site-dot {
-            fill: var(--clay-soft);
-            stroke: var(--parchment);
-            stroke-width: 1.1;
+            fill: var(--parchment);
+            stroke: var(--clay-deep);
+            stroke-width: 1.3;
             vector-effect: non-scaling-stroke;
         }
         /* The answered one stays lit for the rest of the round. */
-        .site.found .site-dot { fill: var(--gold-soft); }
+        /* Gold sits at almost exactly the brightness of the brown land, so
+           the answered site differs in weight, not only in hue. */
+        .site.found .site-dot {
+            fill: var(--clay-deep);
+            stroke: var(--gold);
+            stroke-width: 1.8;
+        }
 
         /* ---- Markers --------------------------------------------------- */
         #marker-layer { pointer-events: none; }
 
         .guess-x {
-            stroke: var(--clay-soft);
+            stroke: var(--clay-deep);
             stroke-width: 2.4;
             vector-effect: non-scaling-stroke;
             stroke-linecap: round;
@@ -552,7 +557,7 @@
            property is not safe across browsers, a transform is. */
         .pin circle.halo {
             fill: none;
-            stroke: var(--gold-soft);
+            stroke: var(--gold-deep);
             stroke-width: 2;
             vector-effect: non-scaling-stroke;
             transform-box: fill-box;
@@ -564,7 +569,7 @@
             to   { transform: scale(2.6); opacity: 0; }
         }
         .pin circle.dot {
-            fill: var(--clay);
+            fill: var(--clay-deep);
             stroke: var(--parchment);
             stroke-width: 1.6;
             vector-effect: non-scaling-stroke;
@@ -574,8 +579,8 @@
             font-size: 10px;
             font-weight: 700;
             text-anchor: middle;
-            fill: var(--parchment);
-            stroke: rgba(27, 58, 87, 0.9);
+            fill: var(--text-head);
+            stroke: var(--parchment);
             stroke-width: 3px;
         }
 
