@@ -1052,7 +1052,7 @@
                          a lon/lat lands where the art draws that place. The rect
                          fills the viewBox width; the ~20px it overhangs top and
                          bottom is clipped, which is the "cover" fill. -->
-                    <image id="basemap-img" href="map-background.PNG"
+                    <image id="basemap-img" href="map-background.jpg"
                            x="0" y="-19.698" width="975" height="649.396"
                            preserveAspectRatio="none"></image>
                     <rect id="sea" class="sea" x="-2000" y="-2000" width="5000" height="5000"></rect>
@@ -1444,7 +1444,7 @@
         LOCS = data.locations;
         for (const l of LOCS) byName[l.place] = l;
 
-        // The base map is a fixed background image now (map-background.PNG,
+        // The base map is a fixed background image now (map-background.jpg,
         // drawn by #basemap-img), so the projection is fitted to the art rather
         // than to a clean graticule. The scale and translate below were solved
         // by least squares from reference points measured on the image itself
