@@ -332,7 +332,9 @@
         #map-viewport {
             width: 100%;
             flex: 1;
-            background: var(--water);
+            /* The dark navy of the background image's sea, so the letterbox
+               bands around the image read as more sea, not a blue frame. */
+            background: #26303C;
             border-radius: 12px;
             overflow: hidden;
             position: relative;
@@ -402,8 +404,14 @@
         }
 
         /* ---- Map paint ------------------------------------------------- */
-        .sea { fill: var(--water); }
-        .land { fill: var(--land); }
+        /* The base map is now a single background image (#basemap-img), one
+           piece of art shared by every era. The traced coastline, land, water
+           and rivers are no longer painted -- but the GeoJSON they came from is
+           still loaded and kept in `basemap` (see the load handler) so era
+           tagging and clue logic can use it. Only their rendering is off. The
+           locator inset keeps its own land silhouette (#loc-land), which these
+           rules do not touch. */
+        .sea, .land, .country, .water-body, .river { display: none; }
 
         /* Modern era: real borders, four muted tints cycled by index. */
         .country {
@@ -1030,6 +1038,16 @@
 
             <svg id="map-svg" viewBox="0 0 975 610" preserveAspectRatio="xMidYMid meet">
                 <g id="map-container">
+                    <!-- The base map: one static antique image, shared by every
+                         era. It lives inside #map-container so it pans and zooms
+                         locked to the site dots. Its rect and the projection
+                         (see load handler) come from the same fit to the art, so
+                         a lon/lat lands where the art draws that place. The rect
+                         fills the viewBox width; the ~20px it overhangs top and
+                         bottom is clipped, which is the "cover" fill. -->
+                    <image id="basemap-img" href="map-background.PNG"
+                           x="0" y="-19.698" width="975" height="649.396"
+                           preserveAspectRatio="none"></image>
                     <rect id="sea" class="sea" x="-2000" y="-2000" width="5000" height="5000"></rect>
                     <g id="modern-layer"></g>
                     <g id="ancient-layer"></g>
@@ -1285,6 +1303,10 @@
     const W = 975, H = 610;
     const EARTH_KM = 6371;
     let projection, geoPath;
+    // The traced basemap GeoJSON, kept after loading even though it is no
+    // longer drawn: the background image replaced its rendering, but the
+    // shapes are still here for era tagging, clue matching and the like.
+    let basemap = { countries: null, rivers: null, lakes: null };
 
     // Pan / zoom: wheel or buttons to zoom, drag to pan. The same behavior
     // also drives the automatic zoom-to-place on a correct answer. The scale
@@ -1415,14 +1437,25 @@
         LOCS = data.locations;
         for (const l of LOCS) byName[l.place] = l;
 
-        // Fitted to the four corners as a MultiPoint, not as a Polygon: a
-        // polygon ring wound the wrong way reads to d3-geo as everything
-        // *outside* the box, and the whole world would be fitted instead.
-        projection = d3.geoMercator().fitExtent(
-            [[22, 16], [W - 22, H - 16]],
-            { type: "MultiPoint", coordinates: [
-                [BBOX.lon[0], BBOX.lat[0]], [BBOX.lon[1], BBOX.lat[0]],
-                [BBOX.lon[1], BBOX.lat[1]], [BBOX.lon[0], BBOX.lat[1]] ] });
+        // The base map is a fixed background image now (map-background.PNG,
+        // drawn by #basemap-img), so the projection is fitted to the art rather
+        // than to a clean graticule. The scale and translate below were solved
+        // by least squares from reference points measured on the image itself
+        // -- Rome, Cyprus, the Sea of Galilee, the Dead Sea, the Nile delta --
+        // so projection(lon,lat) lands on the place where the art draws it. In
+        // the image's own pixels the art is very nearly a true Mercator (the
+        // lon and lat scales agree to under 1%), which is why a single Mercator
+        // fits at all. The #basemap-img rect and these numbers come from the
+        // same fit, so the dots stay locked to the coastline at every zoom.
+        //
+        // Known soft spots, from the fit residuals: the crisp anchors (Cyprus,
+        // Galilee, the Dead Sea) land within ~15 px; Rome and Crete are ~2%
+        // (~25 px) out, and the Nile delta is the loosest at ~4% -- the art
+        // draws the delta a touch north of where the projection puts the river
+        // mouth. Adjust SCALE/translate here if a place needs nudging.
+        projection = d3.geoMercator()
+            .scale(1402.5061)
+            .translate([-223.0508, 1204.0256]);
         geoPath = d3.geoPath(projection);
 
         // 10m rather than 50m because Patmos -- an actual answer -- is too
@@ -1439,6 +1472,12 @@
             return x1 >= 8 && x0 <= 53 && y1 >= 20 && y0 <= 46;
         }) };
 
+        // Kept for logic that may need the real shapes; no longer rendered.
+        basemap = { countries, rivers, lakes };
+
+        // Still called: drawLand feeds the locator inset's silhouette, and the
+        // other two build their (now CSS-hidden) paths so the DOM still carries
+        // the geometry. Nothing here paints on the main map any more.
         drawModern(countries);
         drawLand(countries);
         drawHydrography(rivers, lakes);
