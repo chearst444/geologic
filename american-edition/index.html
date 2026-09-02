@@ -282,9 +282,11 @@
 
         ol {
             margin: 0;
-            padding-left: 22px;
+            padding-left: 28px;
+            list-style-position: outside;
             /* The clue list is the one place vertical scrolling is allowed. */
             overflow-y: auto;
+            overflow-x: visible;
             touch-action: pan-y;
             -webkit-overflow-scrolling: touch;
             overscroll-behavior: contain;
@@ -292,7 +294,7 @@
         }
         li {
             margin-bottom: 6px;
-            font-size: 1.05rem;
+            font-size: 0.98rem;
             line-height: 1.38;
             animation: clue-in 0.28s ease-out;
         }
@@ -817,8 +819,8 @@
                 gap: 10px;
             }
             #clue-card { padding: 11px 13px; border-left-width: 4px; }
-            li { font-size: 0.95rem; margin-bottom: 5px; }
-            ol { max-height: 24vh; padding-left: 19px; }
+            li { font-size: 0.9rem; margin-bottom: 5px; }
+            ol { max-height: 24vh; padding-left: 24px; }
             .rv-head { padding: 12px 13px 9px; }
             .rv-body { padding: 12px 13px 4px; }
             .rv-foot { padding: 10px 13px; }
@@ -859,8 +861,8 @@
             #game-container { padding: 8px; gap: 8px; }
             #clue-card { padding: 8px 11px; }
             .clue-head { margin-bottom: 5px; }
-            ol { max-height: 19vh; }
-            li { font-size: 0.88rem; margin-bottom: 3px; }
+            ol { max-height: 19vh; padding-left: 22px; }
+            li { font-size: 0.84rem; margin-bottom: 3px; }
             /* Landscape phones are short: cap the flag so the pinned action
                bar and the capital prompt still fit without scrolling. */
             .flag-wrap img { max-height: 26vh; }
@@ -1027,8 +1029,8 @@
   </div>
   <div class="sq-howto" id="sq-howto">
     <div class="sq-howto-card">
-      <h2>With lots of super fun facts!</h2>
-      <p>Read the clues. Find the state.</p>
+      <h2>Now packed with lots of super fun facts!</h2>
+      <p>Click the state that answers the clue.</p>
       <button type="button" class="sq-play" id="sq-play" aria-label="Play">
         <img src="assets/btn_play.png" alt="PLAY" width="92" height="29">
       </button>
